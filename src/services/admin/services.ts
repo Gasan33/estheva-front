@@ -3,13 +3,14 @@ import axiosInstance from '../common/axiosInstance';
 export async function fetchServicesData() {
     try {
         const response = await axiosInstance.get('/services');
-        return response.data.data.map((item: { id: string; images: string[]; name: string; description: string; price: string; category: { category_name: string; }; }) => ({
+        console.log(response.data);
+        return response.data.data.map((item: { id: string; images: string[]; name: string; description: string; price: string; category: { name: string; }; }) => ({
             id: item.id,
             image: item.images ? item.images[0] : '',
             title: item.name,
             description: item.description ?? '',
             price: item.price,
-            category: item.category.category_name,
+            category: item.category.name,
         }));
     } catch (error) {
         console.error("Error fetching services data:", error);
