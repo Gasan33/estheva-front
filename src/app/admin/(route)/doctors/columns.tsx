@@ -62,8 +62,8 @@ export const columns: ColumnDef<Doctor>[] = [
             <Image
                 src={row.getValue("image")}
                 alt={row.getValue("title")}
-                fill
-                sizes="40"
+                width={56}
+                height={56}
                 className="rounded-full w-14 h-14"
             />
         ),
