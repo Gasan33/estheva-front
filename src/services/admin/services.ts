@@ -10,7 +10,7 @@ export async function fetchServicesData() {
             title: item.name,
             description: item.description ?? '',
             price: item.price,
-            category: item.category.name,
+            category: item.category.name ?? '',
         }));
     } catch (error) {
         console.error("Error fetching services data:", error);
