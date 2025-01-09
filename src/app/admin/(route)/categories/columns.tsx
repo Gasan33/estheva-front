@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
 import Image from "next/image"
+import { deleteCategory } from "@/services/admin/category"
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Category = {
@@ -23,19 +24,7 @@ export type Category = {
 
 
 async function handelDelete(id: number): Promise<void> {
-    console.log(id)
-    try {
-        const response = await fetch(`https://api.estheva-clinic.com/api/v1/categories/delete/${id}`, {
-            method: 'DELETE',
-        });
-
-        if (!response.ok) {
-            throw new Error(`Failed to delete category`);
-        }
-        alert("Category Deleted Successfuly");
-    } catch (error) {
-        console.error(error);
-    }
+    deleteCategory(id);
 }
 
 export const columns: ColumnDef<Category>[] = [
