@@ -1,0 +1,62 @@
+@media (max-width: 1279px) {
+    .header {
+        background: #0d212c;
+        width: 100%;
+        display: flex;
+        justify-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        position: fixed;
+        right: 0;
+        z-index: 9999;
+
+        .button {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-color: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .burger {
+            width: 100%;
+
+            &::after,
+            &::before {
+                content: "";
+                display: block;
+                height: 1px;
+                width: 40%;
+                margin: auto;
+                background-color: gray;
+                position: relative;
+                transition: transform 0.3s;
+            }
+
+            &::after {
+                top: -5px;
+            }
+
+            &::before {
+                top: 5px;
+            }
+        }
+
+        .burgerActive {
+
+            &::after {
+                transform: rotate(45deg);
+                top: -1px;
+            }
+
+            &::before {
+                transform: rotate(-45deg);
+                top: 0px;
+            }
+
+        }
+    }
+}
