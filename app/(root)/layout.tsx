@@ -1,5 +1,4 @@
 // import { auth } from '@/auth';
-import AppBaner from '@/components/common/AppBaner';
 import Footer from '@/components/common/Footer';
 import { Header } from '@/components/common/Headers/Header/Header';
 import MHeader from '@/components/common/Headers/mheader/page';
@@ -15,11 +14,9 @@ const layout = async ({ children }: { children: ReactNode }) => {
                 <Header />
                 <MHeader />
             </div>
-            <div
-            // className='mx-auto max-w-7xl'
-            >
-                <div> {children} </div>
-            </div>
+
+            <div> {children} </div>
+
             <Footer />
             <ScrollToTop />
         </main>)

@@ -106,6 +106,56 @@ export const navigationLinks: NavLinks[] = [
 ];
 
 
+export const quickLinks01: QuickLink[] = [
+    {
+        path: "/home",
+        display: "Home",
+    },
+    {
+        path: "/",
+        display: "About Us",
+    },
+    {
+        path: "/services",
+        display: "Services",
+    },
+    {
+        path: "/",
+        display: "Blog",
+    },
+];
+
+export const quickLinks02: QuickLink[] = [
+    {
+        path: "/find-a-doctor",
+        display: "Find a Doctor",
+    },
+    {
+        path: "/",
+        display: "Request an Appointment",
+    },
+    {
+        path: "/",
+        display: "Find a Location",
+    },
+    {
+        path: "/",
+        display: "Get an Opinion",
+    },
+];
+
+export const quickLinks03: QuickLink[] = [
+    {
+        path: "/",
+        display: "Donate",
+    },
+    {
+        path: "/contact",
+        display: "Contact Us",
+    },
+];
+
+
 export const popularTreatments: Treatment[] = [
     {
         id: 1,

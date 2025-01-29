@@ -20,7 +20,7 @@ export default {
 				]
 			},
 			colors: {
-				primaryColor: '#0067FF',
+				primaryColor: '#14b8a6',
 				yellowColor: '#FEB60D',
 				purpleColor: '#9771FF',
 				irisBlueColor: '#01B5C5',

@@ -71,7 +71,15 @@ interface Article {
     des: string;
     img: string; // URL for the image
 }
+interface SocialLink {
+    path: string;
+    icon: JSX.Element;
+}
 
+interface QuickLink {
+    path: string;
+    display: string;
+}
 // interface Treatment {
 //     id: number;
 //     name: string;
