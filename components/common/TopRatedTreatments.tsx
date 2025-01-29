@@ -9,6 +9,7 @@ import { ArrowRight01Icon } from "hugeicons-react";
 import RatingBar from "./RatingBar"; // Make sure this component is correctly implemented
 import AOS from "aos";
 import "aos/dist/aos.css";
+import BookAppointment from "./BookAppointment";
 
 const TopRatedTreatments = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -97,10 +98,7 @@ const TopRatedTreatments = () => {
                             View Details
                             <ArrowRight01Icon />
                         </Link>
-                        <div className="flex gap-1 font-medium items-center text-teal-500">
-                            Book Now
-                            <ArrowRight size={16} className="-rotate-45" />
-                        </div>
+                        <BookAppointment treatment={popularTreatments.find((item) => item.name === popularTreatments[activeIndex].name)!} triger='home' />
                     </div>
                 </div>
                 {/* </div> */}
@@ -150,10 +148,7 @@ const TopRatedTreatments = () => {
                                             <ArrowRight01Icon />
 
                                         </Link>
-                                        <div className='flex gap-1 font-medium items-center text-teal-500'>
-                                            Book Now
-                                            <ArrowRight size={16} className='-rotate-45' />
-                                        </div>
+                                        <BookAppointment treatment={item} triger='home' />
                                     </div>
                                 </div>
                             </div>

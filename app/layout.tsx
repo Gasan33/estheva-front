@@ -2,9 +2,6 @@ import type { Metadata } from 'next'
 import './globals.css'
 import localFont from 'next/font/local'
 import { ReactNode } from 'react'
-// import { Toaster } from "@/components/ui/toaster"
-// import { SessionProvider } from "next-auth/react";
-// import { auth } from '@/auth'
 
 const ibmPlexSans = localFont({
   src: [
@@ -35,8 +32,11 @@ const bebasNeue = localFont({
 export const metadata: Metadata = {
   title: 'Estheva Polyclinic | Advanced Healthcare and Aesthetic Solutions',
   description:
-    'Welcome to Estheva Polyclinic, your trusted destination for advanced healthcare and aesthetic solutions. Experience personalized treatments, state-of-the-art facilities, and a professional team dedicated to your well-being.',
+    'Estheva Polyclinic offers advanced healthcare and aesthetic treatments in Dubai. Personalized care with state-of-the-art facilities and expert professionals.',
   keywords: [
+    'Estheva Polyclinic', 'healthcare', 'aesthetic solutions', 'advanced treatments', 'personalized care',
+    'medical professionals', 'Dubai clinic', 'wellness', 'hair transplant Dubai', 'weight loss Dubai',
+    'IV Drip therapy Dubai', 'anti-aging Dubai', 'skin rejuvenation Dubai', 'body contouring Dubai',
     'Estheva Polyclinic',
     'healthcare',
     'aesthetic solutions',
@@ -85,39 +85,81 @@ export const metadata: Metadata = {
     "Best polyclinic franchise opportunity",
     "Wellness treatments booking Dubai",
 
-
-
   ],
   openGraph: {
     title: 'Estheva Polyclinic | Advanced Healthcare and Aesthetic Solutions',
-    description:
-      'Discover Estheva Polyclinic for premium healthcare and aesthetic treatments in Dubai. Our professional team ensures exceptional care tailored to your needs.',
+    description: 'Discover Estheva Polyclinic for premium healthcare and aesthetic treatments in Dubai. Exceptional care tailored to your needs.',
     url: 'https://estheva-clinic.com',
     type: 'website',
     images: [
       {
         url: 'https://estheva-clinic.com/images/pic1.png',
         alt: 'Estheva Polyclinic',
-      },
+        width: 1200,
+        height: 630
+      }
     ],
+    siteName: 'Estheva Polyclinic',
+  },
+  twitter: {
+    card: 'summary_large_image', // Twitter Card type
+    title: 'Estheva Polyclinic | Advanced Healthcare and Aesthetic Solutions',
+    description: 'Discover Estheva Polyclinic for healthcare and aesthetic treatments in Dubai.',
+    images: 'https://estheva-clinic.com/images/pic1.png',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   viewport: 'width=device-width, initial-scale=1.0',
   authors: [{ name: 'Estheva Polyclinic' }],
-};
-
+  // hreflang: [
+  //   { lang: 'en', href: 'https://estheva-clinic.com' }, // English version of the site
+  //   { lang: 'ar', href: 'https://estheva-clinic.com/ar' }, // Arabic version if available
+  // ],
+}
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
-  // const session = await auth();
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalBusiness',
+    name: 'Estheva Polyclinic',
+    description: 'Estheva Polyclinic offers advanced healthcare and aesthetic treatments in Dubai.',
+    url: 'https://estheva-clinic.com',
+    image: 'https://estheva-clinic.com/images/pic1.png',
+    logo: 'https://estheva-clinic.com/icons/logo.svg',
+    sameAs: [
+      'https://www.facebook.com/estheva-clinic',
+      'https://twitter.com/estheva_clinic',
+      'https://www.instagram.com/estheva_clinic'
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: "375 Al Wasl Rd - Al Bada'a",
+      addressLocality: 'Dubai',
+      addressRegion: 'Dubai',
+      postalCode: '00000',
+      addressCountry: 'AE',
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'Customer Service',
+      telephone: '+971-433-09084',
+      areaServed: 'AE',
+      availableLanguage: 'en',
+    },
+  };
+
   return (
     <html lang="en">
-      {/* <SessionProvider session={session}> */}
-      <body
-        className={`${touche.className} ${bebasNeue.variable} antialiased`}
-      >
+      <head>
+        {/* Add the canonical URL here */}
+        <link rel="canonical" href="https://estheva-clinic.com" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      </head>
+      <body className={`${touche.className} ${bebasNeue.variable} antialiased`}>
         {children}
-        {/* <Toaster /> */}
       </body>
-      {/* </SessionProvider> */}
     </html>
   )
 }

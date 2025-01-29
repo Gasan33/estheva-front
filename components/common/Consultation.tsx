@@ -2,23 +2,24 @@ import React from 'react'
 import FaqList from "./FaqList"
 import { ArrowRightIcon, ArrowLeftIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 const data = [
     {
         id: 1,
         name: "Dr. Mathew Jr.",
-        img: "/doc1.jpg",
+        img: "/images/doc1.jpg",
         specialization: "Physiotherapy",
     },
     {
         id: 2,
         name: "Dr. Hithen Pan.",
-        img: "/doc2.jpg",
+        img: "/images/doc2.jpg",
         specialization: "Slimming",
     },
     {
         id: 3,
         name: "Dr. Mario Andaloro.",
-        img: "/doc3.jpg",
+        img: "/images/doc3.jpg",
         specialization: "General",
     },
 ]
@@ -41,7 +42,13 @@ const Consultation = () => {
                     data.map((item, index) => (
                         <div key={index} className='mt-8 rounded-3xl bg-white overflow-clip hover:scale-105 transition-transform duration-300 hover:shadow-xl hover:text-white cursor-pointer'>
                             <div className='w-full md:w-[300px]'>
-                                <img src={item.img} alt={item.name} className='h-[300px] w-full object-cover' />
+                                <Image
+                                    src={item.img}
+                                    alt={item.name}
+                                    width={600}
+                                    height={600}
+                                    className="h-[300px] w-full object-cover"
+                                />
                             </div>
                             <div className='flex flex-col p-8 items-center'>
                                 <h1 className='text-xl  font-[500]  text-gray-900 sm:text-2xl'>{item.name}</h1>
@@ -56,14 +63,14 @@ const Consultation = () => {
             </div>
 
 
-            <div className='flex w-full mt-16 gap-4 justify-center'>
+            {/* <div className='flex w-full mt-16 gap-4 justify-center'>
                 <div className='flex justify-center text-primary rounded-full border-2 border-gray-600 p-2 hover:scale-105 transition-transform duration-300 hover:shadow-xl hover:bg-primary hover:text-white hover:border-primary cursor-pointer'>
                     <ArrowLeftIcon />
                 </div>
                 <div className='flex justify-center text-primary rounded-full border-2 border-gray-600 p-2 hover:scale-105 transition-transform duration-300 hover:shadow-xl hover:bg-primary hover:text-white hover:border-primary cursor-pointer'>
                     <ArrowRightIcon />
                 </div>
-            </div>
+            </div> */}
 
         </div>
     )

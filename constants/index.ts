@@ -69,7 +69,7 @@ export const navigationLinks: NavLinks[] = [
     {
         id: 5,
         path: '/blogs',
-        name: 'News & Blogs',
+        name: 'Blogs',
         // dropMenu: [
         //     {
         //         id: 1,
@@ -1213,6 +1213,30 @@ export const profileSideBarList = [
         id: 7,
         title: "Security",
         path: "security",
+    },
+];
+
+export const addresses = [
+    {
+        id: 1,
+        title: "Home",
+        name: "Mohammed Ali",
+        phone: "+971 545 671677",
+        address: "Dubai, Alwasl road, build 375.",
+    },
+    {
+        id: 2,
+        title: "Home",
+        name: "Mohammed Ali",
+        phone: "+971 545 671677",
+        address: "Dubai, Alwasl road, build 375.",
+    },
+    {
+        id: 3,
+        title: "Home",
+        name: "Mohammed Ali",
+        phone: "+971 545 671677",
+        address: "Dubai, Alwasl road, build 375.",
     },
 ];
 

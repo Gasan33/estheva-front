@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import BookAppointment from './BookAppointment'
 
 const ExploreTreatment = ({ treatment }: { treatment: Treatment }) => {
     return (
@@ -23,10 +24,7 @@ const ExploreTreatment = ({ treatment }: { treatment: Treatment }) => {
                     <ArrowRight01Icon />
 
                 </Link>
-                <div className='flex gap-1 font-medium items-center text-teal-500'>
-                    Book Now
-                    <ArrowRight size={16} className='-rotate-45' />
-                </div>
+                <BookAppointment treatment={treatment} triger='home' />
             </div>
         </div>
     )

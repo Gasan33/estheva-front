@@ -20,6 +20,8 @@ import { TiTick } from "react-icons/ti";
 import SchduleAppointment from './BookAppointment/SchduleAppointment'
 import CheckoutForm from './BookAppointment/Payment'
 import ApplePayButton from './BookAppointment/AppleBay'
+import Summary from './BookAppointment/Summary'
+import AppointmentSuccess from './BookAppointment/AppointmentSuccess'
 
 
 
@@ -32,6 +34,14 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment, triger?:
     const [currentStep, setCurrentStep] = useState(1);
     const [complete, setComplete] = useState(false);
 
+    const resetState = () => {
+        setDate(new Date());
+        setSelectedTimeSlot(undefined);
+        setSelectedLocation(null);
+        setSelectedDoctor(null);
+        setCurrentStep(1);
+        setComplete(false);
+    };
 
 
     return (
@@ -70,18 +80,6 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment, triger?:
                             </div>
                         ))}
                     </div>
-                    {/* {!complete && (
-                        <button
-                            className="btn"
-                            onClick={() => {
-                                currentStep === steps.length
-                                    ? setComplete(true)
-                                    : setCurrentStep((prev) => prev + 1);
-                            }}
-                        >
-                            {currentStep === steps.length ? "Finish" : "Next"}
-                        </button>
-                    )} */}
                 </>
 
                 {currentStep == 1 ? <SchduleAppointment
@@ -98,9 +96,35 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment, triger?:
                     ? <div>
                         <ApplePayButton />
                         <CheckoutForm />
-                    </div> : <div></div>}
+                        {/* Price Details */}
+                        <div>
+                            <h1 className='text-xs md:text-sm lg:text-lg xl:text-xl font-semibold mt-8'>Price Details</h1>
+
+                            <div className='text-[8px] sm:text-sm text-gray-500'>
+
+
+                                <div className='flex justify-between  mt-8'>
+                                    <p>Subtotal</p>
+                                    <p>1,300 AED</p>
+                                </div>
+                                <div className='flex justify-between mt-1'>
+                                    <p>Extra</p>
+                                    <p>0 AED</p>
+                                </div>
+                                <div className='flex justify-between  mt-1'>
+                                    <p>Tax</p>
+                                    <p>30 AED</p>
+                                </div>
+
+                                <div className='flex justify-between text-gray-950 mt-8 font-semibold'>
+                                    <p>Total</p>
+                                    <p>1,330 AED</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> : currentStep == 3 ? <Summary treatment={treatment} /> : <AppointmentSuccess />}
                 <DialogFooter className="sm:justify-end gap-4">
-                    {currentStep != 1 ? (
+                    {currentStep < steps.length ? currentStep != 1 ? (
                         <Button
                             className="btn text-red-600"
                             type="button"
@@ -115,27 +139,40 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment, triger?:
                         <Button
                             className="btn text-red-600"
                             type="button"
+                            onClick={() => {
+                                resetState();
+                            }}
                             variant="secondary"
                         >
                             Close
                         </Button>
-                    </DialogClose>
+                    </DialogClose> : null
                     }
 
 
-                    {!complete && (
+                    {currentStep < steps.length ? (
                         <Button
                             className="btn bg-teal-500 text-white"
                             disabled={currentStep == 1 ? !(date && selectedTimeSlot && selectedDoctor && selectedLocation) : false}
                             onClick={() => {
-                                currentStep === steps.length
-                                    ? setComplete(true)
-                                    : setCurrentStep((prev) => prev + 1);
+                                setCurrentStep((prev) => prev + 1);
                             }}
                         >
-                            {currentStep === steps.length ? "Finish" : "Next"}
+                            Next
                         </Button>
-                    )}
+                    ) : (
+                        <DialogClose asChild>
+                            <Button
+                                className="btn bg-teal-500 text-white"
+                                onClick={() => {
+                                    setComplete(true);
+                                    resetState();
+
+                                }}
+                            >
+                                Finish
+                            </Button>
+                        </DialogClose>)}
                 </DialogFooter>
             </DialogContent>
         </Dialog>

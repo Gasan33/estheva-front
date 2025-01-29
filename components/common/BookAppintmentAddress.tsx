@@ -1,31 +1,10 @@
 "use client"
+import { addresses } from "@/constants";
 import { Location01Icon } from "hugeicons-react";
 import { CircleCheck, CircleCheckIcon } from "lucide-react";
 import React, { useState } from "react";
 
-const addresses = [
-    {
-        id: 1,
-        title: "Home",
-        name: "Mohammed Ali",
-        phone: "+971 545 671677",
-        address: "Dubai, Alwasl road, build 375.",
-    },
-    {
-        id: 2,
-        title: "Home",
-        name: "Mohammed Ali",
-        phone: "+971 545 671677",
-        address: "Dubai, Alwasl road, build 375.",
-    },
-    {
-        id: 3,
-        title: "Home",
-        name: "Mohammed Ali",
-        phone: "+971 545 671677",
-        address: "Dubai, Alwasl road, build 375.",
-    },
-];
+
 
 const BookAppointmentAddress = () => {
     const [selectedId, setSelectedId] = useState<number | null>(null);
