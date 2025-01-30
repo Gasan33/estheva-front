@@ -45,7 +45,7 @@ const MyAppointments = () => {
                                                 onClick={() => handleTabSwitch(tab.value)}
                                                 className="flex gap-2 xl:gap-4 items-center cursor-pointer duration-700 transform hover:scale-105 hover:duration-300">
                                                 <span className="text-sm xl:text-xl text-light-500">View All</span>
-                                                <ArrowRight01Icon className="text-teal-500" size={24} />
+                                                <ArrowRight01Icon className="text-primaryColor" size={24} />
                                             </div>
                                         </div>
                                         <AppointmentsList type={tab.value} />

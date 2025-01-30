@@ -11,7 +11,7 @@ import {
 const RescheduleAppointmentDailog = () => {
     return (
         <Dialog>
-            <DialogTrigger className='block relative  bg-teal-500 rounded-md w-full py-2 text-sm text-white font-thin'>Reschedule</DialogTrigger>
+            <DialogTrigger className='block relative  bg-primaryColor rounded-md w-full py-2 text-sm text-white font-thin'>Reschedule</DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Are you absolutely sure?</DialogTitle>

@@ -94,7 +94,7 @@ const Carousel: React.FC = () => {
               <div >
                 <Button className='bg-white flex rounded-full gap-4 px-8 py-6 text-lg text-primary-400'>
                   learn more
-                  <ArrowRight01Icon className='text-teal-500 w-14 h-14 text-4xl' width={32} size={32} height={32} />
+                  <ArrowRight01Icon className='text-primaryColor w-14 h-14 text-4xl' width={32} size={32} height={32} />
                 </Button>
                 {/* <Button className='rounded-sm'>BOOK NOW!</Button> */}
               </div>

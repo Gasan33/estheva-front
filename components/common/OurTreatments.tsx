@@ -23,7 +23,10 @@ const OurTreatments = () => {
                 {categories.map((category, index) => (
                     <Link
                         key={index}
-                        href={"/categories/" + category.path}
+                        href={{
+                            pathname: "/treatments",
+                            query: { treatments: category.path },
+                        }}
                         data-aos="fade-up" // AOS animation
                         data-aos-delay={index * 100} // Delay each item for a staggered animation
                         className="bg-transparent rounded-xl p-6 hover:scale-105 cursor-pointer transition duration-300"

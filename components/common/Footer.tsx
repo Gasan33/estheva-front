@@ -124,7 +124,7 @@ export const Footer: React.FC = () => {
                             >
                                 {navigationLinks?.[0]?.name}
                                 <ArrowDown01Icon
-                                    className={`text-teal-500 transition-all ${isOpen && "rotate-180"
+                                    className={`text-primaryColor transition-all ${isOpen && "rotate-180"
                                         }`}
                                     size={24}
                                 />

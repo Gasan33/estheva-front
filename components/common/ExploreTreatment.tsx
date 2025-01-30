@@ -19,7 +19,7 @@ const ExploreTreatment = ({ treatment }: { treatment: Treatment }) => {
             <p className='line-clamp-3'>{treatment.desc}</p>
 
             <div className='flex gap-4 mt-4'>
-                <Link href={`/treatments/details/${treatment.id}`} className='flex gap-1 font-medium text-teal-500'>
+                <Link href={`/treatments/details/${treatment.id}`} className='flex gap-1 font-medium text-primaryColor'>
                     View Details
                     <ArrowRight01Icon />
 

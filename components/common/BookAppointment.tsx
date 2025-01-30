@@ -19,9 +19,9 @@ import BookAppintmentAddress from './BookAppintmentAddress'
 import { TiTick } from "react-icons/ti";
 import SchduleAppointment from './BookAppointment/SchduleAppointment'
 import CheckoutForm from './BookAppointment/Payment'
-import ApplePayButton from './BookAppointment/AppleBay'
 import Summary from './BookAppointment/Summary'
 import AppointmentSuccess from './BookAppointment/AppointmentSuccess'
+import PaymentPage from './BookAppointment/Payment'
 
 
 
@@ -46,15 +46,15 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment, triger?:
 
     return (
         <Dialog>
-            {triger == "profile" ? <DialogTrigger className='block relative  bg-teal-500 rounded-md w-full py-2 text-sm text-white font-thin'>Book Again</DialogTrigger>
+            {triger == "profile" ? <DialogTrigger className='block relative  bg-primaryColor rounded-md w-full py-2 text-sm text-white font-thin'>Book Again</DialogTrigger>
                 : triger == "home"
-                    ? <DialogTrigger className='flex gap-1 font-medium items-center text-teal-500'>
+                    ? <DialogTrigger className='flex gap-1 font-medium items-center text-primaryColor'>
                         Book Now
                         <ArrowRight size={16} className='-rotate-45' />
                     </DialogTrigger>
                     : <DialogTrigger className='w-full' >
 
-                        <div className='flex lg:mt-8 mt-4 justify-center py-3 px-4 w-full items-center font-semibold rounded-full text-white bg-teal-500 shadow-lg hover:bg-gray-100'>
+                        <div className='flex lg:mt-8 mt-4 justify-center py-3 px-4 w-full items-center font-semibold rounded-full text-white bg-primaryColor shadow-lg hover:bg-gray-100'>
                             Schdule Appointment
                             <ArrowRight01Icon size={24} className='text-white' />
                         </div>  </DialogTrigger>}
@@ -66,7 +66,7 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment, triger?:
                     <DialogTitle>Schdule Appointment</DialogTitle>
                 </DialogHeader>
                 <>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between mt-8">
                         {steps?.map((step, i) => (
                             <div
                                 key={i}
@@ -94,34 +94,10 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment, triger?:
                     treatment={treatment}
                 /> : currentStep == 2
                     ? <div>
-                        <ApplePayButton />
-                        <CheckoutForm />
+
+                        <PaymentPage price={Number(treatment.price)} />
                         {/* Price Details */}
-                        <div>
-                            <h1 className='text-xs md:text-sm lg:text-lg xl:text-xl font-semibold mt-8'>Price Details</h1>
 
-                            <div className='text-[8px] sm:text-sm text-gray-500'>
-
-
-                                <div className='flex justify-between  mt-8'>
-                                    <p>Subtotal</p>
-                                    <p>1,300 AED</p>
-                                </div>
-                                <div className='flex justify-between mt-1'>
-                                    <p>Extra</p>
-                                    <p>0 AED</p>
-                                </div>
-                                <div className='flex justify-between  mt-1'>
-                                    <p>Tax</p>
-                                    <p>30 AED</p>
-                                </div>
-
-                                <div className='flex justify-between text-gray-950 mt-8 font-semibold'>
-                                    <p>Total</p>
-                                    <p>1,330 AED</p>
-                                </div>
-                            </div>
-                        </div>
                     </div> : currentStep == 3 ? <Summary treatment={treatment} /> : <AppointmentSuccess />}
                 <DialogFooter className="sm:justify-end gap-4">
                     {currentStep < steps.length ? currentStep != 1 ? (
@@ -152,7 +128,7 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment, triger?:
 
                     {currentStep < steps.length ? (
                         <Button
-                            className="btn bg-teal-500 text-white"
+                            className="btn bg-primaryColor text-white"
                             disabled={currentStep == 1 ? !(date && selectedTimeSlot && selectedDoctor && selectedLocation) : false}
                             onClick={() => {
                                 setCurrentStep((prev) => prev + 1);
@@ -163,7 +139,7 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment, triger?:
                     ) : (
                         <DialogClose asChild>
                             <Button
-                                className="btn bg-teal-500 text-white"
+                                className="btn bg-primaryColor text-white"
                                 onClick={() => {
                                     setComplete(true);
                                     resetState();

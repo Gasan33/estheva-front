@@ -60,19 +60,19 @@ const AboutUs = () => {
 
                     <div className="mt-16 mx-4 md:mx-32 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
                         <div className="flex flex-col px-4 gap-4" data-aos="fade-up">
-                            <h1 className="text-3xl flex text-teal-500 font-semibold uppercase tracking-wider">2022</h1>
+                            <h1 className="text-3xl flex text-primaryColor font-semibold uppercase tracking-wider">2022</h1>
                             <p className="text-[#5b7e95] line-clamp-6">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry...
                             </p>
                         </div>
                         <div className="flex flex-col px-4 gap-4" data-aos="fade-up" data-aos-delay="200">
-                            <h1 className="text-3xl flex text-teal-500 font-semibold uppercase tracking-wider">2023</h1>
+                            <h1 className="text-3xl flex text-primaryColor font-semibold uppercase tracking-wider">2023</h1>
                             <p className="text-[#5b7e95] line-clamp-6">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry...
                             </p>
                         </div>
                         <div className="flex flex-col px-4 gap-4" data-aos="fade-up" data-aos-delay="400">
-                            <h1 className="text-3xl flex text-teal-500 font-semibold uppercase tracking-wider">2024</h1>
+                            <h1 className="text-3xl flex text-primaryColor font-semibold uppercase tracking-wider">2024</h1>
                             <p className="text-[#5b7e95] line-clamp-6">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry...
                             </p>
@@ -97,10 +97,10 @@ const AboutUs = () => {
                         </div>
 
                         <div className="flex flex-col gap-4 py-8">
-                            <h1 className="text-4xl flex text-teal-500 font-bold uppercase tracking-wider">
+                            <h1 className="text-4xl flex text-primaryColor font-bold uppercase tracking-wider">
                                 Estheva Polyclinic
                             </h1>
-                            <div className="border border-solid border-teal-500 w-40"></div>
+                            <div className="border border-solid border-primaryColor w-40"></div>
                             {["Villa 375B", "Al Wasl Road", "Dubai", "United Arab Emirates"].map((item, index) => (
                                 <h2
                                     key={index}
@@ -109,23 +109,23 @@ const AboutUs = () => {
                                     {item}
                                 </h2>
                             ))}
-                            <h1 className="text-teal-500 sm:text-sm md:text-lg lg:text-xl xl:text-2xl font-semibold tracking-widest">
+                            <h1 className="text-primaryColor sm:text-sm md:text-lg lg:text-xl xl:text-2xl font-semibold tracking-widest">
                                 Working Hours
                             </h1>
-                            <div className="border border-solid border-teal-500 w-40"></div>
+                            <div className="border border-solid border-primaryColor w-40"></div>
                             <div className="flex justify-between items-center text-primary text-lg font-normal sm:text-sm md:text-lg lg:text-xl xl:text-2xl">
                                 <label>MON-SUN</label>
                                 <label>09:00 AM - 21:00 PM</label>
                             </div>
-                            <h1 className="text-teal-500 sm:text-sm md:text-lg lg:text-xl xl:text-2xl font-semibold tracking-widest">
+                            <h1 className="text-primaryColor sm:text-sm md:text-lg lg:text-xl xl:text-2xl font-semibold tracking-widest">
                                 Contact
                             </h1>
-                            <div className="border border-solid border-teal-500 w-40"></div>
+                            <div className="border border-solid border-primaryColor w-40"></div>
                             <div className="flex gap-4 items-center text-primary text-lg font-normal sm:text-sm md:text-lg lg:text-xl xl:text-2xl">
-                                <PhoneIcon className="text-teal-500" size={24} />
+                                <PhoneIcon className="text-primaryColor" size={24} />
                                 <label>+971 54 567 1677</label>
                             </div>
-                            <Link href={''} className="flex gap-4 items-center text-teal-500 text-lg font-normal sm:text-sm md:text-lg lg:text-xl xl:text-2xl hover:cursor-pointer">
+                            <Link href={''} className="flex gap-4 items-center text-primaryColor text-lg font-normal sm:text-sm md:text-lg lg:text-xl xl:text-2xl hover:cursor-pointer">
                                 <Mail01Icon size={24} />
                                 <p>info@estheva-polyclinic.ae</p>
                                 <ArrowRightIcon className=" -rotate-45" size={20} />

@@ -11,7 +11,7 @@ import {
 const ReviewDailog = () => {
     return (
         <Dialog>
-            <DialogTrigger className='block relative outline outline-1 outline-teal-500  rounded-md w-full py-2 text-sm text-teal-500 font-thin'>Review</DialogTrigger>
+            <DialogTrigger className='block relative outline outline-1 outline-primaryColor  rounded-md w-full py-2 text-sm text-primaryColor font-thin'>Review</DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Are you absolutely sure?</DialogTitle>

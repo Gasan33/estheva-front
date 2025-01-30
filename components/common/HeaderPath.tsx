@@ -23,9 +23,9 @@ const HeaderPath = ({ title, path, desc, showSearchBar = true }: { title: string
                     <BreadcrumbItem>
                         <BreadcrumbLink href="/">Home</BreadcrumbLink>
                     </BreadcrumbItem>
-                    <ArrowRight01Icon className="text-teal-500" size={20} />
+                    <ArrowRight01Icon className="text-primaryColor" size={20} />
                     <BreadcrumbItem>
-                        <BreadcrumbPage className='text-teal-500'>{title}</BreadcrumbPage>
+                        <BreadcrumbPage className='text-primaryColor'>{title}</BreadcrumbPage>
                     </BreadcrumbItem>
 
                 </BreadcrumbList>

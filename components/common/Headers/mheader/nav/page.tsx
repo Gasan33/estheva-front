@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { menuSlide } from '../anim';
 import NavLink from './Link';
 import Curve from './Curve';
-import Footer from './Footer';
+import Footer from './Footer/page';
 import {
   Accordion,
   AccordionContent,
@@ -17,24 +17,6 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { getInitials } from '@/lib/utils';
 import Link from 'next/link';
 
-const navItems = [
-  {
-    title: "Home",
-    href: "/",
-  },
-  {
-    title: "Work",
-    href: "/work",
-  },
-  {
-    title: "About",
-    href: "/about",
-  },
-  {
-    title: "Contact",
-    href: "/contact",
-  },
-]
 
 export default function index() {
 
@@ -80,7 +62,8 @@ export default function index() {
             }
           </div>
         </div>
-        {/* <Footer /> */}
+        <Footer />
+
       </div>
       <Curve />
     </motion.div>

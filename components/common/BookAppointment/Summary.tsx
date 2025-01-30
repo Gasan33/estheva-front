@@ -51,12 +51,12 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
                         )}
 
                         {/* Date & Time */}
-                        <div className="text-teal-500 font-semibold">
+                        <div className="text-primaryColor font-semibold">
                             16 Nov 2024 | 09:30 PM
                         </div>
 
                         {/* Countdown */}
-                        <div className="text-teal-500 font-medium">
+                        <div className="text-primaryColor font-medium">
                             Starts in 2 days
                         </div>
                     </div>
@@ -71,24 +71,24 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
                 <div className='flex flex-col gap-1 p-2 md:p-4 rounded-xl border border-gray-100 shadow-md text-gray-400 w-full mt-4 text-[8px] sm:text-sm'>
 
                     <div className='flex gap-2 line-clamp-1'>
-                        <h1 className='w-[20%] text-teal-500 font-medium'>Name</h1>
+                        <h1 className='w-[20%] text-primaryColor font-medium'>Name</h1>
                         :
                         <p >Mohammed Khalid</p>
                     </div>
                     <div className='flex gap-2 line-clamp-1'>
-                        <h1 className='w-[20%] text-teal-500 font-medium'>Age</h1>
+                        <h1 className='w-[20%] text-primaryColor font-medium'>Age</h1>
                         :
                         <p >26 year's</p>
 
                     </div>
                     <div className='flex gap-2 line-clamp-1'>
-                        <h1 className='w-[20%] text-teal-500 font-medium'>Weight</h1>
+                        <h1 className='w-[20%] text-primaryColor font-medium'>Weight</h1>
                         :
                         <p >65 kg</p>
 
                     </div>
                     <div className='flex gap-2 line-clamp-1'>
-                        <h1 className='w-[20%] text-teal-500 font-medium'>Gender</h1>
+                        <h1 className='w-[20%] text-primaryColor font-medium'>Gender</h1>
                         :
                         <p >Male</p>
 
@@ -104,7 +104,7 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
 
                 <div
                     key={addresses[0].id}
-                    className="relative flex flex-col items-start border-[1px] p-2 rounded-lg my-4 cursor-pointer border-teal-500 bg-teal-50"
+                    className="relative flex flex-col items-start border-[1px] p-2 rounded-lg my-4 cursor-pointer border-primaryColor bg-teal-50"
                 >
                     <div className="flex gap-2 items-center">
                         <Location01Icon size={16} />
@@ -113,7 +113,7 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
                     <p>{addresses[0].name}</p>
                     <p>{addresses[0].phone}</p>
                     <p>{addresses[0].address}</p>
-                    <CircleCheck className="absolute bottom-2 right-2 text-teal-500 w-4 h-4" />
+                    <CircleCheck className="absolute bottom-2 right-2 text-primaryColor w-4 h-4" />
                 </div>
 
             </div>

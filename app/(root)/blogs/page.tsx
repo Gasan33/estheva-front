@@ -75,11 +75,11 @@ const Blogs = () => {
                                             href={`/blogs/${blog.id}`}
                                             className="flex gap-2 xl:gap-4 items-center cursor-pointer mt-8"
                                         >
-                                            <span className="text-lg xl:text-xl text-teal-500">
+                                            <span className="text-lg xl:text-xl text-primaryColor">
                                                 Explore More
                                             </span>
                                             <ArrowRight01Icon
-                                                className="text-teal-500"
+                                                className="text-primaryColor"
                                                 size={24}
                                             />
                                         </Link>
@@ -125,11 +125,11 @@ const Blogs = () => {
                                 href={`/blogs/${blog.id}`}
                                 className="flex gap-2 xl:gap-4 items-center cursor-pointer mt-8"
                             >
-                                <span className="text-lg xl:text-xl text-teal-500">
+                                <span className="text-lg xl:text-xl text-primaryColor">
                                     Explore More
                                 </span>
                                 <ArrowRight01Icon
-                                    className="text-teal-500"
+                                    className="text-primaryColor"
                                     size={24}
                                 />
                             </Link>

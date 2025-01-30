@@ -17,7 +17,7 @@ const ProfileHeader = () => {
                     Gasan1288@gmail.com | +971 545 671677
                 </h1>
             </div>
-            <div className="flex gap-2 w-full bg-teal-500 p-2 h-auto rounded-xl justify-between items-center lg:flex-nowrap lg:h-24">
+            <div className="flex gap-2 w-full bg-primaryColor p-2 h-auto rounded-xl justify-between items-center lg:flex-nowrap lg:h-24">
                 <div className="flex flex-col lg:flex-row bg-white w-full h-20 lg:h-full lg:w-1/4 rounded-lg  items-center justify-center text-base lg:text-lg font-semibold gap-2">
                     <Calendar01Icon />
                     <h1>27 year's</h1>

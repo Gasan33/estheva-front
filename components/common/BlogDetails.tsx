@@ -71,13 +71,13 @@ const BlogDetails: React.FC<BlogDetailsProps> = ({ id }) => {
                         <BreadcrumbItem>
                             <BreadcrumbLink href="/">Home</BreadcrumbLink>
                         </BreadcrumbItem>
-                        <ArrowRight01Icon className="text-teal-500" size={20} />
+                        <ArrowRight01Icon className="text-primaryColor" size={20} />
                         <BreadcrumbItem>
                             <BreadcrumbLink href="/blogs">Blogs</BreadcrumbLink>
                         </BreadcrumbItem>
-                        <ArrowRight01Icon className="text-teal-500" size={20} />
+                        <ArrowRight01Icon className="text-primaryColor" size={20} />
                         <BreadcrumbItem>
-                            <BreadcrumbPage className='text-teal-500'>{blog.title}</BreadcrumbPage>
+                            <BreadcrumbPage className='text-primaryColor'>{blog.title}</BreadcrumbPage>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>

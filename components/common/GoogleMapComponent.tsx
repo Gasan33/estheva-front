@@ -89,14 +89,14 @@ const GoogleMapComponent = () => {
             <div className="absolute z-10 mt-16">
                 <HeaderPath title="Contact Us" path="/contact" showSearchBar={true} />
             </div>
-            <div className="absolute z-10 bg-primary rounded-xl p-8 border-teal-500 border-[2px] top-28 left-8 xl:left-14">
-                <h3 className="text-2xl font-medium text-teal-500">Estheva Polyclinic</h3>
+            <div className="absolute z-10 bg-primary rounded-xl p-8 border-primaryColor border-[2px] top-28 left-8 xl:left-14">
+                <h3 className="text-2xl font-medium text-primaryColor">Estheva Polyclinic</h3>
                 <h2 className="text-md font-[400] mt-4 text-white sm:text-[16px]">Villa 375B</h2>
                 <h2 className="text-md font-[400] mt-4 text-white sm:text-[16px]">Al Wasl Road</h2>
                 <h2 className="text-md font-[400] mt-4 text-white sm:text-[16px]">Dubai</h2>
                 <h2 className="text-md font-[400] mt-4 text-white sm:text-[16px]">United Arab Emirates</h2>
                 <h2 className="text-md font-[400] mt-4 text-white sm:text-[16px]">Mon - Sun, 9am - 9pm</h2>
-                <Button onClick={calculateRoute} className="mt-4 border-teal-500 border-[2px] text-white w-full">
+                <Button onClick={calculateRoute} className="mt-4 border-primaryColor border-[2px] text-white w-full">
                     Get Directions
                     <Location01Icon size={16} className="text-teal-200" />
                 </Button>

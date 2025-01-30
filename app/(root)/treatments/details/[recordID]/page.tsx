@@ -75,13 +75,13 @@ const TreatmentDetails = () => {
                         <BreadcrumbItem>
                             <BreadcrumbLink href="/">Home</BreadcrumbLink>
                         </BreadcrumbItem>
-                        <ArrowRight01Icon className="text-teal-500" size={20} />
+                        <ArrowRight01Icon className="text-primaryColor" size={20} />
                         <BreadcrumbItem>
                             <BreadcrumbLink href="/treatments">Treatments</BreadcrumbLink>
                         </BreadcrumbItem>
-                        <ArrowRight01Icon className="text-teal-500" size={20} />
+                        <ArrowRight01Icon className="text-primaryColor" size={20} />
                         <BreadcrumbItem>
-                            <BreadcrumbPage className='text-teal-500'>{treatment.name}</BreadcrumbPage>
+                            <BreadcrumbPage className='text-primaryColor'>{treatment.name}</BreadcrumbPage>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
@@ -159,7 +159,7 @@ const TreatmentDetails = () => {
                         </span>)}
                     </div>
                     <div className='flex justify-between items-center md:px-4 mt-4 gap-4'>
-                        <h1 className='lg:text-[18px] leading-6 font-[700] text-gray-950'>Duration : <span className='text-teal-500'>{treatment.duration} min</span></h1>
+                        <h1 className='lg:text-[18px] leading-6 font-[700] text-gray-950'>Duration : <span className='text-primaryColor'>{treatment.duration} min</span></h1>
 
                         <div className='flex gap-2'>
                             <Image src="/icons/starIcon.svg" alt='star' width={20} height={20} />
@@ -175,7 +175,7 @@ const TreatmentDetails = () => {
                             <p className='hidden lg:block px-12 text-gray-600 text-xl mt-4 font-normal line-clamp-6 lg:line-clamp-none'>{treatment.desc}</p>
                             <p className='lg:hidden block text-sm'>
                                 {showFullText ? fullDescription : `${shortDescription}...`}
-                                <button onClick={toggleText} className="ml-4 text-teal-500 font-semibold">
+                                <button onClick={toggleText} className="ml-4 text-primaryColor font-semibold">
                                     {showFullText ? 'Show Less' : 'Show More'}
                                 </button>
                             </p>

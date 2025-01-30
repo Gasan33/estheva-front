@@ -80,7 +80,7 @@ const GoogleMapComponent: React.FC = () => {
                 </h2>
                 <Button onClick={calculateRoute} className="bg-white">
                     Get Directions
-                    <Location01Icon size={16} className="text-teal-500" />
+                    <Location01Icon size={16} className="text-primaryColor" />
                 </Button>
             </div>
             <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}>

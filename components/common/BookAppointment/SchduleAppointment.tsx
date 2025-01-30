@@ -45,7 +45,7 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                 {/* Location */}
                 <div className="flex flex-col gap-3 items-baseline">
                     <div className="flex gap-2 items-center">
-                        <Location01Icon className="text-teal-500 h-5 w-5" />
+                        <Location01Icon className="text-primaryColor h-5 w-5" />
                         Select Location
                     </div>
                     <div className="flex flex-col w-full md:flex-row items-center gap-4 justify-center mt-4">
@@ -54,21 +54,21 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                                 key={option.id}
                                 onClick={() => setSelectedLocation(option.id)}
                                 className={`relative flex flex-col items-center gap-2 cursor-pointer ${selectedLocation === option.id
-                                    ? 'text-teal-500'
+                                    ? 'text-primaryColor'
                                     : 'text-gray-500'
                                     }`}
                             >
                                 {/* Checkmark */}
                                 {selectedLocation === option.id && (
                                     <CheckCircle
-                                        className="absolute top-0 right-1 text-teal-500"
+                                        className="absolute top-0 right-1 text-primaryColor"
                                         size={20}
                                     />
                                 )}
                                 {/* Circle */}
                                 <div
                                     className={`rounded-full border-[1px] ${selectedLocation === option.id
-                                        ? 'border-teal-500 bg-teal-100'
+                                        ? 'border-primaryColor bg-teal-100'
                                         : 'border-gray-300 bg-secondary'
                                         } h-16 w-16 border-dashed p-4 flex items-center justify-center`}
                                 >
@@ -89,7 +89,7 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                 {/* Select Doctor */}
                 <div className="flex flex-col gap-3 items-baseline">
                     <div className="flex gap-2 items-center">
-                        <Location01Icon className="text-teal-500 h-5 w-5" />
+                        <Location01Icon className="text-primaryColor h-5 w-5" />
                         Select Doctor
                     </div>
                     <div className="flex flex-col w-full md:flex-row items-center gap-4 justify-center mt-4">
@@ -98,21 +98,21 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                                 key={index}
                                 onClick={() => setSelectedDoctor(doctor.name)}
                                 className={`relative flex flex-col items-center gap-2 cursor-pointer ${selectedDoctor === doctor.name
-                                    ? 'text-teal-500'
+                                    ? 'text-primaryColor'
                                     : 'text-gray-500'
                                     }`}
                             >
                                 {/* Checkmark */}
                                 {selectedDoctor === doctor.name && (
                                     <CheckCircle
-                                        className="absolute top-0 right-1 text-teal-500"
+                                        className="absolute top-0 right-1 text-primaryColor"
                                         size={20}
                                     />
                                 )}
                                 {/* Circle */}
                                 <div
                                     className={`rounded-full border-[1px] ${selectedDoctor === doctor.name
-                                        ? 'border-teal-500 bg-teal-100'
+                                        ? 'border-primaryColor bg-teal-100'
                                         : 'border-gray-300 bg-secondary'
                                         } h-16 w-16 border-dashed flex items-center justify-center overflow-clip`}
                                 >
@@ -132,7 +132,7 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                 {/* Select Date */}
                 <div className="flex flex-col gap-3 items-baseline">
                     <div className="flex gap-2 items-center">
-                        <CalendarDays className="text-teal-500 h-5 w-5" />
+                        <CalendarDays className="text-primaryColor h-5 w-5" />
                         Select Date
                     </div>
                     <div className="flex items-baseline ">
@@ -148,7 +148,7 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                 {/* Time Slot */}
                 <div>
                     <div className="flex gap-2 items-center">
-                        <Time01Icon className="text-teal-500 h-5 w-5" />
+                        <Time01Icon className="text-primaryColor h-5 w-5" />
                         Select Time
                     </div>
                     <div className="grid grid-cols-3 mt-4 gap-2">
@@ -163,10 +163,10 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                                             )
                                     }
                                     className={`py-2 w-full justify-center items-center flex rounded-lg font-semibold ${item.is_available === 1
-                                        ? 'bg-gray-300 text-gray-950 hover:bg-teal-500 cursor-pointer'
+                                        ? 'bg-gray-300 text-gray-950 hover:bg-primaryColor cursor-pointer'
                                         : 'bg-gray-50 text-gray-500'
                                         } ${item.start_time === selectedTimeSlot &&
-                                        'bg-teal-500 text-white'
+                                        'bg-primaryColor text-white'
                                         }`}
                                 >
                                     {item.start_time.slice(0, 5)}{' '}

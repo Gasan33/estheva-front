@@ -11,7 +11,7 @@ import {
 const CancelAppointmentDailog = () => {
     return (
         <Dialog>
-            <DialogTrigger className='outline outline-1 rounded-md w-full py-2 text-sm outline-teal-500 text-teal-500 font-thin'>Cancel</DialogTrigger>
+            <DialogTrigger className='outline outline-1 rounded-md w-full py-2 text-sm outline-primaryColor text-primaryColor font-thin'>Cancel</DialogTrigger>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>Are you absolutely sure?</DialogTitle>

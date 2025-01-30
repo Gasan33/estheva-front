@@ -117,7 +117,7 @@ const Blogs = () => {
                 <Link href={"/blogs/news"}>
                     <Button className="py-4 px-6 rounded-full bg-white shadow-lg">
                         See More Blogs
-                        <ArrowRight01Icon size={24} className="text-teal-500 ml-2" />
+                        <ArrowRight01Icon size={24} className="text-primaryColor ml-2" />
                     </Button>
                 </Link>
             </div>

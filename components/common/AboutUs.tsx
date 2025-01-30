@@ -56,7 +56,7 @@ const AboutUs = () => {
                     <div className='flex w-full mt-16 justify-center'>
                         <Button className='lg:mt-8 mt-4 py-6 px-8 rounded-full bg-white shadow-lg'>
                             Discover More
-                            <ArrowRight01Icon size={32} className='text-teal-500' />
+                            <ArrowRight01Icon size={32} className='text-primaryColor' />
                         </Button>
                     </div>
                 </div>

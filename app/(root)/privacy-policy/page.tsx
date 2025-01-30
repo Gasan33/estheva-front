@@ -1,22 +1,14 @@
 import React from 'react'
-import "./style.css"
-import Image from 'next/image'
 import { privacy } from '@/constants'
-
-
+import HeaderPath from '@/components/common/HeaderPath'
 
 const PrivacyPolicy = () => {
     return (
-        <div className='flex flex-col'>
-            <div className='imageWrapper'>
-                <Image src='/pic1.png' alt='Estheva Polyclinic' className='image' fill sizes='400' />
-                <div className="overlay items-center flex flex-col justify-center" >
-                    <h1 className='text-[32px] text-white font-semibold tracking-widest'>Privacy Policy</h1>
-                    <h2 className='text-[18px] text-white font-[200] tracking-wide'>Ensuring the Protection of Your Personal Information at Estheva Polyclinic</h2>
-                </div>
-            </div>
+        <div className='my-6'>
+            <HeaderPath title="Privacy Policy" path="/privacy-policy" />
 
-            <div className=' mx-4 md:mx-32 my-4 md:my-16'>
+
+            <div className='flex flex-col mt-4 md:mt-6 lg:mt-8 px-4 md:px-8 lg:px-12 xl:px-16'>
                 {privacy.map((item) => (
                     <div key={item.section}>
                         <ol className='list-[upper-roman] pl-6 space-y-2 text-gray-700'>
@@ -27,14 +19,14 @@ const PrivacyPolicy = () => {
 
                                 <ul className='list-decimal pl-6 space-y-2 text-gray-700'>
                                     {item.content.map((item) => (
-                                        <li key={item.title} className='font-semibold text-lg'>
+                                        <li key={item.title} className='font-semibold text-lg my-2'>
                                             {item.title}
-                                            {item.content && <p className='font-normal'>{item.content}</p>}
+                                            {item.content && <p className='font-normal my-2'>{item.content}</p>}
                                             <ul className='list-disc pl-6 space-y-2 text-gray-700'>
 
                                                 {item.content.map((item) =>
                                                 (<li key={item} className='font-normal mt-2'>
-                                                    {item.split(":")[0]}
+                                                    <p>{item.split(":")[0]}</p>
                                                     <p >{item.split(":")[1]}</p>
                                                 </li>
 

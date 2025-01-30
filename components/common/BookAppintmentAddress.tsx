@@ -20,7 +20,7 @@ const BookAppointmentAddress = () => {
                     key={address.id}
                     onClick={() => handleSelect(address.id)}
                     className={`relative flex flex-col items-start border-[1px] p-2 rounded-lg cursor-pointer ${selectedId === address.id
-                        ? "border-teal-500 bg-teal-50"
+                        ? "border-primaryColor bg-teal-50"
                         : "border-gray-100"
                         }`}
                 >
@@ -31,7 +31,7 @@ const BookAppointmentAddress = () => {
                     <p>{address.name}</p>
                     <p>{address.phone}</p>
                     <p>{address.address}</p>
-                    {selectedId === address.id && <CircleCheck className="absolute bottom-2 right-2 text-teal-500 w-4 h-4" />}
+                    {selectedId === address.id && <CircleCheck className="absolute bottom-2 right-2 text-primaryColor w-4 h-4" />}
                 </div>
             ))}
         </div>

@@ -1,7 +1,7 @@
 'use client'
 import styles from './style.module.scss'
 import { useEffect, useState } from 'react';
-import Nav from './nav';
+import Nav from './nav/page';
 import { AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';

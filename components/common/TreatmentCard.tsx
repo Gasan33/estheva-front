@@ -79,7 +79,7 @@ const TreatmentCard = ({ item, index }: { item: Treatment, index: number }) => {
             </div>
 
             <div className='flex justify-between items-center p-4'>
-                <Link href={`/treatments/details/${item.id}`} className='flex gap-1 font-medium text-teal-500'>
+                <Link href={`/treatments/details/${item.id}`} className='flex gap-1 font-medium text-primaryColor'>
                     View Details
                     <ArrowRight01Icon />
 

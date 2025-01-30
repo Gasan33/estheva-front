@@ -43,7 +43,7 @@ const TopRatedTreatments = () => {
                 </h2>
                 <div className="flex gap-2 xl:gap-4 items-center cursor-pointer duration-700 transform hover:scale-105 hover:duration-300">
                     <span className="text-sm xl:text-xl text-light-500">View All</span>
-                    <ArrowRight01Icon className="text-teal-500" size={24} />
+                    <ArrowRight01Icon className="text-primaryColor" size={24} />
                 </div>
             </div>
 
@@ -93,7 +93,7 @@ const TopRatedTreatments = () => {
                     <div className="flex gap-4 mt-4">
                         <Link
                             href={`/treatments/details/${popularTreatments[activeIndex].id}`}
-                            className="flex gap-1 font-medium text-teal-500"
+                            className="flex gap-1 font-medium text-primaryColor"
                         >
                             View Details
                             <ArrowRight01Icon />
@@ -143,7 +143,7 @@ const TopRatedTreatments = () => {
                                         {item.desc}
                                     </p>
                                     <div className='flex gap-4 mt-4'>
-                                        <Link href={`/treatments/details/${item.id}`} className='flex gap-1 font-medium text-teal-500'>
+                                        <Link href={`/treatments/details/${item.id}`} className='flex gap-1 font-medium text-primaryColor'>
                                             View Details
                                             <ArrowRight01Icon />
 

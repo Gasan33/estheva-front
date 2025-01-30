@@ -74,7 +74,7 @@ const ContactForm = <T extends FieldValues>({ type, schema, defaultValues, onSub
                                     <FormControl>
                                         {field.name === "message" ?
                                             <textarea
-                                                className="mt-1 p-2.5 block w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-0 focus:ring-teal-500 focus:border-teal-500 text-gray-900"
+                                                className="mt-1 p-2.5 block w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-0 focus:ring-primaryColor focus:border-primaryColor text-gray-900"
                                             /> :
                                             field.name === "phoneNumber" ?
                                                 <PhoneInput
@@ -114,7 +114,7 @@ const ContactForm = <T extends FieldValues>({ type, schema, defaultValues, onSub
                                                     required
                                                     type={CONTACT_FIELD_TYPES[field.name as keyof typeof CONTACT_FIELD_TYPES]}
                                                     {...field}
-                                                    className="mt-1 p-2.5 block w-full rounded-full border border-gray-300 focus:outline-none focus:ring-0 focus:ring-teal-500 focus:border-teal-500 text-gray-900"
+                                                    className="mt-1 p-2.5 block w-full rounded-full border border-gray-300 focus:outline-none focus:ring-0 focus:ring-primaryColor focus:border-primaryColor text-gray-900"
                                                 />}
                                     </FormControl>
 
@@ -126,7 +126,7 @@ const ContactForm = <T extends FieldValues>({ type, schema, defaultValues, onSub
 
 
                     <div className="flex justify-end mt-4">
-                        <Button type="submit" className="py-6 px-8 rounded-full bg-teal-500 text-white shadow-lg">
+                        <Button type="submit" className="py-6 px-8 rounded-full bg-primaryColor text-white shadow-lg">
                             Submit
                         </Button>
                     </div>

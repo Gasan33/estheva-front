@@ -86,7 +86,7 @@ export const navigationLinks: NavLinks[] = [
     },
     {
         id: 6,
-        path: '/more',
+        path: '',
         name: 'More',
         dropMenu: [
             {
@@ -1434,6 +1434,240 @@ export const privacy = [
             }
         ]
     }
+
+]
+
+export const termsAndConditions = [
+    {
+        section: "Definitions",
+        date: "",
+        desc: "",
+        content: [
+            {
+                title: "Clinic",
+                content: [
+                    "The term \"Clinic\" refers to Estheva Polyclinic, a healthcare facility located at Al Wasl Road 375B, AL Badda, Dubai, United Arab Emirates, specializing in medical, aesthetic, and wellness services."
+                ],
+            },
+            {
+                title: "Patient",
+                content: [
+                    "A \"Patient\" is an individual who seeks medical or wellness services from Estheva Polyclinic, either through in-person visits to the clinic or by booking services online through the clinic's website."
+                ],
+            },
+            {
+
+                title: "Packages",
+                content: [
+                    "\"Packages\" refer to bundled sets of medical, aesthetic, or wellness treatments or services offered by Estheva Polyclinic. These packages may include various sessions or sessions targeting specific health or cosmetic goals."
+                ],
+            },
+            {
+                title: "Treatments",
+                content: [
+                    "\"Treatments\" encompass the medical procedures, aesthetic enhancements, and wellness therapies provided by Estheva Polyclinic. These treatments are administered by qualified healthcare professionals and may include services such as physiotherapy, dermatology procedures, aesthetic enhancements, and more."
+
+                ]
+            },
+            {
+                title: "Services",
+                content: [
+                    "\"Services\" encompass the comprehensive range of medical, aesthetic, and wellness offerings provided by Estheva Polyclinic. These services are designed to address patients' healthcare, beauty, and well-being needs and may include individual treatments, packages, consultations, and related activities conducted at the clinic or through the clinic's website."
+
+                ]
+            },
+        ]
+    },
+    {
+        section: "General Terms and Conditions",
+        date: "",
+        desc: "",
+        content: [
+            {
+                title: "Working Hours",
+                content: [
+                    "Clinic working hours are Monday-Sunday 9 am to 9 pm.",
+                ]
+            },
+            {
+                title: "Appointment Booking Policy",
+                content: [
+                    "Patients can schedule appointments by calling reception at 04 330 9084 or through the Fresha Mobile Application.",
+                    "Reception booking availability is subject to clinic working hours (Monday-Sunday 9 am to 9 pm).",
+                    "Fresha Application scheduling is available 24/7 online. Patients are responsible for obtaining information about the application and installing it on their mobile device to manage appointments.",
+                ]
+
+            },
+            {
+                title: "Late cancellation Policy",
+                content: [
+                    "Patients are responsible for rescheduling or canceling appointments at least 4 hours prior to the appointment time.",
+                    "Late cancellations (less than 4 hours) or \"no - shows\" result in the deduction of the session from the patient's package. This applies to single sessions as well, which will not be refunded in case of late cancellation or \"no-show.\"",
+                ]
+
+            },
+            {
+                title: "Belongings",
+                content: [
+                    "Estheva Polyclinic is not responsible for any patient belongings left on clinic premises.",
+                ]
+
+            },
+            {
+                title: "Medical Record",
+                content: [
+                    "Patients must inform Estheva Polyclinic of existing or new medical conditions that may affect treatment.",
+                ]
+
+            },
+            {
+                title: "Liabilities",
+                content: [
+                    "Persons entering the clinic do so at their own risk.",
+                    "Estheva Polyclinic, its employees, or the company do not accept responsibility or liability for any injury, loss, damage, or fatality to any person or their property.",
+                    "Any accidents or injuries on clinic premises must be reported to the duty manager immediately.",
+                ]
+
+            },
+            {
+                title: "Vehicles",
+                content: [
+                    "Vehicles parked near the clinic premises and their contents are the sole responsibility of the patient.",
+                ]
+
+            },
+            {
+                title: "Safety and Hygiene",
+                content: [
+                    "Estheva Polyclinic maintains strict safety and hygiene standards for patient well-being.",
+                ]
+
+            },
+            {
+                title: "Conduct",
+                content: [
+                    "Patients are expected to conduct themselves respectfully towards personal etiquette and Estheva Polyclinic’s employees as well as to adhere to clinic policies.",
+                ]
+
+            },
+            {
+                title: "Loss of Property",
+                content: [
+                    "Estheva Polyclinic is not responsible for the loss of patient property.",
+                ]
+
+            },
+            {
+                title: "Payment Conditions",
+                content: [
+                    "Payment must be processed in advance to book a treatment appointment.",
+                    "Payments for Regular Price Packages and treatments can be canceled and refunded for non-executed sessions.",
+                    "Payments will not be canceled or refunded for Discounted Packages.",
+                ]
+
+            },
+            {
+                title: "Refund Policy",
+                content: [
+                    "Estheva Polyclinic offers two types of packages: Regular Packages of Treatments and Discounted Packages.",
+                    "Regular Packages of Treatments are refundable for non-executed sessions. Executed sessions are not refundable.",
+                    "Discounted Packages are not refundable, neither for executed nor non-executed sessions.",
+                ]
+
+            },
+            {
+                title: "Results",
+                content: [
+                    "Results of slimming, aesthetic, physiotherapy, or any other medical treatments at Estheva Polyclinic are not guaranteed.",
+                    "Individual biological constitution and medical conditions can affect treatment outcomes.",
+                    "While Estheva Polyclinic observes average progress, identical results cannot be guaranteed for every individual.",
+                ]
+
+            },
+            {
+                title: "Jurisdiction",
+                content: [
+                    "These terms and conditions are governed by the Laws of Dubai and the United Arab Emirates.",
+                ]
+
+            },
+        ]
+    },
+    {
+        section: "Terms and Conditions for Estheva Polyclinic Online Medical Services Purchase",
+        date: "",
+        desc: "These terms and conditions (\"Terms\") govern the online purchase of medical services from Estheva Polyclinic (\"Clinic\") through the website www.estheva-polyclinic.com (\"Website\"). By accessing or using the Website and purchasing medical services, you agree to be bound by these Terms. If you do not agree with any part of these Terms, please do not use the Website or purchase services from the Clinic.",
+        content: [
+            {
+                title: "Booking and Payment",
+                content: [
+                    "When booking medical services online, you agree to provide accurate and complete information.",
+                    "Payment for services must be made in advance through the Website.",
+                ],
+            },
+            {
+                title: "Appointment Confirmation",
+                content: [
+                    "After payment is processed, you will receive confirmation of your appointment via email and a phone call.",
+                    "It is Patient esponsibility to ensure that your contact information is accurate and that they are available to receive a call back from Estheva Polyclinic Customer Service representatiove in order to schedule the purchase appointment. In case the patient is not available to answer a booking confirmation call from Estheva Polyclinic, they are oblidged to call the Estheva Polyclinic directly at their convenient time withing the Clinic’s working hours. Contact number: 04 330 90 84",
+                ],
+            },
+            {
+
+                title: "Cancellation and Refund Policy",
+                content: [
+                    "Cancellation of appointments must be made within the timeframes specified in Appointment Booking Policy and the Late Cancellation Policy",
+                    "Refunds for canceled appointments will be processed according to the Clinic's Refund Policy.",
+                ],
+            },
+            {
+                title: "Medical Records",
+                content: [
+                    "The Patient is responsible for providing accurate medical history and information to the Clinic.",
+                    "Any changes in your medical condition must be communicated to the Clinic prior to the appointment.",
+
+                ]
+            },
+            {
+                title: "Liability",
+                content: [
+                    "The Clinic is not liable for any adverse outcomes or complications resulting from services provided.",
+                    "The Patient acknowledge the inherent risks associated with medical procedures."
+                ]
+            },
+            {
+                title: "Privacy and Data Security",
+                content: [
+                    "The Patient personal information will be handled in accordance with the Clinic's privacy policy.",
+                ]
+            },
+            {
+                title: "Changes to Services",
+                content: [
+                    "The Clinic reserves the right to modify, suspend, or discontinue services at its discretion.",
+                ]
+            },
+            {
+                title: "Website Use",
+                content: [
+                    "The Patient agrees not to use the Website for any unlawful or unauthorized purposes.",
+                    "The Clinic is not responsible for any technical issues or interruptions on the Website.",
+                ]
+            },
+            {
+                title: "Governing Law",
+                content: [
+                    "These Terms are governed by and construed in accordance with the laws of Dubai, United Arab Emirates.",
+                ]
+            },
+            {
+                title: "Contact Information",
+                content: [
+                    "For inquiries or assistance, please contact the Clinic's customer support : 04 330 90 84",
+                ]
+            },
+        ]
+    },
 
 ]
 

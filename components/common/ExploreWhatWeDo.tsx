@@ -71,11 +71,11 @@ const ExploreWhatWeDo: React.FC = () => {
                                                 {treatment.name}
                                             </span>
                                             <ArrowRight01Icon
-                                                className="text-teal-500 hidden xl:block"
+                                                className="text-primaryColor hidden xl:block"
                                                 size={24}
                                             />
                                             <ArrowDown01Icon
-                                                className={`text-teal-500 block xl:hidden transition-all ${show && idx === treatmentIndex && "rotate-180"
+                                                className={`text-primaryColor block xl:hidden transition-all ${show && idx === treatmentIndex && "rotate-180"
                                                     }`}
                                                 size={24}
                                             />
@@ -101,11 +101,11 @@ const ExploreWhatWeDo: React.FC = () => {
                                                 {treatment.name}
                                             </span>
                                             <ArrowRight01Icon
-                                                className="text-teal-500 hidden xl:block"
+                                                className="text-primaryColor hidden xl:block"
                                                 size={24}
                                             />
                                             <ArrowDown01Icon
-                                                className={`text-teal-500 block xl:hidden transition-all ${show && idx === treatmentIndex && "rotate-180"
+                                                className={`text-primaryColor block xl:hidden transition-all ${show && idx === treatmentIndex && "rotate-180"
                                                     }`}
                                                 size={24}
                                             />
