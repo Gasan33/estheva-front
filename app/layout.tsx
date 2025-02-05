@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 import './globals.css'
 import localFont from 'next/font/local'
 import { ReactNode } from 'react'
+import { SessionProvider } from "next-auth/react";
+import { auth } from '@/auth'
+import { Toaster } from '@/components/ui/toaster';
 
 const ibmPlexSans = localFont({
   src: [
@@ -120,6 +123,7 @@ export const metadata: Metadata = {
 }
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
+  // const session = await auth();
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'MedicalBusiness',
@@ -152,14 +156,18 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
 
   return (
     <html lang="en">
-      <head>
-        {/* Add the canonical URL here */}
-        <link rel="canonical" href="https://estheva-clinic.com" />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      </head>
-      <body className={`${touche.className} ${bebasNeue.variable} antialiased`}>
-        {children}
-      </body>
+      <SessionProvider>
+        <head>
+          {/* Add the canonical URL here */}
+          <link rel="canonical" href="https://estheva-clinic.com" />
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        </head>
+
+        <body className={`${touche.className} ${bebasNeue.variable} antialiased`}>
+          {children}
+          <Toaster />
+        </body>
+      </SessionProvider>
     </html>
   )
 }

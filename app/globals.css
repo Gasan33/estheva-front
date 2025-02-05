@@ -63,11 +63,11 @@
 
 @layer components {
   .form-btn {
-    @apply bg-primary text-dark-100 hover:bg-primary inline-flex min-h-14 w-full items-center justify-center rounded-md px-6 py-2 font-bold text-base !important;
+    @apply bg-primaryColor text-white inline-flex min-h-14 w-full items-center justify-center rounded-md px-6 py-2 font-bold text-base !important;
   }
 
   .form-input {
-    @apply w-full min-h-14 border-none text-base font-bold placeholder:font-normal text-white placeholder:text-light-100 focus-visible:ring-0 focus-visible:shadow-none bg-dark-300 !important;
+    @apply mt-1 p-2.5 block w-full rounded-full border border-gray-300 focus:outline-none focus:ring-0 focus:ring-primaryColor focus:border-primaryColor text-gray-900 !important;
   }
 
   /* Book Card */

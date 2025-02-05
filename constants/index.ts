@@ -1911,20 +1911,23 @@ export const adminSideBarLinks = [
     },
 ];
 
-export const FIELD_NAMES = {
-    fullName: "Full name",
+export const Auth_FIELD_NAMES = {
+    firstName: "First Name",
+    lastName: "Last Name",
     email: "Email",
-    universityId: "University ID Number",
+    phoneNumber: "Phone Number",
     password: "Password",
-    universityCard: "Upload University ID Card",
+    confirmPassword: "Confirm Password"
 };
 
 
-export const FIELD_TYPES = {
-    fullName: "text",
+export const Auth_FIELD_TYPES = {
+    firstName: "text",
+    lastName: "text",
     email: "email",
-    universityId: "number",
+    phoneNumber: "number",
     password: "password",
+    confirmPassword: "password",
 };
 
 export const sampleBooks = [

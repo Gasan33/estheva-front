@@ -1,4 +1,4 @@
-// import { auth } from '@/auth';
+import { auth } from '@/auth';
 import Footer from '@/components/common/Footer';
 import { Header } from '@/components/common/Headers/Header/Header';
 import MHeader from '@/components/common/Headers/mheader/page';
@@ -6,12 +6,12 @@ import ScrollToTop from '@/components/common/ScrollToTop';
 import { redirect } from 'next/navigation';
 import React, { ReactNode } from 'react'
 const layout = async ({ children }: { children: ReactNode }) => {
-    // const session = await auth();
-    // if (!session) redirect("/sign-in")
+    const session = await auth();
+    if (!session) redirect("/sign-in")
     return (
         <main className='root-container'>
             <div>
-                <Header />
+                <Header session={session} />
                 <MHeader />
             </div>
 

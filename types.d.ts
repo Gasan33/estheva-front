@@ -1,3 +1,4 @@
+
 interface NavLinks {
     id: number,
     path: string,
@@ -11,6 +12,15 @@ interface DropMenu {
     name: string,
     value?: string,
 }
+interface AuthCredentials {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: number;
+    password: string;
+    confirmPassword: string;
+}
+
 interface Doctor {
     name: string;
     img: string;
@@ -80,6 +90,8 @@ interface QuickLink {
     path: string;
     display: string;
 }
+
+
 // interface Treatment {
 //     id: number;
 //     name: string;
