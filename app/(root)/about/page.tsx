@@ -3,9 +3,8 @@ import React, { useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import HeaderPath from "@/components/common/HeaderPath"
-import { ArrowRight, ArrowRightIcon, PhoneCallIcon, PhoneIcon } from "lucide-react"
-import { AiPhone01Icon, ArrowRight04Icon, ArrowRight05Icon, Mail01Icon, RightAngleIcon } from "hugeicons-react"
-import SEO from "@/components/common/SEO"
+import { ArrowRightIcon, PhoneIcon } from "lucide-react"
+import { Mail01Icon } from "hugeicons-react"
 import Head from "next/head"
 import AOS from "aos"
 import "aos/dist/aos.css"
@@ -13,15 +12,12 @@ import "aos/dist/aos.css"
 const AboutUs = () => {
     useEffect(() => {
         AOS.init({
-            duration: 1000, // Animation duration in milliseconds
-            // easing: "ease-in-out", // Animation easing
-            // once: true, // Whether animation should happen only once
+            duration: 1000,
         })
     }, [])
 
     return (
         <div className="mt-6">
-            <SEO title="About Estheva Polyclinic" description="Learn more about our team and mission on the About Us page." />
             <Head>
                 <title>About Estheva Polyclinic</title>
                 <meta name="description" content="Learn more about our team and mission on the About Us page." />
@@ -29,7 +25,7 @@ const AboutUs = () => {
             <HeaderPath title="About Estheva Polyclinic" path="/about" />
 
             <div className="flex flex-col mt-4 md:mt-6 lg:mt-8">
-                {/* About Section */}
+
                 <div
                     className="grid grid-cols-1 lg:grid-cols-2 gap-4 pb-4 md:pb-6 lg:pb-20 px-4 md:px-8 lg:px-12 xl:px-16"
                     data-aos="fade-up"
@@ -53,8 +49,6 @@ const AboutUs = () => {
                         />
                     </div>
                 </div>
-
-                {/* Our Story Section */}
                 <div className="py-16 bg-pattern bg-primary">
                     <h1 className="text-4xl flex justify-center font-bold text-white">Our Story</h1>
 
@@ -80,7 +74,7 @@ const AboutUs = () => {
                     </div>
                 </div>
 
-                {/* Contact Section */}
+
                 <div className="py-16 bg-secondary bg-pattern w-screen">
                     <div
                         className="mx-4 md:mx-16 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-10"

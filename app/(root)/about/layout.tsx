@@ -1,10 +1,4 @@
-// import { auth } from '@/auth';
-import AppBaner from '@/components/common/AppBaner';
-import Footer from '@/components/common/Footer';
 import type { Metadata } from 'next'
-import { Header } from '@/components/common/Headers/Header/Header';
-import MHeader from '@/components/common/Headers/mheader/page';
-import { redirect } from 'next/navigation';
 import React, { ReactNode } from 'react'
 
 export const metadata: Metadata = {
