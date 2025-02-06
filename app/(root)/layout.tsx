@@ -3,7 +3,6 @@ import Footer from '@/components/common/Footer';
 import { Header } from '@/components/common/Headers/Header/Header';
 import MHeader from '@/components/common/Headers/mheader/page';
 import ScrollToTop from '@/components/common/ScrollToTop';
-import { redirect } from 'next/navigation';
 import React, { ReactNode } from 'react'
 const layout = async ({ children }: { children: ReactNode }) => {
     const session = await auth();
