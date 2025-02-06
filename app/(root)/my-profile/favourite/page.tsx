@@ -1,4 +1,4 @@
-import TreatmentsList from '@/components/common/TreatmentsList'
+import TreatmentsList from '@/components/landing/TreatmentsList'
 import React from 'react'
 
 const Favourite = () => {

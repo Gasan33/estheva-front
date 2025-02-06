@@ -1,15 +1,17 @@
 "use client"
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { ArrowRight01Icon, HeartAddIcon, Recycle01Icon, StarIcon } from 'hugeicons-react';
 import Image from 'next/image';
-import BookAppointment from './BookAppointment';
+import BookAppointment from '../common/BookAppointment/BookAppointment';
+import { useSession } from 'next-auth/react';
+import SignInDialog from '../dialogs/SignInDialog';
 
 
 const TreatmentCard = ({ item, index }: { item: Treatment, index: number }) => {
     const { name, desc, img, price, benfits, dicount, bgColor, textColor } = item;
     const [isFav, setIsFav] = useState(false);
+    const session = useSession();
 
     return (
         <div className="shadow-md rounded-[16px] cursor-pointer">
@@ -79,12 +81,12 @@ const TreatmentCard = ({ item, index }: { item: Treatment, index: number }) => {
             </div>
 
             <div className='flex justify-between items-center p-4'>
-                <Link href={`/treatments/details/${item.id}`} className='flex gap-1 font-medium text-primaryColor'>
+                <Link href={`/treatments/${item.id}`} className='flex gap-1 font-medium text-primaryColor'>
                     View Details
                     <ArrowRight01Icon />
 
                 </Link>
-                <BookAppointment treatment={item} triger='home' />
+                {session.data != null ? <BookAppointment treatment={item} triger='home' /> : <SignInDialog />}
             </div>
         </div>
     );

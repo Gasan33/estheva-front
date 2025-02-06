@@ -6,12 +6,13 @@ import Link from "next/link";
 import { ArrowRight, ArrowRightIcon } from "lucide-react";
 import { popularTreatments } from "@/constants"; // Ensure this file contains your treatment data
 import { ArrowRight01Icon } from "hugeicons-react";
-import RatingBar from "./RatingBar"; // Make sure this component is correctly implemented
+import RatingBar from "../common/RatingBar"; // Make sure this component is correctly implemented
 import AOS from "aos";
 import "aos/dist/aos.css";
-import BookAppointment from "./BookAppointment";
+import BookAppointment from "../common/BookAppointment/BookAppointment";
+import SignInDialog from "../dialogs/SignInDialog";
 
-const TopRatedTreatments = () => {
+const TopRatedTreatments = ({ session }: { session: boolean }) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [animate, setAnimate] = useState(false);
 
@@ -51,13 +52,13 @@ const TopRatedTreatments = () => {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 mt-10 ">
                 {/* Left Section */}
                 {/* <div className="relative w-full"> */}
-                <div className={`rounded-lg p-4 w-full${animate ? "fade-in" : ""}`}>
-                    <div className="rounded-xl w-full h-64 sm:h-80 md:h-96 xl:h-[30%] overflow-hidden">
+                <div className={`rounded-lg p-4 h-[600px] w-full${animate ? "fade-in" : ""}`}>
+                    <div className="rounded-xl w-full h-64 sm:h-80 md:h-96 xl:h-[50%] overflow-hidden">
                         <Image
                             src={popularTreatments[activeIndex]?.img[0]}
                             alt="Top Treatment"
-                            width={600}
-                            height={600}
+                            width={400}
+                            height={400}
                             className="w-full h-full object-cover rounded-xl"
                         />
                     </div>
@@ -92,13 +93,13 @@ const TopRatedTreatments = () => {
                     </div>
                     <div className="flex gap-4 mt-4">
                         <Link
-                            href={`/treatments/details/${popularTreatments[activeIndex].id}`}
+                            href={`/treatments/${popularTreatments[activeIndex].id}`}
                             className="flex gap-1 font-medium text-primaryColor"
                         >
                             View Details
                             <ArrowRight01Icon />
                         </Link>
-                        <BookAppointment treatment={popularTreatments.find((item) => item.name === popularTreatments[activeIndex].name)!} triger='home' />
+                        {/* <BookAppointment treatment={popularTreatments.find((item) => item.name === popularTreatments[activeIndex].name)!} triger='home' /> */}
                     </div>
                 </div>
                 {/* </div> */}
@@ -142,13 +143,13 @@ const TopRatedTreatments = () => {
                                     <p className="text-gray-500 mt-2 sm:mt-4 text-sm sm:text-base line-clamp-4">
                                         {item.desc}
                                     </p>
-                                    <div className='flex gap-4 mt-4'>
-                                        <Link href={`/treatments/details/${item.id}`} className='flex gap-1 font-medium text-primaryColor'>
+                                    <div className='flex justify-between mt-4'>
+                                        <Link href={`/treatments/${item.id}`} className='flex items-center gap-0 md:gap-1 text-xs font-thin md:text-sm md:font-medium text-primaryColor'>
                                             View Details
-                                            <ArrowRight01Icon />
+                                            <ArrowRight01Icon className="h-4 md:h-6" />
 
                                         </Link>
-                                        <BookAppointment treatment={item} triger='home' />
+                                        {session ? <BookAppointment treatment={item} triger='home' /> : <SignInDialog />}
                                     </div>
                                 </div>
                             </div>

@@ -1,11 +1,11 @@
 import { ArrowRight01Icon } from 'hugeicons-react'
-import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import BookAppointment from './BookAppointment'
+import BookAppointment from '../common/BookAppointment/BookAppointment'
+import SignInDialog from '../dialogs/SignInDialog'
 
-const ExploreTreatment = ({ treatment }: { treatment: Treatment }) => {
+const ExploreTreatment = ({ treatment, session }: { treatment: Treatment, session: boolean }) => {
     return (
         <div className='relative h-full w-full flex-col justify-between gap-4'>
             <h1 className='text-gray-900 text-xl font-semibold line-clamp-1'>
@@ -19,12 +19,12 @@ const ExploreTreatment = ({ treatment }: { treatment: Treatment }) => {
             <p className='line-clamp-3'>{treatment.desc}</p>
 
             <div className='flex gap-4 mt-4'>
-                <Link href={`/treatments/details/${treatment.id}`} className='flex gap-1 font-medium text-primaryColor'>
+                <Link href={`/treatments/${treatment.id}`} className='flex items-center gap-0 md:gap-1 text-xs font-thin md:text-sm md:font-medium text-primaryColor'>
                     View Details
-                    <ArrowRight01Icon />
+                    <ArrowRight01Icon className="h-4 md:h-6" />
 
                 </Link>
-                <BookAppointment treatment={treatment} triger='home' />
+                {session ? <BookAppointment treatment={treatment} triger='home' /> : <SignInDialog />}
             </div>
         </div>
     )

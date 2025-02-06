@@ -1,6 +1,6 @@
 import React from 'react'
 import TreatmentCard from './TreatmentCard';
-import SearchBar from "./SearchBar"
+import SearchBar from "../common/SearchBar"
 import {
     Breadcrumb,
     BreadcrumbItem,

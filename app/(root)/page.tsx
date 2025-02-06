@@ -1,63 +1,31 @@
-"use client"
-import AboutUs from "@/components/common/AboutUs";
-import Banner from "@/components/common/Banner";
-import Blogs from "@/components/common/Blogs";
-import Consultation from "@/components/common/Consultation";
-import ExploreWhatWeDo from "@/components/common/ExploreWhatWeDo";
-import Faq from "@/components/common/Faq";
-import Hero from "@/components/common/Hero";
-import GoogleMapComponent from "@/components/common/Location";
-import OurTreatments from "@/components/common/OurTreatments";
-import PopularTreatments from "@/components/common/PopularTreatments";
-import Testimonials from "@/components/common/Testimonials";
-import TopRatedTreatments from "@/components/common/TopRatedTreatments";
-import { useEffect } from "react";
+import AboutUs from "@/components/landing/AboutUs";
+import Banner from "@/components/landing/Banner";
+import Blogs from "@/components/landing/Blogs";
+import Consultation from "@/components/landing/Consultation";
+import ExploreWhatWeDo from "@/components/landing/ExploreWhatWeDo";
+import Faq from "@/components/landing/Faq";
+import GoogleMapComponent from "@/components/landing/Location";
+import OurTreatments from "@/components/landing/OurTreatments";
+import Testimonials from "@/components/landing/Testimonials";
+import TopRatedTreatments from "@/components/landing/TopRatedTreatments";
+import { checkSession } from "@/lib/utils";
 
 
-export default function Home() {
-
+export default async function Home() {
+  const sessionExists = await checkSession();
 
   return (
     <div>
-      {/* Hero Section */}
-      {/* <Hero data-aos="fade-in" /> */}
-
-      {/* Banner Section */}
       <Banner />
-
-      {/* Top Rated Treatments */}
-      <TopRatedTreatments />
-
-      {/* Explore What We Do */}
-      <ExploreWhatWeDo />
-
-      {/* Popular Treatments */}
-      {/* <PopularTreatments data-aos="fade-left" /> */}
-
-      {/* Our Treatments */}
+      <TopRatedTreatments session={sessionExists} />
+      <ExploreWhatWeDo session={sessionExists} />
       <OurTreatments />
-
-      {/* About Us */}
       <AboutUs />
-
-      {/* Consultation Section */}
       <Consultation />
-
-      {/* Testimonials */}
       <Testimonials />
-
-      {/* FAQ */}
       <Faq />
-
-      {/* Blogs */}
       <Blogs />
-
-      {/* Google Map Section */}
       <GoogleMapComponent />
-
-
-      {/* Scroll to Top */}
-
     </div>
   );
 }

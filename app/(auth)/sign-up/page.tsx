@@ -1,5 +1,5 @@
 "use client"
-import AuthForm from '@/components/common/AuthForm'
+import AuthForm from '@/components/forms/AuthForm'
 import { signup } from '@/lib/actions/auth'
 import { signUpSchema } from '@/lib/validations'
 import React from 'react'

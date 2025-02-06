@@ -7,7 +7,7 @@ import { popularTreatments } from "@/constants";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-const ExploreWhatWeDo: React.FC = () => {
+const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
     const [treatment, setTreatment] = useState<Treatment>(popularTreatments[0]);
     const [treatmentIndex, setTreatmentIndex] = useState<number>(0);
     const [show, setShow] = useState<boolean>(false);
@@ -35,7 +35,7 @@ const ExploreWhatWeDo: React.FC = () => {
             </h2>
 
             <div className="flex flex-col xl:flex-row h-full">
-                {/* Tabs Section */}
+
                 <Tabs
                     defaultValue="clinic-treatments"
                     className="w-full xl:w-[40%] xl:h-screen px-6 md:px-12 xl:px-16"
@@ -80,7 +80,7 @@ const ExploreWhatWeDo: React.FC = () => {
                                                 size={24}
                                             />
                                         </li>
-                                        <Down treatment={treatment} show={show && idx === treatmentIndex} />
+                                        <Down treatment={treatment} show={show && idx === treatmentIndex} session={session} />
                                     </div>
                                 ))}
                             </ul>
@@ -110,7 +110,7 @@ const ExploreWhatWeDo: React.FC = () => {
                                                 size={24}
                                             />
                                         </li>
-                                        <Down treatment={treatment} show={show && idx === treatmentIndex} />
+                                        <Down treatment={treatment} show={show && idx === treatmentIndex} session={session} />
                                     </div>
                                 ))}
                             </ul>
@@ -124,7 +124,7 @@ const ExploreWhatWeDo: React.FC = () => {
                     data-aos="fade-up" // AOS animation
                     key={treatmentIndex} // Key ensures animation runs when treatmentIndex changes
                 >
-                    <ExploreTreatment treatment={popularTreatments[treatmentIndex]} />
+                    <ExploreTreatment treatment={popularTreatments[treatmentIndex]} session={session} />
                 </div>
             </div>
         </div>
@@ -133,7 +133,7 @@ const ExploreWhatWeDo: React.FC = () => {
 
 export default ExploreWhatWeDo;
 
-const Down = ({ treatment, show }: { treatment: Treatment; show: boolean }) => {
+const Down = ({ treatment, show, session }: { treatment: Treatment; show: boolean, session: boolean }) => {
     return (
         <div
             className={`flex-1 block xl:hidden h-[600px] xl:h-screen mt-8 xl:mt-0 transition-all duration-500 overflow-hidden ${show ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
@@ -141,7 +141,7 @@ const Down = ({ treatment, show }: { treatment: Treatment; show: boolean }) => {
         // data-aos="fade-up" // AOS animation for dropdown content
         // data-aos-delay="300" // Delay for dropdown
         >
-            {show && <ExploreTreatment treatment={treatment} />}
+            {show && <ExploreTreatment treatment={treatment} session={session} />}
         </div>
     );
 };

@@ -1,5 +1,4 @@
-import Image from 'next/image';
-import AnimatedBackground from './animations/AnimatedBackground';
+import AnimatedBackground from '../animations/AnimatedBackground';
 
 const Banner: React.FC = () => {
     return (

@@ -1,6 +1,6 @@
+"use client";
 
-// "use server"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import Link from 'next/link';
 import {
     DropdownMenu,
@@ -9,30 +9,32 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import { Button } from '@/components/ui/button';
-import { AiSecurity01Icon, Calendar01Icon, FavouriteIcon, HelpCircleIcon, Profile02Icon, SecurityIcon, Settings01Icon, UserAccountIcon, UserIcon } from 'hugeicons-react';
-import { Session } from 'next-auth';
-import { signOut } from '@/auth';
+import { AiSecurity01Icon, Calendar01Icon, FavouriteIcon, HelpCircleIcon, Profile02Icon, SecurityIcon, Settings01Icon, UserIcon } from 'hugeicons-react';
+import { signOut } from "next-auth/react";  // Corrected import
 import { getInitials } from "@/lib/utils";
+import { Session } from "next-auth";
+import SignInSignUpButtons from "./SignInSignUpButtons";
 
-const UserDropdown = ({ session }: { session: Session }) => {
+const UserDropdown = ({ session }: { session?: Session | null }) => {
     const handleSignOut = async () => {
         try {
-            await signOut({
-                redirect: true,
-                redirectTo: "/"
-            });
+            await signOut({ callbackUrl: "/" });  // Corrected signOut function
         } catch (error) {
             console.error("Error signing out:", error);
         }
     };
+    console.log(session)
+
+    if (session == null) {
+        return <SignInSignUpButtons />
+    }
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger>
                 <Avatar>
-                    {/* Avatar image can be added here */}
                     <AvatarFallback className='bg-amber-100'>
                         {getInitials(session?.user?.name || 'GU')}
                     </AvatarFallback>
@@ -43,7 +45,6 @@ const UserDropdown = ({ session }: { session: Session }) => {
                 <DropdownMenuLabel>
                     <Link href="/my-profile" className="flex flex-col justify-center items-center gap-2">
                         <Avatar className="h-16 w-16">
-                            {/* Avatar image can be added here */}
                             <AvatarFallback className="bg-amber-100">
                                 {getInitials(session?.user?.name || 'GU')}
                             </AvatarFallback>
@@ -106,7 +107,7 @@ const UserDropdown = ({ session }: { session: Session }) => {
                 <DropdownMenuSeparator />
 
                 {/* Sign-Out Button */}
-                <Button type='button' onClick={handleSignOut} className=' outline text-red bg-transparent w-full rounded-full mt-4 hover:bg-transparent outline-1'>
+                <Button type="button" onClick={handleSignOut} className="text-red bg-transparent w-full rounded-full mt-4 hover:bg-transparent outline outline-1">
                     Logout
                 </Button>
             </DropdownMenuContent>

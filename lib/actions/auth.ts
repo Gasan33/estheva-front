@@ -11,6 +11,7 @@ export const signInWithCredentials = async (params: Pick<AuthCredentials, "email
             email,
             password,
             redirect: false,
+            redirectTo: '/',
         });
 
         if (result?.error) {
@@ -40,6 +41,7 @@ export const signup = async (params: AuthCredentials) => {
                 password: password,
             }),
         });
+        console.log(response)
 
         if (!response.ok) {
             const errorData = await response.json();

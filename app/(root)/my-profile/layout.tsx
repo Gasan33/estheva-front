@@ -4,13 +4,18 @@ import ProfileSideBar from '@/components/common/ProfileSideBar'
 import React, { ReactNode, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Menu } from 'lucide-react'
+import auth from '@/auth'
+import { redirect } from 'next/navigation'
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout = async ({ children }: { children: ReactNode }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
     const toggleSidebar = () => {
         setIsSidebarOpen((prev) => !prev)
     }
+
+    const session = await auth();
+    if (!session) redirect("/sign-in")
 
     return (
         <div className="relative grid grid-cols-1 xl:grid-cols-[20%_80%]">

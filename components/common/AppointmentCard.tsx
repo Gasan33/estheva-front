@@ -1,17 +1,12 @@
 "use client";
-import React, { useState } from 'react';
-import { Location01Icon } from 'hugeicons-react';
-import Image from 'next/image';
-import CancelAppointmentDailog from './CancelAppointmentDailog';
-import RescheduleAppointmentDailog from './RescheduleAppointmentDailog';
-import ReviewDailog from './ReviewDailog';
-import BookAppointment from './BookAppointment';
-import AppointmentDetailsDailog from './AppointmentDetailsDailog';
+import CancelAppointmentDailog from '../dialogs/CancelAppointmentDailog';
+import RescheduleAppointmentDailog from '../dialogs/RescheduleAppointmentDailog';
+import ReviewDailog from '../dialogs/ReviewDailog';
+import BookAppointment from './BookAppointment/BookAppointment';
+import AppointmentDetailsDailog from '../dialogs/AppointmentDetailsDailog';
 
 
 const AppointmentCard = ({ item, type }: { item: Treatment, type?: string }) => {
-    const { name, img, id, doctors } = item;
-
 
     return (
         <div

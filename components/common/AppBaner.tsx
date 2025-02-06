@@ -1,5 +1,5 @@
 import Image from "next/image"
-import ParticlesComponent from "../common/animations/ParticlesBackground"
+import ParticlesComponent from "../animations/ParticlesBackground"
 import Link from "next/link"
 
 const AppBaner = () => {

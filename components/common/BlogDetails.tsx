@@ -1,7 +1,5 @@
 "use client";
-import HeaderPath from '@/components/common/HeaderPath';
 import { blogs } from '@/constants';
-import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -22,13 +20,6 @@ type BlogDetailsProps = {
 
 const BlogDetails: React.FC<BlogDetailsProps> = ({ id }) => {
     const [blog, setBlog] = useState<Article | null>(null);
-    // const [showFullText, setShowFullText] = useState(false);
-    // const [loading, setLoading] = useState(false);
-    // const [fullDescription, setFullDescription] = useState("");
-    // const [shortDescription, setShortDescription] = useState("");
-    const allPath = usePathname();
-    const paths = allPath.split('/');
-
     const getTreatmentDetails = () => {
         blogs.map((item) => {
             if (item.id === Number(id)) {

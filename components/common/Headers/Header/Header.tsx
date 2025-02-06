@@ -6,10 +6,10 @@ import { useEffect, useState } from 'react';
 import AppBaner from '../../AppBaner';
 import SearchBar from '../../SearchBar';
 import { Session } from 'next-auth';
-import UserDropdown from '../../UserDropDown';
-import NavMenuItems from '../../NavMenuItems';
+import UserDropdown from './UserDropDown';
+import NavMenuItems from './NavMenuItems';
 
-export const Header = ({ session }: { session: Session }) => {
+export const Header = ({ session }: { session?: Session | null }) => {
     const pathname = usePathname();
     const hideHeaderRoutes = ["/blogs/news", "/blogs/blogs"];
     const hideHeader = !hideHeaderRoutes.includes(pathname);

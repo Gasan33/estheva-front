@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import RatingBar from "./RatingBar";
+import RatingBar from "../common/RatingBar";
 import { ArrowRightIcon, ArrowLeftIcon } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules"; // Import Navigation for arrows and Autoplay for auto sliding

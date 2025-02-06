@@ -6,7 +6,7 @@ const RatingBar = ({ readOnly, valueOfRating }: { readOnly: boolean, valueOfRati
     const [hover, setHover] = useState<number>(0);
 
     return (
-        <div className="flex gap-2 py-4">
+        <div className="flex gap-0 md:gap-2 py-4">
             {[...Array(5)].map((star, i) => {
                 const ratingValue = i + 1;
 
@@ -14,11 +14,9 @@ const RatingBar = ({ readOnly, valueOfRating }: { readOnly: boolean, valueOfRati
                     readOnly ?
                         <StarIcon
                             key={i}
-                            className="star"
-                            size={24}
+                            className="star h-4 md:h-6"
                             color={ratingValue <= valueOfRating ? "#FFD700" : "#e4e5e9"}
-                        // onMouseEnter={() => setHover(ratingValue)}
-                        // onMouseLeave={() => setHover(null)}
+
                         />
                         : <label key={i}>
                             <input
@@ -30,8 +28,7 @@ const RatingBar = ({ readOnly, valueOfRating }: { readOnly: boolean, valueOfRati
                             />
                             <StarIcon
                                 key={i}
-                                className="star"
-                                size={24}
+                                className="star h-4 md:h-6"
                                 color={ratingValue <= (hover || rating) ? "#2B2073" : "#e4e5e9"}
                                 onMouseEnter={() => setHover(ratingValue)}
                                 onMouseLeave={() => setHover(0)}
@@ -39,7 +36,6 @@ const RatingBar = ({ readOnly, valueOfRating }: { readOnly: boolean, valueOfRati
                         </label>
                 );
             })}
-            {/* <p>Rating is: {rating}</p> */}
         </div>
     );
 };

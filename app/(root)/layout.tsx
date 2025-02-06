@@ -7,12 +7,12 @@ import { redirect } from 'next/navigation';
 import React, { ReactNode } from 'react'
 const layout = async ({ children }: { children: ReactNode }) => {
     const session = await auth();
-    if (!session) redirect("/sign-in")
+    // if (!session) redirect("/")
     return (
         <main className='root-container'>
             <div>
                 <Header session={session} />
-                <MHeader />
+                <MHeader session={session} />
             </div>
 
             <div> {children} </div>

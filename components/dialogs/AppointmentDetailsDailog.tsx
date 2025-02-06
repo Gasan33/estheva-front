@@ -9,7 +9,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import AppointmentCard from './AppointmentCard';
+import AppointmentCard from '../common/AppointmentCard';
 import Image from 'next/image';
 import { ArrowRight01Icon, Location01Icon, Recycle01Icon, Share01Icon } from 'hugeicons-react';
 import Link from 'next/link';

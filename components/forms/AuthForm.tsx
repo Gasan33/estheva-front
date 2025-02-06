@@ -44,10 +44,13 @@ const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit
         //     setError("Passwords do not match.");
         //     return;
         // }
-        if (!termsAccepted) {
-            setError("You must accept the terms and conditions.");
-            return;
+        if (!isSignIn) {
+            if (!termsAccepted) {
+                setError("You must accept the terms and conditions.");
+                return;
+            }
         }
+
 
         setError(null);
         const result = await onSubmit(data);

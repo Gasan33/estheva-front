@@ -1,15 +1,17 @@
 "use client"
 import React, { useState } from 'react'
 import HeaderPath from "../../../components/common/HeaderPath"
-import TreatmentsList from '@/components/common/TreatmentsList';
+import TreatmentsList from '@/components/landing/TreatmentsList';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { categories, treatmentTabs } from '@/constants';
 import { ArrowRight01Icon } from 'hugeicons-react';
-import TreatmentReviews from '@/components/common/TreatmentReviews';
+import TreatmentReviews from '@/components/landing/TreatmentReviews';
+import { useSession } from 'next-auth/react';
 
 
 const Treatments = () => {
     const [currentTab, setCurrentTab] = useState("all");
+    const session = useSession();
 
     const handleTabSwitch = (tab: string) => {
         setCurrentTab(tab);

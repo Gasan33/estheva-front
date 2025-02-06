@@ -16,9 +16,11 @@ import { navigationLinks } from '@/constants';
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { getInitials } from '@/lib/utils';
 import Link from 'next/link';
+import { Session } from 'next-auth';
+import { Button } from '@/components/ui/button';
 
 
-export default function index() {
+export default function index({ session }: { session?: Session | null }) {
 
   const pathname = usePathname();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
@@ -31,11 +33,16 @@ export default function index() {
             <Link href="/my-profile" className='flex flex-col items-center gap-4'>
               <Avatar className='w-20 h-20'>
                 {/* <AvatarImage src="https://github.com/shadcn.png" /> */}
-                <AvatarFallback className='bg-amber-100'>{getInitials("IN")}</AvatarFallback>
+                <AvatarFallback className='bg-amber-100'>{getInitials(session?.user?.name || 'GU')}</AvatarFallback>
               </Avatar>
-              <h1 className='text-md font-bold'>Uesr Name</h1>
+              <h1 className='text-md font-bold'>{session?.user?.name || 'Guest'}</h1>
             </Link>
           </div>
+
+          {session == null &&
+            <div className='flex gap-4 justify-center text-white mt-4'>
+              <Link href="/sign-in"><Button className='bg-primaryColor hover:bg-teal-800'>Sign In</Button></Link>
+            </div>}
 
           <div>
             {

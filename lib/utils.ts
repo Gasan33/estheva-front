@@ -1,3 +1,4 @@
+import auth from "@/auth";
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -13,3 +14,9 @@ export const getInitials = (name: string): string =>
     .join("")
     .toUpperCase()
     .slice(0, 2);
+
+
+export async function checkSession() {
+  const session = await auth();
+  return !!session;
+}

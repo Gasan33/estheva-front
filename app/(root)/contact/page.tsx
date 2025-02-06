@@ -2,7 +2,7 @@
 
 import React from "react";
 import GoogleMapComponent from "@/components/common/GoogleMapComponent";
-import ContactForm from "@/components/common/ContactForm";
+import ContactForm from "@/components/forms/ContactForm";
 import { contactSchema } from "@/lib/validations";
 import { handleContactSubmit } from "@/lib/actions/contact";
 

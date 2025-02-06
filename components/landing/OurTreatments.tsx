@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { categories } from "@/constants";
-import ViewAllText from "./ViewAllText";
+import ViewAllText from "../common/ViewAllText";
 import AOS from "aos";
 import "aos/dist/aos.css";
 

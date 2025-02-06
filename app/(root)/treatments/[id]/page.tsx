@@ -12,17 +12,15 @@ import { ArrowRight01Icon, Location01Icon, Recycle01Icon, Tag01Icon } from 'huge
 import { Share2, Heart } from 'lucide-react'
 import { popularTreatments } from '@/constants'
 import Image from 'next/image'
-import RatingBar from '@/components/common/RatingBar'
-import TreatmentReviews from '@/components/common/TreatmentReviews'
+import TreatmentReviews from '@/components/landing/TreatmentReviews'
 import { Skeleton } from '@/components/ui/skeleton'
-import BookAppointment from '@/components/common/BookAppointment'
+import BookAppointment from '@/components/common/BookAppointment/BookAppointment'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 const TreatmentDetails = () => {
     const [treatment, setTreatment] = useState<Treatment | null>(null);
     const [showFullText, setShowFullText] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [fullDescription, setFullDescription] = useState("");
     const [shortDescription, setShortDescription] = useState("");
     const allPath = usePathname();
@@ -68,7 +66,6 @@ const TreatmentDetails = () => {
 
     return (
         <div className='m-4 md:mx-16 bg-pattern'>
-            {/* Breadcrumb */}
             <div className='flex flex-col my-8 gap-4 pb-4' data-aos="fade-up">
                 <Breadcrumb>
                     <BreadcrumbList>

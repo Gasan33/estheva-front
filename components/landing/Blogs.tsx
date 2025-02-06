@@ -112,7 +112,6 @@ const Blogs = () => {
                 </div>
             </div>
 
-            {/* See More Button */}
             <div className="flex justify-center mt-8">
                 <Link href={"/blogs/news"}>
                     <Button className="py-4 px-6 rounded-full bg-white shadow-lg">

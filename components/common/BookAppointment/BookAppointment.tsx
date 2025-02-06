@@ -1,27 +1,22 @@
 "use client"
-import React, { JSX, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
     Dialog,
     DialogClose,
     DialogContent,
-    DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
-import { Button } from '../ui/button'
-import { ArrowRight01Icon, Location01Icon, Time01Icon } from 'hugeicons-react'
-import { Calendar } from "@/components/ui/calendar"
-import { ArrowRight, CalendarDays, CheckCircle } from 'lucide-react'
-import Image from 'next/image'
-import BookAppintmentAddress from './BookAppintmentAddress'
+import { Button } from '../../ui/button'
+import { ArrowRight01Icon } from 'hugeicons-react'
+import { ArrowRight } from 'lucide-react'
 import { TiTick } from "react-icons/ti";
-import SchduleAppointment from './BookAppointment/SchduleAppointment'
-import CheckoutForm from './BookAppointment/Payment'
-import Summary from './BookAppointment/Summary'
-import AppointmentSuccess from './BookAppointment/AppointmentSuccess'
-import PaymentPage from './BookAppointment/Payment'
+import SchduleAppointment from './BookAppointmentSteps/SchduleAppointment'
+import Summary from './BookAppointmentSteps/Summary'
+import AppointmentSuccess from './BookAppointmentSteps/AppointmentSuccess'
+import PaymentPage from './BookAppointmentSteps/Payment'
 
 
 
@@ -48,9 +43,9 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment, triger?:
         <Dialog>
             {triger == "profile" ? <DialogTrigger className='block relative  bg-primaryColor rounded-md w-full py-2 text-sm text-white font-thin'>Book Again</DialogTrigger>
                 : triger == "home"
-                    ? <DialogTrigger className='flex gap-1 font-medium items-center text-primaryColor'>
+                    ? <DialogTrigger className='flex items-center gap-0 md:gap-1 text-xs font-thin md:text-sm md:font-medium text-primaryColor'>
                         Book Now
-                        <ArrowRight size={16} className='-rotate-45' />
+                        <ArrowRight size={16} className='h-4 md:h-6 -rotate-45' />
                     </DialogTrigger>
                     : <DialogTrigger className='w-full' >
 
