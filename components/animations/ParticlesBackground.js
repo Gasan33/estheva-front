@@ -1,6 +1,6 @@
 "use client";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { memo, useEffect, useMemo, useState } from "react";
+import { Particles, initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
 const ParticlesComponent = memo((props) => {
@@ -84,7 +84,7 @@ const ParticlesComponent = memo((props) => {
                     density: {
                         enable: true,
                     },
-                    value: 250, // Reduce the number of particles on mobile
+                    value: isMobile ? 100 : 250,  // Adjust particle count based on screen size
                 },
                 opacity: {
                     value: 1.0,
@@ -98,7 +98,7 @@ const ParticlesComponent = memo((props) => {
             },
             detectRetina: true,
         }),
-        // [isMobile]
+        [isMobile]  // Recalculate options when isMobile changes
     );
 
     return (
