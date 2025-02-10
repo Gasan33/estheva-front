@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image"
 import ParticlesComponent from "../animations/ParticlesBackground"
 import Link from "next/link"

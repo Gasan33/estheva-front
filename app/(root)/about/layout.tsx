@@ -27,9 +27,11 @@ export const metadata: Metadata = {
             },
         ],
     },
-    viewport: 'width=device-width, initial-scale=1.0',
     authors: [{ name: 'Estheva Polyclinic' }],
 };
+export function viewport() {
+    return 'width=device-width, initial-scale=1.0';
+}
 const layout = async ({ children }: { children: ReactNode }) => {
     return (
         <div> {children} </div>

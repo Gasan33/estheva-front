@@ -105,12 +105,14 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  viewport: 'width=device-width, initial-scale=1.0',
   authors: [{ name: 'Estheva Polyclinic' }],
   // hreflang: [
   //   { lang: 'en', href: 'https://estheva-clinic.com' }, // English version of the site
   //   { lang: 'ar', href: 'https://estheva-clinic.com/ar' }, // Arabic version if available
   // ],
+}
+export function viewport() {
+  return 'width=device-width, initial-scale=1.0';
 }
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {

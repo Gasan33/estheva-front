@@ -5,17 +5,17 @@ import { loadSlim } from "@tsparticles/slim";
 
 const ParticlesComponent = memo((props) => {
     const [init, setInit] = useState(false);
-    // const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
-    // // Handle resize for responsiveness
-    // useEffect(() => {
-    //     const handleResize = () => {
-    //         setIsMobile(window.innerWidth <= 768);  // Adjust for smaller screens
-    //     };
-    //     window.addEventListener("resize", handleResize);
-    //     handleResize();  // Set initial state
-    //     return () => window.removeEventListener("resize", handleResize);
-    // }, []);
+    // Handle resize for responsiveness
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);  // Adjust for smaller screens
+        };
+        window.addEventListener("resize", handleResize);
+        handleResize();  // Set initial state
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const particlesLoaded = (container) => {
         console.log(container);
