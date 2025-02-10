@@ -1,4 +1,3 @@
-"use client";
 import { memo, useEffect, useMemo, useState } from "react";
 import { Particles, initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
@@ -22,12 +21,14 @@ const ParticlesComponent = memo((props) => {
     };
 
     useEffect(() => {
-        initParticlesEngine(async (engine) => {
-            await loadSlim(engine);
-        }).then(() => {
+        const loadParticles = async () => {
+            await initParticlesEngine(async (engine) => {
+                await loadSlim(engine);
+            });
             setInit(true);
-        });
-    }, []);
+        };
+        loadParticles();
+    }, []);  // This effect only runs on mount
 
     const options = useMemo(
         () => ({

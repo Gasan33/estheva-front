@@ -1,7 +1,11 @@
 "use client";
 import Image from "next/image"
-import ParticlesComponent from "../animations/ParticlesBackground"
 import Link from "next/link"
+import dynamic from "next/dynamic";
+
+const ParticlesComponent = dynamic(() => import('../animations/ParticlesBackground'), {
+    ssr: false
+});
 
 const AppBaner = () => {
     return (
