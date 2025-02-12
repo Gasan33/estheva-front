@@ -12,6 +12,7 @@ export async function GET() {
 
         // Fetch data with token
         const response = await fetch(`${config.env.apiEndpoint}/appointments/user-appointments`, {
+            method: 'GET',
             cache: "no-store",
             headers: {
                 "Authorization": `Bearer ${session.user.access_token}`,

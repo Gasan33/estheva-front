@@ -9,7 +9,7 @@ const page = () => {
 
                 <ViewAllText href='' title='Upcoming Appointments' />
 
-                {/* <AppointmentsList /> */}
+                <AppointmentsList />
             </div>
         </div>
         // <>

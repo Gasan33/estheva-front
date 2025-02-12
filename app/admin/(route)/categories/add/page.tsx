@@ -2,22 +2,22 @@
 import { BiCategory } from "react-icons/bi";
 import UploadImage from "../../../../../components/admin/uploadImage/UploadImage";
 import { useRouter } from "next/navigation";
-import useCategoryForm from "../../../../../hooks/admin/useCategoryForm";
+// import useCategoryForm from "../../../../../hooks/admin/useCategoryForm";
 
 const NewCategory = () => {
     const router = useRouter();
 
-    const {
-        // categoryName,
-        setCategoryName,
-        // categorySlug,
-        setCategorySlug,
-        // categoryDesc,
-        setCategoryDesc,
-        // categoryImage,
-        setCategoryImage,
-        handleSubmit
-    } = useCategoryForm(router);
+    // const {
+    //     // categoryName,
+    //     setCategoryName,
+    //     // categorySlug,
+    //     setCategorySlug,
+    //     // categoryDesc,
+    //     setCategoryDesc,
+    //     // categoryImage,
+    //     setCategoryImage,
+    //     handleSubmit
+    // } = useCategoryForm(router);
 
     return (
         <div className="mx-auto p-4 bg-gray-200">
@@ -30,7 +30,7 @@ const NewCategory = () => {
                             </h3>
                         </div>
                         <div className="p-7">
-                            <form onSubmit={handleSubmit}>
+                            <form >
                                 <div className="mb-6 flex flex-col gap-5.5 sm:flex-row">
                                     <div className="w-full sm:w-1/2">
                                         <label
@@ -49,8 +49,8 @@ const NewCategory = () => {
                                                 name="categoryName"
                                                 id="categoryName"
                                                 onChange={(e) => {
-                                                    setCategoryName(e.target.value);
-                                                    setCategorySlug(e.target.value); // You can use categoryName to generate slug
+                                                    // setCategoryName(e.target.value);
+                                                    // setCategorySlug(e.target.value); // You can use categoryName to generate slug
                                                 }}
                                                 required
                                                 placeholder="Category Name.."
@@ -72,7 +72,7 @@ const NewCategory = () => {
                                             name="categoryDesc"
                                             id="categoryDesc"
                                             rows={6}
-                                            onChange={(e) => setCategoryDesc(e.target.value)}
+                                            // onChange={(e) => setCategoryDesc(e.target.value)}
                                             required
                                             placeholder="Write Category description here..."
                                         ></textarea>
@@ -86,7 +86,9 @@ const NewCategory = () => {
                                     >
                                         Category Image
                                     </label>
-                                    <UploadImage name="categoryImage" setImageUrl={setCategoryImage} />
+                                    {/* <UploadImage name="categoryImage" 
+                                    // setImageUrl={setCategoryImage} 
+                                    /> */}
                                 </div>
 
                                 <div className="flex justify-end gap-4">
