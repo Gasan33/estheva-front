@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
         hostname: "estheva-polyclinic.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "api.estheva-clinic.com",
+        port: "",
+      },
 
       {
         protocol: "https",

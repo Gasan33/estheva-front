@@ -30,6 +30,7 @@ const UserDropdown = ({ session }: { session?: Session | null }) => {
     if (session == null) {
         return <SignInSignUpButtons />
     }
+    const isAdmin = session.user.role == "admin" || false;
 
     return (
         <DropdownMenu>
@@ -43,7 +44,7 @@ const UserDropdown = ({ session }: { session?: Session | null }) => {
 
             <DropdownMenuContent>
                 <DropdownMenuLabel>
-                    <Link href="/my-profile" className="flex flex-col justify-center items-center gap-2">
+                    <Link href={isAdmin ? "/admin/dashboard" : "/my-profile"} className="flex flex-col justify-center items-center gap-2">
                         <Avatar className="h-16 w-16">
                             <AvatarFallback className="bg-amber-100">
                                 {getInitials(session?.user?.name || 'GU')}
@@ -56,53 +57,57 @@ const UserDropdown = ({ session }: { session?: Session | null }) => {
                 <DropdownMenuSeparator />
 
                 <DropdownMenuItem>
-                    <Link href="/my-profile" className="flex gap-2 w-full">
-                        <UserIcon />
-                        <h1>Profile</h1>
+                    <Link href={isAdmin ? "/admin/dashboard" : "/my-profile"} className="flex gap-2 w-full">
+                        {<UserIcon />}
+                        <h1>{isAdmin ? "Dashboard" : "Profile"}</h1>
                     </Link>
                 </DropdownMenuItem>
 
-                <DropdownMenuItem>
-                    <div className="flex gap-2">
-                        <Calendar01Icon />
-                        <h1>My Appointments</h1>
-                    </div>
-                </DropdownMenuItem>
+                {!isAdmin &&
+                    <>
+                        <DropdownMenuItem>
+                            <div className="flex gap-2">
+                                <Calendar01Icon />
+                                <h1>My Appointments</h1>
+                            </div>
+                        </DropdownMenuItem>
 
-                <DropdownMenuItem>
-                    <div className="flex gap-2">
-                        <FavouriteIcon />
-                        <h1>Favourite</h1>
-                    </div>
-                </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <div className="flex gap-2">
+                                <FavouriteIcon />
+                                <h1>Favourite</h1>
+                            </div>
+                        </DropdownMenuItem>
 
-                <DropdownMenuItem>
-                    <div className="flex gap-2">
-                        <HelpCircleIcon />
-                        <h1>Help Center</h1>
-                    </div>
-                </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <div className="flex gap-2">
+                                <HelpCircleIcon />
+                                <h1>Help Center</h1>
+                            </div>
+                        </DropdownMenuItem>
 
-                <DropdownMenuItem>
-                    <Link href="/terms&conditions" className="flex gap-2">
-                        <SecurityIcon />
-                        <h1>Terms of Use</h1>
-                    </Link>
-                </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <Link href="/terms&conditions" className="flex gap-2">
+                                <SecurityIcon />
+                                <h1>Terms of Use</h1>
+                            </Link>
+                        </DropdownMenuItem>
 
-                <DropdownMenuItem>
-                    <Link href="/privacy-policy" className="flex gap-2">
-                        <AiSecurity01Icon />
-                        <h1>Privacy Policy</h1>
-                    </Link>
-                </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <Link href="/privacy-policy" className="flex gap-2">
+                                <AiSecurity01Icon />
+                                <h1>Privacy Policy</h1>
+                            </Link>
+                        </DropdownMenuItem>
 
-                <DropdownMenuItem>
-                    <div className="flex gap-2">
-                        <Settings01Icon />
-                        <h1>Settings</h1>
-                    </div>
-                </DropdownMenuItem>
+                        <DropdownMenuItem>
+                            <div className="flex gap-2">
+                                <Settings01Icon />
+                                <h1>Settings</h1>
+                            </div>
+                        </DropdownMenuItem>
+                    </>
+                }
 
                 <DropdownMenuSeparator />
 

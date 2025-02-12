@@ -57,18 +57,21 @@ export const columns: ColumnDef<User>[] = [
     {
         accessorKey: "image",
         header: "Image",
-        cell: ({ row }) => (
-            <Image
-                src={row.getValue("image")}
-                alt={row.getValue("title")}
-                width={56}
-                height={56}
-                className="rounded-full w-14 h-14"
+        cell: ({ row }) => {
+            const user = row.original
+            return <Image
+                src={user.profile_picture ?? "/images/noavatar.png"}
+                alt={user.name ?? "user"}
+                width={300}
+                height={300}
+                style={{ height: "auto" }}
+                className="rounded-full w-14 h-auto"
             />
-        ),
+        },
     },
     {
         accessorKey: "title",
+        accessorFn: ({ name }) => name.toString(),
         header: ({ column }) => {
             return (
                 <Button

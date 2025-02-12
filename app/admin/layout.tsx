@@ -14,9 +14,8 @@ const layout = async ({ children }: { children: ReactNode }) => {
             <Navbar />
 
             <div className="flex h-full overflow-hidden">
-                <div className="bg-blue-950 h-full overflow-auto no-scrollbar p-2 w-[5%]">
-                    <SideNavBar />
-                </div>
+                <SideNavBar />
+
                 <div className="h-full w-full overflow-auto">
                     {children}
                 </div>

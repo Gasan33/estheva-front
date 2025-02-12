@@ -42,15 +42,17 @@ export const columns: ColumnDef<Treatment>[] = [
     {
         accessorKey: "image",
         header: "Image",
-        cell: ({ row }) => (
-            <Image
-                src={row.getValue("image")}
+        cell: ({ row }) => {
+            const treatment = row.original
+            return <Image
+                src={treatment.images[0]}
                 alt={row.getValue("title")}
-                width={56}
-                height={56}
-                className="rounded-full w-14 h-14"
+                width={300}
+                height={300}
+                style={{ height: "auto" }}
+                className="rounded-full w-14 h-auto"
             />
-        ),
+        },
     },
     {
         accessorKey: "title",
@@ -71,7 +73,7 @@ export const columns: ColumnDef<Treatment>[] = [
         header: "Price",
     },
     {
-        accessorKey: "category",
+        accessorKey: "category.category_name",
         header: "Category",
     },
     {
@@ -81,7 +83,7 @@ export const columns: ColumnDef<Treatment>[] = [
     {
         id: "actions",
         cell: ({ row }) => {
-            const service = row.original
+            const treatment = row.original
 
             return (
                 <DropdownMenu>
@@ -94,14 +96,14 @@ export const columns: ColumnDef<Treatment>[] = [
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(`${service.id}`)}
+                            onClick={() => navigator.clipboard.writeText(`${treatment.id}`)}
                         >
-                            Copy Service ID
+                            Copy Treatment ID
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>View Service details</DropdownMenuItem>
-                        <DropdownMenuItem>Edit Service</DropdownMenuItem>
-                        <DropdownMenuItem >Delete Service</DropdownMenuItem>
+                        <DropdownMenuItem>View Treatment details</DropdownMenuItem>
+                        <DropdownMenuItem>Edit Treatment</DropdownMenuItem>
+                        <DropdownMenuItem >Delete Treatment</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

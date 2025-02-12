@@ -63,12 +63,17 @@ const BlockEvents = () => {
                         <ScheduleComponent
                             cssClass='block-events'
                             width='100%'
-                            height='650px'
+                            height='100%'
                             selectedDate={new Date()}
-                            currentView='TimelineDay'
+                            currentView='Day'
                             resourceHeaderTemplate={resourceHeaderTemplate}
                             eventSettings={{ dataSource: data }}
                             group={{ enableCompactView: false, resources: ['Employee'] }}
+                            workDays={[1, 2, 3, 4, 5, 6]}
+                            timeScale={{ interval: 60, slotCount: 4 }}
+                            startHour="09:00"
+                            endHour="21:00"
+                            workHours={{ start: "09:00", end: "21:00" }}
                         >
                             <ResourcesDirective>
                                 <ResourceDirective

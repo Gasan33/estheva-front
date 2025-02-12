@@ -16,32 +16,41 @@ import { navigationLinks } from '@/constants';
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { getInitials } from '@/lib/utils';
 import Link from 'next/link';
-import { Session } from 'next-auth';
 import { Button } from '@/components/ui/button';
+import { signOut, useSession } from 'next-auth/react';
 
 
-export default function index({ session }: { session?: Session | null }) {
+export default function index() {
 
+  const session = useSession();
   const pathname = usePathname();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
-
+  const isAdmin = session.data?.user.role == "admin" || false;
+  const handleSignOut = async () => {
+    try {
+      await signOut({ callbackUrl: "/" });
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
   return (
     <motion.div variants={menuSlide} initial="initial" animate="enter" exit="exit" className={styles.menu}>
       <div className={styles.body}>
         <div onMouseLeave={() => { setSelectedIndicator(pathname) }} className={styles.nav}>
           <div >
-            <Link href="/my-profile" className='flex flex-col items-center gap-4'>
+            <Link href={isAdmin ? "/admin/dashboard" : "/my-profile"} className='flex flex-col items-center gap-4'>
               <Avatar className='w-20 h-20'>
-                {/* <AvatarImage src="https://github.com/shadcn.png" /> */}
-                <AvatarFallback className='bg-amber-100'>{getInitials(session?.user?.name || 'GU')}</AvatarFallback>
+                <AvatarFallback className='bg-amber-100'>
+                  {getInitials(session.data?.user.name || 'GU')}
+                </AvatarFallback>
               </Avatar>
-              <h1 className='text-md font-bold'>{session?.user?.name || 'Guest'}</h1>
+              <h1 className='text-md font-bold'>{session.data?.user.name || 'Guest'}</h1>
             </Link>
           </div>
 
-          {session == null &&
+          {session.data == null &&
             <div className='flex gap-4 justify-center text-white mt-4'>
-              <Link href="/sign-in"><Button className='bg-primaryColor hover:bg-teal-800'>Sign In</Button></Link>
+              <Link href="/sign-in"><Button className='bg-primaryColor hover:bg-teal-800' >Sign In</Button></Link>
             </div>}
 
           <div>
@@ -58,6 +67,7 @@ export default function index({ session }: { session?: Session | null }) {
                               <NavLink key={item.id} data={{ ...item, index }} isActive={selectedIndicator == item.path} setSelectedIndicator={setSelectedIndicator}></NavLink>
                             ))
                           }
+
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
@@ -66,6 +76,11 @@ export default function index({ session }: { session?: Session | null }) {
                   }
                 </div>
               ))
+            }
+            {session.data != null &&
+              <div className='flex gap-4 justify-center text-white mt-4'>
+                <Button type="button" onClick={handleSignOut} className='bg-primaryColor hover:bg-teal-800'>Logout</Button>
+              </div>
             }
           </div>
         </div>
