@@ -23,6 +23,7 @@ registerLicense("Ngo9BigBOggjHTQxAR8/V1NMaF1cXmhLYVJ+WmFZfVtgfF9HaVZVQWYuP1ZhSXx
 
 const BlockEvents = () => {
     const data = extend([], dataSource, true);
+
     const employeeData = [
         { Text: 'Alice', Id: 1, GroupId: 1, Color: '#bbdc00', Designation: 'Content writer' },
         { Text: 'Nancy', Id: 2, GroupId: 2, Color: '#9e5fff', Designation: 'Designer' },
