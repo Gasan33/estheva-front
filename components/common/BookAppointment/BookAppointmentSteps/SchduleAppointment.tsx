@@ -96,14 +96,14 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                         {treatment.doctors.map((doctor, index) => (
                             <div
                                 key={index}
-                                onClick={() => setSelectedDoctor(doctor.name)}
-                                className={`relative flex flex-col items-center gap-2 cursor-pointer ${selectedDoctor === doctor.name
+                                onClick={() => setSelectedDoctor(doctor.user.name)}
+                                className={`relative flex flex-col items-center gap-2 cursor-pointer ${selectedDoctor === doctor.user.name
                                     ? 'text-primaryColor'
                                     : 'text-gray-500'
                                     }`}
                             >
                                 {/* Checkmark */}
-                                {selectedDoctor === doctor.name && (
+                                {selectedDoctor === doctor.user.name && (
                                     <CheckCircle
                                         className="absolute top-0 right-1 text-primaryColor"
                                         size={20}
@@ -111,20 +111,20 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                                 )}
                                 {/* Circle */}
                                 <div
-                                    className={`rounded-full border-[1px] ${selectedDoctor === doctor.name
+                                    className={`rounded-full border-[1px] ${selectedDoctor === doctor.user.name
                                         ? 'border-primaryColor bg-teal-100'
                                         : 'border-gray-300 bg-secondary'
                                         } h-16 w-16 border-dashed flex items-center justify-center overflow-clip`}
                                 >
                                     <Image
-                                        src={doctor.img}
-                                        alt={doctor.name}
+                                        src={doctor.user.profile_picture ?? "/images/noavatar.png"}
+                                        alt={doctor.user.name}
                                         width={50}
                                         height={50}
                                         className="h-full w-full object-cover"
                                     />
                                 </div>
-                                <p>{doctor.name}</p>
+                                <p>{doctor.user.name}</p>
                             </div>
                         ))}
                     </div>

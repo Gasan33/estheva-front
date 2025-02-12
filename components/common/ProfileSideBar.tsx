@@ -22,9 +22,11 @@ import {
     SystemUpdate01Icon,
 } from 'hugeicons-react'
 import { Button } from '../ui/button'
+import { useSession } from 'next-auth/react'
 
 const ProfileSideBar = () => {
     const pathname = usePathname()
+    const session = useSession();
     const activePath = pathname.split('/')[2]
 
     return (
@@ -37,7 +39,7 @@ const ProfileSideBar = () => {
                             {getInitials("Guest User")}
                         </AvatarFallback>
                     </Avatar>
-                    <h1 className="text-primary font-semibold text-lg lg:text-xl uppercase">Guest</h1>
+                    <h1 className="text-primary font-semibold text-lg lg:text-xl uppercase">{session.data?.user.name}</h1>
                 </Link>
 
                 {/* Sidebar Navigation */}

@@ -8,12 +8,14 @@ declare module "next-auth" {
             id: string;
             name: string;
             email: string;
-            access_token: string; // Ensure it's inside user object
+            access_token: string;
+            role: string;
         };
     }
 
     interface User {
         access_token: string;
+        role: string;
     }
 
     interface JWT {
@@ -21,6 +23,7 @@ declare module "next-auth" {
         name: string;
         email: string;
         access_token: string;
+        role: string;
     }
 }
 
@@ -57,12 +60,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         throw new Error("Invalid API response");
                     }
 
+                    // Ensure `role` is returned or use a default if necessary
+                    const { id, email, name, role } = data.user;
                     return {
-                        id: data.user.id.toString(),
-                        email: data.user.email,
-                        name: data.user.name,
+                        id: id.toString(),
+                        email,
+                        name,
                         access_token: data.access_token, // Correctly map token
-                    } as User;
+                        role: role || "user", // Default to "user" if no role is provided
+                    } as unknown as User;
                 } catch (error) {
                     console.error("Login Error:", error);
                     throw new Error("Login failed");
@@ -79,7 +85,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 token.id = user.id;
                 token.name = user.name;
                 token.email = user.email;
-                token.access_token = user.access_token; // Store access token in JWT
+                token.access_token = user.access_token;
+                token.role = user.role;
             }
             return token;
         },
@@ -90,15 +97,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 email: token.email as string,
                 access_token: token.access_token as string,
                 emailVerified: null,
+                role: token.role as string,
             };
             return session;
         },
     },
     events: {
-        async signOut(message) {
-            // You can handle any custom actions here when a user signs out.
-            console.log("User signed out:", message);
-            // You can make an API call to invalidate the session if needed
+        async signOut() {
+            // Handle user sign out action here
+            console.log("User signed out");
             await fetch(`${apiEndpoint}/logout`, { method: 'POST' });
         },
     },

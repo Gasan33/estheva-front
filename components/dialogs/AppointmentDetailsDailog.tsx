@@ -19,8 +19,8 @@ import { Button } from '../ui/button';
 
 
 
-const AppointmentDetailsDailog = ({ item, type }: { item: Treatment, type?: string }) => {
-    const { name, img, id, doctors } = item;
+const AppointmentDetailsDailog = ({ appointment, type }: { appointment: Appointment, type?: string }) => {
+
     return (
         <Dialog>
             <DialogTrigger className='flex items-start justify-start text-left'>
@@ -28,14 +28,14 @@ const AppointmentDetailsDailog = ({ item, type }: { item: Treatment, type?: stri
                     <Image
                         className={`w-[25%] h-auto object-cover rounded-tl-[16px] ${type === 'canceled' ? 'rounded-bl-[16px]' : 'rounded-br-[16px]'
                             }`}
-                        src={img[0]}
-                        alt={name}
+                        src={appointment.treatment.images[0]}
+                        alt={appointment.treatment.title}
                         width={600}
                         height={600}
                     />
                     <div className="flex flex-col p-2 md:p-2 h-auto gap-2 w-full">
                         <div className="flex justify-between items-start w-full text-xs md:text-sm font-medium">
-                            <h1 className="line-clamp-2">{name}</h1>
+                            <h1 className="line-clamp-2">{appointment.treatment.title}</h1>
                             <h2
                                 className={`text-xs outline-1 outline py-1 px-2 rounded-sm ${type === 'canceled' ? 'outline-red text-red' : 'outline-primaryColor text-primaryColor'
                                     }`}
@@ -45,20 +45,20 @@ const AppointmentDetailsDailog = ({ item, type }: { item: Treatment, type?: stri
                         </div>
                         <div className="flex gap-1 items-center text-xs text-gray-500 font-thin line-clamp-1">
                             <Location01Icon size={16} />
-                            <h2 className="flex-1">{id % 2 === 1 ? 'Dubai - 375 Al-wasl Road' : 'Home'}</h2>
+                            <h2 className="flex-1">{appointment.treatment.home_based === 1 ? 'Dubai - 375 Al-wasl Road' : 'Home'}</h2>
                         </div>
                         <div className="flex w-full items-center justify-between text-[10px]">
                             <div className="flex items-center gap-2">
-                                {doctors?.[0] && (
+                                {appointment.doctor && (
                                     <>
                                         <Image
-                                            src={doctors[0].img}
-                                            alt={doctors[0].name}
+                                            src={appointment.doctor.user.profile_picture ?? "/images/noavatar.png"}
+                                            alt={appointment.doctor.user.name}
                                             width={50}
                                             height={50}
                                             className="w-6 h-6 object-cover rounded-full"
                                         />
-                                        <span>{doctors[0].name}</span>
+                                        <span>{appointment.doctor.user.name}</span>
                                     </>
                                 )}
                             </div>
@@ -82,27 +82,27 @@ const AppointmentDetailsDailog = ({ item, type }: { item: Treatment, type?: stri
                         <h1 className='text-xs md:text-sm lg:text-lg xl:text-xl font-semibold mt-8'>Treatment</h1>
                         <div className='flex gap-2 mt-2'>
                             <Image
-                                src={item.img[0]}
-                                alt={item.name}
+                                src={appointment.treatment.images[0]}
+                                alt={appointment.treatment.title}
                                 width={400}
                                 height={400}
                                 className='w-[25%]  rounded-lg shadow-md object-cover'
                             />
                             <div className='flex flex-col gap-2 text-gray-400'>
-                                <h1 className='text-xs md:text-lg font-semibold line-clamp-2 text-gray-950'>{item.name}</h1>
+                                <h1 className='text-xs md:text-lg font-semibold line-clamp-2 text-gray-950'>{appointment.treatment.title}</h1>
                                 <div className='flex gap-2 line-clamp-1 '>
                                     <div className='h-3 w-3'><Location01Icon size={12} /></div>
                                     <p className='text-xs  font-thin'>Home Based Service</p>
                                 </div>
                                 <div className='flex gap-2 line-clamp-1 '>
                                     <div className='h-3 w-3'><Share01Icon size={12} /></div>
-                                    <p className='text-xs  font-thin line-clamp-1'>{item.benfits[0]}</p>
+                                    <p className='text-xs  font-thin line-clamp-1'>{appointment.treatment.benefits[0]}</p>
                                 </div>
                                 <div className='flex gap-2 line-clamp-1 '>
                                     <div className='h-3 w-3'><Recycle01Icon size={12} /></div>
-                                    <p className='text-xs font-thin line-clamp-1'>{item.benfits[1]}</p>
+                                    <p className='text-xs font-thin line-clamp-1'>{appointment.treatment.benefits[1]}</p>
                                 </div>
-                                <Link href={`treatments/details/${item.id}`} className='flex justify-end items-center text-primaryColor text-xs font-thin'>
+                                <Link href={`treatments/${appointment.treatment.id}`} className='flex justify-end items-center text-primaryColor text-xs font-thin'>
                                     <p >view details</p>
                                     <ArrowRight01Icon size={16} />
                                 </Link>
@@ -118,14 +118,14 @@ const AppointmentDetailsDailog = ({ item, type }: { item: Treatment, type?: stri
                         <h1 className='text-xs md:text-sm lg:text-lg xl:text-xl font-semibold  mt-8'>Doctor</h1>
                         <div className='flex gap-2 mt-2 w-full'>
                             <Image
-                                src={item.doctors[0].img}
-                                alt={item.name}
+                                src={appointment.doctor.user.profile_picture ?? "/images/noavatar.png"}
+                                alt={appointment.doctor.user.name}
                                 width={400}
                                 height={400}
                                 className='w-[15%] rounded-lg shadow-md object-cover'
                             />
                             <div className='flex flex-col gap-2 text-gray-400 w-full'>
-                                <h1 className='text-xs md:text-lg font-semibold line-clamp-2 text-gray-950'>{item.doctors[0].name}</h1>
+                                <h1 className='text-xs md:text-lg font-semibold line-clamp-2 text-gray-950'>{appointment.doctor.user.name}</h1>
                                 <div className='flex gap-2 line-clamp-1 '>
                                     <p className='text-xs  font-thin'>Heart Surgeon, London, England</p>
                                 </div>
@@ -148,7 +148,7 @@ const AppointmentDetailsDailog = ({ item, type }: { item: Treatment, type?: stri
                                 <div className='flex gap-2 line-clamp-1'>
 
                                 </div>
-                                <Link href={`treatments/details/${item.id}`} className='flex justify-end items-center text-primaryColor text-xs font-thin'>
+                                <Link href={`treatments/${appointment.treatment.id}`} className='flex justify-end items-center text-primaryColor text-xs font-thin'>
                                     <p >view details</p>
                                     <ArrowRight01Icon size={16} />
                                 </Link>
@@ -214,7 +214,7 @@ const AppointmentDetailsDailog = ({ item, type }: { item: Treatment, type?: stri
                         <h1 className='text-xs md:text-sm lg:text-lg xl:text-xl font-semibold mt-8'>General Instructions</h1>
 
                         <div className='flex flex-col gap-2 px-2 md:px-4 text-gray-400 w-full mt-4 text-xs md:text-sm lg:text-lg xl:text-xl'>
-                            {item.instructions!.map((insturct) => (
+                            {appointment.treatment.instructions!.map((insturct) => (
                                 <div className='flex gap-2 line-clamp-1' key={insturct}>
                                     <div className='h-6 w-6 text-primaryColor'><CircleCheckIcon size={20} /></div>
                                     <p>{insturct}</p>

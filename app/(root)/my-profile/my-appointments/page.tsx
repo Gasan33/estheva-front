@@ -1,6 +1,5 @@
 "use client"
 import AppointmentsList from '@/components/common/AppointmentsList'
-import ViewAllText from '@/components/common/ViewAllText'
 import React, { useState } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { appointmentsTabs } from '@/constants'

@@ -25,24 +25,24 @@ const OurTreatments = () => {
                         key={index}
                         href={{
                             pathname: "/treatments",
-                            query: { treatments: category.path },
+                            query: { treatments: category.category_slug },
                         }}
                         data-aos="fade-up" // AOS animation
                         data-aos-delay={index * 100} // Delay each item for a staggered animation
                         className="bg-transparent rounded-xl p-6 hover:scale-105 cursor-pointer transition duration-300"
                     >
                         <Image
-                            src={category.icon}
-                            alt={category.title}
+                            src={category.relations.images.attributes.path}
+                            alt={category.category_name}
                             width={72}
                             height={72}
                             className="p-2 rounded-full object-contain bg-secondaryBackground mx-auto"
                         />
                         <h2 className="mt-4 text-lg font-normal text-white text-center sm:text-xl">
-                            {category.title}
+                            {category.category_name}
                         </h2>
                         <p className="mt-2 text-sm px-8 text-[#5b7e95] sm:text-base line-clamp-3 text-center">
-                            {category.description}
+                            {category.category_description}
                         </p>
                     </Link>
                 ))}

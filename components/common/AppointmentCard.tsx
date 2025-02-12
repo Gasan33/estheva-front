@@ -6,14 +6,14 @@ import BookAppointment from './BookAppointment/BookAppointment';
 import AppointmentDetailsDailog from '../dialogs/AppointmentDetailsDailog';
 
 
-const AppointmentCard = ({ item, type }: { item: Treatment, type?: string }) => {
+const AppointmentCard = ({ appointment, type }: { appointment: Appointment, type?: string }) => {
 
     return (
         <div
             className={`shadow-md rounded-[16px] cursor-pointer ${type === 'canceled' ? 'h-48 pb-0' : 'h-56 pb-2'
                 }`}
         >
-            <AppointmentDetailsDailog item={item} type={type} />
+            <AppointmentDetailsDailog appointment={appointment} type={type} />
 
             <div className="flex gap-4 w-full items-center px-2 mt-2">
                 {type === 'canceled' ? (
@@ -21,7 +21,7 @@ const AppointmentCard = ({ item, type }: { item: Treatment, type?: string }) => 
                 ) : type === 'completed' ? (
                     <>
                         <ReviewDailog />
-                        <BookAppointment treatment={item} triger="profile" />
+                        <BookAppointment treatment={appointment.treatment} triger="profile" />
                     </>
                 ) : (
                     <>

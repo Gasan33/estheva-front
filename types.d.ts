@@ -21,43 +21,111 @@ interface AuthCredentials {
     confirmPassword: string;
 }
 
-interface Doctor {
-    name: string;
-    img: string;
-}
-
 interface Treatment {
     id: number;
-    name: string;
-    desc: string;
+    title: string;
+    description: string;
     price: string;
-    benfits: string[];
-    img: string[];
-    video?: string;
-    instructions?: string[];
-    dicount?: string;
-    bgColor?: string;
-    textColor?: string;
-    duration: number;
-    rating?: number;
+    discounted_price: string;
+    images: string[];
     home_based: number;
-    discount_type: "percentage" | "fixed" | null;
-    service_sale_tag: string | null;
-    category_id: number;
-    created_at: string;
-    updated_at: string;
+    video: string;
+    duration: number;
+    benefits: string[];
+    instructions: string[];
+    discount_value: string;
+    discount_type: string;
+    treatment_sale_tag: string | null;
     category: Category;
     doctors: Doctor[];
-    time_slots: TimeSlot[];
     reviews: Review[];
-};
+    time_slots: TimeSlot[];
+    created_at: string;
+    updated_at: string;
+}
+
 interface Category {
+    category_id: number;
+    category_name: string;
+    category_slug: string;
+    category_description: string | null;
+    parent_id: number | null;
+    relations: {
+        images: Images;
+    };
+}
+
+interface Images {
     id: number;
-    title: string;
-    path: string;
-    description: string;
-    icon: string;
-};
+    type: string;
+    attributes: {
+        path: string;
+    };
+}
+
+interface Doctor {
+    id: number;
+    user_id: number;
+    specialty: string;
+    certificate: string;
+    university: string;
+    patients: number;
+    exp: number;
+    about: string;
+    home_based: number;
+    availabilities: Availability[];
+    user: User;
+}
+
+interface Availability {
+    id: number;
+    doctor_id: number;
+    day_of_week: string;
+    start_time: string;
+    end_time: string;
+    created_at: string;
+    updated_at: string;
+}
+
+interface User {
+    id: number;
+    name: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    email_verified_at: string | null;
+    phone_number: string;
+    phone_verified_at: string | null;
+    profile_picture: string | null;
+    device_token: string | null;
+    date_of_birth: string | null;
+    gender: string;
+    created_at: string;
+    updated_at: string;
+}
+
+interface Appointment {
+    id: number;
+    user_id: number;
+    doctor_id: number;
+    treatment_id: number;
+    appointment_date: string;
+    appointment_time: string;
+    status: string;
+    notes: string;
+    created_at: string;
+    updated_at: string;
+    user: User;
+    doctor: Doctor;
+    treatment: Treatment;
+}
+
+interface Review {
+    id: number;
+    rating: number;
+    review_text: string;
+}
+
 
 interface Faqs {
     question: string;
@@ -156,16 +224,6 @@ interface TimeSlot {
     updated_at: string;
 }
 
-interface Review {
-    id: number;
-    patient_id: number;
-    doctor_id: number | null;
-    service_id: number;
-    rating: number;
-    review_text: string;
-    created_at: string;
-    updated_at: string;
-}
 
 
 interface TreatmentTab {

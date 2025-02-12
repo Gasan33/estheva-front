@@ -156,1075 +156,1129 @@ export const quickLinks03: QuickLink[] = [
 ];
 
 
-export const popularTreatments: Treatment[] = [
-    {
-        id: 1,
-        name: "Fat reduction Injections for Body",
-        desc: "Fat reduction injections, offer a non-surgical approach to help you achieve a more sculpted and contoured appearance. These injections are designed to target localized fat deposits in areas like the abdomen, thighs, or love handles, where exercise and diet may not provide the desired results.",
-        img: [
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T143045.798.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T143045.798.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T143045.798.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T143045.798.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T143045.798.png",
-        ],
-        price: "1,300.00 AED",
-        benfits: [
-            "Liquefies fat cells, destroying them permanently with no downtime, so you can start seeing results right away.",
-            "Fat dissolving injections are much safer than other traditional methods.",
-        ],
-        dicount: "25",
-        bgColor: "rgba(254, 182, 13, .2)",
-        textColor: "#FEB60D",
-        rating: 4.8,
-        doctors: [
-            {
-                name: "Farhan Ali",
-                img: "/images/doc1.jpg"
-            }
-        ],
-        duration: 60,
-        home_based: 1,
-        discount_type: null,
-        service_sale_tag: null,
-        category_id: 0,
-        created_at: "",
-        updated_at: "",
-        category: {
-            id: 6,
-            title: "Daigostics",
-            path: "daigostics",
-            description: "Our diagnostic tests are designed to accurately assess your health, ensuring timely detection and effective treatment for a wide range of conditions.",
-            icon: "/images/physiotherapyIcon.png",
-        },
+// export const popularTreatments: Treatment[] = [
+//     {
+//         id: 1,
+//         name: "Fat reduction Injections for Body",
+//         desc: "Fat reduction injections, offer a non-surgical approach to help you achieve a more sculpted and contoured appearance. These injections are designed to target localized fat deposits in areas like the abdomen, thighs, or love handles, where exercise and diet may not provide the desired results.",
+//         img: [
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T143045.798.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T143045.798.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T143045.798.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T143045.798.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T143045.798.png",
+//         ],
+//         price: "1,300.00 AED",
+//         benfits: [
+//             "Liquefies fat cells, destroying them permanently with no downtime, so you can start seeing results right away.",
+//             "Fat dissolving injections are much safer than other traditional methods.",
+//         ],
+//         dicount: "25",
+//         bgColor: "rgba(254, 182, 13, .2)",
+//         textColor: "#FEB60D",
+//         rating: 4.8,
+//         doctors: [
+//             {
+//                 name: "Farhan Ali",
+//                 img: "/images/doc1.jpg"
+//             }
+//         ],
+//         duration: 60,
+//         home_based: 1,
+//         discount_type: null,
+//         service_sale_tag: null,
+//         category_id: 0,
+//         created_at: "",
+//         updated_at: "",
+//         category: {
+//             id: 6,
+//             title: "Daigostics",
+//             path: "daigostics",
+//             description: "Our diagnostic tests are designed to accurately assess your health, ensuring timely detection and effective treatment for a wide range of conditions.",
+//             icon: "/images/physiotherapyIcon.png",
+//         },
 
-        time_slots: [
-            {
-                id: 155,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "09:00:00",
-                end_time: "10:38:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 156,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "10:38:00",
-                end_time: "12:16:00",
-                is_available: 0,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 157,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "12:16:00",
-                end_time: "13:54:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 158,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "13:54:00",
-                end_time: "15:32:00",
-                is_available: 0,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 159,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "15:32:00",
-                end_time: "17:10:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 160,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "10:00:00",
-                end_time: "11:38:00",
-                is_available: 0,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 161,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "11:38:00",
-                end_time: "13:16:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 162,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "13:16:00",
-                end_time: "14:54:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 163,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "14:54:00",
-                end_time: "16:32:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            }
-        ],
-        reviews: [
-            {
-                id: 23,
-                patient_id: 1,
-                doctor_id: null,
-                service_id: 32,
-                rating: 5,
-                review_text: "Review for the tested service",
-                created_at: "2025-01-20T09:24:33.000000Z",
-                updated_at: "2025-01-20T09:24:33.000000Z"
-            },
-            {
-                id: 24,
-                patient_id: 1,
-                doctor_id: null,
-                service_id: 32,
-                rating: 5,
-                review_text: "Review for the tested service 2",
-                created_at: "2025-01-20T09:24:49.000000Z",
-                updated_at: "2025-01-20T09:24:49.000000Z"
-            }
-        ],
-        instructions: [
-            "Ensure skin is clean and free of makeup, lotions, or oils.",
-            "Avoid blood-thinning medications for at least 48 hours before the procedure.",
-            "Stay hydrated before your appointment"
-        ]
-    },
-    {
-        id: 2,
-        name: "Endermology",
-        desc: "Endermology is a cutting-edge technology that uses mechanical rollers and gentle suction to stimulate the skin and underlying tissues. This non-invasive treatment targets problem areas, such as thighs, buttocks, abdomen, and arms, to break down stubborn fat cells, improve circulation, and enhance lymphatic drainage.",
-        img: [
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T134623.572.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T134623.572.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T134623.572.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T134623.572.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T134623.572.png",
-        ],
-        price: "800.00 AED",
-        benfits: [
-            "Liquefies fat cells, destroying them permanently with no downtime, so you can start seeing results right away.",
-            "Fat dissolving injections are much safer than other traditional methods.",
-        ],
+//         time_slots: [
+//             {
+//                 id: 155,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "09:00:00",
+//                 end_time: "10:38:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 156,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "10:38:00",
+//                 end_time: "12:16:00",
+//                 is_available: 0,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 157,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "12:16:00",
+//                 end_time: "13:54:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 158,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "13:54:00",
+//                 end_time: "15:32:00",
+//                 is_available: 0,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 159,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "15:32:00",
+//                 end_time: "17:10:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 160,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "10:00:00",
+//                 end_time: "11:38:00",
+//                 is_available: 0,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 161,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "11:38:00",
+//                 end_time: "13:16:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 162,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "13:16:00",
+//                 end_time: "14:54:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 163,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "14:54:00",
+//                 end_time: "16:32:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             }
+//         ],
+//         reviews: [
+//             {
+//                 id: 23,
+//                 patient_id: 1,
+//                 doctor_id: null,
+//                 service_id: 32,
+//                 rating: 5,
+//                 review_text: "Review for the tested service",
+//                 created_at: "2025-01-20T09:24:33.000000Z",
+//                 updated_at: "2025-01-20T09:24:33.000000Z"
+//             },
+//             {
+//                 id: 24,
+//                 patient_id: 1,
+//                 doctor_id: null,
+//                 service_id: 32,
+//                 rating: 5,
+//                 review_text: "Review for the tested service 2",
+//                 created_at: "2025-01-20T09:24:49.000000Z",
+//                 updated_at: "2025-01-20T09:24:49.000000Z"
+//             }
+//         ],
+//         instructions: [
+//             "Ensure skin is clean and free of makeup, lotions, or oils.",
+//             "Avoid blood-thinning medications for at least 48 hours before the procedure.",
+//             "Stay hydrated before your appointment"
+//         ]
+//     },
+//     {
+//         id: 2,
+//         name: "Endermology",
+//         desc: "Endermology is a cutting-edge technology that uses mechanical rollers and gentle suction to stimulate the skin and underlying tissues. This non-invasive treatment targets problem areas, such as thighs, buttocks, abdomen, and arms, to break down stubborn fat cells, improve circulation, and enhance lymphatic drainage.",
+//         img: [
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T134623.572.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T134623.572.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T134623.572.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T134623.572.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T134623.572.png",
+//         ],
+//         price: "800.00 AED",
+//         benfits: [
+//             "Liquefies fat cells, destroying them permanently with no downtime, so you can start seeing results right away.",
+//             "Fat dissolving injections are much safer than other traditional methods.",
+//         ],
 
-        bgColor: "rgba(151, 113, 255, .2)",
-        textColor: "#9771FF",
-        rating: 4.5,
-        doctors: [
-            {
-                name: "Ammar Ahmed",
-                img: "/images/doc2.jpg"
-            }
-        ],
-        duration: 20,
-        home_based: 0,
-        discount_type: null,
-        service_sale_tag: null,
-        category_id: 0,
-        created_at: "",
-        updated_at: "",
-        category: {
-            id: 5,
-            title: "Physiotherapy",
-            path: "physiotherapy",
-            description: "Estheva Polyclinic provides comprehensive physiotherapy services aimed at restoring movement, reducing pain, and improving overall physical well-being.",
-            icon: "/images/daigosticsIcon.png",
-        },
+//         bgColor: "rgba(151, 113, 255, .2)",
+//         textColor: "#9771FF",
+//         rating: 4.5,
+//         doctors: [
+//             {
+//                 name: "Ammar Ahmed",
+//                 img: "/images/doc2.jpg"
+//             }
+//         ],
+//         duration: 20,
+//         home_based: 0,
+//         discount_type: null,
+//         service_sale_tag: null,
+//         category_id: 0,
+//         created_at: "",
+//         updated_at: "",
+//         category: {
+//             id: 5,
+//             title: "Physiotherapy",
+//             path: "physiotherapy",
+//             description: "Estheva Polyclinic provides comprehensive physiotherapy services aimed at restoring movement, reducing pain, and improving overall physical well-being.",
+//             icon: "/images/daigosticsIcon.png",
+//         },
 
-        time_slots: [
-            {
-                id: 155,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "09:00:00",
-                end_time: "10:38:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 156,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "10:38:00",
-                end_time: "12:16:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 157,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "12:16:00",
-                end_time: "13:54:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 158,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "13:54:00",
-                end_time: "15:32:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 159,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "15:32:00",
-                end_time: "17:10:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 160,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "10:00:00",
-                end_time: "11:38:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 161,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "11:38:00",
-                end_time: "13:16:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 162,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "13:16:00",
-                end_time: "14:54:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 163,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "14:54:00",
-                end_time: "16:32:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            }
-        ],
-        reviews: [
-            {
-                id: 23,
-                patient_id: 1,
-                doctor_id: null,
-                service_id: 32,
-                rating: 5,
-                review_text: "Review for the tested service",
-                created_at: "2025-01-20T09:24:33.000000Z",
-                updated_at: "2025-01-20T09:24:33.000000Z"
-            },
-            {
-                id: 24,
-                patient_id: 1,
-                doctor_id: null,
-                service_id: 32,
-                rating: 5,
-                review_text: "Review for the tested service 2",
-                created_at: "2025-01-20T09:24:49.000000Z",
-                updated_at: "2025-01-20T09:24:49.000000Z"
-            }
-        ],
-        instructions: [
-            "Ensure skin is clean and free of makeup, lotions, or oils.",
-            "Avoid caffeine or any stimulants 24 hours before the procedure.",
-            "Drink plenty of water prior to your treatment."
-        ]
-    },
-    {
-        id: 3,
-        name: "Emerald Lipo Laser",
-        desc: "Embark on a transformative journey with Emerald Lipo Laser, a groundbreaking technology redefining the landscape of non-invasive and painless fat tissue dissolution. Say goodbye to stubborn fat through an advanced and innovative approach that sets the standard for effective body contouring.",
-        img: [
-            "https://erchonia-emea.com/wp-content/uploads/2022/08/Emerald-Laser-for-Fat-Removal-by-Erchonia-9001.jpg",
-            "https://erchonia-emea.com/wp-content/uploads/2022/08/Emerald-Laser-for-Fat-Removal-by-Erchonia-9001.jpg",
-            "https://erchonia-emea.com/wp-content/uploads/2022/08/Emerald-Laser-for-Fat-Removal-by-Erchonia-9001.jpg",
-            "https://erchonia-emea.com/wp-content/uploads/2022/08/Emerald-Laser-for-Fat-Removal-by-Erchonia-9001.jpg",
-            "https://erchonia-emea.com/wp-content/uploads/2022/08/Emerald-Laser-for-Fat-Removal-by-Erchonia-9001.jpg",
-            "https://erchonia-emea.com/wp-content/uploads/2022/08/Emerald-Laser-for-Fat-Removal-by-Erchonia-9001.jpg",
+//         time_slots: [
+//             {
+//                 id: 155,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "09:00:00",
+//                 end_time: "10:38:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 156,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "10:38:00",
+//                 end_time: "12:16:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 157,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "12:16:00",
+//                 end_time: "13:54:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 158,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "13:54:00",
+//                 end_time: "15:32:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 159,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "15:32:00",
+//                 end_time: "17:10:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 160,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "10:00:00",
+//                 end_time: "11:38:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 161,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "11:38:00",
+//                 end_time: "13:16:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 162,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "13:16:00",
+//                 end_time: "14:54:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 163,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "14:54:00",
+//                 end_time: "16:32:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             }
+//         ],
+//         reviews: [
+//             {
+//                 id: 23,
+//                 patient_id: 1,
+//                 doctor_id: null,
+//                 service_id: 32,
+//                 rating: 5,
+//                 review_text: "Review for the tested service",
+//                 created_at: "2025-01-20T09:24:33.000000Z",
+//                 updated_at: "2025-01-20T09:24:33.000000Z"
+//             },
+//             {
+//                 id: 24,
+//                 patient_id: 1,
+//                 doctor_id: null,
+//                 service_id: 32,
+//                 rating: 5,
+//                 review_text: "Review for the tested service 2",
+//                 created_at: "2025-01-20T09:24:49.000000Z",
+//                 updated_at: "2025-01-20T09:24:49.000000Z"
+//             }
+//         ],
+//         instructions: [
+//             "Ensure skin is clean and free of makeup, lotions, or oils.",
+//             "Avoid caffeine or any stimulants 24 hours before the procedure.",
+//             "Drink plenty of water prior to your treatment."
+//         ]
+//     },
+//     {
+//         id: 3,
+//         name: "Emerald Lipo Laser",
+//         desc: "Embark on a transformative journey with Emerald Lipo Laser, a groundbreaking technology redefining the landscape of non-invasive and painless fat tissue dissolution. Say goodbye to stubborn fat through an advanced and innovative approach that sets the standard for effective body contouring.",
+//         img: [
+//             "https://erchonia-emea.com/wp-content/uploads/2022/08/Emerald-Laser-for-Fat-Removal-by-Erchonia-9001.jpg",
+//             "https://erchonia-emea.com/wp-content/uploads/2022/08/Emerald-Laser-for-Fat-Removal-by-Erchonia-9001.jpg",
+//             "https://erchonia-emea.com/wp-content/uploads/2022/08/Emerald-Laser-for-Fat-Removal-by-Erchonia-9001.jpg",
+//             "https://erchonia-emea.com/wp-content/uploads/2022/08/Emerald-Laser-for-Fat-Removal-by-Erchonia-9001.jpg",
+//             "https://erchonia-emea.com/wp-content/uploads/2022/08/Emerald-Laser-for-Fat-Removal-by-Erchonia-9001.jpg",
+//             "https://erchonia-emea.com/wp-content/uploads/2022/08/Emerald-Laser-for-Fat-Removal-by-Erchonia-9001.jpg",
 
 
-        ],
-        price: "2,200.00 AED",
-        benfits: [
-            "Liquefies fat cells, destroying them permanently with no downtime, so you can start seeing results right away.",
-            "Fat dissolving injections are much safer than other traditional methods.",
-        ],
-        dicount: "15",
-        bgColor: "rgba(1, 181, 197, .2)",
-        textColor: "#01B5C5",
-        rating: 4.7,
-        doctors: [
-            {
-                name: "John Matthews",
-                img: "/images/doc3.jpg"
-            }
-        ],
-        duration: 0,
-        home_based: 1,
-        discount_type: null,
-        service_sale_tag: null,
-        category_id: 0,
-        created_at: "",
-        updated_at: "",
-        category: {
-            id: 4,
-            title: "IV Drips",
-            path: "iv-drips",
-            description: "our IV drip treatments are designed to quickly replenish essential nutrients, hydration, and vitamins for optimal health and wellness.",
-            icon: "/images/ivDripsIcon.png",
-        },
+//         ],
+//         price: "2,200.00 AED",
+//         benfits: [
+//             "Liquefies fat cells, destroying them permanently with no downtime, so you can start seeing results right away.",
+//             "Fat dissolving injections are much safer than other traditional methods.",
+//         ],
+//         dicount: "15",
+//         bgColor: "rgba(1, 181, 197, .2)",
+//         textColor: "#01B5C5",
+//         rating: 4.7,
+//         doctors: [
+//             {
+//                 name: "John Matthews",
+//                 img: "/images/doc3.jpg"
+//             }
+//         ],
+//         duration: 0,
+//         home_based: 1,
+//         discount_type: null,
+//         service_sale_tag: null,
+//         category_id: 0,
+//         created_at: "",
+//         updated_at: "",
+//         category: {
+//             id: 4,
+//             title: "IV Drips",
+//             path: "iv-drips",
+//             description: "our IV drip treatments are designed to quickly replenish essential nutrients, hydration, and vitamins for optimal health and wellness.",
+//             icon: "/images/ivDripsIcon.png",
+//         },
 
-        time_slots: [
-            {
-                id: 155,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "09:00:00",
-                end_time: "10:38:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 156,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "10:38:00",
-                end_time: "12:16:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 157,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "12:16:00",
-                end_time: "13:54:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 158,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "13:54:00",
-                end_time: "15:32:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 159,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "15:32:00",
-                end_time: "17:10:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 160,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "10:00:00",
-                end_time: "11:38:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 161,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "11:38:00",
-                end_time: "13:16:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 162,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "13:16:00",
-                end_time: "14:54:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 163,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "14:54:00",
-                end_time: "16:32:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            }
-        ],
-        reviews: [
-            {
-                id: 23,
-                patient_id: 1,
-                doctor_id: null,
-                service_id: 32,
-                rating: 5,
-                review_text: "Review for the tested service",
-                created_at: "2025-01-20T09:24:33.000000Z",
-                updated_at: "2025-01-20T09:24:33.000000Z"
-            },
-            {
-                id: 24,
-                patient_id: 1,
-                doctor_id: null,
-                service_id: 32,
-                rating: 5,
-                review_text: "Review for the tested service 2",
-                created_at: "2025-01-20T09:24:49.000000Z",
-                updated_at: "2025-01-20T09:24:49.000000Z"
-            }
-        ],
-        instructions: [
-            "Ensure your skin is free from lotions, oils, or makeup before the treatment.",
-            "Avoid caffeine or stimulants at least 24 hours before the session.",
-            "Hydrate by drinking plenty of water before and after the treatment."
-        ]
-    },
-    {
-        id: 4,
-        name: "1D Ultrasound Cavitation Slimming Treatment at Home",
-        desc: "Introducing our advanced Ultrasound Cavitation, also known as Non-Invasive Liposuction or Body Contouring Treatment. Experience the power of cutting-edge technology to reduce stubborn fat and achieve a more sculpted physique.",
-        img: [
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T130423.625_4ccae156-82a9-46e8-b27c-99b83ec3400a.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T130423.625_4ccae156-82a9-46e8-b27c-99b83ec3400a.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T130423.625_4ccae156-82a9-46e8-b27c-99b83ec3400a.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T130423.625_4ccae156-82a9-46e8-b27c-99b83ec3400a.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T130423.625_4ccae156-82a9-46e8-b27c-99b83ec3400a.png",
-        ],
-        price: "100.00 AED",
-        benfits: [
-            "Liquefies fat cells, destroying them permanently with no downtime, so you can start seeing results right away.",
-            "Fat dissolving injections are much safer than other traditional methods.",
-        ],
-        bgColor: "rgba(1, 181, 197, .2)",
-        textColor: "#01B5C5",
-        rating: 4.6,
-        doctors: [
-            {
-                name: "John Matthews",
-                img: "/images/doc1.jpg"
-            }
-        ],
-        duration: 20,
-        home_based: 0,
-        discount_type: null,
-        service_sale_tag: null,
-        category_id: 0,
-        created_at: "",
-        updated_at: "",
-        category: {
-            id: 3,
-            title: "Dermatology",
-            path: "dermatology",
-            description: "comprehensive dermatology services to address a wide range of skin concerns.",
-            icon: "/images/dermatology.png",
-        },
+//         time_slots: [
+//             {
+//                 id: 155,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "09:00:00",
+//                 end_time: "10:38:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 156,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "10:38:00",
+//                 end_time: "12:16:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 157,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "12:16:00",
+//                 end_time: "13:54:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 158,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "13:54:00",
+//                 end_time: "15:32:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 159,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "15:32:00",
+//                 end_time: "17:10:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 160,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "10:00:00",
+//                 end_time: "11:38:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 161,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "11:38:00",
+//                 end_time: "13:16:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 162,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "13:16:00",
+//                 end_time: "14:54:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 163,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "14:54:00",
+//                 end_time: "16:32:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             }
+//         ],
+//         reviews: [
+//             {
+//                 id: 23,
+//                 patient_id: 1,
+//                 doctor_id: null,
+//                 service_id: 32,
+//                 rating: 5,
+//                 review_text: "Review for the tested service",
+//                 created_at: "2025-01-20T09:24:33.000000Z",
+//                 updated_at: "2025-01-20T09:24:33.000000Z"
+//             },
+//             {
+//                 id: 24,
+//                 patient_id: 1,
+//                 doctor_id: null,
+//                 service_id: 32,
+//                 rating: 5,
+//                 review_text: "Review for the tested service 2",
+//                 created_at: "2025-01-20T09:24:49.000000Z",
+//                 updated_at: "2025-01-20T09:24:49.000000Z"
+//             }
+//         ],
+//         instructions: [
+//             "Ensure your skin is free from lotions, oils, or makeup before the treatment.",
+//             "Avoid caffeine or stimulants at least 24 hours before the session.",
+//             "Hydrate by drinking plenty of water before and after the treatment."
+//         ]
+//     },
+//     {
+//         id: 4,
+//         name: "1D Ultrasound Cavitation Slimming Treatment at Home",
+//         desc: "Introducing our advanced Ultrasound Cavitation, also known as Non-Invasive Liposuction or Body Contouring Treatment. Experience the power of cutting-edge technology to reduce stubborn fat and achieve a more sculpted physique.",
+//         img: [
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T130423.625_4ccae156-82a9-46e8-b27c-99b83ec3400a.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T130423.625_4ccae156-82a9-46e8-b27c-99b83ec3400a.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T130423.625_4ccae156-82a9-46e8-b27c-99b83ec3400a.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T130423.625_4ccae156-82a9-46e8-b27c-99b83ec3400a.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T130423.625_4ccae156-82a9-46e8-b27c-99b83ec3400a.png",
+//         ],
+//         price: "100.00 AED",
+//         benfits: [
+//             "Liquefies fat cells, destroying them permanently with no downtime, so you can start seeing results right away.",
+//             "Fat dissolving injections are much safer than other traditional methods.",
+//         ],
+//         bgColor: "rgba(1, 181, 197, .2)",
+//         textColor: "#01B5C5",
+//         rating: 4.6,
+//         doctors: [
+//             {
+//                 name: "John Matthews",
+//                 img: "/images/doc1.jpg"
+//             }
+//         ],
+//         duration: 20,
+//         home_based: 0,
+//         discount_type: null,
+//         service_sale_tag: null,
+//         category_id: 0,
+//         created_at: "",
+//         updated_at: "",
+//         category: {
+//             id: 3,
+//             title: "Dermatology",
+//             path: "dermatology",
+//             description: "comprehensive dermatology services to address a wide range of skin concerns.",
+//             icon: "/images/dermatology.png",
+//         },
 
-        time_slots: [
-            {
-                id: 155,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "09:00:00",
-                end_time: "10:38:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 156,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "10:38:00",
-                end_time: "12:16:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 157,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "12:16:00",
-                end_time: "13:54:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 158,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "13:54:00",
-                end_time: "15:32:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 159,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "15:32:00",
-                end_time: "17:10:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 160,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "10:00:00",
-                end_time: "11:38:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 161,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "11:38:00",
-                end_time: "13:16:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 162,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "13:16:00",
-                end_time: "14:54:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 163,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "14:54:00",
-                end_time: "16:32:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            }
-        ],
-        reviews: [
-            {
-                id: 23,
-                patient_id: 1,
-                doctor_id: null,
-                service_id: 32,
-                rating: 5,
-                review_text: "Review for the tested service",
-                created_at: "2025-01-20T09:24:33.000000Z",
-                updated_at: "2025-01-20T09:24:33.000000Z"
-            },
-            {
-                id: 24,
-                patient_id: 1,
-                doctor_id: null,
-                service_id: 32,
-                rating: 5,
-                review_text: "Review for the tested service 2",
-                created_at: "2025-01-20T09:24:49.000000Z",
-                updated_at: "2025-01-20T09:24:49.000000Z"
-            }
-        ],
-        instructions: [
-            "Cleanse the treatment area thoroughly, removing any lotions, oils, or makeup.",
-            "Drink plenty of water to hydrate your body before the treatment, as it helps in fat elimination."
-        ]
-    },
-    {
-        id: 5,
-        name: "Intense Lips Filler - 1 ml Neauvia",
-        desc: "Dreaming of plump, luscious lips that radiate confidence and allure? Lip filler treatments are all about strategically injecting dermal fillers to redefine and augment the lips.",
-        img: [
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T211653.557.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T211653.557.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T211653.557.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T211653.557.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T211653.557.png",
-        ],
-        price: "900.00 AED",
-        benfits: [
-            "Liquefies fat cells, destroying them permanently with no downtime, so you can start seeing results right away.",
-            "Fat dissolving injections are much safer than other traditional methods.",
-        ],
-        dicount: "10",
-        bgColor: "rgba(254, 182, 13, .2)",
-        textColor: "#FEB60D",
-        rating: 4.7,
-        doctors: [
-            {
-                name: "John Matthews",
-                img: "/images/doc2.jpg"
-            }
-        ],
-        duration: 30,
-        home_based: 1,
-        discount_type: null,
-        service_sale_tag: null,
-        category_id: 0,
-        created_at: "",
-        updated_at: "",
-        category: {
-            id: 1,
-            title: "Plastic Surgery",
-            path: "plastic-surgery",
-            description: "we offer expert plastic surgery services designed to enhance your natural beauty and boost your confidence.",
-            icon: "/images/plastic.png",
-        },
+//         time_slots: [
+//             {
+//                 id: 155,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "09:00:00",
+//                 end_time: "10:38:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 156,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "10:38:00",
+//                 end_time: "12:16:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 157,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "12:16:00",
+//                 end_time: "13:54:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 158,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "13:54:00",
+//                 end_time: "15:32:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 159,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "15:32:00",
+//                 end_time: "17:10:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 160,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "10:00:00",
+//                 end_time: "11:38:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 161,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "11:38:00",
+//                 end_time: "13:16:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 162,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "13:16:00",
+//                 end_time: "14:54:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 163,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "14:54:00",
+//                 end_time: "16:32:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             }
+//         ],
+//         reviews: [
+//             {
+//                 id: 23,
+//                 patient_id: 1,
+//                 doctor_id: null,
+//                 service_id: 32,
+//                 rating: 5,
+//                 review_text: "Review for the tested service",
+//                 created_at: "2025-01-20T09:24:33.000000Z",
+//                 updated_at: "2025-01-20T09:24:33.000000Z"
+//             },
+//             {
+//                 id: 24,
+//                 patient_id: 1,
+//                 doctor_id: null,
+//                 service_id: 32,
+//                 rating: 5,
+//                 review_text: "Review for the tested service 2",
+//                 created_at: "2025-01-20T09:24:49.000000Z",
+//                 updated_at: "2025-01-20T09:24:49.000000Z"
+//             }
+//         ],
+//         instructions: [
+//             "Cleanse the treatment area thoroughly, removing any lotions, oils, or makeup.",
+//             "Drink plenty of water to hydrate your body before the treatment, as it helps in fat elimination."
+//         ]
+//     },
+//     {
+//         id: 5,
+//         name: "Intense Lips Filler - 1 ml Neauvia",
+//         desc: "Dreaming of plump, luscious lips that radiate confidence and allure? Lip filler treatments are all about strategically injecting dermal fillers to redefine and augment the lips.",
+//         img: [
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T211653.557.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T211653.557.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T211653.557.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T211653.557.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T211653.557.png",
+//         ],
+//         price: "900.00 AED",
+//         benfits: [
+//             "Liquefies fat cells, destroying them permanently with no downtime, so you can start seeing results right away.",
+//             "Fat dissolving injections are much safer than other traditional methods.",
+//         ],
+//         dicount: "10",
+//         bgColor: "rgba(254, 182, 13, .2)",
+//         textColor: "#FEB60D",
+//         rating: 4.7,
+//         doctors: [
+//             {
+//                 name: "John Matthews",
+//                 img: "/images/doc2.jpg"
+//             }
+//         ],
+//         duration: 30,
+//         home_based: 1,
+//         discount_type: null,
+//         service_sale_tag: null,
+//         category_id: 0,
+//         created_at: "",
+//         updated_at: "",
+//         category: {
+//             id: 1,
+//             title: "Plastic Surgery",
+//             path: "plastic-surgery",
+//             description: "we offer expert plastic surgery services designed to enhance your natural beauty and boost your confidence.",
+//             icon: "/images/plastic.png",
+//         },
 
-        time_slots: [
-            {
-                id: 155,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "09:00:00",
-                end_time: "10:38:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 156,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "10:38:00",
-                end_time: "12:16:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 157,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "12:16:00",
-                end_time: "13:54:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 158,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "13:54:00",
-                end_time: "15:32:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 159,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "15:32:00",
-                end_time: "17:10:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 160,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "10:00:00",
-                end_time: "11:38:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 161,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "11:38:00",
-                end_time: "13:16:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 162,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "13:16:00",
-                end_time: "14:54:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 163,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "14:54:00",
-                end_time: "16:32:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            }
-        ],
-        reviews: [
-            {
-                id: 23,
-                patient_id: 1,
-                doctor_id: null,
-                service_id: 32,
-                rating: 5,
-                review_text: "Review for the tested service",
-                created_at: "2025-01-20T09:24:33.000000Z",
-                updated_at: "2025-01-20T09:24:33.000000Z"
-            },
-            {
-                id: 24,
-                patient_id: 1,
-                doctor_id: null,
-                service_id: 32,
-                rating: 5,
-                review_text: "Review for the tested service 2",
-                created_at: "2025-01-20T09:24:49.000000Z",
-                updated_at: "2025-01-20T09:24:49.000000Z"
-            }
-        ],
-        instructions: [
-            "Avoid taking blood thinners, alcohol, and anti-inflammatory medications for at least 48 hours before the procedure to reduce the risk of bruising and swelling.",
-            "Inform the practitioner if you have any history of cold sores or herpes simplex virus, as this can affect the treatment.",
-            "Arrive with clean, makeup-free skin on the lip area."
-        ]
-    },
-    {
-        id: 6,
-        name: "Dermal Filler - Neauvia 1ml",
-        desc: "Dermal filler treatments involve the precise artistry of specialized fillers to breathe new life into and redefine various facial regions, including cheeks, jawlines, temples, and beyond.  At Estheva Polyclinic, your welfare and contentment reign supreme. We use FDA-approved, top-tier dermal fillers celebrated for their extraordinary outcomes. Typically, these fillers are comprised of hyaluronic acid, a naturally occurring essence within the body that imbues hydration, volume, and structure to the skin.",
-        img: [
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T205354.407.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T205354.407.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T205354.407.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T205354.407.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T205354.407.png",
-            "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T205354.407.png",
-        ],
-        price: "1,800.00 AED",
-        benfits: [
-            "Liquefies fat cells, destroying them permanently with no downtime, so you can start seeing results right away.",
-            "Fat dissolving injections are much safer than other traditional methods.",
-        ],
-        bgColor: "rgba(151, 113, 255, .2)",
-        textColor: "#9771FF",
-        rating: 4.7,
-        doctors: [
-            {
-                name: "John Matthews",
-                img: "/images/doc3.jpg"
-            }
-        ],
-        duration: 40,
-        home_based: 0,
-        discount_type: null,
-        service_sale_tag: null,
-        category_id: 0,
-        created_at: "",
-        updated_at: "",
-        category: {
-            id: 2,
-            title: "Slimming",
-            path: "slimming",
-            description: "Estheva Polyclinic provide effective slimming treatments to help you achieve your ideal body shape.",
-            icon: "/images/slimming.png",
-        },
+//         time_slots: [
+//             {
+//                 id: 155,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "09:00:00",
+//                 end_time: "10:38:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 156,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "10:38:00",
+//                 end_time: "12:16:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 157,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "12:16:00",
+//                 end_time: "13:54:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 158,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "13:54:00",
+//                 end_time: "15:32:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 159,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "15:32:00",
+//                 end_time: "17:10:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 160,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "10:00:00",
+//                 end_time: "11:38:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 161,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "11:38:00",
+//                 end_time: "13:16:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 162,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "13:16:00",
+//                 end_time: "14:54:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 163,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "14:54:00",
+//                 end_time: "16:32:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             }
+//         ],
+//         reviews: [
+//             {
+//                 id: 23,
+//                 patient_id: 1,
+//                 doctor_id: null,
+//                 service_id: 32,
+//                 rating: 5,
+//                 review_text: "Review for the tested service",
+//                 created_at: "2025-01-20T09:24:33.000000Z",
+//                 updated_at: "2025-01-20T09:24:33.000000Z"
+//             },
+//             {
+//                 id: 24,
+//                 patient_id: 1,
+//                 doctor_id: null,
+//                 service_id: 32,
+//                 rating: 5,
+//                 review_text: "Review for the tested service 2",
+//                 created_at: "2025-01-20T09:24:49.000000Z",
+//                 updated_at: "2025-01-20T09:24:49.000000Z"
+//             }
+//         ],
+//         instructions: [
+//             "Avoid taking blood thinners, alcohol, and anti-inflammatory medications for at least 48 hours before the procedure to reduce the risk of bruising and swelling.",
+//             "Inform the practitioner if you have any history of cold sores or herpes simplex virus, as this can affect the treatment.",
+//             "Arrive with clean, makeup-free skin on the lip area."
+//         ]
+//     },
+//     {
+//         id: 6,
+//         name: "Dermal Filler - Neauvia 1ml",
+//         desc: "Dermal filler treatments involve the precise artistry of specialized fillers to breathe new life into and redefine various facial regions, including cheeks, jawlines, temples, and beyond.  At Estheva Polyclinic, your welfare and contentment reign supreme. We use FDA-approved, top-tier dermal fillers celebrated for their extraordinary outcomes. Typically, these fillers are comprised of hyaluronic acid, a naturally occurring essence within the body that imbues hydration, volume, and structure to the skin.",
+//         img: [
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T205354.407.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T205354.407.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T205354.407.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T205354.407.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T205354.407.png",
+//             "https://estheva-polyclinic.com/cdn/shop/files/Untitleddesign-2024-02-29T205354.407.png",
+//         ],
+//         price: "1,800.00 AED",
+//         benfits: [
+//             "Liquefies fat cells, destroying them permanently with no downtime, so you can start seeing results right away.",
+//             "Fat dissolving injections are much safer than other traditional methods.",
+//         ],
+//         bgColor: "rgba(151, 113, 255, .2)",
+//         textColor: "#9771FF",
+//         rating: 4.7,
+//         doctors: [
+//             {
+//                 name: "John Matthews",
+//                 img: "/images/doc3.jpg"
+//             }
+//         ],
+//         duration: 40,
+//         home_based: 0,
+//         discount_type: null,
+//         service_sale_tag: null,
+//         category_id: 0,
+//         created_at: "",
+//         updated_at: "",
+//         category: {
+//             id: 2,
+//             title: "Slimming",
+//             path: "slimming",
+//             description: "Estheva Polyclinic provide effective slimming treatments to help you achieve your ideal body shape.",
+//             icon: "/images/slimming.png",
+//         },
 
-        time_slots: [
-            {
-                id: 155,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "09:00:00",
-                end_time: "10:38:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 156,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "10:38:00",
-                end_time: "12:16:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 157,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "12:16:00",
-                end_time: "13:54:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 158,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "13:54:00",
-                end_time: "15:32:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 159,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "15:32:00",
-                end_time: "17:10:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 160,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "10:00:00",
-                end_time: "11:38:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 161,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "11:38:00",
-                end_time: "13:16:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 162,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "13:16:00",
-                end_time: "14:54:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            },
-            {
-                id: 163,
-                doctor_id: 1,
-                service_id: 32,
-                date: "2025-01-09",
-                start_time: "14:54:00",
-                end_time: "16:32:00",
-                is_available: 1,
-                created_at: "2025-01-09T12:54:39.000000Z",
-                updated_at: "2025-01-09T12:54:39.000000Z"
-            }
-        ],
-        reviews: [
-            {
-                id: 23,
-                patient_id: 1,
-                doctor_id: null,
-                service_id: 32,
-                rating: 5,
-                review_text: "Review for the tested service",
-                created_at: "2025-01-20T09:24:33.000000Z",
-                updated_at: "2025-01-20T09:24:33.000000Z"
-            },
-            {
-                id: 24,
-                patient_id: 1,
-                doctor_id: null,
-                service_id: 32,
-                rating: 5,
-                review_text: "Review for the tested service 2",
-                created_at: "2025-01-20T09:24:49.000000Z",
-                updated_at: "2025-01-20T09:24:49.000000Z"
-            }
-        ],
-        instructions: [
-            "Avoid taking blood thinners, alcohol, and anti-inflammatory medications for at least 48 hours before the procedure to reduce the risk of bruising and swelling.",
-            "Inform the practitioner if you have any history of cold sores or herpes simplex virus, as this can affect the treatment.",
-            "Arrive with clean, makeup-free skin on the lip area."
-        ]
-    },
-];
+//         time_slots: [
+//             {
+//                 id: 155,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "09:00:00",
+//                 end_time: "10:38:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 156,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "10:38:00",
+//                 end_time: "12:16:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 157,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "12:16:00",
+//                 end_time: "13:54:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 158,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "13:54:00",
+//                 end_time: "15:32:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 159,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "15:32:00",
+//                 end_time: "17:10:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 160,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "10:00:00",
+//                 end_time: "11:38:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 161,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "11:38:00",
+//                 end_time: "13:16:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 162,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "13:16:00",
+//                 end_time: "14:54:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             },
+//             {
+//                 id: 163,
+//                 doctor_id: 1,
+//                 service_id: 32,
+//                 date: "2025-01-09",
+//                 start_time: "14:54:00",
+//                 end_time: "16:32:00",
+//                 is_available: 1,
+//                 created_at: "2025-01-09T12:54:39.000000Z",
+//                 updated_at: "2025-01-09T12:54:39.000000Z"
+//             }
+//         ],
+//         reviews: [
+//             {
+//                 id: 23,
+//                 patient_id: 1,
+//                 doctor_id: null,
+//                 service_id: 32,
+//                 rating: 5,
+//                 review_text: "Review for the tested service",
+//                 created_at: "2025-01-20T09:24:33.000000Z",
+//                 updated_at: "2025-01-20T09:24:33.000000Z"
+//             },
+//             {
+//                 id: 24,
+//                 patient_id: 1,
+//                 doctor_id: null,
+//                 service_id: 32,
+//                 rating: 5,
+//                 review_text: "Review for the tested service 2",
+//                 created_at: "2025-01-20T09:24:49.000000Z",
+//                 updated_at: "2025-01-20T09:24:49.000000Z"
+//             }
+//         ],
+//         instructions: [
+//             "Avoid taking blood thinners, alcohol, and anti-inflammatory medications for at least 48 hours before the procedure to reduce the risk of bruising and swelling.",
+//             "Inform the practitioner if you have any history of cold sores or herpes simplex virus, as this can affect the treatment.",
+//             "Arrive with clean, makeup-free skin on the lip area."
+//         ]
+//     },
+// ];
 
 export const categories: Category[] = [
     {
-        id: 1,
-        title: "Plastic Surgery",
-        path: "plastic-surgery",
-        description: "we offer expert plastic surgery services designed to enhance your natural beauty and boost your confidence.",
-        icon: "/images/plastic.png",
+        category_id: 1,
+        category_name: "Plastic Surgery",
+        category_slug: "plastic-surgery",
+        category_description: "We offer expert plastic surgery services designed to enhance your natural beauty and boost your confidence.",
+        parent_id: null,
+        relations: {
+            images: {
+                id: 1,
+                type: "image",
+                attributes: {
+                    path: "/images/plastic.png",
+                },
+            },
+        },
     },
     {
-        id: 2,
-        title: "Slimming",
-        path: "slimming",
-        description: "Estheva Polyclinic provide effective slimming treatments to help you achieve your ideal body shape.",
-        icon: "/images/slimming.png",
+        category_id: 2,
+        category_name: "Slimming",
+        category_slug: "slimming",
+        category_description: "Estheva Polyclinic provides effective slimming treatments to help you achieve your ideal body shape.",
+        parent_id: null,
+        relations: {
+            images: {
+                id: 2,
+                type: "image",
+                attributes: {
+                    path: "/images/slimming.png",
+                },
+            },
+        },
     },
     {
-        id: 3,
-        title: "Dermatology",
-        path: "dermatology",
-        description: "comprehensive dermatology services to address a wide range of skin concerns.",
-        icon: "/images/dermatology.png",
+        category_id: 3,
+        category_name: "Dermatology",
+        category_slug: "dermatology",
+        category_description: "Comprehensive dermatology services to address a wide range of skin concerns.",
+        parent_id: null,
+        relations: {
+            images: {
+                id: 3,
+                type: "image",
+                attributes: {
+                    path: "/images/dermatology.png",
+                },
+            },
+        },
     },
     {
-        id: 4,
-        title: "IV Drips",
-        path: "iv-drips",
-        description: "our IV drip treatments are designed to quickly replenish essential nutrients, hydration, and vitamins for optimal health and wellness.",
-        icon: "/images/ivDripsIcon.png",
+        category_id: 4,
+        category_name: "IV Drips",
+        category_slug: "iv-drips",
+        category_description: "Our IV drip treatments are designed to quickly replenish essential nutrients, hydration, and vitamins for optimal health and wellness.",
+        parent_id: null,
+        relations: {
+            images: {
+                id: 4,
+                type: "image",
+                attributes: {
+                    path: "/images/ivDripsIcon.png",
+                },
+            },
+        },
     },
     {
-        id: 5,
-        title: "Physiotherapy",
-        path: "physiotherapy",
-        description: "Estheva Polyclinic provides comprehensive physiotherapy services aimed at restoring movement, reducing pain, and improving overall physical well-being.",
-        icon: "/images/physiotherapyIcon.png",
+        category_id: 5,
+        category_name: "Physiotherapy",
+        category_slug: "physiotherapy",
+        category_description: "Estheva Polyclinic provides comprehensive physiotherapy services aimed at restoring movement, reducing pain, and improving overall physical well-being.",
+        parent_id: null,
+        relations: {
+            images: {
+                id: 5,
+                type: "image",
+                attributes: {
+                    path: "/images/physiotherapyIcon.png",
+                },
+            },
+        },
     },
     {
-        id: 6,
-        title: "Daigostics",
-        path: "daigostics",
-        description: "Our diagnostic tests are designed to accurately assess your health, ensuring timely detection and effective treatment for a wide range of conditions.",
-        icon: "/images/daigostics.png",
+        category_id: 6,
+        category_name: "Diagnostics",
+        category_slug: "diagnostics",
+        category_description: "Our diagnostic tests are designed to accurately assess your health, ensuring timely detection and effective treatment for a wide range of conditions.",
+        parent_id: null,
+        relations: {
+            images: {
+                id: 6,
+                type: "image",
+                attributes: {
+                    path: "/images/diagnostics.png",
+                },
+            },
+        },
     },
-
 ];
+
 
 export const profileSideBarList = [
     {
@@ -1776,6 +1830,205 @@ export const CONTACT_FIELD_TYPES = {
     message: "text",
 };
 
+const today = new Date();
+
+export let dataSource: Object[] = [
+    {
+        "Id": 1,
+        "Subject": "Not Available",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9, 30, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12, 30, 0),
+        "IsAllDay": false,
+        "IsBlock": true,
+        "EmployeeId": 1
+    },
+    {
+        "Id": 2,
+        "Subject": "Not Available",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 13, 30, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 30, 0),
+        "IsAllDay": false,
+        "IsBlock": true,
+        "EmployeeId": 2
+    },
+    {
+        "Id": 3,
+        "Subject": "Not Available",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 30, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 20, 30, 0),
+        "IsAllDay": false,
+        "IsBlock": false,
+        "EmployeeId": 3
+    },
+    {
+        "Id": 4,
+        "Subject": "Not Available",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 0, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 30, 0),
+        "IsAllDay": false,
+        "IsBlock": false,
+        "EmployeeId": 4
+    },
+    {
+        "Id": 5,
+        "Subject": "Not Available",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 10, 0, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 11, 0, 0),
+        "IsAllDay": false,
+        "IsBlock": true,
+        "EmployeeId": 5
+    },
+    {
+        "Id": 6,
+        "Subject": "Not Available",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 30, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 30, 0),
+        "IsAllDay": false,
+        "IsBlock": true,
+        "EmployeeId": 6
+    },
+    {
+        "Id": 9,
+        "Subject": "Client Meeting",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 19, 30, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 20, 30, 0),
+        "IsAllDay": false,
+        "EmployeeId": 3
+    },
+    {
+        "Id": 10,
+        "Subject": "Conference",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 15, 30, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 17, 30, 0),
+        "IsAllDay": false,
+        "EmployeeId": 4
+    },
+    {
+        "Id": 11,
+        "Subject": "Employee Recruitment",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 11, 30, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 14, 30, 0),
+        "IsAllDay": false,
+        "EmployeeId": 5
+    },
+    {
+        "Id": 12,
+        "Subject": "Data Analyzing",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 9, 30, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 10, 30, 0),
+        "IsAllDay": false,
+        "EmployeeId": 6
+    },
+    {
+        "Id": 13,
+        "Subject": "Content Writting",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12, 30, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 13, 30, 0),
+        "IsAllDay": false,
+        "EmployeeId": 1
+    },
+    {
+        "Id": 14,
+        "Subject": "Meeting",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 30, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 19, 30, 0),
+        "IsAllDay": false,
+        "EmployeeId": 4
+    },
+    {
+        "Id": 15,
+        "Subject": "Not Available",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 30, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 19, 30, 0),
+        "IsAllDay": false,
+        "IsBlock": true,
+        "EmployeeId": 4
+    },
+    {
+        "Id": 16,
+        "Subject": "Not Available",
+        "StartTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12, 30, 0),
+        "EndTime": new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 30, 0),
+        "IsAllDay": false,
+        "IsBlock": true,
+        "EmployeeId": 3
+    }
+];
+// export let dataSource: Object[] = [
+//     {
+//         Id: 61,
+//         Subject: 'Decoding',
+//         StartTime: startTime.toISOString(),
+//         EndTime: endTime.toISOString(),
+//         IsAllDay: false,
+//         ProjectId: 2,
+//         TaskId: 2
+//     }, {
+//         Id: 62,
+//         Subject: 'Bug Automation',
+//         StartTime: new Date(2018, 3, 4, 13, 30),
+//         EndTime: endTime.toISOString(),
+//         IsAllDay: false,
+//         ProjectId: 2,
+//         TaskId: 1
+//     }, {
+//         Id: 63,
+//         Subject: 'Functionality testing',
+//         StartTime: new Date(2018, 3, 4, 9),
+//         EndTime: new Date(2018, 3, 4, 10, 30),
+//         IsAllDay: false,
+//         ProjectId: 1,
+//         TaskId: 1
+//     }, {
+//         Id: 64,
+//         Subject: 'Resolution-based testing',
+//         StartTime: new Date(2018, 3, 4, 12),
+//         EndTime: new Date(2018, 3, 4, 13),
+//         IsAllDay: false,
+//         ProjectId: 1,
+//         TaskId: 1
+//     }, {
+//         Id: 65,
+//         Subject: 'Test report Validation',
+//         StartTime: new Date(2018, 3, 4, 15),
+//         EndTime: new Date(2018, 3, 4, 18),
+//         IsAllDay: false,
+//         ProjectId: 1,
+//         TaskId: 1
+//     }, {
+//         Id: 66,
+//         Subject: 'Test case correction',
+//         StartTime: new Date(2018, 3, 4, 14),
+//         EndTime: new Date(2018, 3, 4, 16),
+//         IsAllDay: false,
+//         ProjectId: 1,
+//         TaskId: 2
+//     }, {
+//         Id: 67,
+//         Subject: 'Bug fixing',
+//         StartTime: new Date(2018, 3, 4, 14, 30),
+//         EndTime: new Date(2018, 3, 4, 18, 30),
+//         IsAllDay: false,
+//         ProjectId: 2,
+//         TaskId: 2
+//     }, {
+//         Id: 68,
+//         Subject: 'Run test cases',
+//         StartTime: new Date(2018, 3, 4, 17, 30),
+//         EndTime: new Date(2018, 3, 4, 19, 30),
+//         IsAllDay: false,
+//         ProjectId: 1,
+//         TaskId: 2
+//     }, {
+//         Id: 70,
+//         Subject: 'Bug Automation',
+//         StartTime: new Date(2018, 3, 4, 18, 30),
+//         EndTime: new Date(2018, 3, 4, 20),
+//         IsAllDay: false,
+//         ProjectId: 2,
+//         TaskId: 1
+//     }
+// ];
 
 export const darkModeStyle = [
     { elementType: "geometry", stylers: [{ color: "#1d2c4d" }] },

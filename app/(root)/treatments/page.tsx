@@ -44,11 +44,11 @@ const Treatments = () => {
                             ))}
                             {categories.map((category) => (
                                 <TabsTrigger
-                                    key={category.id}
-                                    value={category.path}
+                                    key={category.category_id}
+                                    value={category.category_slug}
                                     className="px-4 py-2 md:px-6 md:py-4 rounded-full text-sm "
                                 >
-                                    {category.title} Treatments
+                                    {category.category_name} Treatments
                                 </TabsTrigger>
                             ))}
                         </TabsList>
@@ -69,11 +69,11 @@ const Treatments = () => {
                                     </div>
                                 ))}
                                 {categories.map((category) => (
-                                    <div key={category.id} className='mt-8'>
+                                    <div key={category.category_id} className='mt-8'>
                                         <div className='flex justify-between items-center'>
-                                            <h1 className='text-lg md:text-[28px] lg:text-[32px] text-primary font-semibold'>{category.title} Treatments</h1>
+                                            <h1 className='text-lg md:text-[28px] lg:text-[32px] text-primary font-semibold'>{category.category_name} Treatments</h1>
                                             <div
-                                                onClick={() => handleTabSwitch(category.path)}
+                                                onClick={() => handleTabSwitch(category.category_slug)}
                                                 className="flex gap-2 xl:gap-4 items-center cursor-pointer duration-700 transform hover:scale-105 hover:duration-300">
                                                 <span className="text-sm xl:text-xl text-light-500">View All</span>
                                                 <ArrowRight01Icon className="text-primaryColor" size={24} />
@@ -94,10 +94,10 @@ const Treatments = () => {
                                 </TabsContent>
                             ))}
                             {categories.map((category) => (
-                                <TabsContent key={category.id} value={category.path} className="flex-1">
+                                <TabsContent key={category.category_id} value={category.category_slug} className="flex-1">
                                     <div className='mt-8'>
                                         <div className='flex justify-between items-center'>
-                                            <h1 className='text-lg md:text-[28px] lg:text-[32px] text-primary font-semibold'>{category.title} Treatments</h1>
+                                            <h1 className='text-lg md:text-[28px] lg:text-[32px] text-primary font-semibold'>{category.category_name} Treatments</h1>
                                         </div>
                                         <TreatmentsList />
                                     </div>

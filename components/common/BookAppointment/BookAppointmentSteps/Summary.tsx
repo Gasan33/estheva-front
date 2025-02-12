@@ -15,8 +15,8 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
                     {/* Image Section */}
                     <div className="w-1/3 sm:w-1/4">
                         <Image
-                            src={treatment.img[0]}
-                            alt={treatment.name}
+                            src={treatment.images[0]}
+                            alt={treatment.title}
                             width={300}
                             height={300}
                             className="w-full h-24 sm:h-32 object-cover rounded-lg shadow-sm"
@@ -27,7 +27,7 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
                     <div className="flex flex-col h-auto gap-1 w-full text-[8px] sm:text-sm">
                         {/* Treatment Name */}
                         <div className="flex justify-between items-start w-full font-medium">
-                            <h1 className="line-clamp-2">{treatment.name}</h1>
+                            <h1 className="line-clamp-2">{treatment.title}</h1>
                         </div>
 
                         {/* Location */}
@@ -40,13 +40,13 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
                         {treatment.doctors?.[0] && (
                             <div className="flex items-center gap-2 text-gray-700">
                                 <Image
-                                    src={treatment.doctors[0].img}
-                                    alt={treatment.doctors[0].name}
+                                    src={treatment.doctors[0].user.profile_picture ?? "/images/noavatar.png"}
+                                    alt={treatment.doctors[0].user.name}
                                     width={40}
                                     height={40}
                                     className="w-6 h-6 sm:w-8 sm:h-8 object-cover rounded-full"
                                 />
-                                <span>{treatment.doctors[0].name}</span>
+                                <span>{treatment.doctors[0].user.name}</span>
                             </div>
                         )}
 

@@ -3,29 +3,59 @@ import React, { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowDown01Icon, ArrowRight01Icon } from "hugeicons-react";
 import ExploreTreatment from "./ExploreTreatment";
-import { popularTreatments } from "@/constants";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import config from "@/lib/config";
 
 const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
-    const [treatment, setTreatment] = useState<Treatment>(popularTreatments[0]);
+    const [treatments, setTreatments] = useState<Treatment[]>([]);
+    const [homeTreatments, setHomeTreatments] = useState<Treatment[]>([]);
+    const [treatment, setTreatment] = useState<Treatment | null>(null);
     const [treatmentIndex, setTreatmentIndex] = useState<number>(0);
     const [show, setShow] = useState<boolean>(false);
 
     // Initialize AOS
     useEffect(() => {
         AOS.init({
-            duration: 800, // Animation duration (ms)
-            easing: "ease-in-out", // Easing function for animations
-            offset: 100, // Offset from the top before animation starts
-            once: false, // Ensure animations occur every time the component is shown
+            duration: 800,
+            easing: "ease-in-out",
+            offset: 100,
+            once: false,
         });
+    }, []);
+
+    const fetchTreatments = async () => {
+        try {
+            const response = await fetch(`${config.env.apiEndpoint}/treatments`);
+            const data = await response.json();
+            setTreatments(data.data);
+            if (data.data.length > 0) setTreatment(data.data[0]);
+        } catch (error) {
+            console.error("Error fetching treatments:", error);
+        }
+    };
+
+    const fetchHomeTreatments = async () => {
+        try {
+            const response = await fetch(`${config.env.apiEndpoint}/treatments/home-treatments`);
+            const data = await response.json();
+            setHomeTreatments(data.data);
+            if (data.data.length > 0) setTreatment(data.data[0]);
+        } catch (error) {
+            console.error("Error fetching home treatments:", error);
+        }
+    };
+
+    // Fetch data once on component mount
+    useEffect(() => {
+        fetchTreatments();
+        fetchHomeTreatments();
     }, []);
 
     function handleClick(item: Treatment, idx: number): void {
         setTreatmentIndex(idx);
         setTreatment(item);
-        setShow(!show);
+        setShow((prevShow) => !prevShow);
     }
 
     return (
@@ -35,47 +65,37 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
             </h2>
 
             <div className="flex flex-col xl:flex-row h-full">
-
                 <Tabs
                     defaultValue="clinic-treatments"
                     className="w-full xl:w-[40%] xl:h-screen px-6 md:px-12 xl:px-16"
                 >
                     <TabsList className="h-12 md:h-16 rounded-full bg-light-100">
-                        <TabsTrigger
-                            value="clinic-treatments"
-                            className="px-4 py-2 md:px-6 md:py-4 rounded-full text-sm md:text-base"
-                        >
+                        <TabsTrigger value="clinic-treatments" className="px-4 py-2 md:px-6 md:py-4 rounded-full text-sm md:text-base">
                             Clinic Treatments
                         </TabsTrigger>
-                        <TabsTrigger
-                            value="home-treatments"
-                            className="px-4 py-2 md:px-6 md:py-4 rounded-full text-sm md:text-base"
-                        >
+                        <TabsTrigger value="home-treatments" className="px-4 py-2 md:px-6 md:py-4 rounded-full text-sm md:text-base">
                             Home Treatments
                         </TabsTrigger>
                     </TabsList>
 
                     <div className="mt-6 md:mt-12 ml-2 md:ml-4">
-                        {/* Clinic Treatments Tab Content */}
+                        {/* Clinic Treatments */}
                         <TabsContent value="clinic-treatments" className="flex-1">
                             <ul className="space-y-4">
-                                {popularTreatments.map((treatment, idx) => (
+                                {treatments.map((treatment, idx) => (
                                     <div key={treatment.id}>
                                         <li
                                             onClick={() => handleClick(treatment, idx)}
-                                            data-aos="fade-up" // AOS animation
-                                            data-aos-delay={idx * 100} // Delay each list item dynamically
-                                            className={`flex gap-4 items-center cursor-pointer transform hover:scale-105 hover:duration-300`}
+                                            data-aos="fade-up"
+                                            data-aos-delay={idx * 100}
+                                            className="flex gap-4 items-center cursor-pointer transform hover:scale-105 hover:duration-300"
                                         >
                                             <span className="text-sm md:text-xl text-light-500">
-                                                {treatment.name}
+                                                {treatment.title}
                                             </span>
-                                            <ArrowRight01Icon
-                                                className="text-primaryColor hidden xl:block"
-                                                size={24}
-                                            />
+                                            <ArrowRight01Icon className="text-primaryColor hidden xl:block" size={24} />
                                             <ArrowDown01Icon
-                                                className={`text-primaryColor block xl:hidden transition-all ${show && idx === treatmentIndex && "rotate-180"
+                                                className={`text-primaryColor block xl:hidden transition-all ${show && idx === treatmentIndex ? "rotate-180" : ""
                                                     }`}
                                                 size={24}
                                             />
@@ -86,26 +106,23 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
                             </ul>
                         </TabsContent>
 
-                        {/* Home Treatments Tab Content */}
+                        {/* Home Treatments */}
                         <TabsContent value="home-treatments">
                             <ul className="space-y-4">
-                                {popularTreatments.map((treatment, idx) => (
-                                    <div key={idx}>
+                                {homeTreatments.map((treatment, idx) => (
+                                    <div key={treatment.id}>
                                         <li
                                             onClick={() => handleClick(treatment, idx)}
-                                            data-aos="fade-up" // AOS animation
-                                            data-aos-delay={idx * 100} // Delay each list item dynamically
-                                            className={`flex gap-4 items-center cursor-pointer transform hover:scale-105 hover:duration-300`}
+                                            data-aos="fade-up"
+                                            data-aos-delay={idx * 100}
+                                            className="flex gap-4 items-center cursor-pointer transform hover:scale-105 hover:duration-300"
                                         >
                                             <span className="text-sm md:text-xl text-light-500">
-                                                {treatment.name}
+                                                {treatment.title}
                                             </span>
-                                            <ArrowRight01Icon
-                                                className="text-primaryColor hidden xl:block"
-                                                size={24}
-                                            />
+                                            <ArrowRight01Icon className="text-primaryColor hidden xl:block" size={24} />
                                             <ArrowDown01Icon
-                                                className={`text-primaryColor block xl:hidden transition-all ${show && idx === treatmentIndex && "rotate-180"
+                                                className={`text-primaryColor block xl:hidden transition-all ${show && idx === treatmentIndex ? "rotate-180" : ""
                                                     }`}
                                                 size={24}
                                             />
@@ -119,12 +136,8 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
                 </Tabs>
 
                 {/* Right Section */}
-                <div
-                    className="flex-1 hidden xl:block h-[600px] xl:h-screen mt-8 xl:mt-0 mr-16"
-                    data-aos="fade-up" // AOS animation
-                    key={treatmentIndex} // Key ensures animation runs when treatmentIndex changes
-                >
-                    <ExploreTreatment treatment={popularTreatments[treatmentIndex]} session={session} />
+                <div className="flex-1 hidden xl:block h-[600px] xl:h-screen mt-8 xl:mt-0 mr-16" data-aos="fade-up" key={treatmentIndex}>
+                    {treatment && <ExploreTreatment treatment={treatment} session={session} />}
                 </div>
             </div>
         </div>
@@ -133,13 +146,11 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
 
 export default ExploreWhatWeDo;
 
-const Down = ({ treatment, show, session }: { treatment: Treatment; show: boolean, session: boolean }) => {
+const Down: React.FC<{ treatment: Treatment; show: boolean; session: boolean }> = ({ treatment, show, session }) => {
     return (
         <div
             className={`flex-1 block xl:hidden h-[600px] xl:h-screen mt-8 xl:mt-0 transition-all duration-500 overflow-hidden ${show ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                 }`}
-        // data-aos="fade-up" // AOS animation for dropdown content
-        // data-aos-delay="300" // Delay for dropdown
         >
             {show && <ExploreTreatment treatment={treatment} session={session} />}
         </div>

@@ -47,15 +47,15 @@ const NavMenuItems = () => {
                                     ))}
                                     {title.name === "Treatments" && categories.map((category) => (
                                         <Link
-                                            key={category.id}
+                                            key={category.category_id}
                                             href={{
                                                 pathname: "/treatments",
-                                                query: { treatments: category.path },
+                                                query: { treatments: category.category_slug },
                                             }}
                                         // href={item.path}
                                         >
                                             <div className="p-2 items-center gap-2 rounded-md justify-center w-56 hover:bg-gray-800">
-                                                {category.title}
+                                                {category.category_name}
                                             </div>
                                         </Link>
                                     ))}

@@ -103,13 +103,13 @@ export const Footer: React.FC = () => {
                                 )}
                                 {categories.map((category) => (
                                     <Link
-                                        key={category.id}
+                                        key={category.category_id}
                                         href={{
                                             pathname: "/treatments",
-                                            query: { treatments: category.path },
+                                            query: { treatments: category.category_slug },
                                         }}
                                     >
-                                        {category.title}
+                                        {category.category_name}
 
                                     </Link>
                                 ))}
@@ -154,14 +154,14 @@ export const Footer: React.FC = () => {
                                     ))}
                                     {categories?.map((category) => (
                                         <Link
-                                            key={category.id}
+                                            key={category.category_id}
                                             href={{
                                                 pathname: "/treatments",
-                                                query: { treatments: category.path },
+                                                query: { treatments: category.category_slug },
                                             }}
                                             className="hover:text-secondaryColor transition-colors duration-200"
                                         >
-                                            {category.title}
+                                            {category.category_name}
                                         </Link>
                                     ))}
                                 </div>

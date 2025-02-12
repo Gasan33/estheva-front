@@ -9,14 +9,14 @@ const ExploreTreatment = ({ treatment, session }: { treatment: Treatment, sessio
     return (
         <div className='relative h-full w-full flex-col justify-between gap-4'>
             <h1 className='text-gray-900 text-xl font-semibold line-clamp-1'>
-                {treatment.name}
+                {treatment.title}
             </h1>
             <div className='relative my-4 h-[55%]'>
                 <Image src="/images/explore-bg.jpg" alt='explore' width={600} height={600} className=' absolute bottom-0 right-0 w-[85%] h-[85%] rounded-lg object-cover' />
-                <Image src={treatment.img[0]} alt='explore' width={600} height={600} className='absolute top-0 left-0 w-[85%] h-[80%] rounded-lg object-cover' />
+                <Image src={treatment.images[0]} alt='explore' width={600} height={600} className='absolute top-0 left-0 w-[85%] h-[80%] rounded-lg object-cover' />
             </div>
 
-            <p className='line-clamp-3'>{treatment.desc}</p>
+            <p className='line-clamp-3'>{treatment.description}</p>
 
             <div className='flex gap-4 mt-4'>
                 <Link href={`/treatments/${treatment.id}`} className='flex items-center gap-0 md:gap-1 text-xs font-thin md:text-sm md:font-medium text-primaryColor'>
