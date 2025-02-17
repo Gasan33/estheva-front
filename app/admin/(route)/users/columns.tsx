@@ -71,7 +71,7 @@ export const columns: ColumnDef<User>[] = [
     },
     {
         accessorKey: "title",
-        accessorFn: ({ name }) => name.toString(),
+        accessorFn: ({ name }) => name,
         header: ({ column }) => {
             return (
                 <Button
