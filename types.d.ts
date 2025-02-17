@@ -104,6 +104,8 @@ interface User {
     updated_at: string;
 }
 
+
+
 interface Appointment {
     id: number;
     user_id: number;
@@ -160,6 +162,16 @@ interface QuickLink {
 }
 
 
+
+interface EventData {
+    Id: number;
+    Subject: string;
+    StartTime: Date;
+    EndTime: Date;
+    IsAllDay: boolean;
+    IsBlock?: boolean;
+    EmployeeId: number;
+}
 // interface Treatment {
 //     id: number;
 //     name: string;

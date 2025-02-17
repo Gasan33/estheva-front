@@ -1,7 +1,6 @@
 import { ArrowRight01Icon, CardExchange01Icon, Location01Icon } from 'hugeicons-react'
 import Image from 'next/image'
 import React from 'react'
-import BookAppointmentAddress from '../BookAppintmentAddress'
 import { addresses } from '@/constants'
 import { CircleCheck } from 'lucide-react'
 

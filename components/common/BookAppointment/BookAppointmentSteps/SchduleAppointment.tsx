@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Location01Icon, Time01Icon } from 'hugeicons-react';
 import { CalendarDays, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
 import BookAppointmentAddress from '../BookAppintmentAddress';
 import { Calendar } from '@/components/ui/calendar';
-
+import { format } from "date-fns";
 
 interface SchduleAppointmentProps {
     date: Date | undefined;
     setDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
-    selectedTimeSlot: string | undefined;
-    setSelectedTimeSlot: React.Dispatch<React.SetStateAction<string | undefined>>;
+    selectedTimeSlot: TimeSlot | undefined;
+    setSelectedTimeSlot: React.Dispatch<React.SetStateAction<TimeSlot | undefined>>;
     selectedLocation: string | null;
     setSelectedLocation: React.Dispatch<React.SetStateAction<string | null>>;
-    selectedDoctor: string | null;
-    setSelectedDoctor: React.Dispatch<React.SetStateAction<string | null>>;
+    selectedDoctor: number | null;
+    setSelectedDoctor: React.Dispatch<React.SetStateAction<number | null>>;
     treatment: Treatment;
 
 }
@@ -96,14 +96,14 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                         {treatment.doctors.map((doctor, index) => (
                             <div
                                 key={index}
-                                onClick={() => setSelectedDoctor(doctor.user.name)}
-                                className={`relative flex flex-col items-center gap-2 cursor-pointer ${selectedDoctor === doctor.user.name
+                                onClick={() => setSelectedDoctor(doctor.id)}
+                                className={`relative flex flex-col items-center gap-2 cursor-pointer ${selectedDoctor === doctor.id
                                     ? 'text-primaryColor'
                                     : 'text-gray-500'
                                     }`}
                             >
                                 {/* Checkmark */}
-                                {selectedDoctor === doctor.user.name && (
+                                {selectedDoctor === doctor.id && (
                                     <CheckCircle
                                         className="absolute top-0 right-1 text-primaryColor"
                                         size={20}
@@ -111,7 +111,7 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                                 )}
                                 {/* Circle */}
                                 <div
-                                    className={`rounded-full border-[1px] ${selectedDoctor === doctor.user.name
+                                    className={`rounded-full border-[1px] ${selectedDoctor === doctor.id
                                         ? 'border-primaryColor bg-teal-100'
                                         : 'border-gray-300 bg-secondary'
                                         } h-16 w-16 border-dashed flex items-center justify-center overflow-clip`}
@@ -139,7 +139,12 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                         <Calendar
                             mode="single"
                             selected={date}
-                            onSelect={setDate}
+                            onSelect={(date) => {
+                                if (date) {
+                                    console.log(format(date, "yyyy-MM-dd"));
+                                    setDate(date);
+                                }
+                            }}
                             disabled={isPastDays}
                             className="rounded-md border w-auto bg-white shadow-md"
                         />
@@ -156,8 +161,8 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                             <div key={item.id} className="py-2 flex items-center">
                                 <div
                                     onClick={() =>
-                                        item.is_available
-                                            ? setSelectedTimeSlot(item.start_time)
+                                        item.is_available === 1
+                                            ? setSelectedTimeSlot(item)
                                             : alert(
                                                 'This Time is not Available. Please try another one.'
                                             )
@@ -165,7 +170,7 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                                     className={`py-2 w-full justify-center items-center flex rounded-lg font-semibold ${item.is_available === 1
                                         ? 'bg-gray-300 text-gray-950 hover:bg-primaryColor cursor-pointer'
                                         : 'bg-gray-50 text-gray-500'
-                                        } ${item.start_time === selectedTimeSlot &&
+                                        } ${item === selectedTimeSlot &&
                                         'bg-primaryColor text-white'
                                         }`}
                                 >

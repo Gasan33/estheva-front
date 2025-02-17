@@ -42,18 +42,21 @@ export const columns: ColumnDef<Doctor>[] = [
     {
         accessorKey: "image",
         header: "Image",
-        cell: ({ row }) => (
-            <Image
-                src={row.getValue("image")}
-                alt={row.getValue("title")}
-                width={56}
-                height={56}
-                className="rounded-full w-14 h-14"
+        cell: ({ row }) => {
+            const doctor = row.original
+            return <Image
+                src={doctor.user.profile_picture ?? "/images/noavatar.png"}
+                alt={doctor.user.name ?? "user"}
+                width={300}
+                height={300}
+                style={{ height: "auto" }}
+                className="rounded-full w-14 h-auto"
             />
-        ),
+        },
     },
     {
         accessorKey: "title",
+        accessorFn: ({ user: { first_name, last_name } }) => first_name.toString() + " " + last_name.toString(),
         header: ({ column }) => {
             return (
                 <Button
@@ -67,11 +70,11 @@ export const columns: ColumnDef<Doctor>[] = [
         },
     },
     {
-        accessorKey: "email",
+        accessorKey: "user.email",
         header: "Email",
     },
     {
-        accessorKey: "phone_number",
+        accessorKey: "user.phone_number",
         header: "Phone Number",
     },
     {
@@ -79,7 +82,7 @@ export const columns: ColumnDef<Doctor>[] = [
         header: "Specialty",
     },
     {
-        accessorKey: "address",
+        accessorKey: "addresses[0].address_line_1",
         header: "Address",
     },
     {
