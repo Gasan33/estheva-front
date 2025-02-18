@@ -5,19 +5,7 @@ import { useRouter } from "next/navigation";
 // import useCategoryForm from "../../../../../hooks/admin/useCategoryForm";
 
 const NewCategory = () => {
-    const router = useRouter();
 
-    // const {
-    //     // categoryName,
-    //     setCategoryName,
-    //     // categorySlug,
-    //     setCategorySlug,
-    //     // categoryDesc,
-    //     setCategoryDesc,
-    //     // categoryImage,
-    //     setCategoryImage,
-    //     handleSubmit
-    // } = useCategoryForm(router);
 
     return (
         <div className="mx-auto p-4 bg-gray-200">
@@ -95,7 +83,7 @@ const NewCategory = () => {
                                     <button
                                         className="flex justify-center rounded border border-stroke px-6 py-2 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
                                         type="button"
-                                        onClick={() => router.back()}
+                                    // onClick={() => router.back()}
                                     >
                                         Cancel
                                     </button>

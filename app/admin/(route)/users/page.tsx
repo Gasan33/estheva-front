@@ -29,8 +29,8 @@ const Users = () => {
     }, []);
 
     return (
-        <div className="container h-full mx-auto p-4 bg-gray-100">
-            <div className="p-4 bg-white shadow-lg">
+        <div className="container h-full mx-auto p-4">
+            <div className="p-4 bg-white rounded-lg">
                 <div className="flex justify-end">
                     <Link href="/users/add" className="flex justify-center items-center gap-2 py-2 px-4 bg-blue-600 text-white rounded-md">
                         <BiAddToQueue />

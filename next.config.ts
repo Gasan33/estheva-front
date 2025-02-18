@@ -47,6 +47,21 @@ const nextConfig: NextConfig = {
         hostname: "erchonia-emea.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.vectorstock.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "example.com",
+        port: "",
+      },
+      {
+        protocol: "http",
+        hostname: "res.cloudinary.com",
+        port: "",
+      },
 
     ]
   }

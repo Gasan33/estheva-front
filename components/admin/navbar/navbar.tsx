@@ -11,7 +11,7 @@ import Image from "next/image";
 const Navbar = () => {
   const session = useSession();
   return (
-    <div className="bg-white shadow-lg w-full sticky h-32 lg:h-auto">
+    <div className="bg-white border-b-[1px] w-full sticky h-32 lg:h-auto">
       <div className={styles.container}>
         <div className="flex">
           <Link href={'/'} >
