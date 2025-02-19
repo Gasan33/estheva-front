@@ -13,7 +13,7 @@ const AppointmentCard = ({ appointment, type }: { appointment: Appointment, type
             className={`shadow-md rounded-[16px] cursor-pointer ${type === 'canceled' ? 'h-48 pb-0' : 'h-56 pb-2'
                 }`}
         >
-            <AppointmentDetailsDailog appointment={appointment} type={type} />
+            <AppointmentDetailsDailog appointment={appointment} />
 
             <div className="flex gap-4 w-full items-center px-2 mt-2">
                 {type === 'canceled' ? (

@@ -34,7 +34,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories, setTreatments, 
                         className={`p-2 flex gap-2 text-[14px] text-primary rounded-md cursor-pointer items-center w-full hover:bg-gray-50 ${selectedCategory?.category_id === category.category_id ? "bg-gray-50 " : ""
                             }`}
                     >
-                        <Image src={category.relations?.images?.attributes?.path ?? "/icons/logo.svg"} alt="icon" width={32} height={32} />
+                        <Image src={category.relations?.images?.attributes?.path ?? "/icons/logo.svg"} alt="icon" width={32} height={32} style={{ height: "auto" }} />
                         <h1>{category.category_name}</h1>
                     </div>
                 </div>

@@ -61,7 +61,7 @@ const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: numb
                             size={24}
                             color="#FFD700"
                         />
-                        <span>{treatment?.reviews[0].rating}</span>
+                        {/* {treatment?.reviews[0].rating && <span>{treatment?.reviews[0].rating}</span>} */}
                     </div>
                 </div>
 

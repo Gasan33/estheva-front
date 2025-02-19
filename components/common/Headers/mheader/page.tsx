@@ -24,7 +24,7 @@ export default function Header({ session }: { session?: Session | null }) {
 
         <div className={styles.header}>
           <Link href={'/'} className='block xl:hidden'>
-            <Image src='/icons/logo.svg' alt='Estheva Polyclinic' width={120} height={60} className='object-contain' />
+            <Image src='/icons/logo.svg' alt='Estheva Polyclinic' width={120} height={60} style={{ height: "auto" }} className='object-contain' />
           </Link>
           <div onClick={() => { setIsActive(!isActive) }} className={styles.button}>
             <div className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}></div>

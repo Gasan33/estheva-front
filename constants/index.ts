@@ -1272,7 +1272,7 @@ export const categories: Category[] = [
                 id: 6,
                 type: "image",
                 attributes: {
-                    path: "/images/diagnostics.png",
+                    path: "/images/daigostics.png",
                 },
             },
         },

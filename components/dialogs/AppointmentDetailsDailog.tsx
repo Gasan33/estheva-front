@@ -1,4 +1,5 @@
 import React from 'react'
+import { format } from "date-fns";
 import {
     Dialog,
     DialogClose,
@@ -19,14 +20,44 @@ import { Button } from '../ui/button';
 
 
 
-const AppointmentDetailsDailog = ({ appointment, type }: { appointment: Appointment, type?: string }) => {
+const AppointmentDetailsDailog = ({ appointment }: { appointment: Appointment }) => {
+    const formatTimeWithAMPM = (timeString: string) => {
+        let [hours, minutes] = timeString.split(":").map(Number);
+        let period = hours < 12 ? "AM" : "PM";
+        hours = hours % 12 || 12; // Convert 24-hour to 12-hour format
+        return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
+    };
+    const getExactRemainingTime = (dateString: string, timeString: string) => {
+        const appointmentDateTime = new Date(`${dateString}T${timeString}`);
+        const now = new Date();
+
+        if (appointmentDateTime < now) {
+            if (appointment.status === "complete") {
+                return "Appointment Completed";
+
+            } else {
+                return "Appointment time has passed please reshcdule";
+            }
+        }
+
+        let diffMs = appointmentDateTime.getTime() - now.getTime();
+        let days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+
+        return `Starts in ${days} days, ${hours} hours, and ${minutes} minutes remaining`;
+    };
+
+    const getMonthName = (monthNumber: number) => {
+        return new Date(2000, monthNumber - 1).toLocaleString("en-US", { month: "long" });
+    };
 
     return (
         <Dialog>
             <DialogTrigger className='flex items-start justify-start text-left'>
-                <div className={`flex ${type === 'canceled' ? 'h-[100%]' : 'h-[80%]'}`}>
+                <div className={`flex ${appointment.status === 'canceled' ? 'h-[100%]' : 'h-[80%]'}`}>
                     <Image
-                        className={`w-[25%] h-auto object-cover rounded-tl-[16px] ${type === 'canceled' ? 'rounded-bl-[16px]' : 'rounded-br-[16px]'
+                        className={`w-[25%] h-auto object-cover rounded-tl-[16px] ${appointment.status === 'canceled' ? 'rounded-bl-[16px]' : 'rounded-br-[16px]'
                             }`}
                         src={appointment.treatment.images[0]}
                         alt={appointment.treatment.title}
@@ -37,10 +68,10 @@ const AppointmentDetailsDailog = ({ appointment, type }: { appointment: Appointm
                         <div className="flex justify-between items-start w-full text-xs md:text-sm font-medium">
                             <h1 className="line-clamp-2">{appointment.treatment.title}</h1>
                             <h2
-                                className={`text-xs outline-1 outline py-1 px-2 rounded-sm ${type === 'canceled' ? 'outline-red text-red' : 'outline-primaryColor text-primaryColor'
+                                className={`text-xs outline-1 outline py-1 px-2 rounded-sm ${appointment.status === 'canceled' ? 'outline-red text-red' : 'outline-primaryColor text-primaryColor'
                                     }`}
                             >
-                                {type}
+                                {appointment.status}
                             </h2>
                         </div>
                         <div className="flex gap-1 items-center text-xs text-gray-500 font-thin line-clamp-1">
@@ -64,10 +95,10 @@ const AppointmentDetailsDailog = ({ appointment, type }: { appointment: Appointm
                             </div>
                         </div>
                         <div>
-                            <h1 className="text-primaryColor">16 Nov 2024 | 09:30 PM</h1>
+                            <h1 className="text-primaryColor">{format(new Date(appointment.appointment_date), "dd MMM yyyy")} | {formatTimeWithAMPM(appointment.appointment_time)}</h1>
                         </div>
                         <div>
-                            <h2 className="text-xs text-primaryColor">Starts in 2 days</h2>
+                            <h2 className="text-xs text-primaryColor">{getExactRemainingTime(appointment.appointment_date, appointment.appointment_time)}</h2>
                         </div>
                     </div>
                 </div>
@@ -75,7 +106,9 @@ const AppointmentDetailsDailog = ({ appointment, type }: { appointment: Appointm
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle className='text-center'>Appointment Details</DialogTitle>
+                    <DialogDescription></DialogDescription>
                 </DialogHeader>
+
                 <div>
                     {/* TReatment */}
                     <div>
@@ -92,7 +125,7 @@ const AppointmentDetailsDailog = ({ appointment, type }: { appointment: Appointm
                                 <h1 className='text-xs md:text-lg font-semibold line-clamp-2 text-gray-950'>{appointment.treatment.title}</h1>
                                 <div className='flex gap-2 line-clamp-1 '>
                                     <div className='h-3 w-3'><Location01Icon size={12} /></div>
-                                    <p className='text-xs  font-thin'>Home Based Service</p>
+                                    <p className='text-xs  font-thin'>{appointment.location}</p>
                                 </div>
                                 <div className='flex gap-2 line-clamp-1 '>
                                     <div className='h-3 w-3'><Share01Icon size={12} /></div>
@@ -102,7 +135,7 @@ const AppointmentDetailsDailog = ({ appointment, type }: { appointment: Appointm
                                     <div className='h-3 w-3'><Recycle01Icon size={12} /></div>
                                     <p className='text-xs font-thin line-clamp-1'>{appointment.treatment.benefits[1]}</p>
                                 </div>
-                                <Link href={`treatments/${appointment.treatment.id}`} className='flex justify-end items-center text-primaryColor text-xs font-thin'>
+                                <Link href={`/treatments/${appointment.treatment.id}`} className='flex justify-end items-center text-primaryColor text-xs font-thin'>
                                     <p >view details</p>
                                     <ArrowRight01Icon size={16} />
                                 </Link>
@@ -127,18 +160,18 @@ const AppointmentDetailsDailog = ({ appointment, type }: { appointment: Appointm
                             <div className='flex flex-col gap-2 text-gray-400 w-full'>
                                 <h1 className='text-xs md:text-lg font-semibold line-clamp-2 text-gray-950'>{appointment.doctor.user.name}</h1>
                                 <div className='flex gap-2 line-clamp-1 '>
-                                    <p className='text-xs  font-thin'>Heart Surgeon, London, England</p>
+                                    <p className='text-xs  font-thin'>{appointment.doctor.specialty}</p>
                                 </div>
                                 <div className='flex justify-between items-center line-clamp-1 '>
                                     <div className='flex gap-2 line-clamp-1'>
                                         <div className='h-3 w-3'>
                                             <BsBag size={12} />
                                         </div>
-                                        <p className='text-xs  font-thin line-clamp-1'>+4 Exp</p>
+                                        <p className='text-xs  font-thin line-clamp-1'>+{appointment.doctor.exp} Exp</p>
                                     </div>
                                     <div className='flex gap-2 line-clamp-1'>
                                         <div className='h-3 w-3'><User size={12} /></div>
-                                        <p className='text-xs font-thin line-clamp-1'>130+</p>
+                                        <p className='text-xs font-thin line-clamp-1'>{appointment.doctor.patients}+</p>
                                     </div>
                                     <div className='flex gap-2 line-clamp-1'>
                                         <div className='h-3 w-3'><Star size={12} /></div>
@@ -168,12 +201,12 @@ const AppointmentDetailsDailog = ({ appointment, type }: { appointment: Appointm
                             <div className='flex gap-2 line-clamp-1'>
                                 <h1 className='w-[20%] text-primaryColor font-medium'>Date</h1>
                                 :
-                                <p >15 <span className='text-primaryColor'>November</span> 2024</p>
+                                <p >{appointment.appointment_date.split("-")[2]} <span className='text-primaryColor'>{getMonthName(Number(appointment.appointment_date.split("-")[1]))}</span> {appointment.appointment_date.split("-")[0]}</p>
                             </div>
                             <div className='flex gap-2 line-clamp-1'>
                                 <h1 className='w-[20%] text-primaryColor font-medium'>Time</h1>
                                 :
-                                <p >5:30 <span className='text-primaryColor'>PM</span></p>
+                                <p >{formatTimeWithAMPM(appointment.appointment_time)}</p>
 
                             </div>
                         </div>
@@ -187,7 +220,7 @@ const AppointmentDetailsDailog = ({ appointment, type }: { appointment: Appointm
                             <div className='flex gap-2 line-clamp-1'>
                                 <h1 className='w-[20%] text-primaryColor font-medium'>Name</h1>
                                 :
-                                <p >Mohammed Khalid</p>
+                                <p >{appointment.patient.name}</p>
                             </div>
                             <div className='flex gap-2 line-clamp-1'>
                                 <h1 className='w-[20%] text-primaryColor font-medium'>Age</h1>
@@ -204,7 +237,7 @@ const AppointmentDetailsDailog = ({ appointment, type }: { appointment: Appointm
                             <div className='flex gap-2 line-clamp-1'>
                                 <h1 className='w-[20%] text-primaryColor font-medium'>Gender</h1>
                                 :
-                                <p >Male</p>
+                                <p >{appointment.patient.gender}</p>
 
                             </div>
                         </div>
@@ -227,7 +260,7 @@ const AppointmentDetailsDailog = ({ appointment, type }: { appointment: Appointm
                 <DialogFooter >
                     <DialogClose asChild>
                         <div className='w-full flex bg-primaryColor h-12 rounded-lg items-center justify-center cursor-pointer text-white text-center font-semibold'>
-                            Starts on 2 days
+                            {getExactRemainingTime(appointment.appointment_date, appointment.appointment_time)}
 
                         </div>
                     </DialogClose>

@@ -47,6 +47,7 @@ export const Footer: React.FC = () => {
                                     alt="logo"
                                     className="object-contain"
                                     width={120}
+                                    style={{ height: "auto" }}
                                     height={60}
                                 />
                                 <div className="flex items-center gap-2 bottom-0 mt-4">

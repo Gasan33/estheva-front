@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Location01Icon, Time01Icon } from 'hugeicons-react';
 import { CalendarDays, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
 import BookAppointmentAddress from '../BookAppintmentAddress';
 import { Calendar } from '@/components/ui/calendar';
 import { format } from "date-fns";
+import { ClipLoader } from 'react-spinners';
+import { useToast } from '@/hooks/use-toast';
 
 interface SchduleAppointmentProps {
     date: Date | undefined;
@@ -29,15 +31,55 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
     selectedDoctor,
     setSelectedDoctor,
     treatment,
-
 }) => {
     const locationOptions = [
         { id: 'clinic', label: 'Clinic service', img: '/images/clinic.png' },
         { id: 'home', label: 'Home service', img: '/icons/home-care.png' },
     ];
     const isPastDays = (day: Date) => {
-        return day < new Date()
-    }
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return day < today;
+    };
+    const { toast } = useToast();
+
+    const [loading, setLoading] = useState(false);
+    const [timeSlots, setTimeSlots] = useState<TimeSlot[] | null>(null)
+    const generateTimeSlots = async (doctor_id: number | null, treatment_id: number, date: string) => {
+
+        try {
+            setLoading(true);
+            const response = await fetch("/api/treatments/time_slots", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    doctor_id: doctor_id,
+                    treatment_id: treatment_id,
+                    date: date
+                }),
+            });
+
+            const result = await response.json();
+            if (result.code == 200) {
+                console.log(result.data);
+                setTimeSlots(result.data);
+            }
+
+
+            if (!response.ok) throw new Error(result.error || "Failed to Generate Time Slots");
+
+            // alert("Time Slots Generated successfully!");
+
+            return true;
+        } catch (error: any) {
+            alert(error.message || "Something went wrong");
+            return false;
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div>
@@ -118,7 +160,7 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                                 >
                                     <Image
                                         src={doctor.user.profile_picture ?? "/images/noavatar.png"}
-                                        alt={doctor.user.name}
+                                        alt={doctor.user.first_name}
                                         width={50}
                                         height={50}
                                         className="h-full w-full object-cover"
@@ -140,9 +182,19 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                             mode="single"
                             selected={date}
                             onSelect={(date) => {
+                                if (!selectedDoctor) {
+                                    alert("Please select a doctor first.");
+                                    // toast({
+                                    //     title: "Error",
+                                    //     description: "Please select a doctor first."
+
+                                    // });
+                                    return;
+                                }
                                 if (date) {
                                     console.log(format(date, "yyyy-MM-dd"));
                                     setDate(date);
+                                    generateTimeSlots(selectedDoctor, treatment.id, format(date, "yyyy-MM-dd"))
                                 }
                             }}
                             disabled={isPastDays}
@@ -157,30 +209,60 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                         Select Time
                     </div>
                     <div className="grid grid-cols-3 mt-4 gap-2">
-                        {treatment.time_slots.map((item) => (
-                            <div key={item.id} className="py-2 flex items-center">
-                                <div
-                                    onClick={() =>
-                                        item.is_available === 1
-                                            ? setSelectedTimeSlot(item)
-                                            : alert(
-                                                'This Time is not Available. Please try another one.'
-                                            )
-                                    }
-                                    className={`py-2 w-full justify-center items-center flex rounded-lg font-semibold ${item.is_available === 1
-                                        ? 'bg-gray-300 text-gray-950 hover:bg-primaryColor cursor-pointer'
-                                        : 'bg-gray-50 text-gray-500'
-                                        } ${item === selectedTimeSlot &&
-                                        'bg-primaryColor text-white'
-                                        }`}
-                                >
-                                    {item.start_time.slice(0, 5)}{' '}
-                                    {Number(item.start_time.split(':')[0]) < 12
-                                        ? 'AM'
-                                        : 'PM'}
-                                </div>
+                        {loading ?
+                            <div className="container mx-auto p-4 flex justify-center items-center h-full">
+                                <ClipLoader size={50} color="#3498db" loading={loading} />
                             </div>
-                        ))}
+                            : timeSlots != null ? timeSlots.map((item) => (
+                                <div key={item.id} className="py-2 flex items-center">
+                                    <div
+                                        onClick={() =>
+                                            item.is_available === 1
+                                                ? setSelectedTimeSlot(item)
+                                                : alert(
+                                                    'This Time is not Available. Please try another one.'
+                                                )
+                                        }
+                                        className={`py-2 w-full justify-center items-center flex rounded-lg font-semibold ${item.is_available === 1
+                                            ? 'bg-gray-300 text-gray-950 hover:bg-primaryColor cursor-pointer'
+                                            : 'bg-gray-50 text-gray-500'
+                                            } ${item === selectedTimeSlot &&
+                                            'bg-primaryColor text-white'
+                                            }`}
+                                    >
+                                        {item.start_time.slice(0, 5)}{' '}
+                                        {Number(item.start_time.split(':')[0]) < 12
+                                            ? 'AM'
+                                            : 'PM'}
+                                    </div>
+                                </div>
+                            ))
+                                : treatment.time_slots.map((item) => (
+                                    <div key={item.id} className="py-2 flex items-center">
+                                        <div
+                                            onClick={() =>
+                                                item.is_available === 1
+                                                    ? setSelectedTimeSlot(item)
+                                                    : alert(
+                                                        'This Time is not Available. Please try another one.'
+                                                    )
+                                            }
+                                            className={`py-2 w-full justify-center items-center flex rounded-lg font-semibold ${item.is_available === 1
+                                                ? 'bg-gray-300 text-gray-950 hover:bg-primaryColor cursor-pointer'
+                                                : 'bg-gray-50 text-gray-500'
+                                                } ${item === selectedTimeSlot &&
+                                                'bg-primaryColor text-white'
+                                                }`}
+                                        >
+                                            {item.start_time.slice(0, 5)}{' '}
+                                            {Number(item.start_time.split(':')[0]) < 12
+                                                ? 'AM'
+                                                : 'PM'}
+                                        </div>
+                                    </div>
+                                ))
+                        }
+
                     </div>
                 </div>
             </div>

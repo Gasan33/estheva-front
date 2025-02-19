@@ -60,14 +60,13 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
         )
 
         try {
-            const response = await fetch("/api/appointments", {
+            const response = await fetch("/api/appointments/store", {
                 method: "POST",
                 headers: {
-                    "Authorization": `Bearer ${session.data?.user.access_token}`,
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    user_id: session.data?.user.id,
+                    user_id: Number(session.data?.user.id),
                     doctor_id: selectedDoctor,
                     treatment_id: treatment.id,
                     time_slot_id: selectedTimeSlot.id,

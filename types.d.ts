@@ -113,11 +113,12 @@ interface Appointment {
     treatment_id: number;
     appointment_date: string;
     appointment_time: string;
+    location: string;
     status: string;
     notes: string;
     created_at: string;
     updated_at: string;
-    user: User;
+    patient: User;
     doctor: Doctor;
     treatment: Treatment;
 }

@@ -55,7 +55,7 @@ export const Header = ({ session }: { session?: Session | null }) => {
             `}
                 >
                     <Link href={'/'} >
-                        <Image src='/icons/logo.svg' alt='Estheva Polyclinic' width={120} height={60} className='object-contain h-12' />
+                        <Image src='/icons/logo.svg' alt='Estheva Polyclinic' width={120} height={60} style={{ height: "auto" }} priority={true} className='object-contain h-12' />
                     </Link>
                     <NavMenuItems />
 
