@@ -40,15 +40,16 @@ const BlockEvents = () => {
             const response = await fetch(`/api/admin/appointments`);
             const data = await response.json();
 
-            const appointments = data.data.map((appointment: any) => {
+            const appointments = data.data.map((appointment: Appointment) => {
                 const startTime = new Date(
                     Number(appointment.appointment_date.split("-")[0]),
-                    Number(appointment.appointment_date.split("-")[1]) - 1, // Months are 0-indexed
+                    Number(appointment.appointment_date.split("-")[1]) - 1,
                     Number(appointment.appointment_date.split("-")[2]),
                     Number(appointment.appointment_time.split(":")[0]),
                     Number(appointment.appointment_time.split(":")[1]),
                     0
                 );
+
 
                 const endTime = new Date(startTime);
                 endTime.setMinutes(endTime.getMinutes() + appointment.treatment.duration); // Properly add minutes
@@ -60,9 +61,11 @@ const BlockEvents = () => {
                     EndTime: endTime,
                     IsAllDay: false,
                     IsBlock: false,
-                    EmployeeId: appointment.doctor_id
+                    EmployeeId: appointment.doctor.id
                 };
             });
+
+            console.log(appointments)
 
             setAppointmentData(extend([], appointments, true));
             setLoading(false);
