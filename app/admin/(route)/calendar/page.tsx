@@ -11,6 +11,7 @@ import {
     Day,
     TimelineViews,
     TimelineMonth,
+    ResourceDetails,
 
 } from '@syncfusion/ej2-react-schedule';
 import "@syncfusion/ej2-base/styles/material.css";
@@ -130,28 +131,24 @@ const BlockEvents = () => {
         );
     }
 
-    const resourceHeaderTemplate = (props: TimeLineEvent) => {
-        const doctor = props?.appointment?.doctor ?? {};
-        const user = doctor?.user ?? {};
 
-        return (
-            <div className="template-wrap">
-                <div className="employee-category">
-                    <Avatar className="w-16 h-full">
-                        <AvatarImage
-                            src={user?.profile_picture ?? "/images/noavatar.png"}
-                            alt={user?.first_name ?? "Unknown"}
-                            className="object-cover"
-                        />
-                        <AvatarFallback className="bg-amber-100">
-                            {getInitials(user?.name ?? "GU")}
-                        </AvatarFallback>
-                    </Avatar>
-                    <div className="employee-name">{user?.name ?? "Unknown Doctor"}</div>
-                    <div className="employee-designation">{doctor?.specialty ?? "No Specialty"}</div>
-                </div>
+    const getEmployeeName = (value: { resourceData: { [x: string]: any; }; resource: { textField: string | number; }; }) => {
+        return value.resourceData[value.resource.textField];
+    };
+    const getEmployeeImage = (value: any) => {
+        return getEmployeeName(value).toLowerCase();
+    };
+    const getEmployeeDesignation = (value: { resourceData: { Designation: any; }; }) => {
+        return value.resourceData.Designation;
+    };
+    const resourceHeaderTemplate = (props: any) => {
+        return (<div className="template-wrap">
+            <div className="employee-category">
+                <div className={"employee-image " + getEmployeeImage(props)} />
+                <div className="employee-name"> {getEmployeeName(props)}</div>
+                <div className="employee-designation">{getEmployeeDesignation(props)}</div>
             </div>
-        );
+        </div>);
     };
 
     return (

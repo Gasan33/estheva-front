@@ -28,7 +28,8 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
         try {
             const response = await fetch(`${config.env.apiEndpoint}/treatments`);
             const data = await response.json();
-            setTreatments(data.data);
+            if (data.data.length > 10) { setTreatments(data.data.slice(0, 10)) } else { setTreatments(data.data); };
+
             if (data.data.length > 0) setTreatment(data.data[0]);
         } catch (error) {
             console.error("Error fetching treatments:", error);

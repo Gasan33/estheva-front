@@ -84,24 +84,24 @@ export const navigationLinks: NavLinks[] = [
         // ]
 
     },
-    {
-        id: 6,
-        path: '',
-        name: 'More',
-        dropMenu: [
-            {
-                id: 1,
-                path: '/faqs',
-                name: 'FAQs',
-            },
-            {
-                id: 2,
-                path: '/support',
-                name: 'Support',
-            },
-        ]
+    // {
+    //     id: 6,
+    //     path: '',
+    //     name: 'More',
+    //     dropMenu: [
+    //         {
+    //             id: 1,
+    //             path: '/faqs',
+    //             name: 'FAQs',
+    //         },
+    //         {
+    //             id: 2,
+    //             path: '/support',
+    //             name: 'Support',
+    //         },
+    //     ]
 
-    },
+    // },
 
 ];
 

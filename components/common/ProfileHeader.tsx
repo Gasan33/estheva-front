@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Avatar, AvatarFallback } from '../ui/avatar'
 import { getInitials } from '@/lib/utils'
-import { Calendar01Icon, Flag02Icon } from 'hugeicons-react'
-import { WeightIcon } from 'lucide-react'
+import { Calendar01Icon, Edit01Icon, Flag02Icon } from 'hugeicons-react'
+import { EditIcon, WeightIcon } from 'lucide-react'
 import { BsGenderMale } from 'react-icons/bs'
 
 const ProfileHeader = () => {
@@ -34,9 +34,21 @@ const ProfileHeader = () => {
 
     return (
         <div className="flex flex-col justify-center items-center gap-6 mb-6 lg:gap-8 lg:mb-8">
-            <Avatar className="h-24 w-24 lg:h-32 lg:w-32">
-                <AvatarFallback className="bg-amber-100">{getInitials("GU")}</AvatarFallback>
-            </Avatar>
+            <div className='relative'>
+                <Avatar className=" h-24 w-24 lg:h-32 lg:w-32">
+                    {/* Avatar Fallback */}
+                    <AvatarFallback className="bg-amber-100">
+                        {getInitials("GU")}
+                    </AvatarFallback>
+
+                    {/* Edit Icon */}
+
+                </Avatar>
+                <div className="absolute bottom-0 right-0 bg-white p-2 rounded-full shadow-md hover:bg-gray-200 cursor-pointer">
+                    <Edit01Icon className="w-5 h-5 text-primary" />
+                </div>
+            </div>
+
             <div className="flex flex-col justify-center items-center text-center">
                 <h1 className="text-primary font-semibold text-lg lg:text-xl uppercase">{user?.name}</h1>
                 <h1 className="text-secondary-900 font-thin text-sm lg:text-lg">

@@ -20,10 +20,12 @@ export default async function Home() {
       <Banner />
       {/* <TopRatedTreatments session={sessionExists} /> */}
       <Treatments />
-      <ExploreWhatWeDo session={sessionExists} />
       <OurTreatments />
+      <ExploreWhatWeDo session={sessionExists} />
+
       <AboutUs />
-      <Consultation />
+      {/* <Consultation /> */}
+
       <Testimonials />
       <Faq />
       <Blogs />
