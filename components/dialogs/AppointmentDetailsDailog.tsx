@@ -17,40 +17,12 @@ import Link from 'next/link';
 import { BaggageClaim, Check, CircleCheckIcon, Star, User } from 'lucide-react';
 import { BsBag } from 'react-icons/bs';
 import { Button } from '../ui/button';
+import { formatTimeWithAMPM, getExactRemainingTime, getMonthName } from '@/lib/utils';
 
 
 
 const AppointmentDetailsDailog = ({ appointment }: { appointment: Appointment }) => {
-    const formatTimeWithAMPM = (timeString: string) => {
-        let [hours, minutes] = timeString.split(":").map(Number);
-        let period = hours < 12 ? "AM" : "PM";
-        hours = hours % 12 || 12; // Convert 24-hour to 12-hour format
-        return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
-    };
-    const getExactRemainingTime = (dateString: string, timeString: string) => {
-        const appointmentDateTime = new Date(`${dateString}T${timeString}`);
-        const now = new Date();
 
-        if (appointmentDateTime < now) {
-            if (appointment.status === "complete") {
-                return "Appointment Completed";
-
-            } else {
-                return "Appointment time has passed please reshcdule";
-            }
-        }
-
-        let diffMs = appointmentDateTime.getTime() - now.getTime();
-        let days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-
-        return `Starts in ${days} days, ${hours} hours, and ${minutes} minutes remaining`;
-    };
-
-    const getMonthName = (monthNumber: number) => {
-        return new Date(2000, monthNumber - 1).toLocaleString("en-US", { month: "long" });
-    };
 
     return (
         <Dialog>
@@ -98,7 +70,7 @@ const AppointmentDetailsDailog = ({ appointment }: { appointment: Appointment })
                             <h1 className="text-primaryColor">{format(new Date(appointment.appointment_date), "dd MMM yyyy")} | {formatTimeWithAMPM(appointment.appointment_time)}</h1>
                         </div>
                         <div>
-                            <h2 className="text-xs text-primaryColor">{getExactRemainingTime(appointment.appointment_date, appointment.appointment_time)}</h2>
+                            <h2 className="text-xs text-primaryColor">{getExactRemainingTime(appointment.appointment_date, appointment.appointment_time, appointment.status)}</h2>
                         </div>
                     </div>
                 </div>
@@ -260,7 +232,7 @@ const AppointmentDetailsDailog = ({ appointment }: { appointment: Appointment })
                 <DialogFooter >
                     <DialogClose asChild>
                         <div className='w-full flex bg-primaryColor h-12 rounded-lg items-center justify-center cursor-pointer text-white text-center font-semibold'>
-                            {getExactRemainingTime(appointment.appointment_date, appointment.appointment_time)}
+                            {getExactRemainingTime(appointment.appointment_date, appointment.appointment_time, appointment.status)}
 
                         </div>
                     </DialogClose>

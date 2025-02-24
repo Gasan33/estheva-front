@@ -673,6 +673,21 @@
   white-space: normal;
 }
 
+/* .e-appointment {
+  overflow: hidden !important;
+  border-radius: 8px;
+} */
+
+.block-events.e-appointment {
+  /* font-size: 10px; */
+  /* overflow: hidden; */
+  /* background: #000; */
+  border-radius: 12px;
+  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: hidden;
+}
+
 .block-events.e-schedule .template-wrap .employee-image.alice {
   background-image: url('https://ej2.syncfusion.com/react/demos/src/schedule/images/alice.png');
 }
@@ -710,4 +725,28 @@
   .e-schedule .e-day-view .employee-designation {
     display: none;
   }
+}
+
+.custom-event {
+  background-color: #E10098;
+  /* Pink background */
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+  /* Slightly rounded corners */
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+}
+
+
+.block-events .e-quick-popup-wrapper {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  min-width: 250px;
 }

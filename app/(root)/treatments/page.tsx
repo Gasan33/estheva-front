@@ -1,21 +1,27 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderPath from "../../../components/common/HeaderPath"
 import TreatmentsList from '@/components/landing/TreatmentsList';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { categories, treatmentTabs } from '@/constants';
 import { ArrowRight01Icon } from 'hugeicons-react';
 import TreatmentReviews from '@/components/landing/TreatmentReviews';
-import { useSession } from 'next-auth/react';
+import { useSearchParams } from 'next/navigation';
 
 
 const Treatments = () => {
     const [currentTab, setCurrentTab] = useState("all");
-    const session = useSession();
+    const searchParams = useSearchParams();
+    const treatmentsTab = searchParams.get('treatments');
 
     const handleTabSwitch = (tab: string) => {
         setCurrentTab(tab);
     };
+    useEffect(() => {
+        if (treatmentsTab) {
+            setCurrentTab(treatmentsTab);
+        }
+    }, [])
     return (
         <div className='my-6'>
             <HeaderPath title="Treatments" path="/treatments"

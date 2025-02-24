@@ -8,6 +8,7 @@ import GoogleMapComponent from "@/components/landing/Location";
 import OurTreatments from "@/components/landing/OurTreatments";
 import Testimonials from "@/components/landing/Testimonials";
 import TopRatedTreatments from "@/components/landing/TopRatedTreatments";
+import Treatments from "@/components/landing/Treatments";
 import { checkSession } from "@/lib/utils";
 
 
@@ -17,7 +18,8 @@ export default async function Home() {
   return (
     <div>
       <Banner />
-      <TopRatedTreatments session={sessionExists} />
+      {/* <TopRatedTreatments session={sessionExists} /> */}
+      <Treatments />
       <ExploreWhatWeDo session={sessionExists} />
       <OurTreatments />
       <AboutUs />

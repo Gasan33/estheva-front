@@ -138,7 +138,10 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                         {treatment.doctors.map((doctor, index) => (
                             <div
                                 key={index}
-                                onClick={() => setSelectedDoctor(doctor.id)}
+                                onClick={() => {
+                                    setSelectedDoctor(doctor.id);
+                                    generateTimeSlots(doctor.id, treatment.id, format(new Date, "yyyy-MM-dd"));
+                                }}
                                 className={`relative flex flex-col items-center gap-2 cursor-pointer ${selectedDoctor === doctor.id
                                     ? 'text-primaryColor'
                                     : 'text-gray-500'
@@ -203,7 +206,7 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                     </div>
                 </div>
                 {/* Time Slot */}
-                <div>
+                {selectedDoctor && <div>
                     <div className="flex gap-2 items-center">
                         <Time01Icon className="text-primaryColor h-5 w-5" />
                         Select Time
@@ -213,7 +216,7 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                             <div className="container mx-auto p-4 flex justify-center items-center h-full">
                                 <ClipLoader size={50} color="#3498db" loading={loading} />
                             </div>
-                            : timeSlots != null ? timeSlots.map((item) => (
+                            : timeSlots != null && timeSlots.map((item) => (
                                 <div key={item.id} className="py-2 flex items-center">
                                     <div
                                         onClick={() =>
@@ -237,34 +240,34 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                                     </div>
                                 </div>
                             ))
-                                : treatment.time_slots.map((item) => (
-                                    <div key={item.id} className="py-2 flex items-center">
-                                        <div
-                                            onClick={() =>
-                                                item.is_available === 1
-                                                    ? setSelectedTimeSlot(item)
-                                                    : alert(
-                                                        'This Time is not Available. Please try another one.'
-                                                    )
-                                            }
-                                            className={`py-2 w-full justify-center items-center flex rounded-lg font-semibold ${item.is_available === 1
-                                                ? 'bg-gray-300 text-gray-950 hover:bg-primaryColor cursor-pointer'
-                                                : 'bg-gray-50 text-gray-500'
-                                                } ${item === selectedTimeSlot &&
-                                                'bg-primaryColor text-white'
-                                                }`}
-                                        >
-                                            {item.start_time.slice(0, 5)}{' '}
-                                            {Number(item.start_time.split(':')[0]) < 12
-                                                ? 'AM'
-                                                : 'PM'}
-                                        </div>
-                                    </div>
-                                ))
+                            // : treatment.time_slots.map((item) => (
+                            //     <div key={item.id} className="py-2 flex items-center">
+                            //         <div
+                            //             onClick={() =>
+                            //                 item.is_available === 1
+                            //                     ? setSelectedTimeSlot(item)
+                            //                     : alert(
+                            //                         'This Time is not Available. Please try another one.'
+                            //                     )
+                            //             }
+                            //             className={`py-2 w-full justify-center items-center flex rounded-lg font-semibold ${item.is_available === 1
+                            //                 ? 'bg-gray-300 text-gray-950 hover:bg-primaryColor cursor-pointer'
+                            //                 : 'bg-gray-50 text-gray-500'
+                            //                 } ${item === selectedTimeSlot &&
+                            //                 'bg-primaryColor text-white'
+                            //                 }`}
+                            //         >
+                            //             {item.start_time.slice(0, 5)}{' '}
+                            //             {Number(item.start_time.split(':')[0]) < 12
+                            //                 ? 'AM'
+                            //                 : 'PM'}
+                            //         </div>
+                            //     </div>
+                            // ))
                         }
 
                     </div>
-                </div>
+                </div>}
             </div>
         </div>
     );

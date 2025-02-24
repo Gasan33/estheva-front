@@ -105,6 +105,16 @@ interface User {
 }
 
 
+interface TimeLineEvent {
+    Id: number,
+    Subject: string,
+    StartTime: string,
+    EndTime: string,
+    IsAllDay: boolean,
+    IsBlock: boolean,
+    EmployeeId: number,
+    appointment: Appointment,
+}
 
 interface Appointment {
     id: number;
