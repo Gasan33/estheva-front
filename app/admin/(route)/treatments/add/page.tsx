@@ -16,6 +16,8 @@ import { BiCategory } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import CustomInput from "@/components/common/CustomInput";
+import { Switch } from "@/components/ui/switch"
+import ExtraTimeSettings from "@/components/admin/ExtraTime";
 
 const NewService = () => {
     const [treatmentName, setTreatmentName] = useState<string | null>(null);
@@ -175,28 +177,6 @@ const NewService = () => {
                                         icon={<RiServiceLine className="text-gray-500" />}
                                         onChange={(e) => setTreatmentName(e.target.value)}
                                     />
-                                    {/* <div className="w-full mb-6 ">
-                                        <label
-                                            className="mb-3 block text-sm font-medium text-black dark:text-white"
-                                            htmlFor="serviceName"
-                                        >
-                                            Service Name
-                                        </label>
-                                        <div className="relative">
-                                            <span className="absolute left-4 top-4">
-                                                <RiServiceLine />
-                                            </span>
-                                            <input
-                                                className="w-full rounded border border-stroke bg-gray py-3 pl-10 pr-4 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                                                type="text"
-                                                name="serviceName"
-                                                id="serviceName"
-                                                placeholder="Enter Service Name..."
-                                                onChange={(e) => setTreatmentName(e.target.value)}
-                                                required
-                                            />
-                                        </div>
-                                    </div> */}
                                     <div className="mb-6 flex flex-col gap-4 sm:flex-row">
 
                                         <div className="w-full sm:w-1/2">
@@ -236,27 +216,6 @@ const NewService = () => {
                                                 icon={<RiCurrencyLine className="text-gray-500" />}
                                                 onChange={(e) => setTreatmentPrice(parseFloat(e.target.value))}
                                             />
-                                            {/* <label
-                                                className="mb-3 block text-sm font-medium text-black dark:text-white"
-                                                htmlFor="servicePrice"
-                                            >
-                                                Service Price
-                                            </label>
-                                            <div className="relative">
-                                                <span className="absolute left-4 top-4">
-                                                    <RiCurrencyLine />
-                                                </span>
-                                                <input
-                                                    className="w-full rounded border border-stroke bg-gray appearance-none py-3 pl-10 pr-4 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                                                    type="number"
-                                                    name="servicePrice"
-                                                    id="servicePrice"
-                                                    placeholder="Enter Service Price..."
-                                                    onChange={(e) => setTreatmentPrice(parseFloat(e.target.value))}
-                                                    required
-
-                                                />
-                                            </div> */}
                                         </div>
                                     </div>
 
@@ -300,27 +259,6 @@ const NewService = () => {
                                                 icon={<RiCurrencyLine className="text-gray-500" />}
                                                 onChange={(e) => setTreatmentDuration(parseInt(e.target.value, 10))}
                                             />
-                                            {/* <label
-                                                className="mb-3 block text-sm font-medium text-black dark:text-white"
-                                                htmlFor="serviceDuration"
-                                            >
-                                                Service Duration (in min)
-                                            </label>
-                                            <div className="relative">
-                                                <span className="absolute left-4 top-4">
-                                                    <RiCurrencyLine />
-                                                </span>
-                                                <input
-                                                    className="w-full rounded border border-stroke bg-gray appearance-none py-3 pl-10 pr-4 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-                                                    type="number"
-                                                    name="serviceDuration"
-                                                    id="serviceDuration"
-                                                    placeholder="Enter Service Duration time ..."
-                                                    onChange={(e) => setTreatmentDuration(parseInt(e.target.value, 10))}
-                                                    required
-
-                                                />
-                                            </div> */}
                                         </div>
                                     </div>
 
@@ -343,6 +281,29 @@ const NewService = () => {
                                         <div className="flex w-full h-[50px] items-center space-x-2">
 
                                             <Input type="text" placeholder="Add Service benifite..." className="h-[50px]" onChange={(e) => setBen(e.target.value)} />
+                                            <Button type="button" className="h-[50px] bg-green-600 flex items-center text-white px-4 rounded-sm" onClick={addBenefit}>Add</Button>
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-6">
+                                        <label
+                                            className="mb-3 block text-sm font-medium text-black dark:text-white"
+                                            htmlFor="serviceBenifits"
+                                        >
+                                            Service Instructions
+                                        </label>
+                                        {treatmentBenefits && treatmentBenefits.map((item: string, index: number) => (
+
+                                            <div key={index * -5} className="flex justify-between items-center px-2 py-2 font-medium text-lg mb-4 rounded-sm border border-gray-200 bg-gray-100">
+                                                {item}
+                                                <CgRemove onClick={() => handleBenefitDelete(item)} />
+
+                                            </div>
+
+                                        ))}
+                                        <div className="flex w-full h-[50px] items-center space-x-2">
+
+                                            <Input type="text" placeholder="Add Service instructions..." className="h-[50px]" onChange={(e) => setBen(e.target.value)} />
                                             <Button type="button" className="h-[50px] bg-green-600 flex items-center text-white px-4 rounded-sm" onClick={addBenefit}>Add</Button>
                                         </div>
                                     </div>
@@ -399,6 +360,9 @@ const NewService = () => {
                                         </div>
                                     </div>
 
+
+
+
                                     <div className="flex justify-end gap-4">
                                         <button
                                             className="flex justify-center rounded border border-stroke px-6 py-2 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
@@ -438,6 +402,7 @@ const NewService = () => {
                                 <UploadVideo setVideoUrl={setTreatmentVideo} />
                             </div>
                         </div>
+                        <div className="my-4"><ExtraTimeSettings /></div>
                     </div>
                 </div>
             </div>

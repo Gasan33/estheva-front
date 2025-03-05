@@ -31,7 +31,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatDuration, formatTimeWithAMPM, getInitials, getRandomColor } from '@/lib/utils';
 import { CatalogueIcon, Doctor01Icon, UserAccountIcon, UserIcon } from 'hugeicons-react';
 
-registerLicense("Ngo9BigBOggjHTQxAR8/V1NMaF1cXmhLYVJ+WmFZfVtgfF9HaVZVQWYuP1ZhSXxWdkdiWH9WcX1RQ2BdVkI=");
+registerLicense("Mzc0NTM1OEAzMjM4MmUzMDJlMzBKT3lhd1dEMnpqTXBxd2MwMW83NDZvMTkyTzRmUzMwOVlXK1dGZng2bUJFPQ==");
 
 L10n.load({
     'en-US': {

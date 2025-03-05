@@ -11,7 +11,6 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories, setTreatments, 
     const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
     const fetchTreatmentsByCategory = async (category_id: number) => {
         try {
-
             const response = await fetch(`${config.env.apiEndpoint}/treatments/search/${category_id}`);
             const data = await response.json();
             console.log(data)

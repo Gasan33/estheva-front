@@ -31,7 +31,11 @@ const Users = () => {
     return (
         <div className="container h-full mx-auto p-4">
             <div className="p-4 bg-white rounded-lg">
-                <div className="flex justify-end">
+                <div className="flex justify-between">
+                    <div className='flex flex-col text-primary'>
+                        <h1 className='font-semibold text-3xl'>Clients list</h1>
+                        <p className='text-sm font-thin'>View, add, edit and delete your client's details.</p>
+                    </div>
                     <Link href="/users/add" className="flex justify-center items-center gap-2 py-2 px-4 bg-blue-600 text-white rounded-md">
                         <BiAddToQueue />
                         Add New User

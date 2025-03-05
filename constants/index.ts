@@ -1,45 +1,57 @@
 export const navigationLinks: NavLinks[] = [
-    // {
-    //     id: 1,
-    //     path: '/',
-    //     name: 'Home',
-
-
-    // },
     {
         id: 1,
         path: '/',
-        name: 'Treatments',
+        name: 'Home',
+
+
+    },
+    {
+        id: 2,
+        path: '/treatments',
+        name: 'Medical Treatments',
         dropMenu: [
             {
                 id: 1,
                 path: '/treatments',
-                name: 'All Treatments',
-                value: 'all',
+                name: 'BODY CONTOURING AND Weightloss',
+                value: 'body-contouring-and-weightloss',
             },
             {
                 id: 2,
                 path: '/treatments',
-                name: 'Top Rated Treatments',
-                value: 'top-rated',
+                name: 'IV Therapy',
+                value: 'iv-therapy',
             },
             {
                 id: 3,
                 path: '/treatments',
-                name: 'Pupolar Treatments',
-                value: 'pupolar',
+                name: 'AESTHETICS',
+                value: 'aesthetics',
             },
             {
                 id: 4,
                 path: '/treatments',
-                name: 'Clinic Treatments',
-                value: 'clinic-treatments',
+                name: 'HAIR TRANSPLANT',
+                value: 'hair-transplant',
             },
             {
                 id: 5,
                 path: '/treatments',
-                name: 'Home Treatments',
-                value: 'home-treatments',
+                name: 'PHYSIOTHERAPY',
+                value: 'physiotherapy',
+            },
+            {
+                id: 6,
+                path: '/treatments',
+                name: 'HEALTH AND WELLNESS',
+                value: 'health-and-wellness',
+            },
+            {
+                id: 7,
+                path: '/treatments',
+                name: 'CONSULTATIONS',
+                value: 'consultaions',
             },
 
         ]
@@ -47,61 +59,26 @@ export const navigationLinks: NavLinks[] = [
     },
 
     {
-        id: 2,
+        id: 3,
         path: '/special-offers',
         name: 'Special Offers',
 
     },
     {
-        id: 3,
+        id: 4,
         path: '/about',
-        name: 'About us',
+        name: 'Doctor Consultations',
 
     },
 
 
     {
-        id: 4,
+        id: 5,
         path: '/contact',
         name: 'Contact',
 
     },
-    {
-        id: 5,
-        path: '/blogs',
-        name: 'Blogs',
-        // dropMenu: [
-        //     {
-        //         id: 1,
-        //         path: '/blogs/news',
-        //         name: 'News',
-        //     },
-        //     {
-        //         id: 2,
-        //         path: '/blogs/blogs',
-        //         name: 'Blogs',
-        //     },
-        // ]
 
-    },
-    // {
-    //     id: 6,
-    //     path: '',
-    //     name: 'More',
-    //     dropMenu: [
-    //         {
-    //             id: 1,
-    //             path: '/faqs',
-    //             name: 'FAQs',
-    //         },
-    //         {
-    //             id: 2,
-    //             path: '/support',
-    //             name: 'Support',
-    //         },
-    //     ]
-
-    // },
 
 ];
 
@@ -1754,36 +1731,46 @@ export const faqs = [
 ];
 
 export const treatmentTabs: TreatmentTab[] = [
+
+
+
     {
         id: 1,
-        title: "All",
-        value: "all",
+        title: "BODY CONTOURING AND Weightloss",
+        value: "body-contouring-and-weightloss",
 
     },
     {
         id: 2,
-        title: "Top Rated",
-        value: "top-rated",
+        title: "IV Therapy",
+        value: "iv-therapy",
 
     },
     {
         id: 3,
-        title: "Popular",
-        value: "popular",
+        title: "AESTHETICS",
+        value: "aesthetics",
 
     },
     {
         id: 4,
-        title: "Clinic",
-        value: "clinic-treatments",
+        title: "HAIR TRANSPLANT",
+        value: "hair-transplant",
 
     },
     {
         id: 5,
-        title: "Home",
-        value: "home-treatments",
+        title: "HEALTH AND WELLNESS",
+        value: "health-and-wellness",
 
     },
+    {
+        id: 6,
+        title: "CONSULTATIONS",
+        value: "consultaions",
+
+    },
+
 ]
 
 export const appointmentsTabs: TreatmentTab[] = [

@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { BiAddToQueue } from 'react-icons/bi';
 import config from '@/lib/config';
 import { ClipLoader } from 'react-spinners';
-import Image from 'next/image';
 import CategoryList from '@/components/common/CategoriesList';
 
 const Treatments = () => {

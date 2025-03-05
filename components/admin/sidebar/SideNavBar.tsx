@@ -21,7 +21,7 @@ import {
     MdClose,
     MdMenu
 } from "react-icons/md";
-import { Calendar01Icon, Logout01Icon } from 'hugeicons-react'
+import { Calendar01Icon, Logout01Icon, News01Icon } from 'hugeicons-react'
 import { LogOutIcon, Users } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { signOut } from 'next-auth/react'
@@ -33,16 +33,16 @@ const menuItems = [
     { title: "Calendar", path: "/admin/calendar", icon: <Calendar01Icon className='object-fill h-8 w-8' /> },
     { title: "Clients", path: "/admin/users", icon: <Users className='object-fill h-8 w-8' /> },
     { title: "Treatment", path: "/admin/treatments", icon: <MdShoppingBag className='object-fill h-8 w-8' /> },
-    { title: "Categories", path: "/admin/categories", icon: <MdCategory className='object-fill h-8 w-8' /> },
+    // { title: "Categories", path: "/admin/categories", icon: <MdCategory className='object-fill h-8 w-8' /> },
 
     { title: "Doctors", path: "/admin/doctors", icon: <MdPeopleOutline className='object-fill h-8 w-8' /> },
-    { title: "Appointments", path: "/admin/appointments", icon: <MdCalendarMonth className='object-fill h-8 w-8' /> },
+    { title: "Blogs Posts", path: "/admin/blogs", icon: <News01Icon className='object-fill h-8 w-8' /> },
     { title: "Offers", path: "/admin/offers", icon: <MdCardGiftcard className='object-fill h-8 w-8' /> },
     { title: "Transactions", path: "/admin/transactions", icon: <MdAttachMoney className='object-fill h-8 w-8' /> },
 
     { title: "Revenue", path: "/admin/dashboard/revenue", icon: <MdWork className='object-fill h-8 w-8' /> },
     { title: "Reports", path: "/admin/dashboard/reports", icon: <MdAnalytics className='object-fill h-8 w-8' /> },
-    { title: "Teams", path: "/admin/dashboard/teams", icon: <MdPeople className='object-fill h-8 w-8' /> },
+    // { title: "Teams", path: "/admin/dashboard/teams", icon: <MdPeople className='object-fill h-8 w-8' /> },
 
     { title: "Settings", path: "/admin/settings", icon: <MdOutlineSettings className='object-fill h-8 w-8' /> },
     { title: "Help", path: "/admin/help", icon: <MdHelpCenter className='object-fill h-8 w-8' /> },

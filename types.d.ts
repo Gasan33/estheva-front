@@ -158,9 +158,9 @@ interface Article {
     author: string;
     title: string;
     topic: string;
-    date: string; // Use ISO 8601 format for dates or validate accordingly
+    date: string;
     des: string;
-    img: string; // URL for the image
+    img: string;
 }
 interface SocialLink {
     path: string;

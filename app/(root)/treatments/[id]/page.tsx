@@ -19,7 +19,7 @@ export async function generateMetadata(
     const treatment = await fetch(`${config.env.apiEndpoint}/treatments/${id}`).then((res) => res.json());
 
     return {
-        title: treatment ? treatment.name : 'Blog Details',
+        title: treatment ? treatment.name : 'Treatment Details',
         description: treatment ? treatment.desc : "",
         openGraph: {
             images: treatment ? treatment.img : [],

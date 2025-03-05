@@ -86,9 +86,9 @@ export const Footer: React.FC = () => {
 
                         </div>
                         <div className='w-[50%] h-full hidden lg:block'>
-                            <h1 className='text-lg text-primaryColor font-thin'>{navigationLinks[0].name}</h1>
+                            <h1 className='text-lg text-primaryColor font-thin'>{navigationLinks[1].name}</h1>
                             <div className='grid grid-cols-3 gap-8 mt-4 text-sm font-thin'>
-                                {navigationLinks[0].dropMenu!.map(
+                                {navigationLinks[1].dropMenu!.map(
                                     (link) => (
                                         <Link
                                             key={link.id}
@@ -169,7 +169,7 @@ export const Footer: React.FC = () => {
                             </motion.div>
                         </div>
                         <div className='flex flex-col justify-between text-lg gap-2 text-primaryColor'>
-                            {navigationLinks.slice(1, 5).map(
+                            {navigationLinks.slice(0, 5).map(
                                 (link) => (
                                     <Link
                                         key={link.id}

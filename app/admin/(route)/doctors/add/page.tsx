@@ -1,156 +1,119 @@
 "use client"
-import { BiCategory } from "react-icons/bi";
-import UploadImage from "../../../../../components/admin/uploadImage/UploadImage";
-import { useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/navigation";
 
+import React, { useState } from 'react';
 
-const NewDoctor = () => {
-    const router = useRouter();
-    const [categoryName, setCategoryName] = useState("");
-    const [categorySlug, setCategorySlug] = useState("");
-    const [categoryDesc, setCategoryDesc] = useState("");
-    const [categoryImage, setCategoryImage] = useState<File | null>(null); // File type for category image
+const AddTeamMember = () => {
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phoneNumber: '',
+        additionalPhoneNumber: '',
+        country: '',
+        birthday: '',
+        year: ''
+    });
 
-    const authToken = localStorage.getItem("authToken");
+    const handleChange = (e: { target: { name: any; value: any; }; }) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
 
-    // useEffect(() => {
-    //     if (typeof window !== "undefined") {
-    //         const token = localStorage.getItem("authToken");
-    //         console.log(token);
-    //     }
-    // }, [authToken]);
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-
+    const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        console.log(authToken)
-        if (!authToken) {
-            alert("Token not found. Please log in.");
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append("name", categoryName ?? "");
-        formData.append("slug", categorySlug ?? "");
-        formData.append("description", categoryDesc ?? "");
-        if (categoryImage) {
-            formData.append("image", categoryImage); // Append the image file
-        }
-
-        try {
-            const response = await axios.post(
-                "https://estheva-clinic.com/api/v1/categories",
-                formData,
-                {
-                    headers: {
-                        Authorization: `Bearer ${authToken}`, // Use the token from the server component
-                    },
-                }
-            );
-            console.log(response.data);
-            router.push('/categories');
-            alert("Category Created Successfully");
-        } catch (error) {
-            console.error("Error creating category:", error);
-            alert("Error creating category.");
-        }
+        // You can handle form submission logic here
+        console.log(formData);
     };
 
     return (
-        <div></div>
-        // <div className="mx-auto p-4 bg-gray-200">
-        //     <div className="">
-        //         <div className="col-span-5 xl:col-span-3">
-        //             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        //                 <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
-        //                     <h3 className="font-semibold text-black dark:text-white">
-        //                         Add New Category
-        //                     </h3>
-        //                 </div>
-        //                 <div className="p-7">
-        //                     <form onSubmit={handleSubmit}>
-        //                         <div className="mb-6 flex flex-col gap-5.5 sm:flex-row">
-        //                             <div className="w-full sm:w-1/2">
-        //                                 <label
-        //                                     className="mb-3 block text-sm font-medium text-black dark:text-white"
-        //                                     htmlFor="categoryName"
-        //                                 >
-        //                                     Category Name
-        //                                 </label>
-        //                                 <div className="relative w-full">
-        //                                     <span className="absolute left-4 top-4">
-        //                                         <BiCategory />
-        //                                     </span>
-        //                                     <input
-        //                                         className="w-full rounded border border-stroke bg-gray py-3 pl-10 pr-4 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-        //                                         type="text"
-        //                                         name="categoryName"
-        //                                         id="categoryName"
-        //                                         onChange={(e) => {
-        //                                             setCategoryName(e.target.value);
-        //                                             setCategorySlug(e.target.value); // You can use categoryName to generate slug
-        //                                         }}
-        //                                         required
-        //                                         placeholder="Category Name.."
-        //                                     />
-        //                                 </div>
-        //                             </div>
-        //                         </div>
+        <div className="flex">
+            {/* Sidebar */}
+            <div className="w-1/4 bg-white shadow-md p-4">
+                <h2 className="font-bold mb-4">Add team member</h2>
+                <ul className="space-y-2">
+                    <li className="text-purple-500">Profile</li>
+                    <li>Addresses</li>
+                    <li>Emergency contacts</li>
+                </ul>
+                <h3 className="font-bold mt-6 mb-2">Workspace</h3>
+                <ul className="space-y-2">
+                    <li>Services (67)</li>
+                    <li>Locations (1)</li>
+                    <li>Settings</li>
+                </ul>
+                <h3 className="font-bold mt-6 mb-2">Pay</h3>
+                <ul className="space-y-2">
+                    <li>Wages and timesheets</li>
+                    <li>Commissions</li>
+                    <li>Pay runs</li>
+                </ul>
+            </div>
 
-        //                         <div className="mb-6">
-        //                             <label
-        //                                 className="mb-3 block text-sm font-medium text-black dark:text-white"
-        //                                 htmlFor="categoryDesc"
-        //                             >
-        //                                 Category Description
-        //                             </label>
-        //                             <div className="relative">
-        //                                 <textarea
-        //                                     className="w-full rounded border border-stroke bg-gray py-3 pl-10 pr-4 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
-        //                                     name="categoryDesc"
-        //                                     id="categoryDesc"
-        //                                     rows={6}
-        //                                     onChange={(e) => setCategoryDesc(e.target.value)}
-        //                                     required
-        //                                     placeholder="Write Category description here..."
-        //                                 ></textarea>
-        //                             </div>
-        //                         </div>
+            {/* Main Content */}
+            <div className="flex-1 bg-gray-50 p-6">
+                <h1 className="text-3xl font-bold mb-6">Profile</h1>
+                <p className="mb-4">Manage your team members personal profile</p>
 
-        //                         <div className="mb-6">
-        //                             <label
-        //                                 className="mb-3 block text-sm font-medium text-black dark:text-white"
-        //                                 htmlFor="categoryImage"
-        //                             >
-        //                                 Category Image
-        //                             </label>
-        //                             <UploadImage name="categoryImage" setImageUrl={setCategoryImage} />
-        //                         </div>
+                <div className="bg-white p-6 rounded shadow">
+                    <div className="flex items-center mb-4">
+                        <div className="w-16 h-16 bg-purple-200 rounded-full flex items-center justify-center">
+                            <span className="text-purple-600">👤</span>
+                        </div>
+                        <button className="ml-4 text-purple-600">Edit</button>
+                    </div>
 
-        //                         <div className="flex justify-end gap-4">
-        //                             <button
-        //                                 className="flex justify-center rounded border border-stroke px-6 py-2 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
-        //                                 type="button"
-        //                                 onClick={() => router.back()}
-        //                             >
-        //                                 Cancel
-        //                             </button>
-        //                             <button
-        //                                 className="flex justify-center text-white  rounded bg-primary px-6 py-2 font-medium text-gray hover:bg-opacity-90"
-        //                                 type="submit"
-        //                             >
-        //                                 Save
-        //                             </button>
-        //                         </div>
-        //                     </form>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </div>
+                    <form className="space-y-4">
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="block mb-1">First name *</label>
+                                <input type="text" className="border rounded w-full p-2" />
+                            </div>
+                            <div>
+                                <label className="block mb-1">Last name</label>
+                                <input type="text" className="border rounded w-full p-2" />
+                            </div>
+                            <div>
+                                <label className="block mb-1">Email *</label>
+                                <input type="email" className="border rounded w-full p-2" />
+                            </div>
+                            <div>
+                                <label className="block mb-1">Phone number</label>
+                                <div className="flex">
+                                    <input type="tel" className="border rounded-l w-1/4 p-2" placeholder="+971" />
+                                    <input type="tel" className="border rounded-r w-3/4 p-2" />
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block mb-1">Additional phone number</label>
+                                <input type="tel" className="border rounded w-full p-2" />
+                            </div>
+                            <div>
+                                <label className="block mb-1">Country</label>
+                                <select className="border rounded w-full p-2">
+                                    <option>Select country</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block mb-1">Birthday</label>
+                                <input type="date" className="border rounded w-full p-2" />
+                            </div>
+                            <div>
+                                <label className="block mb-1">Year</label>
+                                <input type="number" className="border rounded w-full p-2" />
+                            </div>
+                        </div>
+                        <div className="flex justify-end mt-6">
+                            <button className="bg-black text-white px-4 py-2 rounded">Add</button>
+                            <button className="ml-2 border border-black px-4 py-2 rounded">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     );
 };
 
-export default NewDoctor;
+export default AddTeamMember;
