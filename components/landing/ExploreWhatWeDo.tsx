@@ -17,7 +17,7 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
     // Initialize AOS
     useEffect(() => {
         AOS.init({
-            duration: 800,
+            duration: 5000,
             easing: "ease-in-out",
             offset: 100,
             once: false,
@@ -70,14 +70,14 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
                     defaultValue="clinic-treatments"
                     className="w-full xl:w-[40%] xl:h-screen px-6 md:px-12 xl:px-16"
                 >
-                    <TabsList className="h-12 md:h-16 rounded-full bg-light-100">
+                    {/* <TabsList className="h-12 md:h-16 rounded-full bg-light-100">
                         <TabsTrigger value="clinic-treatments" className="px-4 py-2 md:px-6 md:py-4 rounded-full text-sm md:text-base">
                             Clinic Treatments
                         </TabsTrigger>
                         <TabsTrigger value="home-treatments" className="px-4 py-2 md:px-6 md:py-4 rounded-full text-sm md:text-base">
                             Home Treatments
                         </TabsTrigger>
-                    </TabsList>
+                    </TabsList> */}
 
                     <div className="mt-6 md:mt-12 ml-2 md:ml-4">
                         {/* Clinic Treatments */}

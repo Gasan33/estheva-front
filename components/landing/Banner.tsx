@@ -7,8 +7,9 @@ const Banner: React.FC = () => {
             <div className="flex flex-col lg:flex-row h-[100%] items-center justify-between">
 
 
-                <div className="text-[32px] md:text-[64px] flex-1 z-10 mx-4 text-center">
-                    Reveal Your Radiance Where Art Meets Science in Beauty
+                <div className="text-[32px] md:text-[64px] flex-1 z-10 mx-4 ">
+                    {/* Reveal Your Radiance Where Art Meets Science in Beauty */}
+                    Instaut Free Consultation Online
                 </div>
 
 

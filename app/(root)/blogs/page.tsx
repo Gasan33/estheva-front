@@ -45,7 +45,7 @@ const Blogs = () => {
                                     data-aos="fade-up"
                                 >
                                     <div
-                                        className="w-full bg-green-500 rounded-lg overflow-clip md:max-h-[80%]"
+                                        className="w-full bg-green-500  overflow-clip md:max-h-[80%]"
                                         data-aos="zoom-in"
                                     >
                                         <Image
@@ -103,7 +103,7 @@ const Blogs = () => {
                             <Image
                                 src={blog.img}
                                 alt={blog.title}
-                                className="object-cover w-full h-[300px] rounded-lg"
+                                className="object-cover w-full h-[300px]"
                                 width={400}
                                 height={400}
                             />

@@ -34,7 +34,7 @@ const Blogs = () => {
                             <Image
                                 src={blog.img}
                                 alt={blog.title}
-                                className="object-cover w-full h-[300px] rounded-lg"
+                                className="object-cover w-full h-[300px] "
                                 width={400}
                                 height={400}
                             />
