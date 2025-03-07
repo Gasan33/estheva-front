@@ -42,6 +42,14 @@ const Banner: React.FC = () => {
 
 
             </div>
+
+            <video
+                src='/images/banner_video.mp4'
+                autoPlay
+                loop
+                muted
+                style={{ width: "100%", height: "100%", objectFit: 'cover' }}
+            />
         </div>
     );
 };

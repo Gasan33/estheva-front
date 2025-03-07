@@ -129,17 +129,20 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
             </div>
 
             {/* Treatment Images */}
-            <div className="rounded-3xl my-8 overflow-clip grid grid-cols-1 sm:grid-cols-2 gap-2" data-aos="zoom-in">
-                <div className="col-span-1 h-56 sm:h-auto" data-aos="fade-left">
+            <div
+                className="rounded-3xl my-8 overflow-clip grid grid-cols-1 sm:grid-cols-2 gap-2"
+                data-aos="zoom-in"
+            >
+                <div className="col-span-1 h-[400px]" data-aos="fade-left">
                     <Image
                         src={treatment.images[0]}
                         alt={treatment.title}
                         width={600}
-                        height={600}
+                        height={400}
                         className="w-full h-full object-cover"
                     />
                 </div>
-                <div className="grid grid-cols-2 gap-2 col-span-1 ">
+                <div className="grid grid-cols-2 gap-2 col-span-1">
                     {treatment.images.slice(1, 5).map((img, index) => (
                         <Image
                             key={index}
@@ -147,12 +150,15 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                             alt={treatment.title}
                             width={400}
                             height={400}
-                            className="w-full h-full object-cover"
-                            data-aos={`${index == 0 ? "fade-up" : index == 1 ? "fade-left" : index == 2 ? "fade-right" : index == 3 ? "fade-up" : "fade-up"}`}
+                            className="w-full h-[196px] object-cover"
+                            data-aos={
+                                ["fade-up", "fade-left", "fade-right", "fade-up"][index] || "fade-up"
+                            }
                         />
                     ))}
                 </div>
             </div>
+
 
             {/* Additional Info Section */}
             <div className='grid grid-cols-1 xl:grid-cols-3 py-8 gap-8' data-aos="fade-up">
@@ -183,7 +189,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
 
                         <div className='flex gap-2'>
                             <Image src="/icons/starIcon.svg" alt='star' width={20} height={20} />
-                            <p className='font-semibold'>{treatment.reviews[0].rating}</p>
+                            <p className='font-semibold'>{treatment.reviews.length != 0 ? treatment.reviews[0].rating : "0"}</p>
                             <p>({treatment.reviews.length} Reviews)</p>
                         </div>
 
@@ -206,7 +212,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                         <h1 className='text-gray-600 text-2xl my-4 lg:px-8 font-semibold'>Gallery</h1>
                         <div className='h-48 lg:h-[400px] lg:mx-12 overflow-clip rounded-lg'>
                             <video
-                                src='/images/banner_video.mp4'
+                                src={treatment.video != null ? treatment.video : '/images/banner_video.mp4'}
                                 autoPlay
                                 loop
                                 // muted

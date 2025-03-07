@@ -1,7 +1,6 @@
 import { useState } from "react";
+import { Switch } from "@/components/ui/switch";
 
-import { Select } from "@/components/ui/select";
-import { Switch } from "../ui/switch";
 
 export default function ExtraTimeSettings() {
     const [enabled, setEnabled] = useState(true);
