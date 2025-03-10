@@ -135,8 +135,16 @@ interface Appointment {
 
 interface Review {
     id: number;
+    patient_id: number;
+    doctor_id: number;
+    treatment_id: number | null;
     rating: number;
     review_text: string;
+    created_at: string;
+    updated_at: string;
+    patient: User;
+    doctor: Doctor | null;
+    treatment: Treatment | null;
 }
 
 

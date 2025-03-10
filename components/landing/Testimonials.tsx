@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import RatingBar from "../common/RatingBar";
@@ -8,8 +8,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import config from "@/lib/config";
 
-// Sample Testimonials Data
+
 const testimonials = [
     {
         id: 1,
@@ -36,7 +37,23 @@ const testimonials = [
 const Testimonials = () => {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
+    const [reviews, setReviews] = useState<Review[]>([]);
 
+    const fetchReviews = async () => {
+        try {
+            const response = await fetch(`/api/reviews`);
+            const data = await response.json();
+            console.log(data)
+            if (data.length > 10) { setReviews(data.slice(0, 10)) } else { setReviews(data); };
+        } catch (error) {
+            console.error("Error fetching treatments:", error);
+        }
+    };
+    useEffect(() => {
+        fetchReviews();
+    }, []);
+
+    if (!reviews) return <div>loading..</div>
     return (
         <div className="w-full px-4 py-12 sm:px-6 lg:px-32">
             <Swiper
@@ -57,14 +74,14 @@ const Testimonials = () => {
                     }
                 }}
             >
-                {testimonials.map((testimonial) => (
+                {reviews.map((testimonial) => (
                     <SwiperSlide key={testimonial.id}>
                         <div className="flex flex-col md:flex-row items-center gap-8 px-4 py-8">
                             {/* Image Section */}
                             <div className="relative w-full md:w-1/2 h-[300px] md:h-[400px]">
                                 {/* Main Image */}
                                 <Image
-                                    src={testimonial.testimonialImage}
+                                    src={testimonial.treatment?.images[0] ?? "/images/pic1.png"}
                                     fill
                                     alt="Testimonial"
                                     sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 400px"
@@ -88,7 +105,7 @@ const Testimonials = () => {
 
                                 {/* Feedback */}
                                 <p className="mt-4 text-gray-700 text-sm sm:text-base line-clamp-3">
-                                    {testimonial.feedback}
+                                    {testimonial.review_text}
                                 </p>
 
                                 {/* User & Navigation */}
@@ -96,18 +113,18 @@ const Testimonials = () => {
                                     {/* User Info */}
                                     <div className="flex items-center gap-4">
                                         <Image
-                                            src={testimonial.image}
-                                            alt={testimonial.name}
+                                            src={testimonial.patient.profile_picture ?? "/images/noavatar.png"}
+                                            alt={testimonial.patient.name}
                                             width={64}
                                             height={64}
                                             className="w-16 h-16 object-cover rounded-lg"
                                         />
                                         <div>
                                             <p className="text-base font-semibold text-gray-900">
-                                                {testimonial.name}
+                                                {testimonial.patient.name}
                                             </p>
                                             <p className="text-sm font-medium text-gray-500">
-                                                {testimonial.service}
+                                                {testimonial.treatment?.title}
                                             </p>
                                         </div>
                                     </div>
