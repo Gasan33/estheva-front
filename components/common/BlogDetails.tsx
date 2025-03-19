@@ -13,31 +13,41 @@ import {
 } from "@/components/ui/breadcrumb"
 import { ArrowRight01Icon } from 'hugeicons-react';
 import Image from 'next/image';
+import config from '@/lib/config';
 
 type BlogDetailsProps = {
     id: string;
 };
 
 const BlogDetails: React.FC<BlogDetailsProps> = ({ id }) => {
-    const [blog, setBlog] = useState<Article | null>(null);
-    const getTreatmentDetails = () => {
-        blogs.map((item) => {
-            if (item.id === Number(id)) {
-                setBlog(item);
+    const [blog, setBlog] = useState<Blog | null>(null);
+    const getBlogDetails = async () => {
+        try {
+            const response = await fetch(`${config.env.apiEndpoint}/blogs/${id}`);
+
+            if (!response.ok) {
+                throw new Error("Failed to fetch blog");
             }
-        });
+            const data = await response.json();
+            console.log(data.data)
+            setBlog(data.data);
+            console.log(data)
+
+        } catch (error: any) {
+            // setError(error.message);
+        }
     }
 
 
 
     useEffect(() => {
-        getTreatmentDetails();
+        getBlogDetails();
         AOS.init({
             duration: 1000,
             easing: "ease-in-out",
             once: true,
         });
-    }, [blog]);
+    }, []);
 
     if (!blog) {
         return (
@@ -79,11 +89,11 @@ const BlogDetails: React.FC<BlogDetailsProps> = ({ id }) => {
                 <div className='my-4 md:my-6 lg:my-8 xl:my-12 grid grid-cols-1 lg:grid-cols-2 gap-8'>
 
                     <p className='text-[#5b7e95] font-thin text-sm md:text-lg lg:text-xl xl:text-2xl' data-aos="fade-up">
-                        {blog.des}
+                        {blog.content}
                     </p>
                     <div data-aos="fade-left">
                         <Image
-                            src={blog.img}
+                            src={blog.image}
                             alt={blog.title}
                             width={400}
                             height={400}

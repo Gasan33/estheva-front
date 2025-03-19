@@ -93,10 +93,10 @@ const Testimonials = () => {
                             <div className="max-w-lg md:w-1/2 py-4">
                                 <div className="border-b pb-6">
                                     <h3 className="text-lg font-medium text-primary sm:text-xl">
-                                        About Us
+                                        What Our Patients Says About Our Treatments
                                     </h3>
                                     <h2 className="text-2xl font-semibold mt-2 text-gray-900 sm:text-3xl">
-                                        What Our Patient Says About Us
+                                        {testimonial.treatment?.title}
                                     </h2>
                                 </div>
 

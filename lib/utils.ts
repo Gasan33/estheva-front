@@ -1,5 +1,6 @@
 import auth from "@/auth";
 import { clsx, type ClassValue } from "clsx"
+import { format } from "date-fns";
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -28,6 +29,11 @@ export const formatTimeWithAMPM = (timeString: string) => {
   let period = hours < 12 ? "AM" : "PM";
   hours = hours % 12 || 12; // Convert 24-hour to 12-hour format
   return `${hours}:${minutes.toString().padStart(2, "0")} ${period}`;
+};
+
+
+export const formatMonthDate = (dateString: string | number | Date) => {
+  return format(new Date(dateString), "dd/MM/yyyy");
 };
 export const getExactRemainingTime = (dateString: string, timeString: string, appointmentStatus: string) => {
   const appointmentDateTime = new Date(`${dateString}T${timeString}`);

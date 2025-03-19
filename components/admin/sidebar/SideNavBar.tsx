@@ -21,7 +21,7 @@ import {
     MdClose,
     MdMenu
 } from "react-icons/md";
-import { Calendar01Icon, Logout01Icon, News01Icon } from 'hugeicons-react'
+import { Calendar01Icon, Logout01Icon, News01Icon, QuestionIcon, UserQuestion01Icon, UserQuestion02Icon } from 'hugeicons-react'
 import { LogOutIcon, Users } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { signOut } from 'next-auth/react'
@@ -37,6 +37,7 @@ const menuItems = [
 
     { title: "Doctors", path: "/admin/doctors", icon: <MdPeopleOutline className='object-fill h-8 w-8' /> },
     { title: "Blogs Posts", path: "/admin/blogs", icon: <News01Icon className='object-fill h-8 w-8' /> },
+    { title: "FAQs", path: "/admin/faqs", icon: <UserQuestion02Icon className='object-fill h-8 w-8' /> },
     { title: "Offers", path: "/admin/offers", icon: <MdCardGiftcard className='object-fill h-8 w-8' /> },
     { title: "Transactions", path: "/admin/transactions", icon: <MdAttachMoney className='object-fill h-8 w-8' /> },
 

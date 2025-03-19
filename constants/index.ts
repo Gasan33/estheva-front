@@ -66,7 +66,7 @@ export const navigationLinks: NavLinks[] = [
     },
     {
         id: 4,
-        path: '/about',
+        path: '/online-consultation',
         name: 'Doctor Consultations',
 
     },

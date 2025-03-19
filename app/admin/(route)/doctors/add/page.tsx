@@ -1,8 +1,38 @@
 "use client"
 
-import React, { useState } from 'react';
+import CustomInput from '@/components/common/CustomInput';
 
+import { Calendar01Icon, Call02Icon, Certificate01Icon, Clock01Icon, Edit01Icon, Knowledge01Icon, Mail01Icon, UniversityIcon, UserAccountIcon, UserIcon, WorkHistoryIcon } from 'hugeicons-react';
+import React, { useState } from 'react';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import { BsGenderFemale, BsGenderMale, BsGenderNeuter } from 'react-icons/bs';
+import { CgCollage } from 'react-icons/cg';
+import { Switch } from "@/components/ui/switch"
 const AddTeamMember = () => {
+    const [fName, setFName] = useState<string | null>(null);
+    const [lName, setLName] = useState<string | null>(null);
+    const [email, setEamil] = useState<string | null>(null);
+    const [phone, setPhone] = useState<string | null>(null);
+    const [gender, setGender] = useState<string | null>(null);
+    const [birthday, setBirthday] = useState<string | null>(null);
+    const [specialty, setSpecialty] = useState<string | null>(null);
+    const [certificate, setCertificate] = useState<string | null>(null);
+    const [university, setUniversity] = useState<string | null>(null);
+    const [experience, setExperience] = useState<number | null>(null);
+    const [aboutDoctor, setAboutDoctor] = useState<string | null>(null);
+    const [startTime, setStartTime] = useState<string | null>(null);
+    const [endTime, setEndTime] = useState<string | null>(null);
+    const [homeService, setHomeService] = useState<boolean>(false);
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -24,95 +54,201 @@ const AddTeamMember = () => {
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        // You can handle form submission logic here
+
         console.log(formData);
     };
 
     return (
-        <div className="flex">
-            {/* Sidebar */}
-            <div className="w-1/4 bg-white shadow-md p-4">
-                <h2 className="font-bold mb-4">Add team member</h2>
-                <ul className="space-y-2">
-                    <li className="text-purple-500">Profile</li>
-                    <li>Addresses</li>
-                    <li>Emergency contacts</li>
-                </ul>
-                <h3 className="font-bold mt-6 mb-2">Workspace</h3>
-                <ul className="space-y-2">
-                    <li>Services (67)</li>
-                    <li>Locations (1)</li>
-                    <li>Settings</li>
-                </ul>
-                <h3 className="font-bold mt-6 mb-2">Pay</h3>
-                <ul className="space-y-2">
-                    <li>Wages and timesheets</li>
-                    <li>Commissions</li>
-                    <li>Pay runs</li>
-                </ul>
-            </div>
 
-            {/* Main Content */}
-            <div className="flex-1 bg-gray-50 p-6">
-                <h1 className="text-3xl font-bold mb-6">Profile</h1>
-                <p className="mb-4">Manage your team members personal profile</p>
+        <div className="mx-auto p-4 px-16">
+            <h1 className="text-3xl font-bold mb-6">Add team member</h1>
+            <p className="mb-4">Manage your team members personal profile</p>
 
-                <div className="bg-white p-6 rounded shadow">
+            <div className="bg-white p-6 rounded shadow">
+                <form className="space-y-4" action="#" onSubmit={handleSubmit}>
                     <div className="flex items-center mb-4">
                         <div className="w-16 h-16 bg-purple-200 rounded-full flex items-center justify-center">
                             <span className="text-purple-600">👤</span>
                         </div>
                         <button className="ml-4 text-purple-600">Edit</button>
                     </div>
+                    <div className="grid grid-cols-2 gap-4">
+                        <CustomInput
+                            label="First name *"
+                            name="fName"
+                            type="text"
+                            placeholder="First Name..."
+                            value={fName ?? ""}
+                            icon={<UserIcon className="text-gray-500" />}
+                            onChange={(e) => setFName(e.target.value)}
+                        />
+                        <CustomInput
+                            label="Last name *"
+                            name="lName"
+                            type="text"
+                            placeholder="Last Name..."
+                            value={lName ?? ""}
+                            icon={<UserIcon className="text-gray-500" />}
+                            onChange={(e) => setLName(e.target.value)}
+                        />
 
-                    <form className="space-y-4">
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="block mb-1">First name *</label>
-                                <input type="text" className="border rounded w-full p-2" />
+                        <CustomInput
+                            label="E-mail *"
+                            name="email"
+                            type="email"
+                            placeholder="doctor@estheva-clinic.com"
+                            value={email ?? ""}
+                            icon={<Mail01Icon className="text-gray-500" />}
+                            onChange={(e) => setEamil(e.target.value)}
+                        />
+
+                        <div className="w-full mb-6">
+                            <label className="mb-3 block text-black dark:text-white" >
+                                Phone number *
+                            </label>
+                            <PhoneInput
+                                country={'ae'}
+                                value={phone}
+                                onChange={setPhone}
+                                inputClass="!w-full !border !rounded !h-12 !border-gray"
+                                buttonClass="!bg-white !border-r !h-12"
+                                dropdownClass="!shadow-lg !rounded "
+                                placeholder="123-456-7890"
+                                enableSearch
+                            />
+                        </div>
+                        <div className="w-full mb-6">
+                            <label className="mb-3 block text-black dark:text-white" >
+                                Gender *
+                            </label>
+                            <Select onValueChange={setGender}>
+                                <SelectTrigger className="w-[100%] h-[50px] rounded-sm border-[0.5px]">
+
+                                    <div className='flex gap-2'>
+                                        {gender === null ? <BsGenderNeuter /> : <div></div>}
+
+                                        <SelectValue placeholder="Select Gender" />
+                                    </div>
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem key={1} value={"male"} ><div className='flex gap-2 p-4'><BsGenderMale /><p>Male</p></div></SelectItem>
+                                    <SelectItem key={2} value={"female"}><div className='flex gap-2 p-4'><BsGenderFemale /><p>Female</p></div></SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <CustomInput
+                            label="Date Of Birth *"
+                            name="birth"
+                            type="date"
+                            placeholder=""
+                            value={birthday ?? ""}
+                            icon={<Calendar01Icon className="text-gray-500" />}
+                            onChange={(e) => setBirthday(e.target.value)}
+                        />
+                        <CustomInput
+                            label="Specialty *"
+                            name="specialty"
+                            type="text"
+                            placeholder="specialty..."
+                            value={specialty ?? ""}
+                            icon={<WorkHistoryIcon className="text-gray-500" />}
+                            onChange={(e) => setSpecialty(e.target.value)}
+                        />
+                        <CustomInput
+                            label="Certificate *"
+                            name="certificate"
+                            type="text"
+                            placeholder="certificate..."
+                            value={certificate ?? ""}
+                            icon={<Certificate01Icon className="text-gray-500" />}
+                            onChange={(e) => setCertificate(e.target.value)}
+                        />
+                        <CustomInput
+                            label="University *"
+                            name="university"
+                            type="text"
+                            placeholder="university..."
+                            value={university ?? ""}
+                            icon={<UniversityIcon className="text-gray-500" />}
+                            onChange={(e) => setUniversity(e.target.value)}
+                        />
+                        <CustomInput
+                            label="Year's of Experience *"
+                            name="experience"
+                            type="number"
+                            placeholder="experience..."
+                            value={experience?.toString() ?? ""}
+                            icon={<Knowledge01Icon className="text-gray-500" />}
+                            onChange={(e) => setExperience(Number(e.target.value))}
+                        />
+
+                    </div>
+                    <div className="mb-6">
+                        <label className="mb-3 block text-black dark:text-white" >
+                            About Doctor *
+                        </label>
+                        <div className="relative">
+                            <span className="absolute left-4 top-4">
+                                <Edit01Icon />
+                            </span>
+
+                            <textarea
+                                className="w-full rounded border border-stroke bg-gray py-3 pl-12 pr-4 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                                name="about"
+                                id="about"
+                                rows={6}
+                                placeholder="Write Doctor about here..."
+                                onChange={(e) => setAboutDoctor(e.target.value)}
+                                required
+
+                            ></textarea>
+                        </div>
+                    </div>
+                    <div className="mb-6">
+                        <label className="mb-3 block text-black dark:text-white" >
+                            Availability *
+                        </label>
+                        <div className="flex gap-36">
+                            <div className='flex gap-4'>
+                                <CustomInput
+                                    label="Start Time *"
+                                    name="startTime"
+                                    type="time"
+                                    placeholder=""
+                                    value={startTime?.toString() ?? ""}
+                                    icon={<Clock01Icon className="text-gray-500" />}
+                                    onChange={(e) => setStartTime(e.target.value)}
+                                />
+                                <CustomInput
+                                    label="End Time *"
+                                    name="endTIme"
+                                    type="time"
+                                    placeholder=""
+                                    value={endTime?.toString() ?? ""}
+                                    icon={<Clock01Icon className="text-gray-500" />}
+                                    onChange={(e) => setEndTime(e.target.value)}
+                                />
                             </div>
-                            <div>
-                                <label className="block mb-1">Last name</label>
-                                <input type="text" className="border rounded w-full p-2" />
-                            </div>
-                            <div>
-                                <label className="block mb-1">Email *</label>
-                                <input type="email" className="border rounded w-full p-2" />
-                            </div>
-                            <div>
-                                <label className="block mb-1">Phone number</label>
-                                <div className="flex">
-                                    <input type="tel" className="border rounded-l w-1/4 p-2" placeholder="+971" />
-                                    <input type="tel" className="border rounded-r w-3/4 p-2" />
-                                </div>
-                            </div>
-                            <div>
-                                <label className="block mb-1">Additional phone number</label>
-                                <input type="tel" className="border rounded w-full p-2" />
-                            </div>
-                            <div>
-                                <label className="block mb-1">Country</label>
-                                <select className="border rounded w-full p-2">
-                                    <option>Select country</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label className="block mb-1">Birthday</label>
-                                <input type="date" className="border rounded w-full p-2" />
-                            </div>
-                            <div>
-                                <label className="block mb-1">Year</label>
-                                <input type="number" className="border rounded w-full p-2" />
+
+                            <div className="flex items-center space-x-2">
+                                <label >Home Service Doctor?</label>
+                                <Switch
+                                    checked={homeService}
+                                    onCheckedChange={setHomeService}
+
+                                />
                             </div>
                         </div>
-                        <div className="flex justify-end mt-6">
-                            <button className="bg-black text-white px-4 py-2 rounded">Add</button>
-                            <button className="ml-2 border border-black px-4 py-2 rounded">Close</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div className="flex justify-end mt-6">
+                        <button className="bg-black text-white px-4 py-2 rounded">Add</button>
+                        <button className="ml-2 border border-black px-4 py-2 rounded">Close</button>
+                    </div>
+                </form>
             </div>
         </div>
+
     );
 };
 

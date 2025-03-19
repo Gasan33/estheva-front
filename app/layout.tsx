@@ -5,6 +5,8 @@ import { ReactNode } from 'react'
 import { SessionProvider } from "next-auth/react";
 import { auth } from '@/auth'
 import { Toaster } from '@/components/ui/toaster';
+import { fetchCategories } from '@/lib/actions/categories';
+import { AppProvider } from '@/context/CategoriesContext';
 
 const touche = localFont({
   src: [
@@ -117,6 +119,8 @@ export function viewport() {
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
+  const categories = await fetchCategories();
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'MedicalBusiness',
@@ -157,7 +161,9 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
         </head>
 
         <body className={`${touche.className} ${bebasNeue.variable} antialiased`}>
-          {children}
+          <AppProvider categories={categories}>
+            {children}
+          </AppProvider>
           <Toaster />
         </body>
       </SessionProvider>

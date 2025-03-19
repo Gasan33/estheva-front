@@ -1,8 +1,10 @@
-import React from 'react'
-import FaqList from "./FaqList"
-import { ArrowRightIcon, ArrowLeftIcon } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import Image from 'next/image'
+"use client"
+import React, { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import BookAppointment from '../common/BookAppointment/BookAppointment';
+import config from '@/lib/config';
+
 const data = [
     {
         id: 1,
@@ -22,58 +24,76 @@ const data = [
         img: "/images/doc3.jpg",
         specialization: "General",
     },
-]
+];
 
 const Consultation = () => {
+    const [treatment, setTreatment] = useState<Treatment>();
+
+    const [error, setError] = useState<string | null>(null);
+
+    const getTreatmentDetails = async () => {
+        try {
+            const response = await fetch(`${config.env.apiEndpoint}/treatments/39`);
+
+            if (!response.ok) {
+                throw new Error("Failed to fetch treatments");
+            }
+            const data = await response.json();
+            console.log(data.data)
+            setTreatment(data.data);
+            console.log(data)
+
+        } catch (error: any) {
+            setError(error.message);
+        }
+    }
+
+    useEffect(() => {
+        getTreatmentDetails();
+
+    }, []);
     return (
-        <div className='mx-0 bg-secondary w-full items-center justify-center px-4 py-16 sm:px-6 lg:px-32'>
+        <div className='w-full px-4 py-16 sm:px-6 lg:px-16 flex flex-col items-center'>
+            <h2 className='text-2xl font-semibold text-gray-900 text-center sm:text-3xl'>
+                Meet Our Specialist Online Consultation Doctors
+            </h2>
 
-            <div className='h-auto'>
-                <h3 className="text-xl text-primary sm:text-xl">
-                    Online Consultation
-                </h3>
-                <h2 className="text-2xl  font-[500] mt-4 text-gray-900 sm:text-3xl">
-                    Meet Our Specialist Online Consultation Doctors
-                </h2>
-
-            </div>
-            <div className='flex flex-col md:flex-row mx-auto mt-8 justify-between'>
-                {
-                    data.map((item, index) => (
-                        <div key={index} className='mt-8 rounded-3xl bg-white overflow-clip hover:scale-105 transition-transform duration-300 hover:shadow-xl hover:text-white cursor-pointer'>
-                            <div className='w-full md:w-[300px]'>
-                                <Image
-                                    src={item.img}
-                                    alt={item.name}
-                                    width={600}
-                                    height={600}
-                                    className="h-[300px] w-full object-cover"
-                                />
-                            </div>
-                            <div className='flex flex-col p-8 items-center'>
-                                <h1 className='text-xl  font-[500]  text-gray-900 sm:text-2xl'>{item.name}</h1>
-                                <h2 className='text-lg  font-[500] mt-2 text-primary sm:text-xl'>{item.specialization}</h2>
-
-                            </div>
-
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8 w-full max-w-6xl'>
+                {data.map((item) => (
+                    <div key={item.id} className='rounded-xl bg-white shadow-md hover:shadow-lg transition-transform duration-300 hover:scale-105 overflow-hidden cursor-pointer'>
+                        <div className='w-full h-60 relative'>
+                            <Image
+                                src={item.img}
+                                alt={item.name}
+                                layout='fill'
+                                objectFit='cover'
+                                className='rounded-t-xl'
+                            />
                         </div>
-                    ))
-                }
+                        <div className='p-4 '>
+                            <h1 className='text-xl font-medium text-gray-900'>{item.name}</h1>
+                            <h2 className='mt-2 text-primary'>{item.specialization}</h2>
+                            <p className='mt-2 text-sm text-gray-700'>
+                                Dr. {item.name} has extensive experience in all aspects of adult healthcare, specializing in {item.specialization}.
+                            </p>
+                            <BookAppointment treatment={treatment!} triger='online' />
 
+                            {/* <Button className='mt-4 w-full bg-teal-500 uppercase font-thin text-white'>Make AN Appointment</Button> */}
+                        </div>
+                    </div>
+                ))}
             </div>
 
-
-            {/* <div className='flex w-full mt-16 gap-4 justify-center'>
-                <div className='flex justify-center text-primary rounded-full border-2 border-gray-600 p-2 hover:scale-105 transition-transform duration-300 hover:shadow-xl hover:bg-primary hover:text-white hover:border-primary cursor-pointer'>
+            {/* <div className='flex gap-4 mt-12'>
+                <Button variant='outline' size='icon' className='border-gray-600 text-primary hover:bg-primary hover:text-white'>
                     <ArrowLeftIcon />
-                </div>
-                <div className='flex justify-center text-primary rounded-full border-2 border-gray-600 p-2 hover:scale-105 transition-transform duration-300 hover:shadow-xl hover:bg-primary hover:text-white hover:border-primary cursor-pointer'>
+                </Button>
+                <Button variant='outline' size='icon' className='border-gray-600 text-primary hover:bg-primary hover:text-white'>
                     <ArrowRightIcon />
-                </div>
+                </Button>
             </div> */}
-
         </div>
-    )
-}
+    );
+};
 
-export default Consultation
+export default Consultation;

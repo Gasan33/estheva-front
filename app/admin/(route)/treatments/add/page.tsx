@@ -31,7 +31,7 @@ const NewService = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!treatmentName || !treatmentDescription || !treatmentPrice || !treatmentImages || !treatmentBenefits || !treatmentVideo || !treatmentDuration || !treatmentdoctors || !treatmentCategory) {
+        if (!treatmentName || !treatmentDescription || !treatmentPrice || !treatmentImages || !treatmentBenefits || !treatmentDuration || !treatmentdoctors || !treatmentCategory) {
             alert("Please fill in all the required fields.");
             return;
         }

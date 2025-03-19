@@ -8,9 +8,11 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-import { categories, navigationLinks } from '@/constants';
+import { navigationLinks } from '@/constants';
+import { useCategories } from '@/context/CategoriesContext';
 
 const NavMenuItems = () => {
+    const { categories } = useCategories()
     return (
         <>                    {
             navigationLinks.map((title) => (
@@ -24,7 +26,7 @@ const NavMenuItems = () => {
                                     className="relative !bg-transparent text-lg font-normal !text-white hover:!text-gray-100 after:bg-transparent"
                                 >
                                     <Link href={title.path} >
-                                        {title.name}
+                                        {title.name.toUpperCase()}
                                     </Link>
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent
@@ -40,7 +42,7 @@ const NavMenuItems = () => {
                                         // href={item.path}
                                         >
                                             <div className="p-2 items-center gap-2 rounded-md justify-center w-56 hover:bg-gray-800">
-                                                {item.name}
+                                                {item.name.toUpperCase()}
 
                                             </div>
                                         </Link>
@@ -49,13 +51,13 @@ const NavMenuItems = () => {
                                         <Link
                                             key={category.category_id}
                                             href={{
-                                                pathname: "/treatments",
+                                                pathname: category.category_slug === "hair-transplant" ? "/treatments/hair-transplant" : "/treatments",
                                                 query: { treatments: category.category_slug },
                                             }}
                                         // href={item.path}
                                         >
                                             <div className="p-2 items-center gap-2 rounded-md justify-center w-56 hover:bg-gray-800">
-                                                {category.category_name}
+                                                {category.category_name.toUpperCase()}
                                             </div>
                                         </Link>
                                     ))}
@@ -69,7 +71,7 @@ const NavMenuItems = () => {
 
                                     href={title.path}
                                 >
-                                    {title.name}
+                                    {title.name.toUpperCase()}
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
                         )}

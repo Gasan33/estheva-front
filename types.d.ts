@@ -265,3 +265,31 @@ interface TreatmentTab {
     title: string;
     value: string;
 }
+
+
+
+interface Blog {
+    id: number;
+    title: string;
+    slug: string;
+    short_description: string;
+    content: string;
+    image: string;
+    user_id: number;
+    created_at: string;
+    updated_at: string;
+}
+
+
+
+interface FAQ {
+    id: number;
+    title: string;
+    slug: string;
+    answer: string;
+    content: string;
+    is_active: number;
+    order: number;
+    created_at: string;
+    updated_at: string;
+}

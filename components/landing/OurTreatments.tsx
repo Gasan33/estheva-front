@@ -1,15 +1,18 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { categories } from "@/constants";
 import ViewAllText from "../common/ViewAllText";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import CategoriesCardSkeleton from "../skeletons/CategoriesCardSkeleton";
+import { useCategories } from "@/context/CategoriesContext";
 
 const OurTreatments = () => {
+    const { categories } = useCategories()
     useEffect(() => {
+
         AOS.init({ duration: 1000 });
     }, []);
 
@@ -20,7 +23,7 @@ const OurTreatments = () => {
 
             {/* Categories Grid */}
             <div className="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 lg:grid-cols-3">
-                {categories.map((category, index) => (
+                {categories?.slice(0, 6).map((category, index) => (
                     <Link
                         key={index}
                         href={{
@@ -39,7 +42,7 @@ const OurTreatments = () => {
                             className="p-2 rounded-full object-contain bg-secondaryBackground mx-auto"
                         />
                         <h2 className="mt-4 text-lg font-normal text-white text-center sm:text-xl">
-                            {category.category_name}
+                            {category.category_name.toUpperCase()}
                         </h2>
                         <p className="mt-2 text-sm px-8 text-[#5b7e95] sm:text-base line-clamp-3 text-center">
                             {category.category_description}

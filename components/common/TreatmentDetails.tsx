@@ -62,7 +62,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
             easing: "ease-in-out",
             once: false,
         });
-    }, [treatment]);
+    }, []);
 
     if (!treatment) {
         return (
