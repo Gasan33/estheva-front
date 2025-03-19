@@ -34,7 +34,6 @@ const BlogDetails: React.FC<BlogDetailsProps> = ({ id }) => {
             console.log(data)
 
         } catch (error: any) {
-            // setError(error.message);
         }
     }
 
