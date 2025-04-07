@@ -18,7 +18,11 @@ import {
 import { BsGenderFemale, BsGenderMale, BsGenderNeuter } from 'react-icons/bs';
 import { CgCollage } from 'react-icons/cg';
 import { Switch } from "@/components/ui/switch"
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { getInitials } from '@/lib/utils';
+import { useRouter } from 'next/navigation';
 const AddTeamMember = () => {
+    const router = useRouter();
     const [fName, setFName] = useState<string | null>(null);
     const [lName, setLName] = useState<string | null>(null);
     const [email, setEamil] = useState<string | null>(null);
@@ -26,6 +30,7 @@ const AddTeamMember = () => {
     const [gender, setGender] = useState<string | null>(null);
     const [birthday, setBirthday] = useState<string | null>(null);
     const [specialty, setSpecialty] = useState<string | null>(null);
+    const [profilePic, setProfilePic] = useState<string | null>(null);
     const [certificate, setCertificate] = useState<string | null>(null);
     const [university, setUniversity] = useState<string | null>(null);
     const [experience, setExperience] = useState<number | null>(null);
@@ -33,30 +38,77 @@ const AddTeamMember = () => {
     const [startTime, setStartTime] = useState<string | null>(null);
     const [endTime, setEndTime] = useState<string | null>(null);
     const [homeService, setHomeService] = useState<boolean>(false);
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        additionalPhoneNumber: '',
-        country: '',
-        birthday: '',
-        year: ''
-    });
 
-    const handleChange = (e: { target: { name: any; value: any; }; }) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
-    };
 
-    const handleSubmit = (e: { preventDefault: () => void; }) => {
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
+        if (!fName || !lName || !email || !phone || !gender || !birthday || !profilePic || !aboutDoctor) {
+            alert("Please fill in all the required fields.");
+            return;
+        }
 
-        console.log(formData);
+        try {
+            const response = await fetch("/api/admin/doctors/create", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    first_name: fName!,
+                    last_name: lName!,
+                    email: email!,
+                    phone_number: phone!,
+                    password: "doctorpassword",
+                    gender: gender!,
+                    date_of_birth: birthday!,
+                    profile_picture: profilePic!,
+                    specialty: specialty!,
+                    certificate: certificate!,
+                    university: university!,
+                    patients: 0,
+                    exp: experience,
+                    about: aboutDoctor!,
+                    home_based: homeService,
+                    availability: [{
+                        day: "Tuesday",
+                        start_time: startTime!,
+                        end_time: endTime!
+                    }]
+                }),
+            });
+
+            const result = await response.json();
+            console.log(result);
+
+            if (!response.ok) throw new Error(result.error || "Failed to create Doctor");
+
+            alert("Doctor created successfully!");
+
+            router.back();
+            return true;
+        } catch (error: any) {
+            alert(error.message || "Something went wrong");
+            return false;
+        }
     };
+
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files![0];
+        const imageFormData = new FormData();
+        imageFormData.append("file", file);
+
+        const imageUploadResponse = await fetch("/api/uploadProPic", {
+            method: "POST",
+            body: imageFormData,
+        });
+
+        const imageResult = await imageUploadResponse.json();
+
+        if (!imageUploadResponse.ok) throw new Error(imageResult.error || "Image upload failed");
+
+        setProfilePic(imageResult.path);
+    };
+
 
     return (
 
@@ -66,12 +118,28 @@ const AddTeamMember = () => {
 
             <div className="bg-white p-6 rounded shadow">
                 <form className="space-y-4" action="#" onSubmit={handleSubmit}>
-                    <div className="flex items-center mb-4">
-                        <div className="w-16 h-16 bg-purple-200 rounded-full flex items-center justify-center">
-                            <span className="text-purple-600">👤</span>
-                        </div>
-                        <button className="ml-4 text-purple-600">Edit</button>
+                    <div className="relative h-24 w-24 lg:h-32 lg:w-32">
+                        <Avatar className="h-24 w-24 lg:h-32 lg:w-32">
+                            {profilePic && <AvatarImage src={profilePic} alt="img" />}
+                            <AvatarFallback className="bg-amber-100">
+                                {getInitials("GU")}
+                            </AvatarFallback>
+                        </Avatar>
+                        <input
+                            id="avatar-upload"
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={(e) => handleImageUpload(e)}
+                        />
+                        <label
+                            htmlFor="avatar-upload"
+                            className="absolute bottom-0 right-0 bg-white p-2 rounded-full shadow-md hover:bg-gray-200 cursor-pointer"
+                        >
+                            <Edit01Icon className="w-5 h-5 text-primary" />
+                        </label>
                     </div>
+
                     <div className="grid grid-cols-2 gap-4">
                         <CustomInput
                             label="First name *"
