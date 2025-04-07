@@ -130,10 +130,10 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
 
             {/* Treatment Images */}
             <div
-                className="rounded-3xl my-8 overflow-clip grid grid-cols-1 sm:grid-cols-2 gap-2"
+                className=" my-8 overflow-clip grid grid-cols-1 sm:grid-cols-2 gap-2"
                 data-aos="zoom-in"
             >
-                <div className="col-span-1 h-[400px]" data-aos="fade-left">
+                <div className="col-span-1 h-[600px]" data-aos="fade-left">
                     <Image
                         src={treatment.images[0]}
                         alt={treatment.title}
@@ -150,7 +150,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                             alt={treatment.title}
                             width={400}
                             height={400}
-                            className="w-full h-[196px] object-cover"
+                            className="w-full h-[296px] object-cover"
                             data-aos={
                                 ["fade-up", "fade-left", "fade-right", "fade-up"][index] || "fade-up"
                             }
@@ -197,7 +197,8 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                     </div>
                     <div>
                         <h1 className='text-gray-600 text-lg md:text-lg lg:text-2xl mt-4 lg:px-8  font-semibold'>About This Treatment</h1>
-                        <div className="flex lg:px-12 text-gray-600 text-xl mt-4 font-normal line-clamp-6 lg:line-clamp-none">
+                        <div dangerouslySetInnerHTML={{ __html: treatment.description }} />
+                        {/* <div className="flex lg:px-12 text-gray-600 text-xl mt-4 font-normal line-clamp-6 lg:line-clamp-none">
                             <p className='hidden lg:block px-12 text-gray-600 text-xl mt-4 font-normal line-clamp-6 lg:line-clamp-none'>{treatment.description}</p>
                             <p className='lg:hidden block text-sm'>
                                 {showFullText ? fullDescription : `${shortDescription}...`}
@@ -206,7 +207,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                                 </button>
                             </p>
 
-                        </div>
+                        </div> */}
                     </div>
                     <div>
                         <h1 className='text-gray-600 text-2xl my-4 lg:px-8 font-semibold'>Gallery</h1>

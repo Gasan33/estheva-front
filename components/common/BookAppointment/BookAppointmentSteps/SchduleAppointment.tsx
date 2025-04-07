@@ -34,7 +34,7 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
 }) => {
     const locationOptions = [
         { id: 'clinic', label: 'Clinic service', img: '/images/clinic.png' },
-        { id: 'home', label: 'Home service', img: '/icons/home-care.png' },
+        // { id: 'home', label: 'Home service', img: '/icons/home-care.png' },
     ];
     const isPastDays = (day: Date) => {
         const today = new Date();

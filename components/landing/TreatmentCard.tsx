@@ -26,15 +26,15 @@ const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: numb
                 >
                     {isFav ? <Image src="/icons/heartIcon.svg" alt="love" width={50} height={50} className='w-8 h-8' /> : <HeartAddIcon />}
                 </div>
-                <div className="relative w-full -z-10 h-[160px] md:h-[180px] lg:h-[180px]">
+                <div className="relative w-full -z-10 h-[360px] md:h-[380px] lg:h-[380px]">
                     <Image
-                        className="w-full  h-full object-cover rounded-t-[16px]"
+                        className="w-full  h-full object-cover "
                         src={treatment.images[0]}
                         alt={treatment.title}
                         width={600}
                         height={600}
                     />
-                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black  opacity-80 rounded-t-[16px]"></div> {/* Gradient Overlay */}
+                    {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black  opacity-80 rounded-t-[16px]"></div> Gradient Overlay */}
                 </div>
                 <div className='absolute flex flex-row justify-between items-center bottom-2 left-2 right-2 text-xs md:text-sm lg:text-xl font-semibold md:font-medium text-white line-clamp-2'>
                     <h2 className="flex-1">{treatment.title}</h2>

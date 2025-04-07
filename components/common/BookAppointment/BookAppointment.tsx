@@ -19,6 +19,7 @@ import AppointmentSuccess from "./BookAppointmentSteps/AppointmentSuccess";
 import PaymentPage from "./BookAppointmentSteps/Payment";
 import { useSession } from "next-auth/react";
 import { format } from "date-fns";
+import AppointmentFailed from "./BookAppointmentSteps/AppointmentFailed";
 
 const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?: string }) => {
     const session = useSession();
@@ -27,6 +28,7 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
     const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
     const [selectedDoctor, setSelectedDoctor] = useState<number | null>(null);
     const [loading, setLoading] = useState(false);
+    const [appointmentSuccess, setAppointmentSuccess] = useState(false);
     const steps = ["Schdule", "Payment", "Summary", "Finish"];
     const [currentStep, setCurrentStep] = useState(1);
     const [complete, setComplete] = useState(false);
@@ -80,9 +82,16 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
             const result = await response.json();
             console.log(result);
 
-            if (!response.ok) throw new Error(result.error || "Failed to create appointment");
+            if (!response.ok) {
+                setAppointmentSuccess(false);
+                // throw new Error(result.error || "Failed to create appointment")
+            } else {
+                setAppointmentSuccess(true);
 
-            alert("Appointment booked successfully!");
+                // alert("Appointment booked successfully!");
+            };
+
+
 
             return true; // ✅ Return true if successful
         } catch (error: any) {
@@ -153,7 +162,7 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
                 ) : currentStep === 3 ? (
                     <Summary treatment={treatment} />
                 ) : (
-                    <AppointmentSuccess />
+                    appointmentSuccess ? <AppointmentSuccess /> : <AppointmentFailed />
                 )}
 
                 <DialogFooter className="sm:justify-end gap-4">

@@ -17,9 +17,10 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
     // Initialize AOS
     useEffect(() => {
         AOS.init({
-            duration: 5000,
+            delay: 100,
+            // duration: 500,
             easing: "ease-in-out",
-            offset: 100,
+            // offset: 50,
             once: false,
         });
     }, []);

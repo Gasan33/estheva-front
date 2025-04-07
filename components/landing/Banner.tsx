@@ -3,12 +3,12 @@ import AnimatedBackground from '../animations/AnimatedBackground';
 const Banner: React.FC = () => {
     return (
         <div className='relative'>
-            <AnimatedBackground />
-            <div className="flex flex-col lg:flex-row h-[100%] items-center justify-between">
+            {/* <AnimatedBackground /> */}
+            {/* <div className="flex flex-col lg:flex-row h-[100%] items-center justify-between">
 
 
                 <div className="text-[32px] md:text-[64px] flex-1 z-10 mx-4 ">
-                    {/* Reveal Your Radiance Where Art Meets Science in Beauty */}
+                    {/* Reveal Your Radiance Where Art Meets Science in Beauty 
                     Instaut Free Consultation Online
                 </div>
 
@@ -19,7 +19,7 @@ const Banner: React.FC = () => {
                         autoPlay
                         loop
                         muted
-                        style={{ width: "100%", height: "100%", objectFit: 'cover' }}
+                        // style={{ width: "100%", height: "100%", objectFit: 'cover' }}
                     />
                     <svg
                         className="absolute inset-0 h-full w-full"
@@ -41,14 +41,14 @@ const Banner: React.FC = () => {
 
 
 
-            </div>
+            </div> */}
 
             <video
                 src='/images/banner_video.mp4'
                 autoPlay
                 loop
                 muted
-                style={{ width: "100%", height: "100%", objectFit: 'cover' }}
+                style={{ width: "100%", height: "30%", objectFit: 'cover' }}
             />
         </div>
     );
