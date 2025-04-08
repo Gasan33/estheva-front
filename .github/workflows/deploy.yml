@@ -21,10 +21,12 @@ jobs:
       - name: 📦 Install dependencies
         run: |
           corepack enable
-          pnpm install
+          npm install --force
 
       - name: 🔨 Build the app
-        run: pnpm run build
+        run: |
+            NEXT_TELEMETRY_DISABLED=1 
+            npm run build
 
       - name: 📤 Deploy to server
         uses: appleboy/scp-action@v0.1.7
