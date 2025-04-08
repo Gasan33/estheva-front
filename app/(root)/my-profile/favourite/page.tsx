@@ -7,7 +7,7 @@ const Favourite = () => {
             <div className='flex justify-between items-center'>
                 <h1 className='text-lg md:text-[28px] lg:text-[32px] text-primary font-semibold'>My Favourites</h1>
             </div>
-            <TreatmentsList />
+            {/* <TreatmentsList category={0} /> */}
         </div>
     )
 }
