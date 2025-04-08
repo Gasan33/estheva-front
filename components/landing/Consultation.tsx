@@ -39,10 +39,7 @@ const Consultation = () => {
                 throw new Error("Failed to fetch treatments");
             }
             const data = await response.json();
-            console.log(data.data)
             setTreatment(data.data);
-            console.log(data)
-
         } catch (error: any) {
             setError(error.message);
         }

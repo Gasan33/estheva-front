@@ -18,10 +18,9 @@ const Blogs = () => {
         try {
             const response = await fetch(`/api/blogs`);
             const res = await response.json();
-            console.log(res)
             setBlogs(res.data.data);
         } catch (error) {
-            console.error("Error fetching treatments:", error);
+            // console.error("Error fetching treatments:", error);
         }
     }
     useEffect(() => {

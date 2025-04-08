@@ -79,7 +79,7 @@ const BlockEvents = () => {
             setAppointmentData(extend([], appointments, true));
             setLoading(false);
         } catch (error) {
-            console.error("Error fetching appointments:", error);
+            // console.error("Error fetching appointments:", error);
             setLoading(false);
         }
     };
@@ -98,7 +98,7 @@ const BlockEvents = () => {
 
             setEmployeeData(doctors);
         } catch (error) {
-            console.error("Error fetching doctors:", error);
+            // console.error("Error fetching doctors:", error);
         }
     };
     useEffect(() => {

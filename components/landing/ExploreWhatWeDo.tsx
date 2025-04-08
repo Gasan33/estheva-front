@@ -33,7 +33,7 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
 
             if (data.data.length > 0) setTreatment(data.data[0]);
         } catch (error) {
-            console.error("Error fetching treatments:", error);
+            // console.error("Error fetching treatments:", error);
         }
     };
 
@@ -44,7 +44,7 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
             setHomeTreatments(data.data);
             if (data.data.length > 0) setTreatment(data.data[0]);
         } catch (error) {
-            console.error("Error fetching home treatments:", error);
+            // console.error("Error fetching home treatments:", error);
         }
     };
 

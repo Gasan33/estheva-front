@@ -20,11 +20,11 @@ const Treatments = () => {
             const response = await fetch(`${config.env.apiEndpoint}/categories`);
             const data = await response.json();
             setCategories(data.data);
-            console.log(data)
+
             setCategoryLoading(false);
         } catch (error) {
             setCategoryLoading(false)
-            console.error("Error fetching treatments:", error);
+            // console.error("Error fetching treatments:", error);
         }
     };
     const fetchTreatments = async () => {
@@ -33,11 +33,11 @@ const Treatments = () => {
             const response = await fetch(`${config.env.apiEndpoint}/treatments`);
             const data = await response.json();
             setTreatments(data.data);
-            console.log(data)
+
             setLoading(false);
         } catch (error) {
             setLoading(false)
-            console.error("Error fetching treatments:", error);
+            // console.error("Error fetching treatments:", error);
         }
     };
 

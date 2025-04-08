@@ -22,11 +22,9 @@ const UserDropdown = ({ session }: { session?: Session | null }) => {
         try {
             await signOut({ callbackUrl: "/" });  // Corrected signOut function
         } catch (error) {
-            console.error("Error signing out:", error);
+            // console.error("Error signing out:", error);
         }
     };
-    console.log(session)
-
     if (session == null) {
         return <SignInSignUpButtons />
     }

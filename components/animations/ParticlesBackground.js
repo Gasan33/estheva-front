@@ -17,7 +17,6 @@ const ParticlesComponent = memo((props) => {
     }, []);
 
     const particlesLoaded = (container) => {
-        console.log(container);
     };
 
     useEffect(() => {

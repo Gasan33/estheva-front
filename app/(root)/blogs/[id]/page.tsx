@@ -16,7 +16,6 @@ export async function generateMetadata(
     const id = (await params).id;
 
     const blog = await fetch(`${config.env.apiEndpoint}/blogs/${id}`).then((res) => res.json());
-    console.log(blog.data)
     return {
         title: blog ? blog.data.title : 'Blog Details',
         description: blog ? blog.data.short_description : "",

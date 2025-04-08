@@ -51,17 +51,17 @@ const ApplePayButton = ({ price }: { price: number }) => {
 
                     if (error) {
                         event.complete('fail');
-                        console.error('Payment failed:', error.message);
+                        // console.error('Payment failed:', error.message);
                     } else if (paymentIntent) {
                         event.complete('success');
-                        console.log('Payment successful!', paymentIntent);
+                        // console.log('Payment successful!', paymentIntent);
                     }
                 } else {
                     event.complete('fail');
                 }
             } catch (err) {
                 event.complete('fail');
-                console.error('Error confirming payment:', err);
+                // console.error('Error confirming payment:', err);
             }
         });
 
@@ -126,7 +126,6 @@ const CheckoutForm = ({ price }: { price: number }) => {
             setError(stripeError.message || 'Payment failed');
         } else if (paymentIntent) {
             setSuccess(true);
-            console.log(paymentIntent);
         }
 
         setLoading(false);

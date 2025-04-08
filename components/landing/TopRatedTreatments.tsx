@@ -43,7 +43,6 @@ const TopRatedTreatments = ({ session }: { session: boolean }) => {
                 throw new Error("Failed to fetch treatments");
             }
             const data = await response.json();
-            console.log(data.data)
             setTreatments(data.data);
         } catch (error: any) {
             setError(error.message);

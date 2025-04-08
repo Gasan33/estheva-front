@@ -26,7 +26,6 @@ export async function POST(request: Request) {
         const data = await response.json();
         return NextResponse.json(data);
     } catch (error) {
-        console.log(error)
         return NextResponse.json({ error: "Failed to create Blog" }, { status: 500 });
     }
 }

@@ -50,7 +50,7 @@ const UploadMultiImages: React.FC<UploadMultiImagesProps> = ({ setUrls }) => {
             const compressedFile = await imageCompression(fileObj.file, options);
             uploadFile(compressedFile, index);
         } catch (error) {
-            console.error('Compression error:', error);
+            // console.error('Compression error:', error);
         }
     };
 
@@ -85,12 +85,12 @@ const UploadMultiImages: React.FC<UploadMultiImagesProps> = ({ setUrls }) => {
                     )
                 );
             } else {
-                console.error('Upload failed:', file);
+                // console.error('Upload failed:', file);
             }
         };
 
         xhr.onerror = () => {
-            console.error('Error uploading:', file);
+            // console.error('Error uploading:', file);
         };
 
         xhr.send(formData);

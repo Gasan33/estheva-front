@@ -32,7 +32,7 @@ const Blogs = () => {
             // Set next page URL if exists, else set it to null
             setNextPageUrl(pagination.next_page_url || null);
         } catch (error) {
-            console.error("Error loading blogs:", error);
+            // console.error("Error loading blogs:", error);
         }
 
         setLoading(false);

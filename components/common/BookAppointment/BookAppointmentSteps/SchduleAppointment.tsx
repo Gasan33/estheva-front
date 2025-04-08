@@ -63,7 +63,6 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
 
             const result = await response.json();
             if (result.code == 200) {
-                console.log(result.data);
                 setTimeSlots(result.data);
             }
 
@@ -195,7 +194,6 @@ const SchduleAppointment: React.FC<SchduleAppointmentProps> = ({
                                     return;
                                 }
                                 if (date) {
-                                    console.log(format(date, "yyyy-MM-dd"));
                                     setDate(date);
                                     generateTimeSlots(selectedDoctor, treatment.id, format(date, "yyyy-MM-dd"))
                                 }

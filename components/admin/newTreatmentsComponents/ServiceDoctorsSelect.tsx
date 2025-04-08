@@ -31,11 +31,10 @@ const ServiceDoctorSelect: React.FC<ServiceDoctorSelectProps> = ({ doctorsData, 
             const response = await fetch(`/api/admin/doctors`);
             const data = await response.json();
             setDoctorsData(data.data);
-            console.log(data)
             setLoading(false);
         } catch (error) {
             setLoading(false)
-            console.error("Error fetching data:", error);
+            // console.error("Error fetching data:", error);
         }
     };
     useEffect(() => {

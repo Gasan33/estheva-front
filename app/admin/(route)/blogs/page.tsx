@@ -15,11 +15,10 @@ const Blogs = () => {
             const response = await fetch(`/api/blogs`);
             const data = await response.json();
             setBlogs(data);
-            console.log(data)
             setLoading(false);
         } catch (error) {
             setLoading(false)
-            console.error("Error fetching data:", error);
+            // console.error("Error fetching data:", error);
         }
     };
     useEffect(() => {

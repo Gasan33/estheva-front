@@ -16,7 +16,6 @@ import Image from "next/image"
 
 
 async function handelDelete(id: number): Promise<void> {
-    console.log(id)
     try {
         const response = await fetch(`https://estheva-clinic.com/api/v1/doctors/${id}`, {
             method: 'DELETE',
@@ -27,7 +26,7 @@ async function handelDelete(id: number): Promise<void> {
         }
         alert("Category Deleted Successfuly");
     } catch (error) {
-        console.error(error);
+        // console.error(error);
     }
 }
 

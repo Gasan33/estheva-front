@@ -29,10 +29,7 @@ const BlogDetails: React.FC<BlogDetailsProps> = ({ id }) => {
                 throw new Error("Failed to fetch blog");
             }
             const data = await response.json();
-            console.log(data.data)
             setBlog(data.data);
-            console.log(data)
-
         } catch (error: any) {
         }
     }

@@ -70,7 +70,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         role: role || "user", // Default to "user" if no role is provided
                     } as unknown as User;
                 } catch (error) {
-                    console.error("Login Error:", error);
+                    // console.error("Login Error:", error);
                     throw new Error("Login failed");
                 }
             },
@@ -105,7 +105,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     events: {
         async signOut() {
             // Handle user sign out action here
-            console.log("User signed out");
+            // console.log("User signed out");
             await fetch(`${apiEndpoint}/logout`, { method: 'POST' });
         },
     },

@@ -17,11 +17,10 @@ const Users = () => {
             const response = await fetch(`/api/admin/users`);
             const data = await response.json();
             setUsers(data.data);
-            console.log(data)
             setLoading(false);
         } catch (error) {
             setLoading(false)
-            console.error("Error fetching treatments:", error);
+            // console.error("Error fetching treatments:", error);
         }
     };
     useEffect(() => {

@@ -50,16 +50,6 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
         }
 
         setLoading(true);
-        console.log(
-            `"user_id": ${session.data?.user.id},
-            "doctor_id": ${selectedDoctor},
-            "treatment_id": ${treatment.id},
-            "time_slot_id":${selectedTimeSlot.id}
-            "appointment_date": ${format(date, "yyyy-MM-dd")},
-            "appointment_time": ${selectedTimeSlot.start_time.slice(0, 5)},
-            "status": "upcoming",
-            "location":${selectedLocation}`
-        )
 
         try {
             const response = await fetch("/api/appointments/store", {
@@ -80,7 +70,6 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
             });
 
             const result = await response.json();
-            console.log(result);
 
             if (!response.ok) {
                 setAppointmentSuccess(false);

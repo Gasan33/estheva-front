@@ -13,13 +13,11 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories, setTreatments, 
         try {
             const response = await fetch(`${config.env.apiEndpoint}/treatments/search/${category_id}`);
             const data = await response.json();
-            console.log(data)
             setTreatments(data.data);
-            console.log(data)
             setLoading(false);
         } catch (error) {
             setLoading(false)
-            console.error("Error fetching treatments:", error);
+            // console.error("Error fetching treatments:", error);
         }
     };
     return (

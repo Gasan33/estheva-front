@@ -8,7 +8,7 @@ export const navigationLinks: NavLinks[] = [
     },
     {
         id: 2,
-        path: '/treatments',
+        path: '/all',
         name: 'Medical Treatments',
         dropMenu: [
             {

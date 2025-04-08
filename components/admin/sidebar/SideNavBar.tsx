@@ -55,7 +55,7 @@ const SideNavBar = () => {
         try {
             await signOut({ callbackUrl: "/" });  // Corrected signOut function
         } catch (error) {
-            console.error("Error signing out:", error);
+            // console.error("Error signing out:", error);
         }
     };
     const toggleSidebar = () => {

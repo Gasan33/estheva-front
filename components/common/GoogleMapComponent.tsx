@@ -48,12 +48,12 @@ const GoogleMapComponent = () => {
                     if (status === google.maps.DirectionsStatus.OK) {
                         setDirections(result);
                     } else {
-                        console.error("Directions request failed due to " + status);
+                        // console.error("Directions request failed due to " + status);
                     }
                 }
             );
         } else {
-            console.error("Google Maps API is not available.");
+            // console.error("Google Maps API is not available.");
         }
     };
 
@@ -65,7 +65,7 @@ const GoogleMapComponent = () => {
                     setDeviceLocation({ lat: latitude, lng: longitude });
                 },
                 (err) => {
-                    console.error(err.message);
+                    // console.error(err.message);
                     setError("Unable to retrieve location. Please allow location access.");
                 }
             );

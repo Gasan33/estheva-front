@@ -29,15 +29,13 @@ const ServiceCategorySelect: React.FC<ServiceCategorySelectProps> = ({ categorie
 
     const fetchCategries = async () => {
         try {
-
             const response = await fetch(`/api/categories`);
             const data = await response.json();
             setCategoriesData(data);
-            console.log(data)
             setLoading(false);
         } catch (error) {
             setLoading(false)
-            console.error("Error fetching data:", error);
+            // console.error("Error fetching data:", error);
         }
     };
     useEffect(() => {

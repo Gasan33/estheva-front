@@ -15,11 +15,11 @@ const FAQs = () => {
             const response = await fetch(`/api/faqs`);
             const data = await response.json();
             setfaqs(data);
-            console.log(data)
+
             setLoading(false);
         } catch (error) {
             setLoading(false)
-            console.error("Error fetching data:", error);
+            // console.error("Error fetching data:", error);
         }
     };
     useEffect(() => {

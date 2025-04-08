@@ -46,14 +46,14 @@ const UploadVideo: React.FC<UploadVideoProps> = ({ setVideoUrl }) => {
                 setVideoUrl(response.secure_url);
                 setVideoPreview(response.secure_url);
             } else {
-                console.error("Upload failed:", xhr.statusText);
+                // console.error("Upload failed:", xhr.statusText);
             }
             setLoading(false);
             setProgress(0);
         };
 
         xhr.onerror = () => {
-            console.error("Network error during upload");
+            // console.error("Network error during upload");
             setLoading(false);
         };
 

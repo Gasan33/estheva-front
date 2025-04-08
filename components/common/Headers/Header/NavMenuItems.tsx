@@ -25,38 +25,23 @@ const NavMenuItems = () => {
                                 <NavigationMenuTrigger
                                     className="relative !bg-transparent text-lg font-normal !text-white hover:!text-gray-100 after:bg-transparent"
                                 >
-                                    <Link href={title.path} >
-                                        {title.name.toUpperCase()}
-                                    </Link>
+                                    {/* <Link href={`/treatments/categories/${title.path}`} > */}
+                                    {title.name.toUpperCase()}
+                                    {/* </Link> */}
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent
                                     className="flex flex-col p-2  w-auto text-gray-50 rounded-lg shadow-lg"
                                 >
-                                    {title.dropMenu.map((item: DropMenu) => (
-                                        <Link
-                                            key={item.id}
-                                            href={{
-                                                pathname: `${item.path}`,
-                                                query: { treatments: item.value },
-                                            }}
-                                        // href={item.path}
-                                        >
-                                            <div className="p-2 items-center gap-2 rounded-md justify-center w-56 hover:bg-gray-800">
-                                                {item.name.toUpperCase()}
-
-                                            </div>
-                                        </Link>
-                                    ))}
-                                    {title.name === "Treatments" && categories.map((category) => (
+                                    {title.name === "Medical Treatments" && categories.map((category) => (
                                         <Link
                                             key={category.category_id}
                                             href={{
-                                                pathname: category.category_slug === "hair-transplant" ? "/treatments/hair-transplant" : "/treatments",
-                                                query: { treatments: category.category_slug },
+                                                pathname: `/treatments/categories/${category.category_slug}`,
+                                                query: { id: category.category_id, name: category.category_name }
                                             }}
                                         // href={item.path}
                                         >
-                                            <div className="p-2 items-center gap-2 rounded-md justify-center w-56 hover:bg-gray-800">
+                                            <div className="p-2 items-center gap-2 rounded-md justify-center text-nowrap hover:bg-gray-800">
                                                 {category.category_name.toUpperCase()}
                                             </div>
                                         </Link>

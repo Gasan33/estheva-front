@@ -54,13 +54,13 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImageUrl, name }) => {
                 setImageUrl(response.secure_url);
                 setLoading(false);
             } else {
-                console.error("Upload failed");
+                // console.error("Upload failed");
                 setLoading(false);
             }
         };
 
         xhr.onerror = () => {
-            console.error("Error uploading");
+            // console.error("Error uploading");
             setLoading(false);
         };
 

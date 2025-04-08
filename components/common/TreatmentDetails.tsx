@@ -17,6 +17,7 @@ import BookAppointment from '@/components/common/BookAppointment/BookAppointment
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import config from '@/lib/config'
+import TreatmentDetailsSkeleton from '../skeletons/TreatmentDetailsSkeleton'
 
 type TreatmentDetailsProps = {
     id: string;
@@ -40,7 +41,6 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                 throw new Error("Failed to fetch treatments");
             }
             const data = await response.json();
-            console.log(data.data)
             setTreatment(data.data);
             setFullDescription(data.data.description);
             setShortDescription(data.data.description.substring(0, 200));
@@ -65,31 +65,21 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
     }, []);
 
     if (!treatment) {
-        return (
-            <div>
-                <div className="rounded-3xl my-8 overflow-clip grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    <div className="col-span-1 h-56 sm:h-auto">
-                        <Skeleton className='w-full h-full' />
-                    </div>
-                    <div className="grid grid-cols-2 gap-2 col-span-1 ">
-                        <Skeleton className='w-full h-full' />
-                    </div>
-                </div>
-            </div>
-        );
+        return <TreatmentDetailsSkeleton />;
     }
 
     if (loading) {
-        return <div>Loading...</div>; // Handle loading state
+        return <TreatmentDetailsSkeleton />;
     }
 
     if (error) {
-        return <div>Error: {error}</div>; // Handle error state
+        return <div>Error: {error}</div>;
     }
 
     return (
-        <div className='m-4 md:mx-16 bg-pattern'>
-            <div className='flex flex-col my-8 gap-4 pb-4' data-aos="fade-up">
+        <div className="container px-4 md:px-12 lg:px-16 mx-auto bg-pattern">
+            {/* Breadcrumb */}
+            <div className="my-8 pb-4" data-aos="fade-up">
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>
@@ -101,157 +91,121 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                         </BreadcrumbItem>
                         <ArrowRight01Icon className="text-primaryColor" size={20} />
                         <BreadcrumbItem>
-                            <BreadcrumbPage className='text-primaryColor'>{treatment.title}</BreadcrumbPage>
+                            <BreadcrumbPage className="text-primaryColor">
+                                {treatment.title}
+                            </BreadcrumbPage>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
             </div>
 
-            {/* Treatment Info */}
-            <div className='flex flex-row items-center justify-between' data-aos="fade-right">
-                <div className='flex flex-col gap-2'>
-                    <h1 className='text-gray-950 text-2xl md:text-4xl font-semibold'>{treatment.title}</h1>
-                    <div className='flex gap-2'>
-                        <Location01Icon height={16} width={16} className='text-gray-500' />
-                        <p className='text-sm text-gray-500'>{treatment.home_based === 1 ? "Clinic / Home" : "Clinic"}</p>
+            {/* Title & Actions */}
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4" data-aos="fade-right">
+                <div>
+                    <h1 className="text-gray-950 text-2xl md:text-4xl font-semibold">
+                        {treatment.title}
+                    </h1>
+                    <div className="flex items-center gap-2 mt-1 text-sm text-gray-500">
+                        <Location01Icon width={16} height={16} />
+                        <p>{treatment.home_based === 1 ? "Clinic / Home" : "Clinic"}</p>
                     </div>
                 </div>
-                <div className='flex items-center gap-8'>
-                    <div className='flex items-center rounded-full px-4 py-2 bg-secondary justify-center gap-2'>
-                        <Share2 height={18} width={18} className='text-gray-500' />
-                        <label className='hidden md:block text-gray-500'>Share</label>
+                <div className="flex gap-4">
+                    <div className="flex items-center px-3 py-1.5 rounded-full bg-secondary gap-2 cursor-pointer">
+                        <Share2 width={18} height={18} />
+                        <span className="hidden md:block">Share</span>
                     </div>
-                    <div className='flex items-center rounded-full px-4 py-2 bg-secondary justify-center gap-2'>
-                        <Heart height={18} width={18} className='text-gray-500' />
-                        <label className='hidden md:block text-gray-500'>Save</label>
+                    <div className="flex items-center px-3 py-1.5 rounded-full bg-secondary gap-2 cursor-pointer">
+                        <Heart width={18} height={18} />
+                        <span className="hidden md:block">Save</span>
                     </div>
                 </div>
             </div>
 
-            {/* Treatment Images */}
-            <div
-                className=" my-8 overflow-clip grid grid-cols-1 sm:grid-cols-2 gap-2"
-                data-aos="zoom-in"
-            >
-                <div className="col-span-1 h-[600px]" data-aos="fade-left">
+            {/* Image Section */}
+            <div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-4" data-aos="zoom-in">
+                <div className="w-full h-[300px] md:h-[500px]">
                     <Image
-                        src={treatment.images[0]}
+                        src={treatment.images?.[0] ?? '/fallback.jpg'}
                         alt={treatment.title}
-                        width={600}
-                        height={400}
-                        className="w-full h-full object-cover"
+                        width={800}
+                        height={500}
+                        className="w-full h-full object-cover rounded-md"
                     />
                 </div>
-                <div className="grid grid-cols-2 gap-2 col-span-1">
-                    {treatment.images.slice(1, 5).map((img, index) => (
+                <div className="grid grid-cols-2 gap-2">
+                    {treatment.images.slice(1, 5).map((img, idx) => (
                         <Image
-                            key={index}
+                            key={idx}
                             src={img}
-                            alt={treatment.title}
+                            alt={`Gallery image ${idx + 1}`}
                             width={400}
-                            height={400}
-                            className="w-full h-[296px] object-cover"
-                            data-aos={
-                                ["fade-up", "fade-left", "fade-right", "fade-up"][index] || "fade-up"
-                            }
+                            height={300}
+                            className="w-full h-36 md:h-48 object-cover rounded-md"
+                            data-aos={['fade-up', 'fade-left', 'fade-right', 'fade-down'][idx % 4]}
                         />
                     ))}
                 </div>
             </div>
 
-
-            {/* Additional Info Section */}
-            <div className='grid grid-cols-1 xl:grid-cols-3 py-8 gap-8' data-aos="fade-up">
-                <div className='xl:col-span-2 h-full'>
-                    <div className='flex flex-col lg:flex-row justify-between lg:items-center'>
-                        <h1 className='text-gray-950 text-2xl md:text-3xl lg:text-4xl font-semibold'>{treatment.title}</h1>
-
-                        {treatment.discounted_price != null ? (
-                            <div className='flex  items-center '>
-                                <div className="flex items-center">
-                                    <span className='bg-yellow-400 py-2 px-4 text-[18px] leading-6 font-[700] mt-4  rounded-lg text-white items-center justify-center'>
-                                        {treatment.discounted_price}%
+            {/* About Section */}
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 py-8" data-aos="fade-up">
+                <div className="xl:col-span-2 space-y-6">
+                    <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                        <h2 className="text-2xl md:text-3xl font-semibold text-gray-950">
+                            {treatment.title}
+                        </h2>
+                        <div className="flex items-center space-x-4">
+                            {treatment.discount_value && Number(treatment.discount_value) > 0 ? (
+                                <>
+                                    <span className="bg-yellow-400 text-white font-bold px-3 py-1 rounded-lg">
+                                        {treatment.discount_value}%
                                     </span>
-                                    <span className='px-4 text-[18px] leading-6 font-normal mt-4  rounded-lg text-gray-400 line-through'>
+                                    <span className="line-through text-gray-400">
                                         {treatment.price}
                                     </span>
-                                    <span className=' px-4 text-[18px] leading-6 font-[700] mt-4  text-black'>
-                                        {treatment.price} {/* Assuming `discountedPrice` is the new price */}
-                                    </span>
-                                </div>
-                            </div>
-                        ) : (<span className='px-4 text-[18px] leading-6 font-[700] mt-4  text-black'>
-                            {treatment.price} {/* Assuming `discountedPrice` is the new price */}
-                        </span>)}
-                    </div>
-                    <div className='flex justify-between items-center md:px-4 mt-4 gap-4'>
-                        <h1 className='lg:text-[18px] leading-6 font-[700] text-gray-950'>Duration : <span className='text-primaryColor'>{treatment.duration} min</span></h1>
-
-                        <div className='flex gap-2'>
-                            <Image src="/icons/starIcon.svg" alt='star' width={20} height={20} />
-                            <p className='font-semibold'>{treatment.reviews.length != 0 ? treatment.reviews[0].rating : "0"}</p>
-                            <p>({treatment.reviews.length} Reviews)</p>
+                                    <span className="font-bold text-gray-900">{treatment.discounted_price} AED</span>
+                                </>
+                            ) : (
+                                <span className="font-bold text-gray-900">{treatment.price} AED</span>
+                            )}
                         </div>
-
-
                     </div>
-                    <div>
-                        <h1 className='text-gray-600 text-lg md:text-lg lg:text-2xl mt-4 lg:px-8  font-semibold'>About This Treatment</h1>
-                        <div dangerouslySetInnerHTML={{ __html: treatment.description }} />
-                        {/* <div className="flex lg:px-12 text-gray-600 text-xl mt-4 font-normal line-clamp-6 lg:line-clamp-none">
-                            <p className='hidden lg:block px-12 text-gray-600 text-xl mt-4 font-normal line-clamp-6 lg:line-clamp-none'>{treatment.description}</p>
-                            <p className='lg:hidden block text-sm'>
-                                {showFullText ? fullDescription : `${shortDescription}...`}
-                                <button onClick={toggleText} className="ml-4 text-primaryColor font-semibold">
-                                    {showFullText ? 'Show Less' : 'Show More'}
-                                </button>
+
+                    <div className="flex items-center justify-between">
+                        <p className="text-sm font-semibold">
+                            Duration: <span className="text-primaryColor">{treatment.duration} min</span>
+                        </p>
+                        <div className="flex items-center gap-1">
+                            <Image src="/icons/starIcon.svg" alt="Rating" width={20} height={20} />
+                            <p className="font-semibold">
+                                {treatment.reviews?.[0]?.rating || 0} ({treatment.reviews?.length || 0} Reviews)
                             </p>
-
-                        </div> */}
+                        </div>
                     </div>
-                    <div>
-                        <h1 className='text-gray-600 text-2xl my-4 lg:px-8 font-semibold'>Gallery</h1>
-                        <div className='h-48 lg:h-[400px] lg:mx-12 overflow-clip rounded-lg'>
-                            <video
-                                src={treatment.video != null ? treatment.video : '/images/banner_video.mp4'}
-                                autoPlay
-                                loop
-                                // muted
-                                controls
-                                style={{ width: "100%", height: "100%", objectFit: 'cover' }}
-                            />
-                        </div>
-                        <div className='grid grid-cols-3 lg:grid-cols-4 lg:mx-12 mt-4 gap-4'>
-                            {treatment.images.map((image, index) => (
-                                <div key={index} className='rounded-lg  h-24 md:w-48 md:h-40 overflow-clip'>
-                                    <Image
-                                        src={image}
-                                        alt={treatment.title}
-                                        width={600}
-                                        height={600}
-                                        className="w-48 h-40 object-cover"
-                                    />
-                                </div>
-                            ))}
 
-                        </div>
+                    <div>
+                        <h3 className="text-lg font-semibold text-gray-700">About This Treatment</h3>
+                        <div className="text-gray-600 mt-2" dangerouslySetInnerHTML={{ __html: treatment.description }} />
                     </div>
                 </div>
-                <div className='h-full p-4 rounded-xl bg-green-50 xl:col-span-1' data-aos="fade-left">
-                    <h1 className='text-[18px] leading-6 font-[700] text-gray-95'>What This Treatment Can Do for You</h1>
-                    {treatment.benefits.map((benfit, index) => (
-                        <div key={index} className='px-4 mt-4 justify-start flex flex-row gap-2'>
-                            <Recycle01Icon width={24} height={24} className='mt-1' />
-                            <p className='book-d flex-1'>{benfit}</p>
+
+                {/* Booking Sidebar */}
+                <div className="bg-green-50 rounded-xl p-6 space-y-4 xl:col-span-1" data-aos="fade-left">
+                    <h4 className="text-lg font-semibold">What This Treatment Can Do for You</h4>
+                    {treatment.benefits.map((benefit, index) => (
+                        <div key={index} className="flex items-start gap-2">
+                            <Recycle01Icon width={24} height={24} className="mt-1" />
+                            <p className="text-sm text-gray-700">{benefit}</p>
                         </div>
                     ))}
-                    {treatment.instructions != null && (
+                    {treatment.instructions && (
                         <>
-                            <h1 className='text-[18px] mt-8 leading-6 font-[700] text-gray-95'>Pre-Treatment Preparation <span className='text-red-600'>Instructions</span></h1>
-                            {treatment.instructions.map((instruct, index) => (
-                                <div key={index} className='px-4 mt-4 justify-start flex flex-row gap-2'>
-                                    <Tag01Icon width={24} height={24} className='mt-1' />
-                                    <p className='book-d flex-1'>{instruct}</p>
+                            <h4 className="text-lg font-semibold mt-6 text-red-500">Pre-Treatment Instructions</h4>
+                            {treatment.instructions.map((inst, index) => (
+                                <div key={index} className="flex items-start gap-2">
+                                    <Tag01Icon width={24} height={24} className="mt-1" />
+                                    <p className="text-sm text-gray-700">{inst}</p>
                                 </div>
                             ))}
                         </>
@@ -259,8 +213,37 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                     <BookAppointment treatment={treatment} />
                 </div>
             </div>
+
+            {/* Video and Gallery */}
+            <div data-aos="fade-up">
+                <h2 className="text-2xl font-semibold text-gray-700 my-4">Gallery</h2>
+                <div className="w-full h-60 md:h-[400px] overflow-hidden rounded-lg mb-4">
+                    <video
+                        src={treatment.video || '/images/banner_video.mp4'}
+                        autoPlay
+                        loop
+                        controls
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {treatment.images.map((img, i) => (
+                        <Image
+                            key={i}
+                            src={img}
+                            alt={`Gallery image ${i + 1}`}
+                            width={300}
+                            height={300}
+                            className="rounded-lg w-full h-32 md:h-40 object-cover"
+                        />
+                    ))}
+                </div>
+            </div>
+
+            {/* Reviews */}
             <TreatmentReviews data-aos="fade-up" />
         </div>
+
     );
 }
 

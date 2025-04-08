@@ -18,6 +18,7 @@ import { getInitials } from '@/lib/utils';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { signOut, useSession } from 'next-auth/react';
+import { useCategories } from '@/context/CategoriesContext';
 
 
 export default function index() {
@@ -26,11 +27,12 @@ export default function index() {
   const pathname = usePathname();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
   const isAdmin = session.data?.user.role == "admin" || false;
+  const { categories } = useCategories()
   const handleSignOut = async () => {
     try {
       await signOut({ callbackUrl: "/" });
     } catch (error) {
-      console.error("Error signing out:", error);
+      // console.error("Error signing out:", error);
     }
   };
   return (
@@ -60,11 +62,11 @@ export default function index() {
                   {data.dropMenu != null ?
                     <Accordion type="single" collapsible>
                       <AccordionItem value="item-1">
-                        <AccordionTrigger><NavLink key={data.id} data={{ ...data, index }} isActive={selectedIndicator == data.path} setSelectedIndicator={setSelectedIndicator}></NavLink></AccordionTrigger>
+                        <AccordionTrigger><NavLink key={data.id} data={{ ...data, index, cat: false }} isActive={selectedIndicator == data.path} setSelectedIndicator={setSelectedIndicator}></NavLink></AccordionTrigger>
                         <AccordionContent>
                           {
-                            data.dropMenu.map((item, index) => (
-                              <NavLink key={item.id} data={{ ...item, index }} isActive={selectedIndicator == item.path} setSelectedIndicator={setSelectedIndicator}></NavLink>
+                            categories.map((item, index) => (
+                              <NavLink key={item.category_id} data={{ name: item.category_name, path: item.category_slug, id: item.category_id, cat: true }} isActive={selectedIndicator == item.category_slug} setSelectedIndicator={setSelectedIndicator}></NavLink>
                             ))
                           }
 
@@ -72,7 +74,7 @@ export default function index() {
                       </AccordionItem>
                     </Accordion>
                     :
-                    <NavLink key={data.id} data={{ ...data, index }} isActive={selectedIndicator == data.path} setSelectedIndicator={setSelectedIndicator}></NavLink>
+                    <NavLink key={data.id} data={{ ...data, index, cat: false }} isActive={selectedIndicator == data.path} setSelectedIndicator={setSelectedIndicator}></NavLink>
                   }
                 </div>
               ))

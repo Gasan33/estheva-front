@@ -43,10 +43,9 @@ const Testimonials = () => {
         try {
             const response = await fetch(`/api/reviews`);
             const data = await response.json();
-            console.log(data)
             if (data.length > 10) { setReviews(data.slice(0, 10)) } else { setReviews(data); };
         } catch (error) {
-            console.error("Error fetching treatments:", error);
+            // console.error("Error fetching treatments:", error);
         }
     };
     useEffect(() => {

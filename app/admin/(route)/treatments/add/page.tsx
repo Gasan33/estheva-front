@@ -59,7 +59,6 @@ const NewService = () => {
             });
 
             const result = await response.json();
-            console.log(result);
 
             if (!response.ok) throw new Error(result.error || "Failed to create Treatment");
 
