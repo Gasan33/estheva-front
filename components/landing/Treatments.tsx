@@ -14,7 +14,7 @@ const Treatments = () => {
                     <ArrowRight01Icon className="text-primaryColor" size={24} />
                 </div>
             </div>
-            <TreatmentsList />
+            {/* <TreatmentsList /> */}
         </div>
     )
 }
