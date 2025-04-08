@@ -15,7 +15,7 @@ const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: numb
     return (
         <div className="shadow-md rounded-[16px] cursor-pointer">
             <div className="relative">
-                {treatment.discount_value != null && (
+                {treatment.discount_value != null || treatment.discount_value > 0 && (
                     <span className="bg-yellow-400 py-1 px-3 text-[14px] leading-6 font-bold absolute top-4 left-4 rounded-lg text-white">
                         {treatment.discount_value}%
                     </span>
