@@ -1,7 +1,6 @@
 "use client"
 import TreatmentsList from '@/components/landing/TreatmentsList';
 import TreatmentReviews from '@/components/landing/TreatmentReviews';
-import { useSearchParams } from 'next/navigation';
 type TreatmentByCategoryProps = {
     categoryId: number;
     categoryName: string;
