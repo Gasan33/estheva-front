@@ -13,6 +13,8 @@ const TreatmentsList = ({ category }: TreatmentsListProps) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    console.log(category)
+
     const fetchTreatmentsByCategory = async (category_id: number) => {
         try {
             setLoading(true);
@@ -22,6 +24,7 @@ const TreatmentsList = ({ category }: TreatmentsListProps) => {
             if (!response.ok) throw new Error("Failed to fetch treatments");
 
             const data = await response.json();
+            console.log(data)
             setTreatments(data.data || []);
         } catch (err: any) {
             // console.error("Error fetching treatments:", err);
