@@ -81,7 +81,7 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
                     </TabsList> */}
 
                     <div className="mt-6 md:mt-12 ml-2 md:ml-4">
-                        {/* Clinic Treatments */}
+
                         <TabsContent value="clinic-treatments" className="flex-1">
                             <ul className="space-y-4">
                                 {treatments.map((treatment, idx) => (
