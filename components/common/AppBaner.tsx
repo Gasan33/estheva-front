@@ -15,7 +15,7 @@ const AppBaner = () => {
             </div>
             <div className="flex flex-col md:flex-row z-50 text-white justify-between w-full mt-8">
                 <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-                    <Image src="/images/phone.svg" alt="app" width={160} height={200} style={{ height: "auto", width: "160px" }} className="mx-auto h-auto md:mx-0 object-cover" priority={true} />
+                    <Image src="/images/phone.svg" alt="app" width={160} height={160} style={{ height: "auto", width: "160px" }} className="mx-auto h-auto md:mx-0 object-cover" priority={true} />
                     <div className="flex flex-col items-center md:items-start">
                         <h1 className="font-bebas-neue tracking-widest text-3xl md:text-4xl text-light-100 text-center md:text-left">
                             Experience Convenience at Your Fingertips!
