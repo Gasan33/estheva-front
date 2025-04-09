@@ -35,15 +35,15 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
 
     const getTreatmentDetails = async () => {
         try {
-            const response = await fetch(`${config.env.apiEndpoint}/treatments/${id}`);
+            const response = await fetch(`/api/treatments/${id}`);
 
             if (!response.ok) {
                 throw new Error("Failed to fetch treatments");
             }
             const data = await response.json();
-            setTreatment(data.data);
-            setFullDescription(data.data.description);
-            setShortDescription(data.data.description.substring(0, 200));
+            setTreatment(data);
+            setFullDescription(data.description);
+            setShortDescription(data.description.substring(0, 200));
         } catch (error: any) {
             setError(error.message);
         } finally {
@@ -59,8 +59,6 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
         getTreatmentDetails();
         AOS.init({
             duration: 1000,
-            easing: "ease-in-out",
-            once: false,
         });
     }, []);
 
@@ -151,7 +149,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
             {/* About Section */}
             <div className="flex flex-col xl:flex-row gap-8 py-8" data-aos="fade-up">
                 {/* Main Content */}
-                <div className="w-full xl:w-3/4 space-y-6">
+                <div className="w-full xl:w-2/3 space-y-6">
                     <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                         <h2 className="text-2xl md:text-3xl font-semibold text-gray-950">
                             {treatment.title}
@@ -192,7 +190,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                 </div>
 
                 {/* Sidebar */}
-                <div className="w-full xl:w-1/4 bg-green-50 rounded-xl p-6 space-y-4" data-aos="fade-left">
+                <div className="w-full xl:w-1/3 bg-green-50 rounded-xl p-6 space-y-4" data-aos="fade-left">
                     <h4 className="text-lg font-semibold">What This Treatment Can Do for You</h4>
                     {treatment.benefits.map((benefit, index) => (
                         <div key={index} className="flex items-start gap-2">
@@ -214,6 +212,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                     <BookAppointment treatment={treatment} />
                 </div>
             </div>
+
 
 
             {/* Video and Gallery */}
