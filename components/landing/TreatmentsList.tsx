@@ -5,41 +5,12 @@ import TreatmentCardSkeleton from "../skeletons/TreatmentCardSkeleton";
 import config from "@/lib/config";
 
 interface TreatmentsListProps {
-    category: number;
+    treatments: Treatment[];
+    loading: boolean;
+    error: any;
 }
 
-const TreatmentsList = ({ category }: TreatmentsListProps) => {
-    const [treatments, setTreatments] = useState<Treatment[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-
-    console.log(category)
-
-    const fetchTreatmentsByCategory = async (category_id: number) => {
-        try {
-            setLoading(true);
-            setError(null);
-
-            const response = await fetch(`${config.env.apiEndpoint}/treatments/search/${category_id}`);
-            if (!response.ok) throw new Error("Failed to fetch treatments");
-
-            const data = await response.json();
-            console.log(data)
-            setTreatments(data.data || []);
-        } catch (err: any) {
-            // console.error("Error fetching treatments:", err);
-            setError(err.message || "An unexpected error occurred.");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        if (category !== undefined && category !== null) {
-            fetchTreatmentsByCategory(category);
-        }
-    }, [category]);
-
+const TreatmentsList = ({ treatments, loading, error }: TreatmentsListProps) => {
     const renderCards = () => {
         if (loading) {
             return Array.from({ length: 6 }).map((_, index) => (
