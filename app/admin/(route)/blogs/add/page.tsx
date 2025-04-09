@@ -1,14 +1,8 @@
 "use client"
-import UploadMultiImages from "../../../../../components/admin/uploadMultiImages/UploadMultiImages";
-import UploadVideo from "../../../../../components/admin/uploadVideo/UploadVideo";
 import { RiCurrencyLine, RiServiceLine } from "react-icons/ri";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
 import CustomInput from "@/components/common/CustomInput";
-import ExtraTimeSettings from "@/components/admin/newTreatmentsComponents/ExtraTime";
-import ArrayInputs from "@/components/admin/newTreatmentsComponents/ArrayInputs";
-import ServiceCategorySelect from "@/components/admin/newTreatmentsComponents/ServiceCategorySelect";
-import ServiceDoctorSelect from "@/components/admin/newTreatmentsComponents/ServiceDoctorsSelect";
 import { Edit01Icon } from "hugeicons-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

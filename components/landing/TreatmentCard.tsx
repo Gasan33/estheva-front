@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight01Icon, HeartAddIcon, Recycle01Icon, StarIcon } from 'hugeicons-react';
 import Image from 'next/image';
@@ -12,13 +12,117 @@ import { useRouter } from 'next/navigation';
 const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: number }) => {
     const [isFav, setIsFav] = useState(false);
     const { data: session } = useSession();
+    const [favLoading, setFavLoading] = useState<boolean>(false);
     const router = useRouter();
 
-    return (
+    const handleFavoritesAdd = async () => {
+        try {
+            setFavLoading(true);
+            const response = await fetch("/api/favorites/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    user_id: session?.user.id,
+                    treatment_id: treatment.id,
+                }),
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || "Failed to add to favorites. please try again!");
+            alert("Treatment successfully added to favorites.");
+            setIsFav(true)
+            return true;
+        } catch (error: any) {
+            alert(error.message || "Something went wrong");
+            return false;
+        } finally {
+            setFavLoading(false);
+        }
+    };
 
-        <div onClick={(e) => router.push(`/treatments/${treatment.id}`)} className="bg-white overflow-hidden shadow-md flex flex-col transition hover:shadow-lg hover:cursor-pointer">
+    const checkIsFav = async () => {
+        try {
+
+            const response = await fetch("/api/favorites/check", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    user_id: session?.user.id,
+                    treatment_id: treatment.id,
+                }),
+            });
+            const result = await response.json();
+            // if (!response.ok) throw new Error(result.error || "Failed to add to favorites. please try again!");
+            // alert("Treatment successfully added to favorites.");
+            console.log(result.favorited)
+            setIsFav(result.favorited)
+            return true;
+        } catch (error: any) {
+            alert(error.message || "Something went wrong");
+            return false;
+        } finally {
+            // setFavLoading(false);
+        }
+    };
+
+    const handleFavoritesRemove = async () => {
+        try {
+            setFavLoading(true);
+
+            const response = await fetch("/api/favorites/remove", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    user_id: session?.user.id,
+                    treatment_id: treatment.id,
+                }),
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || "Failed to Remove from favorites. please try again!");
+            alert("Treatment successfully Removed from favorites.");
+            console.log(result.favorited)
+            setIsFav(result.favorited)
+            return true;
+        } catch (error: any) {
+            alert(error.message || "Something went wrong");
+            return false;
+        } finally {
+            setFavLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        checkIsFav();
+    }, []);
+
+    return (
+        <div className="bg-white overflow-hidden shadow-md flex flex-col transition hover:shadow-lg hover:cursor-pointer">
+
             {/* Image Section */}
             <div className="relative aspect-[5/4] w-full">
+                {/* Main Image */}
+                <Image
+                    src={treatment.images[0]}
+                    alt={treatment.title}
+                    sizes='400'
+                    fill
+                    className="object-cover"
+                    onClick={(e) => router.push(`/treatments/${treatment.id}`)}
+                />
+
+                {/* Overlay Info */}
+                <div
+                    className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-transparent to-transparent text-white p-4"
+                    onClick={(e) => router.push(`/treatments/${treatment.id}`)}
+                >
+                    <h2 className="text-sm md:text-lg font-semibold truncate">{treatment.title}</h2>
+                    <p className="text-xs md:text-sm font-light">{treatment.price} AED</p>
+                </div>
                 {/* Discount Badge */}
                 {treatment.discount_value && Number(treatment.discount_value) > 0 && (
                     <span className="absolute top-4 left-4 bg-yellow-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
@@ -28,34 +132,26 @@ const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: numb
 
                 {/* Favorite Icon */}
                 <div
-                    onClick={() => setIsFav(!isFav)}
+                    onClick={isFav ? handleFavoritesRemove : handleFavoritesAdd}
                     className="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center bg-white/80 cursor-pointer"
                 >
-                    {isFav ? (
-                        <Image src="/icons/heartIcon.svg" alt="Favorite" width={20} height={20} />
-                    ) : (
-                        <HeartAddIcon className="text-gray-600" size={20} />
-                    )}
+                    {
+                        favLoading ?
+                            <Image src="/icons/loading.png" alt="Favorite" width={20} height={20} />
+                            : isFav ? (
+                                <Image src="/icons/heartIcon.svg" alt="Favorite" width={20} height={20} />
+                            ) : (
+                                <HeartAddIcon className="text-gray-600" size={20} />
+                            )}
                 </div>
 
-                {/* Main Image */}
-                <Image
-                    src={treatment.images[0]}
-                    alt={treatment.title}
-                    sizes='400'
-                    fill
-                    className="object-cover"
-                />
 
-                {/* Overlay Info */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-transparent to-transparent text-white p-4">
-                    <h2 className="text-sm md:text-lg font-semibold truncate">{treatment.title}</h2>
-                    <p className="text-xs md:text-sm font-light">{treatment.price} AED</p>
-                </div>
             </div>
 
             {/* Content */}
-            <div className="p-4 space-y-3 flex-1 flex flex-col justify-between">
+            <div
+                className="p-4 space-y-3 flex-1 flex flex-col justify-between"
+                onClick={(e) => router.push(`/treatments/${treatment.id}`)}>
                 <div className="flex items-center justify-between text-xs sm:text-sm md:text-base">
                     {/* Doctor Info */}
                     <div className="flex items-center gap-2">

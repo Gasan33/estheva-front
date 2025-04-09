@@ -293,3 +293,13 @@ interface FAQ {
     created_at: string;
     updated_at: string;
 }
+
+interface Favorite {
+    id: number;
+    user_id: number;
+    doctor_id: number | null;
+    treatment_id: number;
+    created_at: string;
+    updated_at: string;
+    treatment: Treatment;
+}

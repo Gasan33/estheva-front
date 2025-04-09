@@ -12,11 +12,9 @@ import { ArrowRight01Icon, Location01Icon, Recycle01Icon, Tag01Icon } from 'huge
 import { Share2, Heart } from 'lucide-react'
 import Image from 'next/image'
 import TreatmentReviews from '@/components/landing/TreatmentReviews'
-import { Skeleton } from '@/components/ui/skeleton'
 import BookAppointment from '@/components/common/BookAppointment/BookAppointment'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import config from '@/lib/config'
 import TreatmentDetailsSkeleton from '../skeletons/TreatmentDetailsSkeleton'
 
 type TreatmentDetailsProps = {
