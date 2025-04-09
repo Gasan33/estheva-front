@@ -1,7 +1,6 @@
 import HeaderPath from '@/components/common/HeaderPath';
 import { fetchCategories } from '@/lib/actions/categories';
 import React, { ReactNode } from 'react';
-import dynamic from 'next/dynamic';
 import CategoryTabs from '@/components/common/CategoryTabs';
 
 

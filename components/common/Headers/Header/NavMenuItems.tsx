@@ -12,7 +12,7 @@ import { navigationLinks } from '@/constants';
 import { useCategories } from '@/context/CategoriesContext';
 
 const NavMenuItems = () => {
-    const { categories } = useCategories()
+    const { categories } = useCategories();
     return (
         <>                    {
             navigationLinks.map((title) => (
@@ -35,10 +35,7 @@ const NavMenuItems = () => {
                                     {title.name === "Medical Treatments" && categories.map((category) => (
                                         <Link
                                             key={category.category_id}
-                                            href={{
-                                                pathname: `/treatments/categories/${category.category_slug}`,
-                                                query: { id: category.category_id, name: category.category_name }
-                                            }}
+                                            href={`/treatments/categories/${category.category_slug}`}
                                         // href={item.path}
                                         >
                                             <div className="p-2 items-center gap-2 rounded-md justify-center text-nowrap hover:bg-gray-800">

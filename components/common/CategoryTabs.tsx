@@ -1,5 +1,4 @@
 'use client';
-
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 
@@ -21,10 +20,7 @@ const CategoryTabs = ({ categories }: { categories: Category[] }) => {
                 return (
                     <Link
                         key={page.category_id}
-                        href={{
-                            pathname: `/treatments/categories/${page.category_slug}`,
-                            query: { id: page.category_id, name: page.category_name }
-                        }}
+                        href={`/treatments/categories/${page.category_slug}`}
                         className={`px-4 py-2 md:px-6 md:py-4 rounded-full text-nowrap text-sm transition-colors duration-200 ${isActive ? 'bg-white text-black shadow' : 'text-gray-600 hover:bg-white/60'
                             }`}
                     >

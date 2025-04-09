@@ -3,7 +3,7 @@ import TreatmentsList from '@/components/landing/TreatmentsList';
 import TreatmentReviews from '@/components/landing/TreatmentReviews';
 import { useSearchParams } from 'next/navigation';
 type TreatmentByCategoryProps = {
-    categoryId: string;
+    categoryId: number;
     categoryName: string;
 };
 const TreatmentByCategory: React.FC<TreatmentByCategoryProps> = ({ categoryId, categoryName }) => {
