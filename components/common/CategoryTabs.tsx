@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 type Category = {
     category_id: number;
@@ -10,13 +10,12 @@ type Category = {
 
 const CategoryTabs = ({ categories }: { categories: Category[] }) => {
     const pathname = usePathname();
-    const searchParams = useSearchParams();
-    const activeId = searchParams.get('id');
 
     return (
         <div className="flex gap-2 items-center justify-start overflow-x-scroll overflow-y-hidden h-12 p-2 md:h-16 rounded-full bg-light-100">
             {categories.map((page) => {
-                const isActive = activeId === String(page.category_id);
+                const isActive = pathname.includes(`/treatments/categories/${page.category_slug}`);
+
                 return (
                     <Link
                         key={page.category_id}

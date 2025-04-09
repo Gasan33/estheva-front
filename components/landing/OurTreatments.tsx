@@ -2,17 +2,14 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { categories } from "@/constants";
 import ViewAllText from "../common/ViewAllText";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import CategoriesCardSkeleton from "../skeletons/CategoriesCardSkeleton";
 import { useCategories } from "@/context/CategoriesContext";
 
 const OurTreatments = () => {
     const { categories } = useCategories()
     useEffect(() => {
-
         AOS.init({ duration: 1000 });
     }, []);
 
@@ -26,10 +23,7 @@ const OurTreatments = () => {
                 {categories?.slice(0, 6).map((category, index) => (
                     <Link
                         key={index}
-                        href={{
-                            pathname: "/treatments",
-                            query: { treatments: category.category_slug },
-                        }}
+                        href={`/treatments/categories/${category.category_slug}`}
                         data-aos="fade-up" // AOS animation
                         data-aos-delay={index * 100} // Delay each item for a staggered animation
                         className="bg-transparent rounded-xl p-6 hover:scale-105 cursor-pointer transition duration-300"

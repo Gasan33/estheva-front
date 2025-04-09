@@ -16,13 +16,7 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
 
     // Initialize AOS
     useEffect(() => {
-        AOS.init({
-            delay: 100,
-            // duration: 500,
-            easing: "ease-in-out",
-            // offset: 50,
-            once: false,
-        });
+        AOS.init({ duration: 1000 });
     }, []);
 
     const fetchTreatments = async () => {
@@ -116,7 +110,7 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
                                         <li
                                             onClick={() => handleClick(treatment, idx)}
                                             data-aos="fade-up"
-                                            data-aos-delay={idx * 100}
+                                            data-aos-delay={idx * 10}
                                             className="flex gap-4 items-center cursor-pointer transform hover:scale-105 hover:duration-300"
                                         >
                                             <span className="text-sm md:text-xl text-light-500">
