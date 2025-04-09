@@ -124,7 +124,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
 
             {/* Image Section */}
             <div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-4" data-aos="zoom-in">
-                <div className="w-full h-[300px] md:h-[500px]">
+                <div className="w-full h-[300px] md:h-[600px]">
                     <Image
                         src={treatment.images?.[0] ?? '/fallback.jpg'}
                         alt={treatment.title}
@@ -141,7 +141,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                             alt={`Gallery image ${idx + 1}`}
                             width={400}
                             height={300}
-                            className="w-full h-36 md:h-48 object-cover rounded-md"
+                            className="w-full h-48 object-cover rounded-md md:h-[296px]"
                             data-aos={['fade-up', 'fade-left', 'fade-right', 'fade-down'][idx % 4]}
                         />
                     ))}
@@ -149,8 +149,9 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
             </div>
 
             {/* About Section */}
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 py-8" data-aos="fade-up">
-                <div className="xl:col-span-2 space-y-6">
+            <div className="flex flex-col xl:flex-row gap-8 py-8" data-aos="fade-up">
+                {/* Main Content */}
+                <div className="w-full xl:w-3/4 space-y-6">
                     <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
                         <h2 className="text-2xl md:text-3xl font-semibold text-gray-950">
                             {treatment.title}
@@ -190,8 +191,8 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                     </div>
                 </div>
 
-                {/* Booking Sidebar */}
-                <div className="bg-green-50 rounded-xl p-6 space-y-4 xl:col-span-1" data-aos="fade-left">
+                {/* Sidebar */}
+                <div className="w-full xl:w-1/4 bg-green-50 rounded-xl p-6 space-y-4" data-aos="fade-left">
                     <h4 className="text-lg font-semibold">What This Treatment Can Do for You</h4>
                     {treatment.benefits.map((benefit, index) => (
                         <div key={index} className="flex items-start gap-2">
@@ -213,6 +214,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                     <BookAppointment treatment={treatment} />
                 </div>
             </div>
+
 
             {/* Video and Gallery */}
             <div data-aos="fade-up">

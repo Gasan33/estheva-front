@@ -16,7 +16,7 @@ const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: numb
 
     return (
 
-        <div onClick={(e) => router.push(`/treatments/${treatment.id}`)} className="bg-white overflow-hidden shadow-md flex flex-col transition hover:shadow-lg">
+        <div onClick={(e) => router.push(`/treatments/${treatment.id}`)} className="bg-white overflow-hidden shadow-md flex flex-col transition hover:shadow-lg hover:cursor-pointer">
             {/* Image Section */}
             <div className="relative aspect-[5/4] w-full">
                 {/* Discount Badge */}
