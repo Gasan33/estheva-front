@@ -7,9 +7,8 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import AppBaner from '../../AppBaner';
-import { Session } from 'next-auth';
 
-export default function Header({ session }: { session?: Session | null }) {
+export default function Header() {
 
   const [isActive, setIsActive] = useState(false);
   const pathname = usePathname();

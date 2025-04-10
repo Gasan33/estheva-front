@@ -1,15 +1,12 @@
 "use client"
-import { Message01Icon, Notification01Icon, Notification02Icon, Search01Icon } from "hugeicons-react";
+import { Message01Icon, Notification02Icon, Search01Icon } from "hugeicons-react";
 import styles from "./navbar.module.css";
-import { MdPublic } from "react-icons/md";
-import { useSession } from "next-auth/react";
 import UserDropdown from "@/components/common/Headers/Header/UserDropDown";
 import Link from "next/link";
 import Image from "next/image";
 
 
 const Navbar = () => {
-  const session = useSession();
   return (
     <div className="bg-white border-b-[1px] w-full sticky h-32 lg:h-auto">
       <div className={styles.container}>
@@ -30,7 +27,7 @@ const Navbar = () => {
             <Message01Icon size={24} />
             <Notification02Icon size={24} />
           </div>
-          <UserDropdown session={session.data} />
+          <UserDropdown />
         </div>
       </div>
       <div className=' flex-row border border-solid rounded-lg flex ml-[20%] mb-2 mr-4 lg:hidden'>

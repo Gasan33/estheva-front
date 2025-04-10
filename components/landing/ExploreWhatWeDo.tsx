@@ -7,7 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import config from "@/lib/config";
 
-const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
+const ExploreWhatWeDo = () => {
     const [treatments, setTreatments] = useState<Treatment[]>([]);
     const [homeTreatments, setHomeTreatments] = useState<Treatment[]>([]);
     const [treatment, setTreatment] = useState<Treatment | null>(null);
@@ -96,7 +96,7 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
                                                 size={24}
                                             />
                                         </li>
-                                        <Down treatment={treatment} show={show && idx === treatmentIndex} session={session} />
+                                        <Down treatment={treatment} show={show && idx === treatmentIndex} />
                                     </div>
                                 ))}
                             </ul>
@@ -123,7 +123,7 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
                                                 size={24}
                                             />
                                         </li>
-                                        <Down treatment={treatment} show={show && idx === treatmentIndex} session={session} />
+                                        <Down treatment={treatment} show={show && idx === treatmentIndex} />
                                     </div>
                                 ))}
                             </ul>
@@ -133,7 +133,7 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
 
                 {/* Right Section */}
                 <div className="flex-1 hidden xl:block h-[600px] xl:h-screen mt-8 xl:mt-0 mr-16" data-aos="fade-up" key={treatmentIndex}>
-                    {treatment && <ExploreTreatment treatment={treatment} session={session} />}
+                    {treatment && <ExploreTreatment treatment={treatment} />}
                 </div>
             </div>
         </div>
@@ -142,13 +142,13 @@ const ExploreWhatWeDo: React.FC<{ session: boolean }> = ({ session }) => {
 
 export default ExploreWhatWeDo;
 
-const Down: React.FC<{ treatment: Treatment; show: boolean; session: boolean }> = ({ treatment, show, session }) => {
+const Down: React.FC<{ treatment: Treatment; show: boolean; }> = ({ treatment, show }) => {
     return (
         <div
             className={`flex-1 block xl:hidden h-[600px] xl:h-screen mt-8 xl:mt-0 transition-all duration-500 overflow-hidden ${show ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                 }`}
         >
-            {show && <ExploreTreatment treatment={treatment} session={session} />}
+            {show && <ExploreTreatment treatment={treatment} />}
         </div>
     );
 };

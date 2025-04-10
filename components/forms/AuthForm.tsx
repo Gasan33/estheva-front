@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -15,7 +14,6 @@ import {
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { Auth_FIELD_NAMES, Auth_FIELD_TYPES } from "@/constants"
-// import ImageUpload from "./ImageUpload"
 import { toast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -62,6 +60,7 @@ const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit
                     : "You have successfully signed up."
 
             });
+
             router.push("/");
         } else {
             toast({

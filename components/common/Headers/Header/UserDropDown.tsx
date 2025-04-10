@@ -11,13 +11,15 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from '@/components/ui/button';
-import { AiSecurity01Icon, Calendar01Icon, FavouriteIcon, HelpCircleIcon, Profile02Icon, SecurityIcon, Settings01Icon, UserIcon } from 'hugeicons-react';
-import { signOut } from "next-auth/react";  // Corrected import
+import { AiSecurity01Icon, Calendar01Icon, FavouriteIcon, HelpCircleIcon, SecurityIcon, Settings01Icon, UserIcon } from 'hugeicons-react';
+import { signOut, useSession } from "next-auth/react";
 import { getInitials } from "@/lib/utils";
-import { Session } from "next-auth";
-import SignInSignUpButtons from "./SignInSignUpButtons";
 
-const UserDropdown = ({ session }: { session?: Session | null }) => {
+import SignInSignUpButtons from "./SignInSignUpButtons";
+import { useEffect } from "react";
+
+const UserDropdown = () => {
+    const session = useSession();
     const handleSignOut = async () => {
         try {
             await signOut({ callbackUrl: "/" });  // Corrected signOut function
@@ -25,17 +27,23 @@ const UserDropdown = ({ session }: { session?: Session | null }) => {
             // console.error("Error signing out:", error);
         }
     };
-    if (session == null) {
+
+    if (session.data == null) {
         return <SignInSignUpButtons />
     }
-    const isAdmin = session.user.role == "admin" || false;
+
+    const isAdmin = session.data.user.role == "admin" || false;
+
+    useEffect(() => {
+        console.log(session.data.user)
+    }, [])
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger>
                 <Avatar>
                     <AvatarFallback className='bg-amber-100'>
-                        {getInitials(session?.user?.name || 'GU')}
+                        {getInitials(session.data.user?.name || 'GU')}
                     </AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
@@ -45,10 +53,10 @@ const UserDropdown = ({ session }: { session?: Session | null }) => {
                     <Link href={isAdmin ? "/admin/dashboard" : "/my-profile"} className="flex flex-col justify-center items-center gap-2">
                         <Avatar className="h-16 w-16">
                             <AvatarFallback className="bg-amber-100">
-                                {getInitials(session?.user?.name || 'GU')}
+                                {getInitials(session.data.user?.name || 'GU')}
                             </AvatarFallback>
                         </Avatar>
-                        <h1 className="text-primary font-semibold text-xl uppercase">{session?.user?.name || 'Guest'}</h1>
+                        <h1 className="text-primary font-semibold text-xl uppercase">{session.data.user?.name || 'Guest'}</h1>
                     </Link>
                 </DropdownMenuLabel>
 

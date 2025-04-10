@@ -4,8 +4,10 @@ import Link from 'next/link'
 import React from 'react'
 import BookAppointment from '../common/BookAppointment/BookAppointment'
 import SignInDialog from '../dialogs/SignInDialog'
+import { useSession } from 'next-auth/react'
 
-const ExploreTreatment = ({ treatment, session }: { treatment: Treatment, session: boolean }) => {
+const ExploreTreatment = ({ treatment }: { treatment: Treatment }) => {
+    const session = useSession();
     return (
         <div className='relative h-full w-full flex-col justify-between gap-4'>
             <h1 className='text-gray-900 text-xl font-semibold line-clamp-1'>
@@ -24,7 +26,7 @@ const ExploreTreatment = ({ treatment, session }: { treatment: Treatment, sessio
                     <ArrowRight01Icon className="h-4 md:h-6" />
 
                 </Link>
-                {session ? <BookAppointment treatment={treatment} triger='home' /> : <SignInDialog />}
+                {session.data?.user != null ? <BookAppointment treatment={treatment} triger='home' /> : <SignInDialog />}
             </div>
         </div>
     )

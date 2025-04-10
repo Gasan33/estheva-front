@@ -46,4 +46,5 @@ jobs:
           script: |
             cd ${{ secrets.TARGET_DIR }}
             pnpm install --prod
+            --update-env
             pm2 restart estheva-front
