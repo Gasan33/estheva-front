@@ -33,9 +33,9 @@ const TreatmentBenefits: React.FC<TreatmentBenefitsProps> = ({
             return;
         }
 
-        if (inputValue.includes(',')) {
+        if (inputValue.includes('.')) {
             const newElements = inputValue
-                .split(',')
+                .split('.')
                 .map((item) => item.trim())
                 .filter((item) => item.length > 0);
 
