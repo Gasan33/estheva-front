@@ -33,7 +33,12 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "./.next ./public ./package.json ./ecosystem.config.js"
+          source: |
+            .next
+            public
+            package.json
+            next.config.js
+            ecosystem.config.js
           target: ${{ secrets.TARGET_DIR }}
 
       - name: 🚀 Restart app with PM2
@@ -45,4 +50,4 @@ jobs:
           script: |
             cd ${{ secrets.TARGET_DIR }}
             npm install --prod --force
-            pm2 restart estheva-front || pm2 start ecosystem.config.js
+            pm2 startOrReload ecosystem.config.js --env production
