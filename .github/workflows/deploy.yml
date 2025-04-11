@@ -45,6 +45,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ${{ secrets.TARGET_DIR }}
-            pnpm install --prod
-            --update-env
+            npm install --prod --force
             pm2 restart estheva-front
