@@ -16,7 +16,7 @@ jobs:
       - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22.14.0'
+          node-version: 18
 
       - name: 📦 Install dependencies
         run: |
@@ -25,7 +25,8 @@ jobs:
 
       - name: 🔨 Build the app
         run: |
-          NEXT_TELEMETRY_DISABLED=1 npm run build
+            NEXT_TELEMETRY_DISABLED=1 
+            npm run build
 
       - name: 📤 Deploy to server
         uses: appleboy/scp-action@v0.1.7
@@ -33,7 +34,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "./.next ./public ./package.json ./ecosystem.config.js"
+          source: ".next,public,package.json,ecosystem.config.js"
           target: ${{ secrets.TARGET_DIR }}
 
       - name: 🚀 Restart app with PM2
@@ -45,4 +46,4 @@ jobs:
           script: |
             cd ${{ secrets.TARGET_DIR }}
             npm install --prod --force
-            pm2 restart estheva-front || pm2 start estheva-front
+            pm2 restart estheva-front
