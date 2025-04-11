@@ -11,8 +11,6 @@ import {
     Day,
     TimelineViews,
     TimelineMonth,
-    ResourceDetails,
-
 } from '@syncfusion/ej2-react-schedule';
 import "@syncfusion/ej2-base/styles/material.css";
 import "@syncfusion/ej2-buttons/styles/material.css";
@@ -29,7 +27,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ClipLoader } from 'react-spinners';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { formatDuration, formatTimeWithAMPM, getInitials, getRandomColor } from '@/lib/utils';
-import { CatalogueIcon, Doctor01Icon, UserAccountIcon, UserIcon } from 'hugeicons-react';
+import { CatalogueIcon, Doctor01Icon, UserIcon } from 'hugeicons-react';
 
 registerLicense("Mzc0NTM1OEAzMjM4MmUzMDJlMzBKT3lhd1dEMnpqTXBxd2MwMW83NDZvMTkyTzRmUzMwOVlXK1dGZng2bUJFPQ==");
 
