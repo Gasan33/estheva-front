@@ -10,7 +10,7 @@ const Favourite = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchFavorites = async () => {
+    const fetchFavorites = async (signal?: AbortSignal) => {
         try {
             setLoading(true);
             const response = await fetch("/api/favorites", {
@@ -37,14 +37,15 @@ const Favourite = () => {
     };
 
     useEffect(() => {
-        if (session?.user?.id) {
-            fetchFavorites();
-        }
-    }, [session?.user?.id]);
+        const controller = new AbortController();
 
-    useEffect(() => {
-        console.log("Updated treatments:", treatments);
-    }, [treatments]);
+        if (session?.user?.id) {
+            fetchFavorites(controller.signal);
+        }
+
+        return () => controller.abort();
+    }, [session]);
+
 
     if (loading) return <div>loading</div>
 

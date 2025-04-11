@@ -14,9 +14,7 @@ import { Button } from '@/components/ui/button';
 import { AiSecurity01Icon, Calendar01Icon, FavouriteIcon, HelpCircleIcon, SecurityIcon, Settings01Icon, UserIcon } from 'hugeicons-react';
 import { signOut, useSession } from "next-auth/react";
 import { getInitials } from "@/lib/utils";
-
 import SignInSignUpButtons from "./SignInSignUpButtons";
-import { useEffect } from "react";
 
 const UserDropdown = () => {
     const session = useSession();
@@ -34,9 +32,6 @@ const UserDropdown = () => {
 
     const isAdmin = session.data.user.role == "admin" || false;
 
-    useEffect(() => {
-        console.log(session.data.user)
-    }, [])
 
     return (
         <DropdownMenu>
