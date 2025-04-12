@@ -7,6 +7,7 @@ import Image from 'next/image';
 
 interface UploadMultiImagesProps {
     setUrls: React.Dispatch<React.SetStateAction<string[] | null | undefined>>;
+    editImagesUrl?: string[] | null;
 }
 
 interface FileWithPreview {
@@ -17,13 +18,13 @@ interface FileWithPreview {
     url?: string;
 }
 
-const UploadMultiImages: React.FC<UploadMultiImagesProps> = ({ setUrls }) => {
+const UploadMultiImages: React.FC<UploadMultiImagesProps> = ({ setUrls, editImagesUrl }) => {
     const [files, setFiles] = useState<FileWithPreview[]>([]);
     const [uploadedUrls, setUploadedUrls] = useState<string[]>([]);
 
     useEffect(() => {
         if (uploadedUrls.length === files.length && uploadedUrls.length > 0) {
-            setUrls(uploadedUrls); // Update parent component state only when all uploads complete
+            setUrls(uploadedUrls);
         }
     }, [uploadedUrls, files.length, setUrls]);
 
@@ -98,6 +99,24 @@ const UploadMultiImages: React.FC<UploadMultiImagesProps> = ({ setUrls }) => {
 
     return (
         <div>
+            {editImagesUrl && editImagesUrl.length > 0 && (
+                <div className="grid grid-cols-4 mb-6 gap-4">
+                    {editImagesUrl.map((image, index) => (
+                        <div key={index} className="relative flex items-center justify-center">
+                            <VscError className="absolute top-1 right-1 text-red-500 bg-white rounded-full h-6 w-6 cursor-pointer" />
+                            <div className="relative w-16 h-16">
+                                <Image
+                                    src={image}
+                                    alt={`Preview ${index}`}
+                                    height={200}
+                                    width={200}
+                                    className={`rounded-md w-full h-full object-cover`}
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
             {files.length > 0 && (
                 <div className="grid grid-cols-4 mb-6 gap-4">
                     {files.map((file, index) => (

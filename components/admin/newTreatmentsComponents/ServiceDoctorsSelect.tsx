@@ -60,7 +60,7 @@ const ServiceDoctorSelect: React.FC<ServiceDoctorSelectProps> = ({ doctorsData, 
                     <SelectContent>
                         {
                             doctorsData?.map((item) => (
-                                <SelectItem key={item.id / 3} value={item.user.first_name}>{item.user.first_name} {item.user.last_name}</SelectItem>
+                                <SelectItem key={item.id} value={item.user.first_name}>{item.user.first_name} {item.user.last_name}</SelectItem>
 
                             ))
                         }

@@ -3,6 +3,7 @@ import { CircularProgress } from "@mui/material";
 
 interface UploadVideoProps {
     setVideoUrl: React.Dispatch<React.SetStateAction<string | null | undefined>>;
+    editVideoUrl?: string | null
 }
 
 const UploadVideo: React.FC<UploadVideoProps> = ({ setVideoUrl }) => {

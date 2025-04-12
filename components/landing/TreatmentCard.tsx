@@ -97,7 +97,9 @@ const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: numb
     };
 
     useEffect(() => {
-        checkIsFav();
+        if (session?.user) {
+            checkIsFav();
+        }
     }, []);
 
     return (

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
 import Image from "next/image"
+import Link from "next/link"
 
 
 
@@ -102,7 +103,7 @@ export const columns: ColumnDef<Treatment>[] = [
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>View Treatment details</DropdownMenuItem>
-                        <DropdownMenuItem>Edit Treatment</DropdownMenuItem>
+                        <Link href={`/admin/treatments/edit/${treatment.id}`}><DropdownMenuItem>Edit Treatment</DropdownMenuItem></Link>
                         <DropdownMenuItem >Delete Treatment</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

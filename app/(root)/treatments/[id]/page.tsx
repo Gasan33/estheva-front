@@ -1,12 +1,10 @@
 import React from 'react';
-// import { popularTreatments } from '@/constants';
 import type { Metadata, ResolvingMetadata } from 'next';
 import TreatmentDetails from '@/components/common/TreatmentDetails';
 import config from '@/lib/config';
 
 type Props = {
     params: Promise<{ id: string }>
-    // searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata(
