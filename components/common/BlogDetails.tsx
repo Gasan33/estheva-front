@@ -17,29 +17,29 @@ import { ArrowRight01Icon } from 'hugeicons-react';
 import Blogs from '../landing/Blogs';
 
 type BlogDetailsProps = {
-    id: number;
+    blog: Blog;
 };
 
-const BlogDetails: React.FC<BlogDetailsProps> = ({ id }) => {
-    const [blog, setBlog] = useState<Blog | null>(null);
-    const [loading, setLoading] = useState(true);
+const BlogDetails: React.FC<BlogDetailsProps> = ({ blog }) => {
+    // const [blog, setBlog] = useState<Blog | null>(null);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const getBlogDetails = async () => {
-        try {
-            const response = await fetch(`${config.env.apiEndpoint}/blogs/${id}`);
-            if (!response.ok) throw new Error("Failed to fetch blog");
-            const data = await response.json();
-            setBlog(data.data);
-        } catch (err: any) {
-            setError(err.message || "Something went wrong");
-        } finally {
-            setLoading(false);
-        }
-    };
+    // const getBlogDetails = async () => {
+    //     try {
+    //         const response = await fetch(`${config.env.apiEndpoint}/blogs/${id}`);
+    //         if (!response.ok) throw new Error("Failed to fetch blog");
+    //         const data = await response.json();
+    //         setBlog(data.data);
+    //     } catch (err: any) {
+    //         setError(err.message || "Something went wrong");
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
 
     useEffect(() => {
-        getBlogDetails();
+        // getBlogDetails();
         AOS.init({
             duration: 1000,
             easing: "ease-in-out",

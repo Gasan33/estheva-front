@@ -38,14 +38,18 @@ export async function generateMetadata(
         keywords: [
             title,
             'treatments',
-            'Body Contouring & Weight Loss',
-            'IV Therapy',
-            'Aesthetic',
-            'Hair Transplant',
-            'Physiotherapy',
-            'Health & Wellness',
-            'Consultations',
-            'Estheva Polyclinic',
+            'The Importance of Lymphatic Drainage Massage for Well-Being and Body Shape',
+            '10 Essential Medical Laboratory Tests Everyone Over 40 Should Do Annually',
+            'Achieve Your Body Goals with Weight Loss Programs',
+            'The Science Behind IV Drip Therapy: Proven Effectiveness with Medical Research',
+            'Medically Proven Effectiveness of Ultrasound Cavitation and Radiofrequency for Fat Reduction',
+            'The Anti-Aging Power of Diabetes Medications: Exploring Metformin, Mounjaro, and Ozempic',
+            'Dealing with Physical and Mental Burnout: How IV Drips Therapy Can Help Regain Focus and Vitality',
+            'Understanding Insulin Resistance: The Hidden Cause of Weight Gain and How to Manage It',
+            'Non-Invasive Slimming Treatments at Estheva Polyclinic: The Benefits and Right Candidates',
+            'A Comprehensive Guide to Hair Transplants: Techniques, Benefits, and Finding the Right Candidate',
+            'The Powerful Benefits of NAD+ IV Drips',
+            'The Ultimate Skin Ritual: Combining Hydrofacial with IV Drips'
         ],
         openGraph: {
             title,
@@ -72,7 +76,7 @@ const TreatmentByCategoryPage = async ({ params }: Props) => {
     return (
         <>
             <BlogDetails
-                id={blog.id}
+                blog={blog}
             />
 
             <Script id="ld-json" type="application/ld+json">
@@ -85,7 +89,7 @@ const TreatmentByCategoryPage = async ({ params }: Props) => {
                         "@type": "MedicalSpecialty",
                         "name": blog.title,
                     },
-                    "url": `${config.env.baseUrl}/treatments/categories/${slug}`,
+                    "url": `${config.env.baseUrl}/blogs/${slug}`,
                     "image": blog?.image
                         ? blog.image
                         : undefined,
