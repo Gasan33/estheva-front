@@ -428,7 +428,7 @@
 }
 
 .treatment-reviews-wrapper .swiper-pagination-bullet-active {
-  background: #0067ff !important;
+  background: #051ee6 !important;
   border: none !important;
 }
 
@@ -449,7 +449,7 @@
 }
 
 .treatment-reviews-wrapper .swiper-slide.swiper-slide-next {
-  background: #0067ff;
+  background: #051ee6;
   border-radius: 12px;
   box-shadow: 0px 20px 70px rgba(0, 103, 255, 0.3) !important;
 }
@@ -462,7 +462,7 @@
 /* Responsive swiper-slide */
 @media (max-width: 768px) {
   .treatment-reviews-wrapper .swiper-slide.swiper-slide-next {
-    background: #0067ff;
+    background: #051ee6;
     border-radius: 8px;
     box-shadow: 0px 10px 40px rgba(0, 103, 255, 0.3) !important;
   }
@@ -541,7 +541,7 @@
   }
 
   .blogs-wrapper .swiper-pagination-bullet-active {
-    background: #14b8a6 !important;
+    background: #051ee6 !important;
     border: none !important;
     width: 20px !important;
     border-radius: 10px !important;

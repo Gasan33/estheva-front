@@ -1,6 +1,4 @@
 import Consultation from '@/components/landing/Consultation'
-import { Button } from '@/components/ui/button'
-import Image from 'next/image'
 import React from 'react'
 
 const OnlineConsultation = () => {
@@ -16,7 +14,7 @@ const OnlineConsultation = () => {
                             Experience the convenience of accessing quality healthcare from the comfort of your home with Estheva Polyclinic’s Online Medical Consultation service. Our experienced healthcare professionals are available for consultations via video, phone, or chat, providing expert medical advice without the need for in-person visits.
                         </p>
                     </div>
-                    <div className="w-full bg-blue-100">
+                    {/* <div className="w-full bg-blue-100">
                         <Image
                             src="/images/online-consultation.png"
                             alt="Online Consultation"
@@ -24,7 +22,7 @@ const OnlineConsultation = () => {
                             height={600}
                             className="w-full h-auto object-fill"
                         />
-                    </div>
+                    </div> */}
 
                 </div>
             </section>

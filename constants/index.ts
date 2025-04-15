@@ -133,6 +133,36 @@ export const quickLinks03: QuickLink[] = [
 ];
 
 
+export const doctorConsultaion = [
+    {
+        id: 1,
+        name: "Dr. Farhan Ali",
+        img: "/images/doc1.jpg",
+        specialization: "Physiotherapist & Slimming Consultant",
+        about: "Dr. Farhan Ali is a dedicated Physiotherapist & Slimming Consultant with over 5 years of experience in delivering personalized health and wellness solutions. With a strong background in physiotherapy and a passion for holistic body transformation, she specializes in treating musculoskeletal conditions and designing effective slimming programs tailored to individual needs. Dr. Farhan is committed to helping patients regain mobility, reduce pain, and achieve their fitness goals through safe, science-based practices and compassionate care."
+        , linkedIn: "",
+        whatsapp: "+971545671677"
+    },
+    {
+        id: 2,
+        name: "Jareer",
+        img: "/images/doc2.jpg",
+        specialization: "Slimming Consultant",
+        about: "Jareer is a skilled Slimming Consultant specializing in personalized weight management and body contouring solutions. With a strong focus on holistic wellness and client satisfaction, Jareer combines expert knowledge in slimming techniques with a supportive approach to help clients achieve sustainable and healthy body transformation goals."
+        , linkedIn: "",
+        whatsapp: ""
+    },
+    {
+        id: 3,
+        name: "Dr. Mario Andaloro.",
+        img: "/images/doc3.jpg",
+        specialization: "General",
+        about: "Dr. Mario Andaloro is a highly experienced General Practitioner known for his comprehensive approach to adult and family healthcare. With a deep commitment to patient well-being, Dr. Mario provides expert diagnosis, preventive care, and treatment for a wide range of acute and chronic conditions. His compassionate and patient-focused style ensures that every individual receives personalized and effective medical attention."
+        , linkedIn: "",
+        whatsapp: ""
+    },
+];
+
 // export const popularTreatments: Treatment[] = [
 //     {
 //         id: 1,

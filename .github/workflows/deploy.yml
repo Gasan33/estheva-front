@@ -46,4 +46,4 @@ jobs:
           script: |
             cd ${{ secrets.TARGET_DIR }}
             npm install --prod --force
-            pm2 restart estheva-front
+            pm2 restart etheva-front

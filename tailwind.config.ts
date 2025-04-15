@@ -20,7 +20,7 @@ export default {
 				]
 			},
 			colors: {
-				primaryColor: '#14b8a6',
+				primaryColor: '#051ee6',
 				yellowColor: '#FEB60D',
 				purpleColor: '#9771FF',
 				irisBlueColor: '#01B5C5',
@@ -64,7 +64,8 @@ export default {
 					'5': 'hsl(var(--chart-5))'
 				},
 				primary: {
-					DEFAULT: '#0d212c',
+					// DEFAULT: '#0d212c',
+					DEFAULT: '#051ee6',
 					admin: '#25388C'
 				},
 				green: {

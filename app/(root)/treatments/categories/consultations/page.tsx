@@ -5,10 +5,11 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import config from '@/lib/config';
-import BookAppointment from '../common/BookAppointment/BookAppointment';
-import { doctorConsultaion } from '@/constants';
+import BookAppointment from '@/components/common/BookAppointment/BookAppointment';
+import { Link01Icon, Linkedin01Icon } from 'hugeicons-react';
 import Link from 'next/link';
-import { Linkedin01Icon } from 'hugeicons-react';
+import { doctorConsultaion } from '@/constants';
+
 
 
 const Consultation = () => {
@@ -33,12 +34,12 @@ const Consultation = () => {
     }, []);
 
     return (
-        <div className='w-full px-4 py-16 sm:px-6 lg:px-16 flex flex-col items-center'>
-            <h2 className='text-2xl font-semibold text-gray-900 text-center sm:text-3xl'>
-                Meet Our Specialist Online Consultation Doctors
-            </h2>
+        <div className='w-full px-4 py-16 sm:px-6 lg:px-16 flex flex-col justify-between'>
+            <div className='flex justify-between items-center'>
+                <h1 className='text-lg md:text-[28px] lg:text-[32px] text-primary font-semibold'>Consultation</h1>
+            </div>
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10 w-full max-w-6xl'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10 w-full'>
                 {doctorConsultaion.map((item) => (
                     <div
                         key={item.id}
@@ -71,12 +72,10 @@ const Consultation = () => {
                         <div className='p-4'>
                             <h1 className='text-xl font-medium text-gray-900'>{item.name}</h1>
                             <h2 className='mt-1 text-primary'>{item.specialization}</h2>
-                            <p className='mt-2 text-sm text-gray-700'>
-                                Dr. {item.name} has extensive experience in all aspects of adult healthcare, specializing in {item.specialization}.
+                            <p className='mt-2 text-sm text-gray-700 line-clamp-3'>
+                                {item.about}
                             </p>
-
                             <BookAppointment treatment={treatment!} triger='online' />
-
                             <Button
                                 onClick={() => window.location.href = `tel:${phoneNumber}`}
                                 className='mt-4 w-full bg-teal-500 uppercase font-thin text-white'

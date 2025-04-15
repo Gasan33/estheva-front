@@ -34,7 +34,7 @@ const ParticlesComponent = memo((props) => {
             fullScreen: { enable: false },
             background: {
                 color: {
-                    value: "#0d212c",
+                    value: "#051ee6",
                 },
             },
             fpsLimit: 120,
