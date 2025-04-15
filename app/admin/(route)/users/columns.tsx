@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
 import Image from "next/image"
+import { toast } from "@/hooks/use-toast"
 
 
 
@@ -24,7 +25,7 @@ async function handelDelete(id: number): Promise<void> {
         if (!response.ok) {
             throw new Error(`Failed to delete category`);
         }
-        alert("Category Deleted Successfuly");
+        toast({ title: "Category Deleted Successfuly" });
     } catch (error) {
         // console.error(error);
     }

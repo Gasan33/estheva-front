@@ -151,8 +151,8 @@ const ScheduleAppointment: React.FC<ScheduleAppointmentProps> = ({
                                     onClick={() =>
                                         item.is_available === 1
                                             ? setSelectedTimeSlot(item)
-                                            : alert(
-                                                'This Time is not Available. Please try another one.'
+                                            : toast(
+                                                { title: 'This Time is not Available. Please try another one.' }
                                             )
                                     }
                                     className={`py-2 w-full justify-center items-center flex rounded-lg font-semibold ${item.is_available === 1

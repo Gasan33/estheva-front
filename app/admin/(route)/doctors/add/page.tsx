@@ -21,6 +21,7 @@ import { Switch } from "@/components/ui/switch"
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { getInitials } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
+import { toast } from '@/hooks/use-toast';
 const AddTeamMember = () => {
     const router = useRouter();
     const [fName, setFName] = useState<string | null>(null);
@@ -43,7 +44,7 @@ const AddTeamMember = () => {
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         if (!fName || !lName || !email || !phone || !gender || !birthday || !profilePic || !aboutDoctor) {
-            alert("Please fill in all the required fields.");
+            toast({ title: "Please fill in all the required fields." });
             return;
         }
 
@@ -81,12 +82,12 @@ const AddTeamMember = () => {
 
             if (!response.ok) throw new Error(result.error || "Failed to create Doctor");
 
-            alert("Doctor created successfully!");
+            toast({ title: "Doctor created successfully!" });
 
             router.back();
             return true;
         } catch (error: any) {
-            alert(error.message || "Something went wrong");
+            toast({ title: error.message || "Something went wrong" });
             return false;
         }
     };

@@ -20,6 +20,7 @@ import PaymentPage from "./BookAppointmentSteps/Payment";
 import { useSession } from "next-auth/react";
 import { format } from "date-fns";
 import AppointmentFailed from "./BookAppointmentSteps/AppointmentFailed";
+import { toast } from "@/hooks/use-toast";
 
 const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?: string }) => {
     const session = useSession();
@@ -45,7 +46,7 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
     // Function to create a new appointment
     const handleAppointmentSubmit = async (): Promise<boolean> => {
         if (!date || !selectedTimeSlot || !selectedDoctor || !selectedLocation) {
-            alert("Please fill all required fields");
+            toast({ title: "Please fill in all the required fields." });
             return false;
         }
 
@@ -84,7 +85,7 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
 
             return true; // ✅ Return true if successful
         } catch (error: any) {
-            alert(error.message || "Something went wrong");
+            toast({ title: error.message || "Something went wrong" });
             return false; // ✅ Return false on failure
         } finally {
             setLoading(false);

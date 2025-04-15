@@ -12,6 +12,7 @@ import ServiceDoctorSelect from "@/components/admin/newTreatmentsComponents/Serv
 import { Edit01Icon } from "hugeicons-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { toast } from "@/hooks/use-toast";
 
 const NewService = () => {
     const router = useRouter();
@@ -32,7 +33,7 @@ const NewService = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!treatmentName || !treatmentDescription || !treatmentPrice || !treatmentImages || !treatmentBenefits || !treatmentDuration || !treatmentdoctors || !treatmentCategory) {
-            alert("Please fill in all the required fields.");
+            toast({ title: "Please fill in all the required fields." });
             return;
         }
         try {
@@ -62,12 +63,12 @@ const NewService = () => {
 
             if (!response.ok) throw new Error(result.error || "Failed to create Treatment");
 
-            alert("Treatment created successfully!");
+            toast({ title: "Treatment created successfully!" });
 
             router.back();
             return true;
         } catch (error: any) {
-            alert(error.message || "Something went wrong");
+            toast({ title: error.message || "Something went wrong" });
             return false;
         } finally {
             setLoading(false);

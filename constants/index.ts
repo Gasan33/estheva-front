@@ -58,14 +58,14 @@ export const navigationLinks: NavLinks[] = [
 
     },
 
+    // {
+    //     id: 3,
+    //     path: '/special-offers',
+    //     name: 'Special Offers',
+
+    // },
     {
         id: 3,
-        path: '/special-offers',
-        name: 'Special Offers',
-
-    },
-    {
-        id: 4,
         path: '/online-consultation',
         name: 'Doctor Consultations',
 
@@ -73,7 +73,7 @@ export const navigationLinks: NavLinks[] = [
 
 
     {
-        id: 5,
+        id: 4,
         path: '/contact',
         name: 'Contact',
 

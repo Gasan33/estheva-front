@@ -8,6 +8,7 @@ import BookAppointment from '../common/BookAppointment/BookAppointment';
 import { useSession } from 'next-auth/react';
 import SignInDialog from '../dialogs/SignInDialog';
 import { useRouter } from 'next/navigation';
+import { toast } from '@/hooks/use-toast';
 
 const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: number }) => {
     const [isFav, setIsFav] = useState(false);
@@ -30,11 +31,11 @@ const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: numb
             });
             const result = await response.json();
             if (!response.ok) throw new Error(result.error || "Failed to add to favorites. please try again!");
-            alert("Treatment successfully added to favorites.");
+            toast({ title: "Treatment successfully added to favorites." });
             setIsFav(true)
             return true;
         } catch (error: any) {
-            alert(error.message || "Something went wrong");
+            toast({ title: error.message || "Something went wrong" });
             return false;
         } finally {
             setFavLoading(false);
@@ -61,7 +62,7 @@ const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: numb
             setIsFav(result.favorited)
             return true;
         } catch (error: any) {
-            alert(error.message || "Something went wrong");
+            toast({ title: error.message || "Something went wrong" });
             return false;
         } finally {
             // setFavLoading(false);
@@ -84,12 +85,12 @@ const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: numb
             });
             const result = await response.json();
             if (!response.ok) throw new Error(result.error || "Failed to Remove from favorites. please try again!");
-            alert("Treatment successfully Removed from favorites.");
+            toast({ title: "Treatment successfully Removed from favorites." });
             console.log(result.favorited)
             setIsFav(result.favorited)
             return true;
         } catch (error: any) {
-            alert(error.message || "Something went wrong");
+            toast({ title: error.message || "Something went wrong" });
             return false;
         } finally {
             setFavLoading(false);
@@ -190,11 +191,11 @@ const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: numb
                 <Link href={`/treatments/${treatment.id}`} className="flex items-center gap-0 md:gap-1 text-xs font-thin md:text-sm md:font-medium text-primaryColor">
                     View Details <ArrowRight01Icon size={16} />
                 </Link>
-                {session ? (
+                {/* {session ? (
                     <BookAppointment treatment={treatment} triger="home" />
                 ) : (
                     <SignInDialog />
-                )}
+                )} */}
             </div>
 
         </div >

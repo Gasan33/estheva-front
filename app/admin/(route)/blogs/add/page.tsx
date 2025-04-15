@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import UploadImage from "@/components/admin/uploadImage/UploadImage";
+import { toast } from "@/hooks/use-toast";
 
 const NewService = () => {
     const session = useSession();
@@ -21,7 +22,7 @@ const NewService = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!blogsTitle || !blogContent || !blogShortSescription) {
-            alert("Please fill in all the required fields.");
+            toast({ title: "Please fill in all the required fields." });
             return;
         }
         try {
@@ -43,12 +44,12 @@ const NewService = () => {
 
             if (!response.ok) throw new Error(result.error || "Failed to create FAQ");
 
-            alert("Blog created successfully!");
+            toast({ title: "Blog created successfully!" });
 
             router.back();
             return true;
         } catch (error: any) {
-            alert(error.message || "Something went wrong");
+            toast({ title: error.message || "Something went wrong" });
             return false;
         } finally {
             setLoading(false);

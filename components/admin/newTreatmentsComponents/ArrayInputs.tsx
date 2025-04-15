@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CgRemove } from 'react-icons/cg';
 import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
+import { toast } from '@/hooks/use-toast';
 
 interface TreatmentBenefitsProps {
     label: string;
@@ -44,13 +45,13 @@ const TreatmentBenefits: React.FC<TreatmentBenefitsProps> = ({
             );
 
             if (uniqueElements.length === 0) {
-                alert('No new unique benefits were added.');
+                toast({ title: 'No new unique benefits were added.' });
                 return;
             }
             setElements([...elements, ...uniqueElements]);
         } else {
             if (elements.includes(inputValue)) {
-                alert('Item already exists');
+                toast({ title: 'Item already exists' });
                 return;
             }
 

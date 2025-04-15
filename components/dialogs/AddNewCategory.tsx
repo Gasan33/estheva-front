@@ -13,6 +13,7 @@ import UploadImage from '../admin/uploadImage/UploadImage';
 import { Button } from '../ui/button';
 import CustomInput from '../common/CustomInput';
 import { useRouter } from 'next/navigation';
+import { toast } from '@/hooks/use-toast';
 
 
 const AddNewCategoryDialog = () => {
@@ -30,7 +31,7 @@ const AddNewCategoryDialog = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!categoryName || !categorySlug || !categoryDesc || !categoryImage) {
-            alert("Please fill in all the required fields.");
+            toast({ title: "Please fill in all the required fields." });
             return;
         }
 
@@ -55,10 +56,10 @@ const AddNewCategoryDialog = () => {
 
             if (!response.ok) throw new Error(result.error || "Failed to create category");
 
-            alert("Category created successfully!");
+            toast({ title: "Category created successfully!" });
             router.back();
         } catch (error: any) {
-            alert(error.message || "Something went wrong");
+            toast({ title: error.message || "Something went wrong" });
         } finally {
             setLoading(false);
         }
