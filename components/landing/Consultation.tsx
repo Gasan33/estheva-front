@@ -79,7 +79,7 @@ const Consultation = () => {
 
                             <Button
                                 onClick={() => window.location.href = `tel:${phoneNumber}`}
-                                className='mt-4 w-full bg-teal-500 uppercase font-thin text-white'
+                                className='mt-4 w-full bg-primaryColor uppercase font-thin text-white'
                             >
                                 Speak with a Doctor
                             </Button>

@@ -104,7 +104,7 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
                     <ArrowRight size={16} className="h-4 md:h-6 -rotate-45" />
                 </DialogTrigger>
             ) : triger == "online" ? (
-                <DialogTrigger className="mt-4 w-full bg-teal-500 uppercase font-thin py-2 rounded-sm text-white">
+                <DialogTrigger className="mt-4 w-full bg-primary uppercase font-thin py-2 rounded-sm text-white">
                     Make AN Appointment
                     {/* <ArrowRight size={16} className="h-4 md:h-6 -rotate-45" /> */}
                 </DialogTrigger>

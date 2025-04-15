@@ -164,7 +164,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                                     <span className="font-bold text-gray-900">{treatment.discounted_price} AED</span>
                                 </>
                             ) : (
-                                <span className="font-bold text-gray-900">{treatment.price} AED</span>
+                                <span className="font-bold p-2 bg-primary text-2xl text-white rounded-lg items-center flex">{treatment.price} AED</span>
                             )}
                         </div>
                     </div>
@@ -173,12 +173,12 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                         <p className="text-sm font-semibold">
                             Duration: <span className="text-primaryColor">{treatment.duration} min</span>
                         </p>
-                        <div className="flex items-center gap-1">
+                        {/* <div className="flex items-center gap-1">
                             <Image src="/icons/starIcon.svg" alt="Rating" width={20} height={20} />
                             <p className="font-semibold">
                                 {treatment.reviews?.[0]?.rating || 0} ({treatment.reviews?.length || 0} Reviews)
                             </p>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div>
@@ -188,7 +188,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                 </div>
 
                 {/* Sidebar */}
-                <div className="w-full xl:w-1/3 bg-green-50 rounded-xl p-6 space-y-4" data-aos="fade-left">
+                <div className="w-full xl:w-1/3 bg-blue-50 rounded-xl p-6 space-y-4" data-aos="fade-left">
                     <h4 className="text-lg font-semibold">What This Treatment Can Do for You</h4>
                     {treatment.benefits.map((benefit, index) => (
                         <div key={index} className="flex items-start gap-2">
