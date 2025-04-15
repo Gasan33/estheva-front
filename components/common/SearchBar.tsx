@@ -1,21 +1,28 @@
 import React from 'react';
 import { TERipple } from 'tw-elements-react';
+import CustomInput from './CustomInput';
+import { Search01Icon } from 'hugeicons-react';
 
 export default function SearchBar({ hint }: { hint: string }) {
     return (
         <div className="md:w-1/3">
             <div className="relative flex w-full flex-wrap items-stretch">
-                <input
-                    type="search"
-                    className="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded-l border border-solid border-primaryColor hover:border-teal-700 focus:border-teal-700 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:bg-neutral-700 focus:text-white focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
-                    placeholder={hint}
-                    aria-label="Search"
-                    aria-describedby="button-addon1" />
+                <div className="relative">
+                    <span className="absolute left-4 top-3"><Search01Icon /></span>
+                    <input
+                        className="w-full rounded border border-stroke bg-gray py-3 pl-12 pr-4 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                        type="text"
+
+
+                        placeholder="search ..."
+
+                    />
+                </div>
 
                 {/* <!--Search button--> */}
                 <TERipple color='light'>
                     <button
-                        className="relative z-[2] flex items-center rounded-r bg-primaryColor px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-teal-700 hover:shadow-lg focus:bg-teal-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-700 active:shadow-lg"
+                        className="relative z-[2] flex items-center rounded-r bg-blue-100 px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-700 active:shadow-lg"
                         type="button"
                         id="button-addon1">
                         <svg

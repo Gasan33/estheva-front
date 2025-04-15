@@ -8,6 +8,7 @@ import SearchBar from '../../SearchBar';
 import UserDropdown from './UserDropDown';
 import NavMenuItems from './NavMenuItems';
 import clsx from 'clsx';
+import { Search01Icon } from 'hugeicons-react';
 
 export const Header = () => {
     const pathname = usePathname();
@@ -21,7 +22,7 @@ export const Header = () => {
         const handleScroll = () => {
             const scrollY = window.scrollY;
             setIsScrolled(scrollY > 10);
-            setShowPageTitle(scrollY > 200 && scrollY < 400);
+            // setShowPageTitle(scrollY > 200 && scrollY < 400);
         };
 
         // Add event listener
@@ -58,6 +59,8 @@ export const Header = () => {
                         <Image src='/icons/logo.svg' alt='Estheva Polyclinic' width={220} height={120} style={{ height: "auto" }} priority={true} className='object-contain h-16' />
                     </Link>
                     <NavMenuItems />
+
+                    <Search01Icon className='text-primary p-2 bg-white w-10 h-10 rounded-full' onClick={() => setShowPageTitle(!showPageTitle)} />
 
                     <UserDropdown />
                 </div>
