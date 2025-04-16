@@ -61,10 +61,10 @@ const ParticlesComponent = memo((props) => {
             },
             particles: {
                 color: {
-                    value: "#2cc171",
+                    value: "#fff",
                 },
                 links: {
-                    color: "#2cc171",
+                    color: "#fff",
                     distance: 150,
                     enable: true,
                     opacity: 0.3,

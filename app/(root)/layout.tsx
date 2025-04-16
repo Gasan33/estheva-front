@@ -8,7 +8,7 @@ const layout = async ({ children }: { children: ReactNode }) => {
         <main className='root-container'>
             <div>
                 <Header />
-                <MHeader />
+                {/* <MHeader /> */}
             </div>
 
             <div> {children} </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import ProfileHeader from '@/components/common/ProfileHeader';
-import ProfileSideBar from '@/components/common/ProfileSideBar';
+import ProfileSideBar from '@/components/common/MobileMenuSideBar';
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu } from 'lucide-react';

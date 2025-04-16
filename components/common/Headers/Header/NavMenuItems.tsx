@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Link from 'next/link';
 import {
     NavigationMenu,
@@ -7,61 +7,52 @@ import {
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
+} from "@/components/ui/navigation-menu";
 import { navigationLinks } from '@/constants';
 import { useCategories } from '@/context/CategoriesContext';
+import UserDropdown from './UserDropDown';
+import { BsFacebook, BsTiktok, BsInstagram, BsLinkedin } from 'react-icons/bs';
+
+
 
 const NavMenuItems = () => {
     const { categories } = useCategories();
+
+
+    // Desktop layout: horizontal dropdown menu
     return (
-        <>                    {
-            navigationLinks.map((title) => (
-                <NavigationMenu key={title.id}>
-                    <NavigationMenuList
-                        className="flex items-center font-normal text-lg text-white tracking-wide gap-4 hover:bg-transparent"
-                    >
-                        {title.dropMenu != null ? (
-                            <NavigationMenuItem >
-                                <NavigationMenuTrigger
-                                    className="relative !bg-transparent text-lg font-normal !text-white hover:!text-gray-100 after:bg-transparent"
-                                >
-                                    {/* <Link href={`/treatments/categories/${title.path}`} > */}
-                                    {title.name.toUpperCase()}
-                                    {/* </Link> */}
+        <NavigationMenu>
+            <NavigationMenuList className="hidden xl:flex items-center font-normal text-lg text-white tracking-wide gap-4">
+                {navigationLinks.map((link) => (
+                    <NavigationMenuItem key={link.id}>
+                        {link.dropMenu && link.name === "Medical Treatments" ? (
+                            <>
+                                <NavigationMenuTrigger className="relative !bg-transparent text-lg font-normal !text-white hover:!text-gray-100">
+                                    {link.name.toUpperCase()}
                                 </NavigationMenuTrigger>
-                                <NavigationMenuContent
-                                    className="flex flex-col p-2  w-auto text-gray-50 rounded-lg shadow-lg"
-                                >
-                                    {title.name === "Medical Treatments" && categories.map((category) => (
-                                        <Link
-                                            key={category.category_id}
-                                            href={`/treatments/categories/${category.category_slug}`}
-                                        // href={item.path}
-                                        >
-                                            <div className="p-2 items-center gap-2 rounded-md justify-center text-nowrap hover:bg-gray-800">
-                                                {category.category_name.toUpperCase()}
-                                            </div>
-                                        </Link>
+                                <NavigationMenuContent className="shadow-lg p-2 space-y-1 bg-white rounded-md">
+                                    {categories.map((category) => (
+
+                                        <NavigationMenuLink key={category.category_id}
+                                            href={`/treatments/categories/${category.category_slug}`} className="block px-4 py-2 rounded-md text-nowrap text-gray-950 hover:bg-gray-50 hover:text-primary transition">
+                                            {category.category_name.toUpperCase()}
+                                        </NavigationMenuLink>
                                     ))}
                                 </NavigationMenuContent>
-                            </NavigationMenuItem>
-
+                            </>
                         ) : (
-                            <NavigationMenuItem key={title.id}>
-                                <NavigationMenuLink
-                                    className='hover:text-gray-300 hover:bg-transparent'
-
-                                    href={title.path}
-                                >
-                                    {title.name.toUpperCase()}
-                                </NavigationMenuLink>
-                            </NavigationMenuItem>
+                            <NavigationMenuLink
+                                className="text-white hover:text-gray-300 transition px-2 py-1"
+                                href={link.path}
+                            >
+                                {link.name.toUpperCase()}
+                            </NavigationMenuLink>
                         )}
-                    </NavigationMenuList>
-                </NavigationMenu>
-            ))
-        }</>
-    )
-}
+                    </NavigationMenuItem>
+                ))}
+            </NavigationMenuList>
+        </NavigationMenu>
+    );
+};
 
-export default NavMenuItems
+export default NavMenuItems;

@@ -5,8 +5,9 @@ import { AiPhone01Icon, ArrowDown01Icon, Location10Icon, Mail01Icon } from 'huge
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { BsFacebook, BsInstagram, BsLinkedin, BsTiktok } from 'react-icons/bs';
-import { categories, navigationLinks } from '@/constants';
+import { navigationLinks } from '@/constants';
 import { motion } from "framer-motion";
+import { useCategories } from '@/context/CategoriesContext';
 
 const socialLinks: SocialLink[] = [
     {
@@ -34,6 +35,7 @@ export const Footer: React.FC = () => {
     const showFooter = !hideFooterRoutes.includes(pathname);
     const year: number = new Date().getFullYear();
     const [isOpen, setIsOpen] = useState(false);
+    const { categories } = useCategories();
 
     return (
         showFooter && (
@@ -86,91 +88,63 @@ export const Footer: React.FC = () => {
 
                         </div>
                         <div className='w-[50%] h-full hidden lg:block'>
-                            <h1 className='text-lg text-primaryColor font-thin'>{navigationLinks[1].name}</h1>
+                            <h1 className='text-lg text-white font-thin'>{navigationLinks[1].name}</h1>
                             <div className='grid grid-cols-3 gap-8 mt-4 text-sm font-thin'>
-                                {navigationLinks[1].dropMenu!.map(
-                                    (link) => (
-                                        <Link
-                                            key={link.id}
-                                            href={{
-                                                pathname: `${link.path}`,
-                                                query: { treatments: link.value },
-                                            }}
-                                        >
-                                            {link.name}
 
-                                        </Link>
-                                    )
-                                )}
                                 {categories.map((category) => (
                                     <Link
                                         key={category.category_id}
-                                        href={{
-                                            pathname: "/treatments",
-                                            query: { treatments: category.category_slug },
-                                        }}
+                                        href={`/treatments/categories/${category.category_slug}`}
+                                        className="text-sm text-white px-4 py-1 rounded hover:bg-white/10"
                                     >
                                         {category.category_name}
-
                                     </Link>
                                 ))}
 
                             </div>
                         </div>
-                        <div className="w-full h-full block lg:hidden">
-                            {/* Toggle button for small screens */}
-                            <h1
-                                className="flex items-center text-primaryColor text-lg font-thin justify-between"
-                                onClick={() => setIsOpen((prev) => !prev)}
-                            >
-                                {navigationLinks?.[0]?.name}
-                                <ArrowDown01Icon
-                                    className={`text-primaryColor transition-all ${isOpen && "rotate-180"
-                                        }`}
-                                    size={24}
-                                />
-                            </h1>
 
-                            {/* Menu Items */}
-                            <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.3, ease: "easeInOut" }}
-                                className={`overflow-hidden ${isOpen ? "block" : "hidden"} md:block`}
-                            >
-
-                                <div className="grid grid-cols-1 gap-8 mt-4 pl-4 text-sm font-thin">
-                                    {navigationLinks?.[0]?.dropMenu?.map((link) => (
-                                        <Link
-                                            key={link.id}
-                                            href={{
-                                                pathname: link.path,
-                                                query: { treatments: link.value },
-                                            }}
-                                            className="hover:text-secondaryColor transition-colors duration-200"
+                        <div className='flex flex-col justify-between text-lg gap-2 text-white'>
+                            {navigationLinks.map(
+                                (link) => (link.dropMenu && link.name === "Medical Treatments" ?
+                                    <div key={link.id} className="w-full h-full block lg:hidden">
+                                        {/* Toggle button for small screens */}
+                                        <h1
+                                            className="flex items-center text-white text-lg font-thin justify-between"
+                                            onClick={() => setIsOpen((prev) => !prev)}
                                         >
                                             {link.name}
-                                        </Link>
-                                    ))}
-                                    {categories?.map((category) => (
-                                        <Link
-                                            key={category.category_id}
-                                            href={{
-                                                pathname: "/treatments",
-                                                query: { treatments: category.category_slug },
-                                            }}
-                                            className="hover:text-secondaryColor transition-colors duration-200"
+                                            <ArrowDown01Icon
+                                                className={`text-white transition-all ${isOpen && "rotate-180"
+                                                    }`}
+                                                size={24}
+                                            />
+                                        </h1>
+
+                                        {/* Menu Items */}
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                                            className={`overflow-hidden ${isOpen ? "block" : "hidden"} md:block`}
                                         >
-                                            {category.category_name}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        </div>
-                        <div className='flex flex-col justify-between text-lg gap-2 text-primaryColor'>
-                            {navigationLinks.slice(0, 5).map(
-                                (link) => (
+
+                                            <div className="grid grid-cols-1 gap-8 mt-4 pl-4 text-sm font-thin">
+                                                {categories?.map((category) => (
+                                                    <Link
+                                                        key={category.category_id}
+                                                        href={`/treatments/categories/${category.category_slug}`}
+                                                        className="hover:text-secondaryColor transition-colors duration-200"
+                                                    >
+                                                        {category.category_name}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </motion.div>
+                                    </div>
+                                    :
+
                                     <Link
                                         key={link.id}
                                         href={{
@@ -206,7 +180,7 @@ export const Footer: React.FC = () => {
                             >
                                 Terms & Conditions
                             </Link>
-                            <div className='w-1 h-1 rounded-full bg-primaryColor'>
+                            <div className='w-1 h-1 rounded-full bg-white'>
 
                             </div>
 

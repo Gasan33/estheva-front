@@ -11,109 +11,120 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from '@/components/ui/button';
-import { AiSecurity01Icon, Calendar01Icon, FavouriteIcon, HelpCircleIcon, SecurityIcon, Settings01Icon, UserIcon } from 'hugeicons-react';
+import {
+    AiSecurity01Icon,
+    Calendar01Icon,
+    FavouriteIcon,
+    HelpCircleIcon,
+    SecurityIcon,
+    Settings01Icon,
+    UserIcon
+} from 'hugeicons-react';
 import { signOut, useSession } from "next-auth/react";
 import { getInitials } from "@/lib/utils";
 import SignInSignUpButtons from "./SignInSignUpButtons";
 
 const UserDropdown = () => {
-    const session = useSession();
+    const { data: session } = useSession();
+
     const handleSignOut = async () => {
         try {
-            await signOut({ callbackUrl: "/" });  // Corrected signOut function
+            await signOut({ callbackUrl: "/" });
         } catch (error) {
-            // console.error("Error signing out:", error);
+            console.error("Error signing out:", error);
         }
     };
 
-    if (session.data == null) {
-        return <SignInSignUpButtons />
-    }
+    if (!session?.user) return <SignInSignUpButtons />;
 
-    const isAdmin = session.data.user.role == "admin" || false;
-
+    const isAdmin = session.user.role === "admin";
+    const userName = session.user?.name || "Guest";
+    const avatarInitials = getInitials(userName);
 
     return (
         <DropdownMenu>
-            <DropdownMenuTrigger>
-                <Avatar>
-                    <AvatarFallback className='bg-amber-100'>
-                        {getInitials(session.data.user?.name || 'GU')}
+            <DropdownMenuTrigger className="outline-none focus-visible:ring-2 ring-offset-2 ring-primary rounded-full">
+                <Avatar className="h-10 w-10">
+                    <AvatarFallback className="bg-amber-100 text-primary font-bold">
+                        {avatarInitials}
                     </AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent>
-                <DropdownMenuLabel>
-                    <Link href={isAdmin ? "/admin/dashboard" : "/my-profile"} className="flex flex-col justify-center items-center gap-2">
+            <DropdownMenuContent className="w-72 p-2 space-y-1 rounded-xl shadow-lg z-[9999]">
+                <DropdownMenuLabel className="text-center">
+                    <Link href={isAdmin ? "/admin/dashboard" : "/my-profile"} className="flex flex-col items-center gap-2">
                         <Avatar className="h-16 w-16">
-                            <AvatarFallback className="bg-amber-100">
-                                {getInitials(session.data.user?.name || 'GU')}
+                            <AvatarFallback className="bg-amber-100 text-xl text-primary font-semibold">
+                                {avatarInitials}
                             </AvatarFallback>
                         </Avatar>
-                        <h1 className="text-primary font-semibold text-xl uppercase">{session.data.user?.name || 'Guest'}</h1>
+                        <span className="text-primary font-semibold text-xl uppercase">{userName}</span>
                     </Link>
                 </DropdownMenuLabel>
 
                 <DropdownMenuSeparator />
 
-                <DropdownMenuItem>
-                    <Link href={isAdmin ? "/admin/dashboard" : "/my-profile"} className="flex gap-2 w-full">
-                        {<UserIcon />}
-                        <h1>{isAdmin ? "Dashboard" : "Profile"}</h1>
+                <DropdownMenuItem asChild>
+                    <Link href={isAdmin ? "/admin/dashboard" : "/my-profile"} className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
+                        <UserIcon className="w-5 h-5" />
+                        <span>{isAdmin ? "Dashboard" : "Profile"}</span>
                     </Link>
                 </DropdownMenuItem>
 
-                {!isAdmin &&
+                {!isAdmin && (
                     <>
-                        <DropdownMenuItem>
-                            <div className="flex gap-2">
-                                <Calendar01Icon />
-                                <h1>My Appointments</h1>
-                            </div>
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem>
-                            <div className="flex gap-2">
-                                <FavouriteIcon />
-                                <h1>Favourite</h1>
-                            </div>
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem>
-                            <div className="flex gap-2">
-                                <HelpCircleIcon />
-                                <h1>Help Center</h1>
-                            </div>
-                        </DropdownMenuItem>
-
-                        <DropdownMenuItem>
-                            <Link href="/terms&conditions" className="flex gap-2">
-                                <SecurityIcon />
-                                <h1>Terms of Use</h1>
+                        <DropdownMenuItem asChild>
+                            <Link href="/my-appointments" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
+                                <Calendar01Icon className="w-5 h-5" />
+                                <span>My Appointments</span>
                             </Link>
                         </DropdownMenuItem>
 
-                        <DropdownMenuItem>
-                            <Link href="/privacy-policy" className="flex gap-2">
-                                <AiSecurity01Icon />
-                                <h1>Privacy Policy</h1>
+                        <DropdownMenuItem asChild>
+                            <Link href="/favourites" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
+                                <FavouriteIcon className="w-5 h-5" />
+                                <span>Favourites</span>
                             </Link>
                         </DropdownMenuItem>
 
-                        <DropdownMenuItem>
-                            <div className="flex gap-2">
-                                <Settings01Icon />
-                                <h1>Settings</h1>
-                            </div>
+                        <DropdownMenuItem asChild>
+                            <Link href="/help" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
+                                <HelpCircleIcon className="w-5 h-5" />
+                                <span>Help Center</span>
+                            </Link>
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem asChild>
+                            <Link href="/terms&conditions" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
+                                <SecurityIcon className="w-5 h-5" />
+                                <span>Terms of Use</span>
+                            </Link>
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem asChild>
+                            <Link href="/privacy-policy" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
+                                <AiSecurity01Icon className="w-5 h-5" />
+                                <span>Privacy Policy</span>
+                            </Link>
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem asChild>
+                            <Link href="/settings" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
+                                <Settings01Icon className="w-5 h-5" />
+                                <span>Settings</span>
+                            </Link>
                         </DropdownMenuItem>
                     </>
-                }
+                )}
 
                 <DropdownMenuSeparator />
 
-                {/* Sign-Out Button */}
-                <Button type="button" onClick={handleSignOut} className="text-red bg-transparent w-full rounded-full mt-4 hover:bg-transparent outline outline-1">
+                <Button
+                    variant="outline"
+                    onClick={handleSignOut}
+                    className="w-full text-red-600 border-red-500 hover:bg-red-50"
+                >
                     Logout
                 </Button>
             </DropdownMenuContent>

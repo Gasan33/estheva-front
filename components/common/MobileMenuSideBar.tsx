@@ -22,12 +22,20 @@ import {
     SystemUpdate01Icon,
 } from 'hugeicons-react'
 import { Button } from '../ui/button'
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 
-const ProfileSideBar = () => {
+const MobileMenuSideBar = () => {
     const pathname = usePathname()
     const session = useSession();
     const activePath = pathname.split('/')[2]
+
+    const handleSignOut = async () => {
+        try {
+            await signOut({ callbackUrl: "/" });
+        } catch (error) {
+            console.error("Error signing out:", error);
+        }
+    };
 
     return (
         <div className="relative flex flex-col py-6 px-4 bg-gray-50 border-r border-gray-200 justify-between">
@@ -83,23 +91,18 @@ const ProfileSideBar = () => {
 
             {/* Logout Button */}
             <div className="mt-auto">
-                <form
-                    action={async () => {
-                        // Uncomment to enable server-side actions
-                        // "use server";
-                        // await signOut();
-                    }}
+
+                <Button
+                    variant="outline"
+                    onClick={handleSignOut}
+                    className="w-full text-sm lg:text-base text-red-600 border border-red-600 bg-transparent hover:bg-red-50 rounded-full py-2"
                 >
-                    <Button
-                        type="submit"
-                        className="w-full text-sm lg:text-base text-red-600 border border-red-600 bg-transparent hover:bg-red-50 rounded-full py-2"
-                    >
-                        Logout
-                    </Button>
-                </form>
+                    Logout
+                </Button>
+
             </div>
         </div>
     )
 }
 
-export default ProfileSideBar
+export default MobileMenuSideBar

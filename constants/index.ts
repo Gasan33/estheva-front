@@ -8,7 +8,7 @@ export const navigationLinks: NavLinks[] = [
     },
     {
         id: 2,
-        path: '/all',
+        path: '/treatments/categories/body-contouring-weight-loss',
         name: 'Medical Treatments',
         dropMenu: [
             {
@@ -1187,104 +1187,6 @@ export const doctorConsultaion = [
 //     },
 // ];
 
-export const categories: Category[] = [
-    {
-        category_id: 1,
-        category_name: "Plastic Surgery",
-        category_slug: "plastic-surgery",
-        category_description: "We offer expert plastic surgery services designed to enhance your natural beauty and boost your confidence.",
-        parent_id: null,
-        relations: {
-            images: {
-                id: 1,
-                type: "image",
-                attributes: {
-                    path: "/images/plastic.png",
-                },
-            },
-        },
-    },
-    {
-        category_id: 2,
-        category_name: "Slimming",
-        category_slug: "slimming",
-        category_description: "Estheva Polyclinic provides effective slimming treatments to help you achieve your ideal body shape.",
-        parent_id: null,
-        relations: {
-            images: {
-                id: 2,
-                type: "image",
-                attributes: {
-                    path: "/images/slimming.png",
-                },
-            },
-        },
-    },
-    {
-        category_id: 3,
-        category_name: "Dermatology",
-        category_slug: "dermatology",
-        category_description: "Comprehensive dermatology services to address a wide range of skin concerns.",
-        parent_id: null,
-        relations: {
-            images: {
-                id: 3,
-                type: "image",
-                attributes: {
-                    path: "/images/dermatology.png",
-                },
-            },
-        },
-    },
-    {
-        category_id: 4,
-        category_name: "IV Drips",
-        category_slug: "iv-drips",
-        category_description: "Our IV drip treatments are designed to quickly replenish essential nutrients, hydration, and vitamins for optimal health and wellness.",
-        parent_id: null,
-        relations: {
-            images: {
-                id: 4,
-                type: "image",
-                attributes: {
-                    path: "/images/ivDripsIcon.png",
-                },
-            },
-        },
-    },
-    {
-        category_id: 5,
-        category_name: "Physiotherapy",
-        category_slug: "physiotherapy",
-        category_description: "Estheva Polyclinic provides comprehensive physiotherapy services aimed at restoring movement, reducing pain, and improving overall physical well-being.",
-        parent_id: null,
-        relations: {
-            images: {
-                id: 5,
-                type: "image",
-                attributes: {
-                    path: "/images/physiotherapyIcon.png",
-                },
-            },
-        },
-    },
-    {
-        category_id: 6,
-        category_name: "Diagnostics",
-        category_slug: "diagnostics",
-        category_description: "Our diagnostic tests are designed to accurately assess your health, ensuring timely detection and effective treatment for a wide range of conditions.",
-        parent_id: null,
-        relations: {
-            images: {
-                id: 6,
-                type: "image",
-                attributes: {
-                    path: "/images/daigostics.png",
-                },
-            },
-        },
-    },
-];
 
 
 export const profileSideBarList = [

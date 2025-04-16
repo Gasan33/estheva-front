@@ -8,7 +8,10 @@ import SearchBar from '../../SearchBar';
 import UserDropdown from './UserDropDown';
 import NavMenuItems from './NavMenuItems';
 import clsx from 'clsx';
-import { Search01Icon } from 'hugeicons-react';
+import { Search01Icon, Menu01Icon } from 'hugeicons-react';
+import { XIcon } from 'lucide-react';
+import MobileNav from './MobileNav';
+
 
 export const Header = () => {
     const pathname = usePathname();
@@ -16,70 +19,91 @@ export const Header = () => {
     const hideHeader = !hideHeaderRoutes.includes(pathname);
     const [isScrolled, setIsScrolled] = useState(false);
     const [showPageTitle, setShowPageTitle] = useState(false);
-    const pageName = pathname.split('/')[1];
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+    const pageName = pathname.split('/')[1];
+    const toggleSidebar = () => {
+        setMobileMenuOpen((prev) => !prev);
+    };
     useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY;
             setIsScrolled(scrollY > 10);
-            // setShowPageTitle(scrollY > 200 && scrollY < 400);
         };
 
-        // Add event listener
         window.addEventListener("scroll", handleScroll);
-
-        // Cleanup on unmount
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-
-
     return (
+        <>
+            <header
+                className={clsx("fixed w-full top-0 z-50 transition-all duration-500", {
+                    "bg-primary": isScrolled || showPageTitle,
+                    "bg-transparent": !isScrolled && !showPageTitle
+                })}
+            >
 
-        <div
-            className={clsx(`hidden xl:block xl:fixed xl:top-0 xl:w-full xl:bg-primary 
-                ${hideHeader
-                    ? "xl:z-[9998] xl:sticky xl:top-0"
-                    : "xl:z-10 xl:sticky xl:top-0 xl:bg-transparent"
-                }`)}
-        >
-            <div
-                className={
-                    clsx(`flex flex-col w-full transition-all duration-500
-                    ${showPageTitle ? "bg-primary fixed  transition-all duration-500" : "fixed bg-transparent transition-all duration-500"}`)
-                }>
-                <div
-                    className={clsx(`flex w-full py-2 px-12 flex-row justify-between items-center transition-all duration-500 
-                ${isScrolled ? "bg-primary " : " bg-transparent"}
-            `)}
-                >
-                    <Link href={'/'} >
-                        <Image src='/icons/logo.svg' alt='Estheva Polyclinic' width={220} height={120} style={{ height: "auto" }} priority={true} className='object-contain h-16' />
+                <div className="flex justify-between items-center px-4 md:px-12 py-3">
+                    <Link href="/" className="flex-shrink-0">
+                        <Image
+                            src="/icons/logo.svg"
+                            alt="Estheva Polyclinic"
+                            width={180}
+                            height={100}
+                            priority
+                            className="object-contain h-12 md:h-16"
+                            style={{ height: "auto" }}
+                        />
                     </Link>
-                    <NavMenuItems />
 
-                    <Search01Icon className='text-primary p-2 bg-white w-10 h-10 rounded-full' onClick={() => setShowPageTitle(!showPageTitle)} />
 
-                    <UserDropdown />
+                    <nav className="hidden xl:block">
+                        <NavMenuItems />
+                    </nav>
+
+                    <div className="flex items-center gap-4">
+
+                        <button
+                            onClick={() => setShowPageTitle(!showPageTitle)}
+                            className="bg-white text-primary rounded-full p-2"
+                        >
+                            <Search01Icon className="w-6 h-6" />
+                        </button>
+
+
+                        <div className="hidden md:block">
+                            <UserDropdown />
+                        </div>
+
+                        <button
+                            className="xl:hidden block text-white"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        >
+                            {mobileMenuOpen ? (
+                                <XIcon className="w-7 h-7" />
+                            ) : (
+                                <Menu01Icon className="w-7 h-7" />
+                            )}
+                        </button>
+                    </div>
                 </div>
+
                 {showPageTitle && (
-                    pageName === "" ? <div></div> : <div className='flex flex-col md:flex-row px-12 gap-4 justify-between items-center '>
-                        <h1 className=' py-4  w-full font-normal sticky uppercase text-4xl transition-all duration-500 text-white'>
+                    <div className="flex flex-col md:flex-row px-4 md:px-12 gap-4 justify-between items-center bg-primary py-4">
+                        <h1 className="text-2xl md:text-4xl text-white uppercase font-normal">
                             {pageName === "" ? "Home" : pageName}
                         </h1>
                         <SearchBar hint="Search for ..." />
                     </div>
                 )}
 
+                <MobileNav mobileMenuOpen={mobileMenuOpen} toggleSidebar={toggleSidebar} />
 
-            </div>
-
+            </header>
             <AppBaner />
-
-        </div>
+        </>
     );
 };
 
-
+export default Header;

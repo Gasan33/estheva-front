@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image"
-import Link from "next/link"
 import dynamic from "next/dynamic";
 
 const ParticlesComponent = dynamic(() => import('../animations/ParticlesBackground'), {
@@ -9,7 +8,7 @@ const ParticlesComponent = dynamic(() => import('../animations/ParticlesBackgrou
 
 const AppBaner = () => {
     return (
-        <div className="pt-28 pb-8 px-4 md:px-12">
+        <div className="pt-20 pb-8 px-4 md:px-12">
             <div className="-z-10">
                 <ParticlesComponent />
             </div>
