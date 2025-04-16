@@ -78,7 +78,7 @@ const Blogs: React.FC = () => {
                                 {blog.title}
                             </h2>
                             <p className="text-[#5b7e95] text-sm md:text-base line-clamp-3">
-                                {blog.content}
+                                {blog.short_description}
                             </p>
                             <Link
                                 href={`/blogs/${blog.slug}`}

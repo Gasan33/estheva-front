@@ -66,9 +66,9 @@ const BlogDetails: React.FC<BlogDetailsProps> = ({ blog }) => {
                             </div>
 
 
-                            <div data-aos="fade-up" className="order-2 lg:order-1 text-[#5b7e95] font-light text-sm md:text-lg lg:text-xl xl:text-2xl">
-                                {blog.content}
-                            </div>
+                            <div data-aos="fade-up" className="order-2 lg:order-1 text-[#5b7e95] font-light text-sm md:text-lg lg:text-xl xl:text-2xl" dangerouslySetInnerHTML={{ __html: blog.content }} />
+
+
 
                         </div>
                     </div>

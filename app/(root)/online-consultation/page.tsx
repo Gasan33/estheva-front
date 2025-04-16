@@ -19,9 +19,9 @@ const OnlineConsultation = () => {
                         <Image
                             src="/images/online-consultation.jpg"
                             alt="Online Consultation"
-                            width={600}
-                            height={600}
-                            className="w-full h-auto object-fill"
+                            width={900}
+                            height={900}
+                            className="w-full h-auto object-contain"
                         />
                     </div>
 

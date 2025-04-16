@@ -110,7 +110,7 @@ const Blogs = () => {
                                             {blog.title}
                                         </h2>
                                         <p className="mt-4 text-[#5b7e95] font-light text-base lg:text-lg line-clamp-6">
-                                            {blog.content}
+                                            {blog.short_description}
                                         </p>
                                         <Link href={`/blogs/${blog.slug}`} className="mt-6 inline-flex items-center text-primaryColor">
                                             <span className="text-lg">Explore More</span>
@@ -143,7 +143,7 @@ const Blogs = () => {
                             </div>
                             <h2 className="mt-4 text-gray-800 text-xl font-light">{blog.title}</h2>
                             <p className="mt-4 text-[#5b7e95] font-light text-base line-clamp-3">
-                                {blog.content}
+                                {blog.short_description}
                             </p>
                             <Link href={`/blogs/${blog.slug}`} className="mt-4 inline-flex items-center text-primaryColor">
                                 <span className="text-lg">Explore More</span>
