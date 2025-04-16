@@ -8,25 +8,12 @@ import { BiAddToQueue } from 'react-icons/bi';
 import config from '@/lib/config';
 import { ClipLoader } from 'react-spinners';
 import CategoryList from '@/components/common/CategoriesList';
+import { useCategories } from '@/context/CategoriesContext';
 
 const Treatments = () => {
     const [treatments, setTreatments] = useState<Treatment[]>([]);
-    const [categories, setCategories] = useState<Category[]>([]);
+    const { categories } = useCategories();
     const [loading, setLoading] = useState(true);
-    const [categoryLoading, setCategoryLoading] = useState(true);
-    const fetchCategories = async () => {
-        try {
-
-            const response = await fetch(`${config.env.apiEndpoint}/categories`);
-            const data = await response.json();
-            setCategories(data.data);
-
-            setCategoryLoading(false);
-        } catch (error) {
-            setCategoryLoading(false)
-            // console.error("Error fetching treatments:", error);
-        }
-    };
     const fetchTreatments = async () => {
         try {
 
@@ -42,7 +29,6 @@ const Treatments = () => {
     };
 
     useEffect(() => {
-        fetchCategories();
         fetchTreatments();
     }, []);
 
@@ -62,13 +48,7 @@ const Treatments = () => {
             <div className="container h-full gap-4 grid grid-cols-[22%_76%]">
                 <div className='bg-white rounded-xl border-[1px] h-full p-4 py-8'>
                     <h1 className='text-primary font-semibold text-xl mb-4'>Categories</h1>
-                    {
-                        categoryLoading ?
-                            (<div className="container mx-auto p-4 flex justify-center items-center h-full">
-                                <ClipLoader size={50} color="#3498db" loading={categoryLoading} />
-                            </div>)
-                            : (<CategoryList categories={categories} setLoading={setLoading} setTreatments={setTreatments} />)
-                    }
+                    <CategoryList categories={categories} setLoading={setLoading} setTreatments={setTreatments} />
                 </div>
                 <div className="p-4 bg-white rounded-xl border-[1px] w-full h-full">
                     <DataTable columns={columns} data={treatments} loading={loading} />

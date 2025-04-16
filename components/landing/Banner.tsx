@@ -1,4 +1,3 @@
-import AnimatedBackground from '../animations/AnimatedBackground';
 
 const Banner: React.FC = () => {
     return (

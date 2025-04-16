@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState, useCallback } from "react";
 import AppointmentCard from "./AppointmentCard";
 import { useSession } from "next-auth/react";

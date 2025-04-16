@@ -1,9 +1,9 @@
 "use client"
 import { Message01Icon, Notification02Icon, Search01Icon } from "hugeicons-react";
 import styles from "./navbar.module.css";
-import UserDropdown from "@/components/common/Headers/Header/UserDropDown";
 import Link from "next/link";
 import Image from "next/image";
+import UserDropdown from "@/components/common/UserDropDown";
 
 
 const Navbar = () => {

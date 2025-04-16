@@ -84,7 +84,7 @@ const ParticlesComponent = memo((props) => {
                     density: {
                         enable: true,
                     },
-                    value: isMobile ? 100 : 250,  // Adjust particle count based on screen size
+                    value: 250,  // Adjust particle count based on screen size
                 },
                 opacity: {
                     value: 1.0,

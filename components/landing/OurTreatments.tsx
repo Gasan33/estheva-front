@@ -14,9 +14,9 @@ const OurTreatments = () => {
     }, []);
 
     return (
-        <div className="mx-auto bg-primary bg-pattern w-full items-center justify-center px-4 py-8 sm:px-6 lg:px-16">
+        <div className="mx-auto bg-sky-100  w-full items-center justify-center px-4 py-8 sm:px-6 lg:px-16">
             {/* Section Header */}
-            <ViewAllText href="/treatments" title="Treatments" titleColor="text-white" />
+            <ViewAllText href="/treatments" title="Treatments" titleColor="" />
 
             {/* Categories Grid */}
             <div className="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -33,9 +33,9 @@ const OurTreatments = () => {
                             alt={category.category_name}
                             width={72}
                             height={72}
-                            className="p-2 rounded-full object-contain bg-secondaryBackground mx-auto"
+                            className="p-2 rounded-full object-contain bg-white mx-auto"
                         />
-                        <h2 className="mt-4 text-lg font-normal text-white text-center sm:text-xl">
+                        <h2 className="mt-4 text-lg font-normal text-primary text-center sm:text-xl">
                             {category.category_name.toUpperCase()}
                         </h2>
                         <p className="mt-2 text-sm px-8 text-[#5b7e95] sm:text-base line-clamp-3 text-center">

@@ -3,14 +3,14 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import AppBaner from '../../AppBaner';
-import SearchBar from '../../SearchBar';
 import UserDropdown from './UserDropDown';
 import NavMenuItems from './NavMenuItems';
 import clsx from 'clsx';
 import { Search01Icon, Menu01Icon } from 'hugeicons-react';
 import { XIcon } from 'lucide-react';
 import MobileNav from './MobileNav';
+import SearchBar from './SearchBar';
+import AppBaner from './AppBaner';
 
 
 export const Header = () => {
