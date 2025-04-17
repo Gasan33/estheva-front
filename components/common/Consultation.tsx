@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import config from '@/lib/config';
-import BookAppointment from '../common/BookAppointment/BookAppointment';
+import BookAppointment from './BookAppointment/BookAppointment';
 import { doctorConsultaion } from '@/constants';
 import Link from 'next/link';
 import { Linkedin01Icon } from 'hugeicons-react';
@@ -14,6 +14,7 @@ import { Linkedin01Icon } from 'hugeicons-react';
 const Consultation = () => {
     const [treatment, setTreatment] = useState<Treatment>();
     const [error, setError] = useState<string | null>(null);
+
 
     const phoneNumber = "+971501234567";
 

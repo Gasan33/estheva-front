@@ -1,6 +1,6 @@
 "use client"
-import TreatmentsList from '@/components/landing/TreatmentsList';
-import TreatmentReviews from '@/components/landing/TreatmentReviews';
+import TreatmentsList from '@/components/common/TreatmentsList';
+import TreatmentReviews from '@/components/common/TreatmentReviews';
 import config from '@/lib/config';
 import { useEffect, useState } from 'react';
 type TreatmentByCategoryProps = {

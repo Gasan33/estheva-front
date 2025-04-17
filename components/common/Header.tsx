@@ -50,9 +50,9 @@ export const Header = () => {
                             src="/icons/logo.svg"
                             alt="Estheva Polyclinic"
                             width={180}
-                            height={100}
+                            height={160}
                             priority
-                            className="object-contain h-12 md:h-16"
+                            className="object-contain"
                             style={{ height: "auto" }}
                         />
                     </Link>

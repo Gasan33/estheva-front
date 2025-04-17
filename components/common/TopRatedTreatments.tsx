@@ -3,11 +3,10 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight01Icon } from "hugeicons-react";
-import RatingBar from "../common/RatingBar";
+import RatingBar from "./RatingBar";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import BookAppointment from "../common/BookAppointment/BookAppointment";
-import SignInDialog from "../dialogs/SignInDialog";
+import BookAppointment from "./BookAppointment/BookAppointment";
 import config from "@/lib/config";
 
 const TopRatedTreatments = ({ session }: { session: boolean }) => {
@@ -171,11 +170,9 @@ const TopRatedTreatments = ({ session }: { session: boolean }) => {
                                             View Details
                                             <ArrowRight01Icon className="h-4 md:h-6" />
                                         </Link>
-                                        {session ? (
-                                            <BookAppointment treatment={item} triger="home" />
-                                        ) : (
-                                            <SignInDialog />
-                                        )}
+
+                                        <BookAppointment treatment={item} triger="home" />
+
                                     </div>
                                 </div>
                             </div>

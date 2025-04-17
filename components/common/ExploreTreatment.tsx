@@ -2,10 +2,7 @@ import { ArrowRight01Icon } from 'hugeicons-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import BookAppointment from '../common/BookAppointment/BookAppointment';
-import SignInDialog from '../dialogs/SignInDialog';
-import { useSession } from 'next-auth/react';
-import { Skeleton } from "@/components/ui/skeleton";
+import BookAppointment from './BookAppointment/BookAppointment';
 import { ExploreTreatmentSkeleton } from '../skeletons/ExploreTreatmentSkeleton';
 
 type Props = {
@@ -14,7 +11,6 @@ type Props = {
 };
 
 const ExploreTreatment = ({ treatment, loading = false }: Props) => {
-    const { data: session } = useSession();
 
     if (loading) return <ExploreTreatmentSkeleton />;
 
@@ -61,11 +57,8 @@ const ExploreTreatment = ({ treatment, loading = false }: Props) => {
                     <ArrowRight01Icon className="h-4 md:h-5" />
                 </Link>
 
-                {session?.user ? (
-                    <BookAppointment treatment={treatment} triger="home" />
-                ) : (
-                    <SignInDialog />
-                )}
+                <BookAppointment treatment={treatment} triger="home" />
+
             </div>
         </div>
     );

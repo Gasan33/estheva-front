@@ -1,23 +1,10 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import {
-    DefaultValues,
-    FieldValues,
-    Path,
-    SubmitHandler,
-    useForm,
-    UseFormReturn
-} from "react-hook-form"
-import { ZodType } from "zod"
+import { DefaultValues, useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+    Form, FormControl, FormField, FormItem, FormLabel, FormMessage
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
@@ -27,28 +14,27 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { Label } from "../ui/label"
 import { Eye, EyeOff } from "lucide-react"
+import { ZodType } from "zod"
 
-interface Props<T extends FieldValues> {
+interface SignUpFormProps<T extends Record<string, any>> {
     schema: ZodType<T>;
     defaultValues: T;
     onSubmit: (data: T) => Promise<{ success: boolean, error?: string }>;
-    type: "SIGN_IN" | "SIGN_UP";
 }
 
-const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit }: Props<T>) => {
+const SignUpForm = <T extends Record<string, any>>({ schema, defaultValues, onSubmit }: SignUpFormProps<T>) => {
     const router = useRouter();
     const [termsAccepted, setTermsAccepted] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [showPassword, setShowPassword] = useState(false);
-    const isSignIn = type === 'SIGN_IN';
 
-    const form: UseFormReturn<T> = useForm({
+    const form = useForm<T>({
         resolver: zodResolver(schema),
         defaultValues: defaultValues as DefaultValues<T>,
     });
 
-    const handleSubmit: SubmitHandler<T> = async (data) => {
-        if (!isSignIn && !termsAccepted) {
+    const handleSubmit = async (data: T) => {
+        if (!termsAccepted) {
             setError("You must accept the terms and conditions.");
             return;
         }
@@ -58,15 +44,12 @@ const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit
         if (result.success) {
             toast({
                 title: "Success",
-                description: isSignIn
-                    ? "You have successfully signed in."
-                    : "You have successfully signed up."
+                description: "You have successfully signed up.",
             });
-
             router.push("/");
         } else {
             toast({
-                title: `Error ${isSignIn ? "signing in" : "signing up"}`,
+                title: "Error signing up",
                 description: result.error ?? "An error occurred.",
                 variant: "destructive",
             });
@@ -75,26 +58,20 @@ const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit
 
     return (
         <div className="flex flex-col justify-center items-center gap-4">
-            <h1 className="text-2xl font-semibold">
-                {isSignIn ? "Welcome Back to Estheva Polyclinic" : "Create your account"}
-            </h1>
+            <h1 className="text-2xl font-semibold">Create your account</h1>
             <p className="text-center text-sm text-muted-foreground">
-                {isSignIn
-                    ? "Enter your email below to login to your account, and stay updated"
-                    : "Please complete all fields to gain access to all treatments"}
+                Please complete all fields to gain access to all treatments
             </p>
 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6 w-full">
                     {Object.keys(defaultValues).map((fieldKey) => {
-                        const fieldName = fieldKey as Path<T>;
-                        const type = Auth_FIELD_TYPES[fieldName as keyof typeof Auth_FIELD_TYPES];
-
+                        const type = Auth_FIELD_TYPES[fieldKey as keyof typeof Auth_FIELD_TYPES];
                         return (
                             <FormField
                                 key={fieldKey}
                                 control={form.control}
-                                name={fieldName}
+                                name={fieldKey as any}
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel className="capitalize">
@@ -118,12 +95,7 @@ const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit
                                                     </button>
                                                 </div>
                                             ) : (
-                                                <Input
-                                                    {...field}
-                                                    required
-                                                    type={type}
-                                                    className="form-input h-12 rounded-lg"
-                                                />
+                                                <Input {...field} required type={type} className="form-input h-12 rounded-lg" />
                                             )}
                                         </FormControl>
                                         <FormMessage />
@@ -133,30 +105,26 @@ const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit
                         );
                     })}
 
-                    {!isSignIn && (
-                        <div>
-                            <div className="flex items-center gap-2">
-                                <input
-                                    type="checkbox"
-                                    id="terms"
-                                    required
-                                    checked={termsAccepted}
-                                    onChange={(e) => setTermsAccepted(e.target.checked)}
-                                />
-                                <Label htmlFor="terms">
-                                    I agree to the{" "}
-                                    <Link href="/terms&conditions" className="underline">
-                                        Terms and Conditions
-                                    </Link>
-                                </Label>
-                            </div>
-                            {error && <p className="text-red-500 text-sm">{error}</p>}
+                    <div>
+                        <div className="flex items-center gap-2">
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                required
+                                checked={termsAccepted}
+                                onChange={(e) => setTermsAccepted(e.target.checked)}
+                            />
+                            <Label htmlFor="terms">
+                                I agree to the{" "}
+                                <Link href="/terms&conditions" className="underline">
+                                    Terms and Conditions
+                                </Link>
+                            </Label>
                         </div>
-                    )}
+                        {error && <p className="text-red-500 text-sm">{error}</p>}
+                    </div>
 
-                    <Button type="submit" className="w-full bg-primaryColor text-white">
-                        {isSignIn ? "Sign In" : "Sign Up"}
-                    </Button>
+                    <Button type="submit" className="w-full bg-primaryColor text-white">Sign Up</Button>
                 </form>
             </Form>
 
@@ -167,20 +135,18 @@ const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit
             </div>
 
             <Button variant="outline" className="w-full mt-4 gap-2">
-                <svg viewBox="-0.5 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                    {/* ... SVG paths ... */}
-                </svg>
-                Login with Google
+                <svg viewBox="-0.5 0 48 48" xmlns="http://www.w3.org/2000/svg" width="20" height="20" />
+                Sign up with Google
             </Button>
 
             <div className="text-center text-sm">
-                {isSignIn ? "Don't have an account? " : "Already have an account? "}
-                <Link href={isSignIn ? "/sign-up" : "/sign-in"} className="text-primaryColor underline underline-offset-4">
-                    {isSignIn ? "Create an account" : "Sign in"}
+                Already have an account?{" "}
+                <Link href="/sign-in" className="text-primaryColor underline underline-offset-4">
+                    Sign in
                 </Link>
             </div>
         </div>
     );
 };
 
-export default AuthForm;
+export default SignUpForm;

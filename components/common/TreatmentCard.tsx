@@ -4,9 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight01Icon, HeartAddIcon, Recycle01Icon, StarIcon } from 'hugeicons-react';
 import Image from 'next/image';
-import BookAppointment from '../common/BookAppointment/BookAppointment';
 import { useSession } from 'next-auth/react';
-import SignInDialog from '../dialogs/SignInDialog';
 import { useRouter } from 'next/navigation';
 import { toast } from '@/hooks/use-toast';
 
@@ -191,11 +189,9 @@ const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: numb
                 <Link href={`/treatments/${treatment.id}`} className="flex items-center gap-0 md:gap-1 text-xs font-thin md:text-sm md:font-medium text-primaryColor">
                     View Details <ArrowRight01Icon size={16} />
                 </Link>
-                {/* {session ? (
-                    <BookAppointment treatment={treatment} triger="home" />
-                ) : (
-                    <SignInDialog />
-                )} */}
+
+                {/* <BookAppointment treatment={treatment} triger="home" /> */}
+
             </div>
 
         </div >

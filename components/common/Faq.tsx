@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import FaqList from "./FaqList";
-import ViewAllText from '../common/ViewAllText';
+import ViewAllText from './ViewAllText';
 import Image from 'next/image';
 import { FaqSkeleton } from '../skeletons/FaqSkeleton';
 

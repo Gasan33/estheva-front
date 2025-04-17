@@ -4,6 +4,7 @@ import {
     Dialog,
     DialogClose,
     DialogContent,
+    DialogDescription,
     DialogFooter,
     DialogHeader,
     DialogTitle,
@@ -21,6 +22,9 @@ import { useSession } from "next-auth/react";
 import { format } from "date-fns";
 import AppointmentFailed from "./BookAppointmentSteps/AppointmentFailed";
 import { toast } from "@/hooks/use-toast";
+import AuthForm from "@/components/forms/AuthForm";
+import { signInWithCredentials } from "@/lib/actions/auth";
+import { signInSchema } from "@/lib/validations";
 
 const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?: string }) => {
     const session = useSession();
@@ -117,97 +121,114 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
                 </DialogTrigger>
             )}
 
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>Schdule Appointment</DialogTitle>
-                </DialogHeader>
+            {!session.data?.user ?
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle className='text-center'>Sign In Or Register Please</DialogTitle>
+                        <DialogDescription>
+                            <AuthForm
+                                type="SIGN_IN"
+                                schema={signInSchema}
+                                defaultValues={{
+                                    email: '',
+                                    password: "",
+                                }}
+                                onSubmit={signInWithCredentials}
+                            />
+                        </DialogDescription>
+                    </DialogHeader>
+                </DialogContent>
+                : <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Schdule Appointment</DialogTitle>
+                    </DialogHeader>
 
-                <div className="flex justify-between mt-8">
-                    {steps.map((step, i) => (
-                        <div
-                            key={i}
-                            className={`step-item ${currentStep === i + 1 && "active"} ${(i + 1 < currentStep || complete) && "complete"
-                                }`}
-                        >
-                            <div className="step">{i + 1 < currentStep || complete ? <TiTick size={24} /> : i + 1}</div>
-                            <p className="text-gray-500 text-[8px]">{step}</p>
-                        </div>
-                    ))}
-                </div>
+                    <div className="flex justify-between mt-8">
+                        {steps.map((step, i) => (
+                            <div
+                                key={i}
+                                className={`step-item ${currentStep === i + 1 && "active"} ${(i + 1 < currentStep || complete) && "complete"
+                                    }`}
+                            >
+                                <div className="step">{i + 1 < currentStep || complete ? <TiTick size={24} /> : i + 1}</div>
+                                <p className="text-gray-500 text-[8px]">{step}</p>
+                            </div>
+                        ))}
+                    </div>
 
-                {currentStep === 1 ? (
-                    <SchduleAppointment
-                        date={date}
-                        setDate={setDate}
-                        selectedTimeSlot={selectedTimeSlot}
-                        setSelectedTimeSlot={setSelectedTimeSlot}
-                        selectedLocation={selectedLocation}
-                        setSelectedLocation={setSelectedLocation}
-                        selectedDoctor={selectedDoctor}
-                        setSelectedDoctor={setSelectedDoctor}
-                        treatment={treatment}
-                    />
-                ) : currentStep === 2 ? (
-                    <PaymentPage price={Number(treatment.price)} />
-                ) : currentStep === 3 ? (
-                    <Summary treatment={treatment} />
-                ) : (
-                    appointmentSuccess ? <AppointmentSuccess /> : <AppointmentFailed />
-                )}
-
-                <DialogFooter className="sm:justify-end gap-4">
-                    {currentStep !== 1 ? (
-                        <Button
-                            className="btn text-red-600"
-                            type="button"
-                            variant="secondary"
-                            onClick={() => setCurrentStep((prev) => prev - 1)}
-                        >
-                            Back
-                        </Button>
+                    {currentStep === 1 ? (
+                        <SchduleAppointment
+                            date={date}
+                            setDate={setDate}
+                            selectedTimeSlot={selectedTimeSlot}
+                            setSelectedTimeSlot={setSelectedTimeSlot}
+                            selectedLocation={selectedLocation}
+                            setSelectedLocation={setSelectedLocation}
+                            selectedDoctor={selectedDoctor}
+                            setSelectedDoctor={setSelectedDoctor}
+                            treatment={treatment}
+                        />
+                    ) : currentStep === 2 ? (
+                        <PaymentPage price={Number(treatment.price)} />
+                    ) : currentStep === 3 ? (
+                        <Summary treatment={treatment} />
                     ) : (
-                        <DialogClose asChild>
-                            <Button className="btn text-red-600" type="button" onClick={resetState} variant="secondary">
-                                Close
-                            </Button>
-                        </DialogClose>
+                        appointmentSuccess ? <AppointmentSuccess /> : <AppointmentFailed />
                     )}
 
-                    {currentStep < steps.length ? (
-                        <Button
-                            className="btn bg-primaryColor text-white"
-                            disabled={currentStep === 1 ? !(date && selectedTimeSlot && selectedDoctor && selectedLocation) : false}
-                            onClick={async () => {
-                                if (currentStep === 3) {
-                                    setLoading(true);
-                                    const success = await handleAppointmentSubmit();
-                                    setLoading(false);
+                    <DialogFooter className="sm:justify-end gap-4">
+                        {currentStep !== 1 ? (
+                            <Button
+                                className="btn text-red-600"
+                                type="button"
+                                variant="secondary"
+                                onClick={() => setCurrentStep((prev) => prev - 1)}
+                            >
+                                Back
+                            </Button>
+                        ) : (
+                            <DialogClose asChild>
+                                <Button className="btn text-red-600" type="button" onClick={resetState} variant="secondary">
+                                    Close
+                                </Button>
+                            </DialogClose>
+                        )}
 
-                                    if (success) {
-                                        setCurrentStep((prev) => prev + 1);
-                                    }
-                                } else {
-                                    setCurrentStep((prev) => prev + 1);
-                                }
-                            }}
-                        >
-                            {currentStep === 3 ? (loading ? "Booking..." : "Confirm Booking") : "Next"}
-                        </Button>
-                    ) : (
-                        <DialogClose asChild>
+                        {currentStep < steps.length ? (
                             <Button
                                 className="btn bg-primaryColor text-white"
-                                onClick={() => {
-                                    setComplete(true);
-                                    resetState();
+                                disabled={currentStep === 1 ? !(date && selectedTimeSlot && selectedDoctor && selectedLocation) : false}
+                                onClick={async () => {
+                                    if (currentStep === 3) {
+                                        setLoading(true);
+                                        const success = await handleAppointmentSubmit();
+                                        setLoading(false);
+
+                                        if (success) {
+                                            setCurrentStep((prev) => prev + 1);
+                                        }
+                                    } else {
+                                        setCurrentStep((prev) => prev + 1);
+                                    }
                                 }}
                             >
-                                Finish
+                                {currentStep === 3 ? (loading ? "Booking..." : "Confirm Booking") : "Next"}
                             </Button>
-                        </DialogClose>
-                    )}
-                </DialogFooter>
-            </DialogContent>
+                        ) : (
+                            <DialogClose asChild>
+                                <Button
+                                    className="btn bg-primaryColor text-white"
+                                    onClick={() => {
+                                        setComplete(true);
+                                        resetState();
+                                    }}
+                                >
+                                    Finish
+                                </Button>
+                            </DialogClose>
+                        )}
+                    </DialogFooter>
+                </DialogContent>}
         </Dialog>
     );
 };

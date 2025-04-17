@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import ViewAllText from "../common/ViewAllText";
+import ViewAllText from "./ViewAllText";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useCategories } from "@/context/CategoriesContext";

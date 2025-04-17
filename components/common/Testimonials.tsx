@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import RatingBar from "../common/RatingBar";
+import RatingBar from "./RatingBar";
 import { ArrowRightIcon, ArrowLeftIcon } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";

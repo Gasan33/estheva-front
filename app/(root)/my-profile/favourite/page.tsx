@@ -1,6 +1,6 @@
 "use client";
 
-import TreatmentsList from '@/components/landing/TreatmentsList';
+import TreatmentsList from '@/components/common/TreatmentsList';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 

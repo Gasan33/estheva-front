@@ -14,6 +14,7 @@ import { getInitials } from '@/lib/utils'
 import {
     AiSecurity01Icon,
     Calendar01Icon,
+    DashboardCircleIcon,
     FavouriteIcon,
     Home01Icon,
     Notification01Icon,
@@ -73,10 +74,10 @@ const MobileNav: React.FC<MobileNavProps> = ({ mobileMenuOpen = false, toggleSid
                     <Image
                         src="/icons/logo.svg"
                         alt="Estheva Polyclinic"
-                        width={280}
-                        height={160}
+                        width={480}
+                        height={460}
                         priority
-                        className="object-contain h-16"
+                        className="object-contain h-16 p-4 bg-primary"
                         style={{ height: "auto", width: "100%" }}
                     />
                 </Link>
@@ -142,34 +143,52 @@ const MobileNav: React.FC<MobileNavProps> = ({ mobileMenuOpen = false, toggleSid
                                         </CommandItem>
                                     ))}
 
-                                    {session?.user && (profileSideBarList.map((item, index) => (
-                                        <CommandItem key={index} className="w-full">
-                                            <Link
-                                                href={`/my-profile/${item.path}`}
-                                                className={`flex items-center gap-3 p-3 rounded-md text-sm lg:text-base font-medium w-full ${activePath === item.path
-                                                    ? "bg-primary/10 text-primary"
-                                                    : "text-gray-600"
-                                                    }`}
-                                            >
-                                                {item.id === 1 ? (
-                                                    <Calendar01Icon className="w-5 h-5 lg:w-6 lg:h-6" />
-                                                ) : item.id === 2 ? (
-                                                    <FavouriteIcon className="w-5 h-5 lg:w-6 lg:h-6" />
-                                                ) : item.id === 3 ? (
-                                                    <SystemUpdate01Icon className="w-5 h-5 lg:w-6 lg:h-6" />
-                                                ) : item.id === 4 ? (
-                                                    <PasswordValidationIcon className="w-5 h-5 lg:w-6 lg:h-6" />
-                                                ) : item.id === 5 ? (
-                                                    <Notification01Icon className="w-5 h-5 lg:w-6 lg:h-6" />
-                                                ) : item.id === 6 ? (
-                                                    <SecurityIcon className="w-5 h-5 lg:w-6 lg:h-6" />
-                                                ) : (
-                                                    <AiSecurity01Icon className="w-5 h-5 lg:w-6 lg:h-6" />
-                                                )}
-                                                <span>{item.title}</span>
-                                            </Link>
-                                        </CommandItem>
-                                    )))}
+                                    {session?.user && (
+                                        isAdmin ?
+                                            <CommandItem className="w-full">
+                                                <Link
+                                                    href="/admin/dashboard"
+                                                    className={`flex items-center gap-3 p-3 rounded-md text-sm lg:text-base font-medium w-full ${activePath === "dashboard"
+                                                        ? "bg-primary/10 text-primary"
+                                                        : "text-gray-600"
+                                                        }`}
+                                                >
+
+                                                    <DashboardCircleIcon className="w-5 h-5 lg:w-6 lg:h-6" />
+
+                                                    <span>Dashboard</span>
+                                                </Link>
+                                            </CommandItem>
+                                            :
+
+                                            profileSideBarList.map((item, index) => (
+                                                <CommandItem key={index} className="w-full">
+                                                    <Link
+                                                        href={`/my-profile/${item.path}`}
+                                                        className={`flex items-center gap-3 p-3 rounded-md text-sm lg:text-base font-medium w-full ${activePath === item.path
+                                                            ? "bg-primary/10 text-primary"
+                                                            : "text-gray-600"
+                                                            }`}
+                                                    >
+                                                        {item.id === 1 ? (
+                                                            <Calendar01Icon className="w-5 h-5 lg:w-6 lg:h-6" />
+                                                        ) : item.id === 2 ? (
+                                                            <FavouriteIcon className="w-5 h-5 lg:w-6 lg:h-6" />
+                                                        ) : item.id === 3 ? (
+                                                            <SystemUpdate01Icon className="w-5 h-5 lg:w-6 lg:h-6" />
+                                                        ) : item.id === 4 ? (
+                                                            <PasswordValidationIcon className="w-5 h-5 lg:w-6 lg:h-6" />
+                                                        ) : item.id === 5 ? (
+                                                            <Notification01Icon className="w-5 h-5 lg:w-6 lg:h-6" />
+                                                        ) : item.id === 6 ? (
+                                                            <SecurityIcon className="w-5 h-5 lg:w-6 lg:h-6" />
+                                                        ) : (
+                                                            <AiSecurity01Icon className="w-5 h-5 lg:w-6 lg:h-6" />
+                                                        )}
+                                                        <span>{item.title}</span>
+                                                    </Link>
+                                                </CommandItem>
+                                            )))}
                                 </CommandGroup>
                             </CommandList>
                         </Command>

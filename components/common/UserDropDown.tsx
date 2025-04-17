@@ -75,21 +75,21 @@ const UserDropdown = () => {
                 {!isAdmin && (
                     <>
                         <DropdownMenuItem asChild>
-                            <Link href="/my-appointments" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
+                            <Link href="/my-profile/my-appointments" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
                                 <Calendar01Icon className="w-5 h-5" />
                                 <span>My Appointments</span>
                             </Link>
                         </DropdownMenuItem>
 
                         <DropdownMenuItem asChild>
-                            <Link href="/favourites" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
+                            <Link href="/my-profile/favourites" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
                                 <FavouriteIcon className="w-5 h-5" />
                                 <span>Favourites</span>
                             </Link>
                         </DropdownMenuItem>
 
                         <DropdownMenuItem asChild>
-                            <Link href="/help" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
+                            <Link href="/contact" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
                                 <HelpCircleIcon className="w-5 h-5" />
                                 <span>Help Center</span>
                             </Link>
@@ -110,7 +110,7 @@ const UserDropdown = () => {
                         </DropdownMenuItem>
 
                         <DropdownMenuItem asChild>
-                            <Link href="/settings" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
+                            <Link href="/my-profile/update-profile" className="flex items-center gap-3 w-full px-2 py-2 hover:bg-muted rounded-md">
                                 <Settings01Icon className="w-5 h-5" />
                                 <span>Settings</span>
                             </Link>

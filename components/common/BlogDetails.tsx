@@ -11,7 +11,7 @@ import {
     BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 import { ArrowRight01Icon } from 'hugeicons-react';
-import Blogs from '../landing/Blogs';
+import Blogs from './Blogs';
 
 type BlogDetailsProps = {
     blog: Blog;

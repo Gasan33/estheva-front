@@ -8,7 +8,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { ArrowRight01Icon } from "hugeicons-react";
-import ViewAllText from "../common/ViewAllText";
+import ViewAllText from "./ViewAllText";
 import { formatMonthDate } from "@/lib/utils";
 import LandingPageBlogsSkeleton from "../skeletons/LandingPageBlogsSkeleton";
 
