@@ -14,10 +14,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CreditCardAddIcon, GoogleIcon, Money01Icon } from 'hugeicons-react';
 import { Dialog } from '@headlessui/react';
 import { ShieldCheckIcon } from 'lucide-react';
+import { useSession } from 'next-auth/react';
+import config from '@/lib/config';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || '');
 
-const AppleGooglePayButton = ({ price }: { price: number }) => {
+const AppleGooglePayButton = ({ price, appointmentId }: { price: number; appointmentId: number }) => {
     const stripe = useStripe();
     const [paymentRequest, setPaymentRequest] = useState<any>(null);
 
@@ -42,16 +44,19 @@ const AppleGooglePayButton = ({ price }: { price: number }) => {
 
         paymentRequest.on('paymentmethod', async (event: any) => {
             try {
-                const response = await fetch('https://api.estheva-clinic.com/api/v1/apple-pay-payment', {
+                const res = await fetch('https://api.estheva-clinic.com/api/v1/apple-pay-payment', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer YOUR_ACCESS_TOKEN`,
                     },
-                    body: JSON.stringify({ amount: price }),
+                    body: JSON.stringify({
+                        amount: price,
+                        appointment_id: appointmentId,
+                    }),
                 });
 
-                const { clientSecret } = await response.json();
+                const { clientSecret } = await res.json();
 
                 const { error, paymentIntent } = await stripe!.confirmCardPayment(clientSecret, {
                     payment_method: event.paymentMethod.id,
@@ -79,51 +84,65 @@ const AppleGooglePayButton = ({ price }: { price: number }) => {
     );
 };
 
-const CheckoutForm = ({ price, onSuccess }: { price: number; onSuccess: () => void }) => {
+const CheckoutForm = ({
+    price,
+    onSuccess,
+    appointmentId,
+}: {
+    price: number;
+    onSuccess: () => void;
+    appointmentId: number;
+}) => {
     const stripe = useStripe();
     const elements = useElements();
     const [loading, setLoading] = useState(false);
     const [cardName, setCardName] = useState('');
     const [error, setError] = useState<string | null>(null);
-
+    const session = useSession();
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
+        setError(null);
+
         if (!stripe || !elements) return;
 
         const cardElement = elements.getElement(CardNumberElement);
         if (!cardElement) return;
 
-        const response = await fetch('https://api.estheva-clinic.com/api/v1/payment', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer YOUR_ACCESS_TOKEN`,
-            },
-            body: JSON.stringify({ amount: price }),
+        const { paymentMethod, error: pmError } = await stripe.createPaymentMethod({
+            type: 'card',
+            card: cardElement,
+            billing_details: { name: cardName },
         });
 
-        const { clientSecret, error } = await response.json();
-
-        if (error) {
-            setError(error);
+        if (pmError || !paymentMethod) {
+            setError(pmError?.message || 'Failed to create payment method');
             setLoading(false);
             return;
         }
 
-        const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: cardElement,
-                billing_details: { name: cardName },
+        const response = await fetch(`${config.env.apiEndpoint}/payment`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${session?.data?.user.access_token}`,
             },
+            body: JSON.stringify({
+                amount: price,
+                appointment_id: appointmentId,
+                token: paymentMethod.id,
+            }),
         });
 
-        if (stripeError) {
-            setError(stripeError.message || 'Payment failed');
-        } else if (paymentIntent) {
-            onSuccess();
+        const result = await response.json();
+
+        if (result.error) {
+            setError(result.error);
+            setLoading(false);
+            return;
         }
 
+        onSuccess();
         setLoading(false);
     };
 
@@ -150,7 +169,7 @@ const CheckoutForm = ({ price, onSuccess }: { price: number; onSuccess: () => vo
     );
 };
 
-export default function PaymentPage({ price }: { price: number }) {
+export default function PaymentPage({ price, appointmentId }: { price: number; appointmentId: number }) {
     const [promoCode, setPromoCode] = useState('');
     const [discount, setDiscount] = useState(0);
     const [paymentMethod, setPaymentMethod] = useState<'applepay' | 'debit' | 'cod'>('applepay');
@@ -172,11 +191,10 @@ export default function PaymentPage({ price }: { price: number }) {
         }
     };
 
-    const total = price - discount + 30; // add tax
+    const total = price - discount + 30;
 
     return (
         <div className="p-4 sm:p-6 lg:p-8">
-            {/* Promo Code Section */}
             <div>
                 <h2 className="text-sm font-semibold">Promo Code</h2>
                 <div className="flex mt-2 border rounded-md overflow-hidden h-12">
@@ -193,7 +211,6 @@ export default function PaymentPage({ price }: { price: number }) {
                 {discount > 0 && <p className="text-green-500 text-xs mt-1">Promo applied: -{discount} AED</p>}
             </div>
 
-            {/* Payment Method Section */}
             <h2 className="text-sm font-semibold mt-8">Select Payment Method</h2>
             <Elements stripe={stripePromise}>
                 <div className="flex flex-col gap-3 mt-4">
@@ -229,7 +246,7 @@ export default function PaymentPage({ price }: { price: number }) {
                                 transition={{ duration: 0.3 }}
                                 className="overflow-hidden"
                             >
-                                <AppleGooglePayButton price={total} />
+                                <AppleGooglePayButton price={total} appointmentId={appointmentId} />
                             </motion.div>
                         )}
 
@@ -241,14 +258,13 @@ export default function PaymentPage({ price }: { price: number }) {
                                 transition={{ duration: 0.3 }}
                                 className="overflow-hidden"
                             >
-                                <CheckoutForm price={total} onSuccess={() => setShowConfirmation(true)} />
+                                <CheckoutForm price={total} onSuccess={() => setShowConfirmation(true)} appointmentId={appointmentId} />
                             </motion.div>
                         )}
                     </AnimatePresence>
                 </div>
             </Elements>
 
-            {/* Price Summary */}
             <div className="mt-8">
                 <h2 className="text-sm font-semibold">Price Details</h2>
                 <div className="text-sm text-gray-600 mt-4 space-y-2">
@@ -271,7 +287,6 @@ export default function PaymentPage({ price }: { price: number }) {
                 </div>
             </div>
 
-            {/* Confirmation Modal */}
             <Dialog open={showConfirmation} onClose={() => setShowConfirmation(false)} className="relative z-50">
                 <div className="fixed inset-0 bg-black/40 flex items-center justify-center p-4">
                     <Dialog.Panel className="bg-white rounded-xl p-6 max-w-sm w-full text-center">

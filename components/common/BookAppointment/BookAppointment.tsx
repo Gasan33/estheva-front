@@ -169,7 +169,7 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
                             treatment={treatment}
                         />
                     ) : currentStep === 2 ? (
-                        <PaymentPage price={Number(treatment.price)} />
+                        <PaymentPage price={Number(treatment.price)} appointmentId={treatment.id} />
                     ) : currentStep === 3 ? (
                         <Summary treatment={treatment} />
                     ) : (
