@@ -47,8 +47,6 @@ const Favourite = () => {
     }, [session]);
 
 
-    if (loading) return <div>loading</div>
-
     return (
         <div className="mt-8">
             <div className="flex justify-between items-center">

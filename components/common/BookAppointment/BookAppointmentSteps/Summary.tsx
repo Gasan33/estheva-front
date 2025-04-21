@@ -1,10 +1,39 @@
 import { ArrowRight01Icon, CardExchange01Icon, Location01Icon } from 'hugeicons-react'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { addresses } from '@/constants'
 import { CircleCheck } from 'lucide-react'
+import { useSession } from 'next-auth/react'
 
 const Summary = ({ treatment }: { treatment: Treatment }) => {
+    const [user, setUser] = useState<User>();
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+    const fetchUserData = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            const response = await fetch("/api/user");
+            if (!response.ok) throw new Error("Failed to fetch User Data");
+            const data = await response.json();
+            setUser(data.data);
+        } catch (err: any) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+
+        fetchUserData();
+    }, []);
+
+
+    const tax = 30;
+    const total = Number(treatment.price) + tax;
+    if (loading) return <p className="text-center mt-4">Loading appointments...</p>;
+    if (error) return <p className="text-center mt-4 text-red-500">{error}</p>;
     return (
         <div>
             {/* Treatment */}
@@ -72,7 +101,7 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
                     <div className='flex gap-2 line-clamp-1'>
                         <h1 className='w-[20%] text-primaryColor font-medium'>Name</h1>
                         :
-                        <p >Mohammed Khalid</p>
+                        <p >{user?.name}</p>
                     </div>
                     <div className='flex gap-2 line-clamp-1'>
                         <h1 className='w-[20%] text-primaryColor font-medium'>Age</h1>
@@ -123,17 +152,9 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
                 <h1 className='text-xs md:text-sm lg:text-lg xl:text-xl font-semibold mt-8'>Price Details</h1>
 
                 <div className='text-[8px] sm:text-sm text-gray-500'>
-                    <div className='flex justify-between '>
-                        <CardExchange01Icon />
-                        <div className='flex gap-1 items-center justify-center '>
-                            <p>************3647</p>
-                            <ArrowRight01Icon />
-                        </div>
-                    </div>
-
                     <div className='flex justify-between  mt-8'>
                         <p>Subtotal</p>
-                        <p>1,300 AED</p>
+                        <p>{treatment.price} AED</p>
                     </div>
                     <div className='flex justify-between mt-1'>
                         <p>Extra</p>
@@ -141,17 +162,14 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
                     </div>
                     <div className='flex justify-between  mt-1'>
                         <p>Tax</p>
-                        <p>30 AED</p>
+                        <p>{tax} AED</p>
                     </div>
 
                     <div className='flex justify-between text-gray-950 mt-8 font-semibold'>
                         <p>Total</p>
-                        <p>1,330 AED</p>
+                        <p>{total} AED</p>
                     </div>
                 </div>
-
-
-
             </div>
 
         </div>

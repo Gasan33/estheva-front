@@ -25,16 +25,19 @@ import { toast } from "@/hooks/use-toast";
 import AuthForm from "@/components/forms/AuthForm";
 import { signInWithCredentials } from "@/lib/actions/auth";
 import { signInSchema } from "@/lib/validations";
-
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || '');
 const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?: string }) => {
     const session = useSession();
     const [date, setDate] = useState<Date | undefined>(new Date());
     const [selectedTimeSlot, setSelectedTimeSlot] = useState<TimeSlot>();
     const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
     const [selectedDoctor, setSelectedDoctor] = useState<number | null>(null);
+    const [appointmentId, setAppointmentId] = useState<number>(-1);
     const [loading, setLoading] = useState(false);
     const [appointmentSuccess, setAppointmentSuccess] = useState(false);
-    const steps = ["Schdule", "Payment", "Summary", "Finish"];
+    const steps = ["Schdule", "Summary", "Payment", "Finish"];
     const [currentStep, setCurrentStep] = useState(1);
     const [complete, setComplete] = useState(false);
 
@@ -80,7 +83,8 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
                 setAppointmentSuccess(false);
                 // throw new Error(result.error || "Failed to create appointment")
             } else {
-                setAppointmentSuccess(true);
+                setAppointmentId(result.data.id);
+                // setAppointmentSuccess(true);
 
                 // alert("Appointment booked successfully!");
             };
@@ -169,51 +173,57 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
                             treatment={treatment}
                         />
                     ) : currentStep === 2 ? (
-                        <PaymentPage price={Number(treatment.price)} appointmentId={treatment.id} />
-                    ) : currentStep === 3 ? (
                         <Summary treatment={treatment} />
+                    ) : currentStep === 3 ? (
+                        <Elements stripe={stripePromise}>
+                            <PaymentPage setCurrentStep={setCurrentStep} price={Number(treatment.price)} appointmentId={appointmentId} loading={loading} setAppointmentSuccess={setAppointmentSuccess} setLoading={setLoading} />
+                        </Elements>
                     ) : (
                         appointmentSuccess ? <AppointmentSuccess /> : <AppointmentFailed />
                     )}
 
                     <DialogFooter className="sm:justify-end gap-4">
-                        {currentStep !== 1 ? (
-                            <Button
-                                className="btn text-red-600"
-                                type="button"
-                                variant="secondary"
-                                onClick={() => setCurrentStep((prev) => prev - 1)}
-                            >
-                                Back
-                            </Button>
-                        ) : (
-                            <DialogClose asChild>
-                                <Button className="btn text-red-600" type="button" onClick={resetState} variant="secondary">
-                                    Close
+                        {currentStep > 2 ? <></> :
+                            currentStep !== 1 ? (
+                                <Button
+                                    className="btn text-red-600"
+                                    type="button"
+                                    variant="secondary"
+                                    onClick={() => setCurrentStep((prev) => prev - 1)}
+                                >
+                                    Back
                                 </Button>
-                            </DialogClose>
-                        )}
+                            ) : (
+                                <DialogClose asChild>
+                                    <Button className="btn text-red-600" type="button" onClick={resetState} variant="secondary">
+                                        Close
+                                    </Button>
+                                </DialogClose>
+                            )}
 
                         {currentStep < steps.length ? (
-                            <Button
-                                className="btn bg-primaryColor text-white"
-                                disabled={currentStep === 1 ? !(date && selectedTimeSlot && selectedDoctor && selectedLocation) : false}
-                                onClick={async () => {
-                                    if (currentStep === 3) {
-                                        setLoading(true);
-                                        const success = await handleAppointmentSubmit();
-                                        setLoading(false);
+                            currentStep === 3 ?
+                                <></>
+                                : <Button
+                                    className="btn bg-primaryColor text-white"
+                                    disabled={currentStep === 1 ? !(date && selectedTimeSlot && selectedDoctor && selectedLocation) : false}
+                                    type="submit"
+                                    onClick={async () => {
+                                        if (currentStep === 2) {
 
-                                        if (success) {
+                                            const success = await handleAppointmentSubmit();
+
+
+                                            if (success) {
+                                                setCurrentStep((prev) => prev + 1);
+                                            }
+                                        } else {
                                             setCurrentStep((prev) => prev + 1);
                                         }
-                                    } else {
-                                        setCurrentStep((prev) => prev + 1);
-                                    }
-                                }}
-                            >
-                                {currentStep === 3 ? (loading ? "Booking..." : "Confirm Booking") : "Next"}
-                            </Button>
+                                    }}
+                                >
+                                    {currentStep === 2 ? (loading ? "loading..." : "Confirm") : "Next"}
+                                </Button>
                         ) : (
                             <DialogClose asChild>
                                 <Button

@@ -4,6 +4,7 @@ import { getInitials } from '@/lib/utils'
 import { Calendar01Icon, Edit01Icon, Flag02Icon } from 'hugeicons-react'
 import { EditIcon, WeightIcon } from 'lucide-react'
 import { BsGenderMale } from 'react-icons/bs'
+import { Skeleton } from '../ui/skeleton'
 
 const ProfileHeader = () => {
     const [user, setUser] = useState<User>();
@@ -29,7 +30,18 @@ const ProfileHeader = () => {
         fetchUserData();
     }, []);
 
-    if (loading) return <p className="text-center mt-4">Loading appointments...</p>;
+    if (loading) return <div className="flex flex-col justify-center items-center gap-6 mb-6 lg:gap-8 lg:mb-8">
+        <Skeleton className="h-32 w-32 rounded-full" />
+        <div className="flex flex-col items-center gap-2">
+            <Skeleton className="h-5 w-40" />
+            <Skeleton className="h-4 w-56" />
+        </div>
+        <div className="flex gap-2 w-full p-2 rounded-xl justify-between items-center">
+            {[...Array(4)].map((_, i) => (
+                <Skeleton key={i} className="h-20 w-full lg:h-24 lg:w-1/4 rounded-lg" />
+            ))}
+        </div>
+    </div>;
     if (error) return <p className="text-center mt-4 text-red-500">{error}</p>;
 
     return (
