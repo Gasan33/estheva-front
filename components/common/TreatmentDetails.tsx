@@ -8,7 +8,7 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
 } from "@/components/ui/breadcrumb"
-import { ArrowRight01Icon, Location01Icon, Recycle01Icon, Tag01Icon } from 'hugeicons-react'
+import { ArrowRight01Icon, CheckmarkBadge01Icon, CheckmarkCircle01Icon, Location01Icon, Recycle01Icon, Tag01Icon } from 'hugeicons-react'
 import { Share2, Heart } from 'lucide-react'
 import Image from 'next/image'
 import TreatmentReviews from '@/components/common/TreatmentReviews'
@@ -16,6 +16,7 @@ import BookAppointment from '@/components/common/BookAppointment/BookAppointment
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import TreatmentDetailsSkeleton from '../skeletons/TreatmentDetailsSkeleton'
+import { Button } from '../ui/button'
 
 type TreatmentDetailsProps = {
     id: string;
@@ -30,7 +31,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
     const [error, setError] = useState<string | null>(null); // Error state
     const allPath = usePathname();
     const paths = allPath.split('/');
-
+    const phoneNumber = "+97143309084";
     const getTreatmentDetails = async () => {
         try {
             const response = await fetch(`/api/treatments/${id}`);
@@ -188,12 +189,14 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                 </div>
 
                 {/* Sidebar */}
-                <div className="w-full xl:w-1/3 bg-blue-50 rounded-xl p-6 space-y-4" data-aos="fade-left">
+                <div className="w-full xl:w-1/3 bg-blue-50 flex flex-col justify-between rounded-xl p-6 space-y-4" data-aos="fade-left">
                     <h4 className="text-lg font-semibold">What This Treatment Can Do for You</h4>
                     {treatment.benefits.map((benefit, index) => (
-                        <div key={index} className="flex items-start gap-2">
-                            <Recycle01Icon width={24} height={24} className="mt-1" />
-                            <p className="text-sm text-gray-700">{benefit}</p>
+                        <div key={index} className="flex justify-start items-center gap-2">
+                            <div className="h-6 w-6 text-green-500">
+                                <CheckmarkBadge01Icon width={24} height={24} className='object-cover' />
+                            </div>
+                            <p className="text-sm text-center text-gray-700">{benefit}</p>
                         </div>
                     ))}
                     {treatment.instructions && (
@@ -201,13 +204,31 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                             <h4 className="text-lg font-semibold mt-6 text-red-500">Pre-Treatment Instructions</h4>
                             {treatment.instructions.map((inst, index) => (
                                 <div key={index} className="flex items-start gap-2">
-                                    <Tag01Icon width={24} height={24} className="mt-1" />
+                                    <div className="mt-1 h-6 w-6">
+                                        <Tag01Icon width={24} height={24} className="object-cover" />
+                                    </div>
+
                                     <p className="text-sm text-gray-700">{inst}</p>
                                 </div>
                             ))}
                         </>
                     )}
-                    <BookAppointment treatment={treatment} />
+                    <div className='flex flex-col justify-end'>
+                        <BookAppointment treatment={treatment} />
+                        <h2 className='text-lg font-semibold my-2 mt-8'>
+                            Do You Need More Information About The Treatments?
+                        </h2>
+                        <h2 className='text-lg font-semibold'>
+                            Book A Free <span className='text-primary'>Consultaion</span> with Our Doctors
+                        </h2>
+                        <Button
+                            onClick={() => window.location.href = `tel:${phoneNumber}`}
+                            className='flex lg:mt-8 mt-4 justify-center py-6 px-4 w-full items-center font-semibold rounded-full text-white bg-primaryColor shadow-lg hover:bg-gray-100'
+                        >
+                            Book A Consultation
+                        </Button>
+                    </div>
+
                 </div>
             </div>
 

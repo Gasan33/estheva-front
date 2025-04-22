@@ -35,8 +35,11 @@ const Consultation = () => {
 
     return (
         <div className='w-full px-4 py-16 sm:px-6 lg:px-16 flex flex-col items-center'>
+            <h2 className='text-xl font-semibold text-gray-900 text-center mb-2 sm:text-2xl'>
+                Do You Need More Information About The Treatments?
+            </h2>
             <h2 className='text-2xl font-semibold text-gray-900 text-center sm:text-3xl'>
-                Meet Our Specialist Online Consultation Doctors
+                Book A Free <span className='text-primary'>Consultaion</span> with Our Doctors
             </h2>
 
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10 w-full max-w-6xl'>

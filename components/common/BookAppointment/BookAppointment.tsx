@@ -27,7 +27,9 @@ import { signInWithCredentials } from "@/lib/actions/auth";
 import { signInSchema } from "@/lib/validations";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || '');
+import config from "@/lib/config";
+const stripePromise = loadStripe(config.env.stripPK || '');
+
 const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?: string }) => {
     const session = useSession();
     const [date, setDate] = useState<Date | undefined>(new Date());
@@ -119,7 +121,7 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
             ) : (
                 <DialogTrigger className="w-full">
                     <div className="flex lg:mt-8 mt-4 justify-center py-3 px-4 w-full items-center font-semibold rounded-full text-white bg-primaryColor shadow-lg hover:bg-gray-100">
-                        Schdule Appointment
+                        Schedule Treatment
                         <ArrowRight01Icon size={24} className="text-white" />
                     </div>
                 </DialogTrigger>
