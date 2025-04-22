@@ -25,7 +25,7 @@ export async function generateMetadata(
     const slug = (await params).slug;
     const category: Category = await getCategoryBySlug(slug);
 
-    const title = category?.category_name || 'Treatment Category';
+    const title = `${category?.category_name} | Estheva Polyclinic` || 'Treatment Category';
     const description = category?.category_description || `Explore treatments under ${title}`;
     const imagePath = category?.relations.images.attributes.path
         ? category?.relations.images.attributes.path
@@ -80,11 +80,11 @@ const TreatmentByCategoryPage = async ({ params }: Props) => {
                 {JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "CollectionPage",
-                    "name": category.category_name,
+                    "name": `${category?.category_name} | Estheva Polyclinic`,
                     "description": category.category_description,
                     "mainEntity": {
                         "@type": "MedicalSpecialty",
-                        "name": category.category_name,
+                        "name": `${category?.category_name} | Estheva Polyclinic`,
                     },
                     "url": `${config.env.baseUrl}/treatments/categories/${slug}`,
                     "image": category?.relations.images.attributes.path

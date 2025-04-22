@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -10,16 +9,10 @@ import {
 } from "@/components/ui/navigation-menu";
 import { navigationLinks } from '@/constants';
 import { useCategories } from '@/context/CategoriesContext';
-import UserDropdown from './UserDropDown';
-import { BsFacebook, BsTiktok, BsInstagram, BsLinkedin } from 'react-icons/bs';
-
-
+import Link from 'next/link';
 
 const NavMenuItems = () => {
     const { categories } = useCategories();
-
-
-    // Desktop layout: horizontal dropdown menu
     return (
         <NavigationMenu>
             <NavigationMenuList className="hidden xl:flex items-center font-normal text-lg text-white tracking-wide gap-4">
@@ -28,7 +21,10 @@ const NavMenuItems = () => {
                         {link.dropMenu && link.name === "Medical Treatments" ? (
                             <>
                                 <NavigationMenuTrigger className="relative !bg-transparent text-lg font-normal !text-white hover:!text-gray-100">
-                                    {link.name.toUpperCase()}
+                                    <Link href="/treatments">
+                                        {link.name.toUpperCase()}
+                                    </Link>
+
                                 </NavigationMenuTrigger>
                                 <NavigationMenuContent className="shadow-lg p-2 space-y-1 bg-white rounded-md">
                                     {categories.map((category) => (

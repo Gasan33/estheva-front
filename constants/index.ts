@@ -8,7 +8,7 @@ export const navigationLinks: NavLinks[] = [
     },
     {
         id: 2,
-        path: '/treatments/categories/body-contouring-weight-loss',
+        path: '/treatments',
         name: 'Medical Treatments',
         dropMenu: [
             {

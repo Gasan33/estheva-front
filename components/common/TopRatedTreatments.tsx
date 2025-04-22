@@ -8,6 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import BookAppointment from "./BookAppointment/BookAppointment";
 import config from "@/lib/config";
+import TopRatedSkeleton from "../skeletons/TopRatedSkeleton";
 
 const TopRatedTreatments = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -55,11 +56,11 @@ const TopRatedTreatments = () => {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>; // Handle loading state
+        return <TopRatedSkeleton />;
     }
 
     if (error) {
-        return <div>Error: {error}</div>; // Handle error state
+        return <div>Error: {error}</div>;
     }
 
     return (

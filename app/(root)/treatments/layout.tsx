@@ -6,9 +6,9 @@ import CategoryTabs from '@/components/common/CategoryTabs';
 import Head from 'next/head';
 
 export const metadata: Metadata = {
-    title: 'Explore Advanced Aesthetic & Medical Treatments | Estheva Polyclinic Dubai',
+    title: 'Premium Aesthetic & Medical Treatments in Dubai | Estheva Polyclinic',
     description:
-        'Discover a wide range of expert treatments at Estheva Polyclinic, Dubai’s leading destination for aesthetic, dermatology, and wellness care. Browse our treatment categories to find personalized solutions crafted by top specialists using cutting-edge technology.',
+        'Explore our full range of advanced medical and cosmetic treatments at Estheva Polyclinic in Dubai. From skin rejuvenation and hair restoration to wellness therapies and body contouring — discover solutions tailored to your needs by leading experts.',
     keywords: [
         'treatments',
         'Body Contouring & Weight Loss',
@@ -31,9 +31,9 @@ const layout = async ({ children }: { children: ReactNode }) => {
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'MedicalBusiness',
-        name: 'Explore Advanced Aesthetic & Medical Treatments | Estheva Polyclinic Dubai',
-        description: 'Discover a wide range of expert treatments at Estheva Polyclinic, Dubai’s leading destination for aesthetic, dermatology, and wellness care. Browse our treatment categories to find personalized solutions crafted by top specialists using cutting-edge technology.',
-        url: 'https://estheva-clinic.com/treatments/categories',
+        name: 'Premium Aesthetic & Medical Treatments in Dubai | Estheva Polyclinic',
+        description: 'Explore our full range of advanced medical and cosmetic treatments at Estheva Polyclinic in Dubai. From skin rejuvenation and hair restoration to wellness therapies and body contouring — discover solutions tailored to your needs by leading experts.',
+        url: 'https://estheva-clinic.com/treatments',
         image: 'https://estheva-clinic.com/images/pic1.png',
         logo: 'https://estheva-clinic.com/icons/logo.svg',
         sameAs: [
@@ -66,14 +66,9 @@ const layout = async ({ children }: { children: ReactNode }) => {
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
                 />
             </Head>
-            <div className="my-6">
-                <HeaderPath title="Treatments" path="/treatments" />
-                <div className="px-4 md:px-8 xl:px-12">
-                    <CategoryTabs categories={categories} />
 
-                    <div>{children}</div>
-                </div>
-            </div>
+            <div>{children}</div>
+
         </main>
     );
 };
