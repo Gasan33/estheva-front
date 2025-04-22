@@ -199,7 +199,7 @@ const BlockEvents = () => {
                                             <div className="h-20 w-full flex gap-2 py-2">
                                                 <Avatar className="w-16 h-full">
                                                     <AvatarImage
-                                                        src={patient?.profile_picture ? `${config.env.apiEndpoint}/${patient.profile_picture}` : "/images/noavatar.png"}
+                                                        src={patient?.profile_picture ? `${config.env.imageBaseUrl}/${patient.profile_picture}` : "/images/noavatar.png"}
                                                         alt={patient?.first_name ?? "Unknown"}
                                                         className="object-cover"
                                                     />

@@ -69,7 +69,7 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
                         {treatment.doctors?.[0] && (
                             <div className="flex items-center gap-2 text-gray-700">
                                 <Image
-                                    src={treatment.doctors[0].user.profile_picture ? `${config.env.apiEndpoint}${treatment.doctors[0].user.profile_picture}` : "/images/noavatar.png"}
+                                    src={treatment.doctors[0].user.profile_picture ? `${config.env.imageBaseUrl}${treatment.doctors[0].user.profile_picture}` : "/images/noavatar.png"}
                                     alt={treatment.doctors[0].user.name}
                                     width={40}
                                     height={40}

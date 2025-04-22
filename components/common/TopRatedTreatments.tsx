@@ -92,7 +92,7 @@ const TopRatedTreatments = () => {
                     <div className="flex w-full py-4 items-center justify-between text-sm sm:text-base">
                         <div className="flex items-center gap-2">
                             <Image
-                                src={treatments[activeIndex]?.doctors[0].user.profile_picture ? `${config.env.apiEndpoint}${treatments[activeIndex]?.doctors[0].user.profile_picture}` : "/images/noavatar.png"}
+                                src={treatments[activeIndex]?.doctors[0].user.profile_picture ? `${config.env.imageBaseUrl}${treatments[activeIndex]?.doctors[0].user.profile_picture}` : "/images/noavatar.png"}
                                 alt={treatments[activeIndex]?.doctors[0].user.name}
                                 width={50}
                                 height={50}
