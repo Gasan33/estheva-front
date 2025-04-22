@@ -7,6 +7,7 @@ import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { ClipLoader } from 'react-spinners';
 import { useToast } from '@/hooks/use-toast';
+import config from '@/lib/config';
 
 interface ScheduleAppointmentProps {
     date: Date | undefined;
@@ -107,7 +108,7 @@ const ScheduleAppointment: React.FC<ScheduleAppointmentProps> = ({
                                 setSelectedDoctor(doctor.id);
                                 generateTimeSlots(doctor.id, treatment.id, format(new Date(), 'yyyy-MM-dd'));
                             }}
-                            image={doctor.user.profile_picture ?? '/images/noavatar.png'}
+                            image={doctor.user.profile_picture ? `${config.env.apiEndpoint}/${doctor.user.profile_picture}` : "/images/noavatar.png"}
                             label={doctor.user.name}
                         />
                     ))}

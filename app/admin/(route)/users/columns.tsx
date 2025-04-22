@@ -13,6 +13,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox"
 import Image from "next/image"
 import { toast } from "@/hooks/use-toast"
+import config from "@/lib/config"
 
 
 
@@ -60,7 +61,7 @@ export const columns: ColumnDef<User>[] = [
         cell: ({ row }) => {
             const user = row.original
             return <Image
-                src={user.profile_picture ?? "/images/noavatar.png"}
+                src={user.profile_picture ? `${config.env.apiEndpoint}/${user.profile_picture}` : "/images/noavatar.png"}
                 alt={user.name ?? "user"}
                 width={300}
                 height={300}

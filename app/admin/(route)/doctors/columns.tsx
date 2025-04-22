@@ -13,6 +13,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox"
 
 import Image from "next/image"
+import config from "@/lib/config"
 
 
 
@@ -45,7 +46,7 @@ export const columns: ColumnDef<Doctor>[] = [
         cell: ({ row }) => {
             const doctor = row.original
             return <Image
-                src={doctor.user.profile_picture ?? "/images/noavatar.png"}
+                src={doctor.user.profile_picture ? `${config.env.apiEndpoint}/${doctor.user.profile_picture}` : "/images/noavatar.png"}
                 alt={doctor.user.name ?? "user"}
                 width={300}
                 height={300}
