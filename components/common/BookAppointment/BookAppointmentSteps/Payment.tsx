@@ -151,7 +151,7 @@ export default function PaymentPage({
         setError(null);
 
 
-        const response = await fetch(`${config.env.apiEndpoint}/payments/cash`, {
+        const response = await fetch(`/api/payments/cash`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
