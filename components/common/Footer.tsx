@@ -44,13 +44,13 @@ export const Footer: React.FC = () => {
                     <div className="flex justify-between flex-col lg:flex-row gap-[30px] pb-4">
                         <div className="w-auto text-xs ">
                             <div>
-                                <Image
+                                <img
                                     src="/icons/logo.svg"
                                     alt="logo"
-                                    className="object-contain"
-                                    width={120}
                                     style={{ height: "auto" }}
+                                    width={120}
                                     height={60}
+                                    className="object-contain"
                                 />
                                 <div className="flex items-center gap-2 bottom-0 mt-4">
                                     <AiPhone01Icon

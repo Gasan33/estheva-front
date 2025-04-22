@@ -158,7 +158,7 @@ const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: numb
                     {/* Doctor Info */}
                     <div className="flex items-center gap-2">
                         <Image
-                            src={treatment.doctors[0].user.profile_picture ? `${config.env.apiEndpoint}/${treatment.doctors[0].user.profile_picture}` : "/images/noavatar.png"}
+                            src={treatment.doctors[0].user.profile_picture ? `${config.env.apiEndpoint}${treatment.doctors[0].user.profile_picture}` : "/images/noavatar.png"}
                             alt={treatment.doctors[0].user.name}
                             width={40}
                             height={40}

@@ -71,12 +71,11 @@ const MobileNav: React.FC<MobileNavProps> = ({ mobileMenuOpen = false, toggleSid
                     }`}
             >
                 <Link href="/" className=" w-full h-20 bg-primary">
-                    <Image
+                    <img
                         src="/icons/logo.svg"
                         alt="Estheva Polyclinic"
                         width={480}
                         height={460}
-                        priority
                         className="object-contain h-16 p-4 bg-primary"
                         style={{ height: "auto", width: "100%" }}
                     />

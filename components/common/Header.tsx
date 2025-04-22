@@ -46,12 +46,12 @@ export const Header = () => {
 
                 <div className="flex justify-between items-center px-4 md:px-12 py-3">
                     <Link href="/" className="flex-shrink-0">
-                        <Image
+                        <img
                             src="/icons/logo.svg"
                             alt="Estheva Polyclinic"
                             width={180}
                             height={160}
-                            priority
+                            // priority
                             className="object-contain"
                             style={{ height: "auto" }}
                         />

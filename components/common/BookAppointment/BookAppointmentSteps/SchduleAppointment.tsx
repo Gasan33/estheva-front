@@ -108,7 +108,7 @@ const ScheduleAppointment: React.FC<ScheduleAppointmentProps> = ({
                                 setSelectedDoctor(doctor.id);
                                 generateTimeSlots(doctor.id, treatment.id, format(new Date(), 'yyyy-MM-dd'));
                             }}
-                            image={doctor.user.profile_picture ? `${config.env.apiEndpoint}/${doctor.user.profile_picture}` : "/images/noavatar.png"}
+                            image={doctor.user.profile_picture ? `${config.env.apiEndpoint}${doctor.user.profile_picture}` : "/images/noavatar.png"}
                             label={doctor.user.name}
                         />
                     ))}

@@ -61,7 +61,7 @@ export const columns: ColumnDef<User>[] = [
         cell: ({ row }) => {
             const user = row.original
             return <Image
-                src={user.profile_picture ? `${config.env.apiEndpoint}/${user.profile_picture}` : "/images/noavatar.png"}
+                src={user.profile_picture ? `${config.env.apiEndpoint}${user.profile_picture}` : "/images/noavatar.png"}
                 alt={user.name ?? "user"}
                 width={300}
                 height={300}

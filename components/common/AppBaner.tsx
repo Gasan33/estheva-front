@@ -17,13 +17,11 @@ const AppBaner = () => {
             {/* Main Content */}
             <div className="relative z-10 flex flex-col md:flex-row text-white justify-between w-full mt-8">
                 <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-                    <Image
+                    <img
                         src="/images/phone.svg"
                         alt="app"
-                        width={160}
-                        height={160}
+                        style={{ width: "160px", height: "auto" }}
                         className="mx-auto md:mx-0 object-contain"
-                        priority
                     />
 
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
