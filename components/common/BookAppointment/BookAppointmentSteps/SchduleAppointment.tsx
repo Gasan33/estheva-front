@@ -78,7 +78,7 @@ const ScheduleAppointment: React.FC<ScheduleAppointmentProps> = ({
     return (
         <div className="flex flex-col gap-6">
             {/* Location Selection */}
-            <Section title="Select Location" icon={<Location01Icon className="text-primaryColor h-5 w-5" />}>
+            {/* <Section title="Select Location" icon={<Location01Icon className="text-primaryColor h-5 w-5" />}>
                 <div className="flex flex-wrap justify-center gap-4">
                     {locationOptions.map((option) => (
                         <SelectableCard
@@ -95,7 +95,7 @@ const ScheduleAppointment: React.FC<ScheduleAppointmentProps> = ({
                         <BookAppointmentAddress />
                     </Dropdown>
                 )}
-            </Section>
+            </Section> */}
 
             {/* Doctor Selection */}
             <Section title="Select Doctor" icon={<UserAccountIcon className="text-primaryColor h-5 w-5" />}>
@@ -206,10 +206,10 @@ const SelectableCard = ({
     >
         {selected && <CheckCircle className="absolute top-0 right-1 text-primaryColor" size={20} />}
         <div
-            className={`rounded-full border-[1px] h-16 w-16 p-4 flex items-center justify-center overflow-clip border-dashed ${selected ? 'border-primaryColor bg-teal-100' : 'border-gray-300 bg-secondary'
+            className={`rounded-full border-[1px] h-16 w-16 flex items-center justify-center overflow-clip border-dashed ${selected ? 'border-primaryColor bg-teal-100' : 'border-gray-300 bg-secondary'
                 }`}
         >
-            <Image src={image} alt={label} width={50} height={50} className="object-contain" />
+            <Image src={image} alt={label} width={50} height={50} className="w-full h-full object-cover" />
         </div>
         <p className="text-sm">{label}</p>
     </div>

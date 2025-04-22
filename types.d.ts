@@ -73,6 +73,7 @@ interface Doctor {
     exp: number;
     about: string;
     home_based: number;
+    online_consultation: number;
     availabilities: Availability[];
     user: User;
 }

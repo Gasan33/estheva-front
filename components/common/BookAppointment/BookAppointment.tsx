@@ -54,7 +54,7 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
 
     // Function to create a new appointment
     const handleAppointmentSubmit = async (): Promise<boolean> => {
-        if (!date || !selectedTimeSlot || !selectedDoctor || !selectedLocation) {
+        if (!date || !selectedTimeSlot || !selectedDoctor) {
             toast({ title: "Please fill in all the required fields." });
             return false;
         }
@@ -208,7 +208,7 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
                                 <></>
                                 : <Button
                                     className="btn bg-primaryColor text-white"
-                                    disabled={currentStep === 1 ? !(date && selectedTimeSlot && selectedDoctor && selectedLocation) : false}
+                                    disabled={currentStep === 1 ? !(date && selectedTimeSlot && selectedDoctor) : false}
                                     type="submit"
                                     onClick={async () => {
                                         if (currentStep === 2) {
