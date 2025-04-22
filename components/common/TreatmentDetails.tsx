@@ -83,7 +83,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                         </BreadcrumbItem>
                         <ArrowRight01Icon className="text-primaryColor" size={20} />
                         <BreadcrumbItem>
-                            <BreadcrumbLink href="/treatments">Treatments</BreadcrumbLink>
+                            <BreadcrumbLink href="/treatments/categories/body-contouring-weight-loss">Treatments</BreadcrumbLink>
                         </BreadcrumbItem>
                         <ArrowRight01Icon className="text-primaryColor" size={20} />
                         <BreadcrumbItem>

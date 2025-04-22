@@ -7,14 +7,14 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useCategories } from "@/context/CategoriesContext";
 
-const OurTreatments = () => {
+const OurTreatments = ({ bgColor }: { bgColor: string }) => {
     const { categories } = useCategories()
     useEffect(() => {
         AOS.init({ duration: 1000 });
     }, []);
 
     return (
-        <div className="mx-auto bg-sky-100  w-full items-center justify-center px-4 py-8 sm:px-6 lg:px-16">
+        <div className={`mx-auto   w-full items-center justify-center px-4 py-8 sm:px-6 lg:px-16 ${bgColor}`}>
             {/* Section Header */}
             <ViewAllText href="/treatments" title="Treatments" titleColor="" />
 

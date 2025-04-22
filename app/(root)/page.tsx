@@ -18,7 +18,7 @@ export default function Home() {
       {/* <Treatments /> */}
       <ExploreWhatWeDo />
 
-      <OurTreatments />
+      <OurTreatments bgColor="bg-sky-100" />
       <Consultation />
       <AboutUs />
 

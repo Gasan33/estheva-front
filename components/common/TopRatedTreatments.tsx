@@ -9,7 +9,7 @@ import "aos/dist/aos.css";
 import BookAppointment from "./BookAppointment/BookAppointment";
 import config from "@/lib/config";
 
-const TopRatedTreatments = ({ session }: { session: boolean }) => {
+const TopRatedTreatments = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [animate, setAnimate] = useState(false);
     const [treatments, setTreatments] = useState<Treatment[]>([]); // State for fetched treatments
@@ -113,9 +113,8 @@ const TopRatedTreatments = ({ session }: { session: boolean }) => {
                         </h2>
                     </div>
                     <div className="w-full py-4">
-                        <p className="text-gray-500 text-sm sm:text-base line-clamp-3">
-                            {treatments[activeIndex]?.description}
-                        </p>
+                        <p className="text-gray-500 text-sm sm:text-base line-clamp-3" dangerouslySetInnerHTML={{ __html: treatments[activeIndex]?.description }} />
+
                     </div>
                     <div className="flex gap-4 mt-4">
                         <Link
@@ -159,9 +158,8 @@ const TopRatedTreatments = ({ session }: { session: boolean }) => {
                                     <h2 className="text-lg sm:text-xl font-semibold line-clamp-2 xl:line-clamp-none text-gray-900">
                                         {item.title}
                                     </h2>
-                                    <p className="text-gray-500 mt-2 sm:mt-4 text-sm sm:text-base line-clamp-4">
-                                        {item.description}
-                                    </p>
+                                    <p className="text-gray-500 mt-2 sm:mt-4 text-sm sm:text-base line-clamp-4" dangerouslySetInnerHTML={{ __html: item.description }} />
+
                                     <div className="flex justify-between mt-4">
                                         <Link
                                             href={`/treatments/${item.id}`}

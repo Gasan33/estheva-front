@@ -1,14 +1,14 @@
 "use client"
-import HeaderPath from "../../../../components/common/HeaderPath"
 
-const Treatments = () => {
+import OurTreatments from "@/components/common/OurTreatments"
+
+const Categories = () => {
 
     return (
         <div className='my-6'>
-            <HeaderPath title="Treatments" path="/treatments"
-            />
+            <OurTreatments bgColor="white" />
         </div>
     )
 }
 
-export default Treatments
+export default Categories
