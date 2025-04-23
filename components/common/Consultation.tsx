@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { FaWhatsapp } from 'react-icons/fa';
-import config from '@/lib/config';
 import BookAppointment from './BookAppointment/BookAppointment';
 import Link from 'next/link';
 import { imageFormater } from '@/lib/utils';
