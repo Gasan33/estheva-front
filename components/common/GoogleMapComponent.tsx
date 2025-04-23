@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Location01Icon } from "hugeicons-react";
 import { darkModeStyle } from "@/constants";
 import HeaderPath from "./HeaderPath";
+import config from "@/lib/config";
 
 const GoogleMapComponent = () => {
     const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
@@ -103,7 +104,7 @@ const GoogleMapComponent = () => {
                 {error && <p className="text-red-500 mt-4">{error}</p>}
             </div>
 
-            <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}>
+            <LoadScript googleMapsApiKey={config.env.gooleAPIKey || ""}>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={center}

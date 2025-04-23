@@ -5,6 +5,7 @@ const config = {
         imageBaseUrl: process.env.NEXT_PUBLIC_IMAGE_BASE_URL || 'http://localhost:8000',
         appName: process.env.NEXT_PUBLIC_APP_NAME || 'Estheva Polyclinic',
         stripPK: process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY || "",
+        gooleAPIKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
         appDescription:
             process.env.NEXT_PUBLIC_APP_DESCRIPTION ||
             'Estheva Polyclinic offers premium healthcare and aesthetic services.',

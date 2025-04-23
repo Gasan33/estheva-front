@@ -8,6 +8,7 @@ import {
 } from "@react-google-maps/api";
 import { Button } from "@/components/ui/button";
 import { Location01Icon } from "hugeicons-react";
+import config from "@/lib/config";
 
 const GoogleMapComponent: React.FC = () => {
     const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
@@ -82,7 +83,7 @@ const GoogleMapComponent: React.FC = () => {
                     <Location01Icon size={16} className="text-primaryColor" />
                 </Button>
             </div>
-            <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}>
+            <LoadScript googleMapsApiKey={config.env.gooleAPIKey || ""}>
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={center}
