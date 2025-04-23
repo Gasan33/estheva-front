@@ -15,13 +15,9 @@ import { ArrowRight01Icon, Location01Icon, Recycle01Icon, Share01Icon } from 'hu
 import Link from 'next/link';
 import { CircleCheckIcon, Star, User } from 'lucide-react';
 import { BsBag } from 'react-icons/bs';
-import { formatTimeWithAMPM, getExactRemainingTime, getMonthName } from '@/lib/utils';
-import config from '@/lib/config';
-
-
+import { formatTimeWithAMPM, getExactRemainingTime, getMonthName, imageFormater } from '@/lib/utils';
 
 const AppointmentDetailsDailog = ({ appointment }: { appointment: Appointment }) => {
-
 
     return (
         <Dialog>
@@ -54,7 +50,7 @@ const AppointmentDetailsDailog = ({ appointment }: { appointment: Appointment })
                                 {appointment.doctor && (
                                     <>
                                         <Image
-                                            src={appointment.doctor.user.profile_picture ? `${config.env.imageBaseUrl}${appointment.doctor.user.profile_picture}` : "/images/noavatar.png"}
+                                            src={appointment.doctor.user.profile_picture ? imageFormater(appointment.doctor.user.profile_picture) : "/images/noavatar.png"}
                                             alt={appointment.doctor.user.name}
                                             width={50}
                                             height={50}
@@ -122,7 +118,7 @@ const AppointmentDetailsDailog = ({ appointment }: { appointment: Appointment })
                         <h1 className='text-xs md:text-sm lg:text-lg xl:text-xl font-semibold  mt-8'>Doctor</h1>
                         <div className='flex gap-2 mt-2 w-full'>
                             <Image
-                                src={appointment.doctor.user.profile_picture ? `${config.env.imageBaseUrl}${appointment.doctor.user.profile_picture}` : "/images/noavatar.png"}
+                                src={appointment.doctor.user.profile_picture ? imageFormater(appointment.doctor.user.profile_picture) : "/images/noavatar.png"}
                                 alt={appointment.doctor.user.name}
                                 width={400}
                                 height={400}

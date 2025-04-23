@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { toast } from '@/hooks/use-toast';
-import config from '@/lib/config';
+import { imageFormater } from '@/lib/utils';
 
 const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: number }) => {
     const [isFav, setIsFav] = useState(false);
@@ -158,7 +158,7 @@ const TreatmentCard = ({ treatment, index }: { treatment: Treatment, index: numb
                     {/* Doctor Info */}
                     <div className="flex items-center gap-2">
                         <Image
-                            src={treatment.doctors[0].user.profile_picture ? `${config.env.imageBaseUrl}${treatment.doctors[0].user.profile_picture}` : "/images/noavatar.png"}
+                            src={treatment.doctors[0].user.profile_picture ? imageFormater(treatment.doctors[0].user.profile_picture) : "/images/noavatar.png"}
                             alt={treatment.doctors[0].user.name}
                             width={40}
                             height={40}

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Location01Icon, Time01Icon, UserAccountIcon } from 'hugeicons-react';
+import { Time01Icon, UserAccountIcon } from 'hugeicons-react';
 import { CalendarDays, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
-import BookAppointmentAddress from '../BookAppintmentAddress';
 import { Calendar } from '@/components/ui/calendar';
 import { format } from 'date-fns';
 import { ClipLoader } from 'react-spinners';
 import { useToast } from '@/hooks/use-toast';
-import config from '@/lib/config';
+import { imageFormater } from '@/lib/utils';
 
 interface ScheduleAppointmentProps {
     date: Date | undefined;
@@ -108,7 +107,7 @@ const ScheduleAppointment: React.FC<ScheduleAppointmentProps> = ({
                                 setSelectedDoctor(doctor.id);
                                 generateTimeSlots(doctor.id, treatment.id, format(new Date(), 'yyyy-MM-dd'));
                             }}
-                            image={doctor.user.profile_picture ? `${config.env.imageBaseUrl}${doctor.user.profile_picture}` : "/images/noavatar.png"}
+                            image={doctor.user.profile_picture ? imageFormater(doctor.user.profile_picture) : "/images/noavatar.png"}
                             label={doctor.user.name}
                         />
                     ))}

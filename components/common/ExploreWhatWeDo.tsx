@@ -3,9 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { ArrowDown01Icon, ArrowRight01Icon } from "hugeicons-react";
 import ExploreTreatment from "./ExploreTreatment";
-import AOS from "aos";
 import "aos/dist/aos.css";
-import config from "@/lib/config";
 import { ExploreTreatmentSkeleton } from "../skeletons/ExploreTreatmentSkeleton";
 
 const ExploreWhatWeDo = () => {

@@ -26,7 +26,7 @@ import { extend, L10n, registerLicense } from '@syncfusion/ej2-base';
 import { useEffect, useRef, useState } from 'react';
 import { ClipLoader } from 'react-spinners';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { formatDuration, formatTimeWithAMPM, getInitials, getRandomColor } from '@/lib/utils';
+import { formatDuration, formatTimeWithAMPM, getInitials, getRandomColor, imageFormater } from '@/lib/utils';
 import { CatalogueIcon, Doctor01Icon, UserIcon } from 'hugeicons-react';
 import config from '@/lib/config';
 
@@ -204,7 +204,7 @@ const BlockEvents = () => {
                                             <div className="h-20 w-full flex gap-2 py-2">
                                                 <Avatar className="w-16 h-full">
                                                     <AvatarImage
-                                                        src={patient?.profile_picture ? `${config.env.imageBaseUrl}/${patient.profile_picture}` : "/images/noavatar.png"}
+                                                        src={patient?.profile_picture ? imageFormater(patient.profile_picture) : "/images/noavatar.png"}
                                                         alt={patient?.first_name ?? "Unknown"}
                                                         className="object-cover"
                                                     />

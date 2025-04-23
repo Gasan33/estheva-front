@@ -7,6 +7,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import config from '@/lib/config';
 import BookAppointment from '@/components/common/BookAppointment/BookAppointment';
 import Link from 'next/link';
+import { imageFormater } from '@/lib/utils';
 
 
 
@@ -32,7 +33,7 @@ const Consultation = () => {
 
     const getTreatmentDetails = async () => {
         try {
-            const response = await fetch(`${config.env.apiEndpoint}/treatments/39`);
+            const response = await fetch(`/api/treatments/39`);
             if (!response.ok) throw new Error("Failed to fetch treatments");
             const data = await response.json();
             setTreatment(data.data);
@@ -60,7 +61,7 @@ const Consultation = () => {
                     >
                         <div className='w-full h-60 relative'>
                             <Image
-                                src={doctor.user.profile_picture ? `${config.env.imageBaseUrl}${doctor.user.profile_picture}` : "/images/noavatar.png"}
+                                src={doctor.user.profile_picture ? imageFormater(doctor.user.profile_picture) : "/images/noavatar.png"}
                                 alt={doctor.user.name ?? "user"}
                                 layout='fill'
                                 objectFit='cover'

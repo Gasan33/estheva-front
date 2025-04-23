@@ -20,7 +20,6 @@ const Consultation = () => {
             const response = await fetch(`/api/onlineDoctors`);
             if (!response.ok) throw new Error("Failed to fetch doctors");
             const data = await response.json();
-            console.log(data)
             setOnlineDoctors(data);
         } catch (error: any) {
             setError(error.message);

@@ -17,7 +17,7 @@ const Treatments = () => {
     const fetchTreatments = async () => {
         try {
 
-            const response = await fetch(`${config.env.apiEndpoint}/treatments`);
+            const response = await fetch("/api/treatments");
             const data = await response.json();
             setTreatments(data.data);
 

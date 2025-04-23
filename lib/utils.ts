@@ -85,7 +85,6 @@ export const getRandomColor = () => {
 
 export const imageFormater = (url: string) => {
   const baseImageUrl = process.env.NEXT_PUBLIC_IMAGE_BASE_URL || "api.estheva-clinic.com";
-  console.log("BASE IMAGE URL:", baseImageUrl);
 
   if (!baseImageUrl) return url;
 
