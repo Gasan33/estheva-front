@@ -8,6 +8,7 @@ import config from '@/lib/config';
 import BookAppointment from '@/components/common/BookAppointment/BookAppointment';
 import Link from 'next/link';
 import { imageFormater } from '@/lib/utils';
+import OnlineConsultationBooking from '@/components/dialogs/OnlineConsultationBooking';
 
 
 
@@ -90,7 +91,7 @@ const Consultation = () => {
                                 {doctor.about}
                             </p>
 
-                            <BookAppointment treatment={treatment!} triger='online' />
+                            <OnlineConsultationBooking doctor={doctor!} />
 
                             <Button
                                 onClick={() => window.location.href = `tel:${phoneNumber}`}
