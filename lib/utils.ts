@@ -2,6 +2,7 @@ import auth from "@/auth";
 import { clsx, type ClassValue } from "clsx"
 import { format } from "date-fns";
 import { twMerge } from "tailwind-merge"
+import config from "./config";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -80,3 +81,13 @@ export const getRandomColor = () => {
   }
   return color;
 };
+
+
+export const imageFormater = (url: string) => {
+  console.log('BASE IMAGE URL:', process.env.NEXT_PUBLIC_IMAGE_BASE_URL);
+
+  console.log('BASE IMAGE URL:', config.env.imageBaseUrl);
+
+  const imageUrl = `${config.env.imageBaseUrl}${url}`;
+  return imageUrl;
+}

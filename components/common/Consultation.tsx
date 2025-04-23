@@ -7,22 +7,12 @@ import { FaWhatsapp } from 'react-icons/fa';
 import config from '@/lib/config';
 import BookAppointment from './BookAppointment/BookAppointment';
 import Link from 'next/link';
+import { imageFormater } from '@/lib/utils';
 
 const Consultation = () => {
     const [treatment, setTreatment] = useState<Treatment>();
     const [onlineDoctors, setOnlineDoctors] = useState<Doctor[]>([]);
     const [error, setError] = useState<string | null>(null);
-
-    if (process.env.NODE_ENV === 'development') {
-        console.log('Running in development mode');
-    } else if (process.env.NODE_ENV === 'production') {
-        console.log('Running in production mode');
-    }
-
-    console.log('BASE IMAGE URL:', process.env.NEXT_PUBLIC_IMAGE_BASE_URL);
-
-    console.log('BASE IMAGE URL:', config.env.imageBaseUrl);
-
 
     const phoneNumber = "+97143309084";
 
@@ -71,7 +61,7 @@ const Consultation = () => {
                     >
                         <div className='w-full h-60 relative'>
                             <Image
-                                src={doctor.user.profile_picture ? `${config.env.imageBaseUrl}${doctor.user.profile_picture}` : "/images/noavatar.png"}
+                                src={doctor.user.profile_picture ? imageFormater(doctor.user.profile_picture) : "/images/noavatar.png"}
                                 alt={doctor.user.name ?? "user"}
                                 layout='fill'
                                 objectFit='cover'
