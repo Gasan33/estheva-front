@@ -8,6 +8,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { TestimonialsSkeleton } from "../skeletons/TestimonialsSkeleton";
+import { imageFormater } from "@/lib/utils";
 
 
 const Testimonials = () => {
@@ -95,7 +96,7 @@ const Testimonials = () => {
                                     {/* User Info */}
                                     <div className="flex items-center gap-4">
                                         <Image
-                                            src={testimonial.patient.profile_picture ?? "/images/noavatar.png"}
+                                            src={testimonial.patient.profile_picture ? imageFormater(testimonial.patient.profile_picture) : "/images/noavatar.png"}
                                             alt={testimonial.patient.name}
                                             width={64}
                                             height={64}
