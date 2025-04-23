@@ -28,7 +28,7 @@ import { signInSchema } from "@/lib/validations";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import config from "@/lib/config";
-const stripePromise = loadStripe(config.env.stripPK || '');
+const stripePromise = loadStripe("pk_live_51MuF6pCywZvcIAwV73YSIp3O8OroN8EspsBctdI1GFxqkW5c1CDrR6Ze5HRhsNrCxxmwcJ7j80iZXvsFh5jhZB3I00adJfxFBG");
 
 const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?: string }) => {
     const session = useSession();
