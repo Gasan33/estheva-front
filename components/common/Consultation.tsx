@@ -3,13 +3,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
 import config from '@/lib/config';
 import BookAppointment from './BookAppointment/BookAppointment';
-import { doctorConsultaion } from '@/constants';
 import Link from 'next/link';
-import { Linkedin01Icon } from 'hugeicons-react';
-
 
 const Consultation = () => {
     const [treatment, setTreatment] = useState<Treatment>();

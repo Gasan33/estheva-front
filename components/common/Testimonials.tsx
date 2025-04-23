@@ -32,6 +32,7 @@ const Testimonials = () => {
         fetchReviews();
     }, []);
 
+    console.log(reviews)
     if (loading || !reviews) return <TestimonialsSkeleton />;
 
     return (
