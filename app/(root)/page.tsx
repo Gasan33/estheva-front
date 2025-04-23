@@ -23,7 +23,7 @@ export default function Home() {
       <AboutUs />
 
 
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Faq />
       <Blogs />
       <GoogleMapComponent />

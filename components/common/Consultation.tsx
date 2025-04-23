@@ -62,9 +62,8 @@ const Consultation = () => {
                             <Image
                                 src={doctor.user.profile_picture ? imageFormater(doctor.user.profile_picture) : "/images/noavatar.png"}
                                 alt={doctor.user.name ?? "user"}
-                                layout='fill'
-                                objectFit='cover'
-                                className='rounded-t-xl object-[0px,-80px]'
+                                fill
+                                className='rounded-t-xl object-[0px,-80px] object-cover'
                             />
 
                             {/* Social Icons on hover */}
