@@ -7,6 +7,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import BookAppointment from './BookAppointment/BookAppointment';
 import Link from 'next/link';
 import { imageFormater } from '@/lib/utils';
+import OnlineConsultationBooking from '../dialogs/OnlineConsultationBooking';
 
 const Consultation = () => {
     const [treatment, setTreatment] = useState<Treatment>();
@@ -87,7 +88,7 @@ const Consultation = () => {
                                 {doctor.about}
                             </p>
 
-                            <BookAppointment treatment={treatment!} triger='online' />
+                            <OnlineConsultationBooking doctor={doctor!} />
 
                             <Button
                                 onClick={() => window.location.href = `tel:${phoneNumber}`}

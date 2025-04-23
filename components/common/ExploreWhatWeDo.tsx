@@ -20,7 +20,7 @@ const ExploreWhatWeDo = () => {
     const fetchTreatments = async () => {
         try {
             setLoading(true); // 👈 Start loading
-            const response = await fetch(`/api/treatments`);
+            const response = await fetch("/api/treatments");
             const data = await response.json();
             setTreatments(data.slice(0, 10));
             if (data.length > 0) setTreatment(data[0]);
