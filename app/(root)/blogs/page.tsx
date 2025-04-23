@@ -14,7 +14,7 @@ import { formatMonthDate } from "@/lib/utils";
 import BlogsPageSkeleton from "@/components/skeletons/BlogsPageSkeleton";
 
 
-const fallbackImage = "/images/fallback.jpg"; // Replace with your own fallback path
+const fallbackImage = "/images/fallback.jpg";
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState<Blog[]>([]);
