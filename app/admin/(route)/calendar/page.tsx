@@ -47,10 +47,16 @@ const BlockEvents = () => {
     const [loading, setLoading] = useState(true);
     const scheduleObj = useRef<ScheduleComponent | null>(null);
 
+    useEffect(() => {
+        fetchAppointments();
+        fetchDoctors();
+    }, []);
+
     const fetchAppointments = async () => {
         try {
             const response = await fetch(`/api/admin/appointments`);
             const data = await response.json();
+            console.log(data)
             const appointments: TimeLineEvent = data.data.map((appointment: Appointment) => {
                 const startTime = new Date(
                     Number(appointment.appointment_date.split("-")[0]),
@@ -76,6 +82,7 @@ const BlockEvents = () => {
             });
 
             setAppointmentData(extend([], appointments, true));
+            console.log(appointmentData)
             setLoading(false);
         } catch (error) {
             // console.error("Error fetching appointments:", error);
@@ -87,6 +94,7 @@ const BlockEvents = () => {
         try {
             const response = await fetch(`/api/admin/doctors`);
             const data = await response.json();
+
             const doctors = data.data.map((doctor: any, index: number) => ({
                 Id: doctor.id,
                 Text: `${doctor.user.first_name} ${doctor.user.last_name}`,
@@ -96,14 +104,16 @@ const BlockEvents = () => {
             }));
 
             setEmployeeData(doctors);
+
         } catch (error) {
             // console.error("Error fetching doctors:", error);
         }
     };
+
+
     useEffect(() => {
-        fetchAppointments();
-        fetchDoctors();
-    }, []);
+        console.log("Updated employee data:", employeeData);
+    }, [employeeData]);
 
 
     const eventTemplate = (props: TimeLineEvent) => {
