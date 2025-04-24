@@ -14,7 +14,6 @@ export default function Home() {
   return (
     <div>
       <Banner />
-      {/* <TopRatedTreatments session={sessionExists} /> */}
       {/* <Treatments /> */}
       <ExploreWhatWeDo />
 
