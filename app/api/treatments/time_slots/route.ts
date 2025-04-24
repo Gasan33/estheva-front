@@ -1,13 +1,8 @@
 import { NextResponse } from "next/server";
 import config from "@/lib/config";
-import { auth } from "@/auth"; // Ensure this is correctly imported
 
 export async function POST(request: Request) {
     try {
-        const session = await auth();
-        if (!session || !session.user.access_token) {
-            return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
 
         const body = await request.json();
 

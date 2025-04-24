@@ -89,6 +89,7 @@ interface Availability {
 }
 
 interface User {
+
     id: number;
     name: string;
     first_name: string;
@@ -100,7 +101,17 @@ interface User {
     profile_picture: string | null;
     device_token: string | null;
     date_of_birth: string | null;
-    gender: string;
+    gender: string | null;
+    role: string | null;
+    is_admin: boolean | null;
+    is_doctor: boolean | null;
+    age: number | null;
+    weight: number | null;
+    nationality: string | null;
+    addresses: string[] | null;
+    sent_messages: string[] | null;
+    received_messages: string[] | null;
+    medical_reports: string[] | null;
     created_at: string;
     updated_at: string;
 }

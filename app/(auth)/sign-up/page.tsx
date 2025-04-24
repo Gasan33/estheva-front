@@ -16,6 +16,7 @@ const page = () => {
             password: "",
             confirmPassword: ""
         }}
+        triger="NORMAL"
         onSubmit={signup}
     />)
 }

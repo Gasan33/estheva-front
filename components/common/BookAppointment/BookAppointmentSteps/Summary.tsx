@@ -1,11 +1,11 @@
 import { Location01Icon } from 'hugeicons-react'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-import { addresses } from '@/constants'
-import { CircleCheck } from 'lucide-react'
-import { imageFormater } from '@/lib/utils'
+import { format } from "date-fns";
+import { formatTimeWithAMPM, getExactRemainingTime, imageFormater } from '@/lib/utils'
+import SummarySkeleton from '@/components/skeletons/SummarySkeleton'
 
-const Summary = ({ treatment }: { treatment: Treatment }) => {
+const Summary = ({ treatment, timeSlot }: { treatment: Treatment, timeSlot: TimeSlot }) => {
     const [user, setUser] = useState<User>();
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
@@ -32,7 +32,7 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
 
     const tax = 30;
     const total = Number(treatment.price) + tax;
-    if (loading) return <p className="text-center mt-4">Loading appointments...</p>;
+    if (loading) return <SummarySkeleton />;
     if (error) return <p className="text-center mt-4 text-red-500">{error}</p>;
     return (
         <div>
@@ -80,12 +80,12 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
 
                         {/* Date & Time */}
                         <div className="text-primaryColor font-semibold">
-                            16 Nov 2024 | 09:30 PM
+                            {format(new Date(timeSlot.date), "dd MMM yyyy")} | {formatTimeWithAMPM(timeSlot.start_time)}
                         </div>
 
                         {/* Countdown */}
                         <div className="text-primaryColor font-medium">
-                            Starts in 2 days
+                            {getExactRemainingTime(timeSlot.date, timeSlot.start_time, "upcoming")}
                         </div>
                     </div>
                 </div>
@@ -106,29 +106,28 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
                     <div className='flex gap-2 line-clamp-1'>
                         <h1 className='w-[20%] text-primaryColor font-medium'>Age</h1>
                         :
-                        <p >26 year's</p>
+                        <p>{user?.age ? `${user.age} year's` : "NON"}</p>
 
                     </div>
                     <div className='flex gap-2 line-clamp-1'>
                         <h1 className='w-[20%] text-primaryColor font-medium'>Weight</h1>
                         :
-                        <p >65 kg</p>
+                        <p>{user?.weight ? `${user.weight} kg` : "NON"}</p>
+
 
                     </div>
                     <div className='flex gap-2 line-clamp-1'>
                         <h1 className='w-[20%] text-primaryColor font-medium'>Gender</h1>
                         :
-                        <p >Male</p>
+                        <p className='uppercase'>{user?.gender}</p>
 
                     </div>
                 </div>
             </div>
 
             {/* Address Details */}
-            <div>
+            {/* <div>
                 <h1 className='text-xs md:text-sm lg:text-lg xl:text-xl font-semibold mt-8'>Address Details</h1>
-
-
 
                 <div
                     key={addresses[0].id}
@@ -144,7 +143,7 @@ const Summary = ({ treatment }: { treatment: Treatment }) => {
                     <CircleCheck className="absolute bottom-2 right-2 text-primaryColor w-4 h-4" />
                 </div>
 
-            </div>
+            </div> */}
 
 
             {/* Price Details */}

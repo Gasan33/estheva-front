@@ -33,14 +33,16 @@ interface Props<T extends FieldValues> {
     defaultValues: T;
     onSubmit: (data: T) => Promise<{ success: boolean, error?: string }>;
     type: "SIGN_IN" | "SIGN_UP";
+    triger: "NORMAL" | "BOOK";
 }
 
-const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit }: Props<T>) => {
+const AuthForm = <T extends FieldValues>({ type, triger, schema, defaultValues, onSubmit }: Props<T>) => {
     const router = useRouter();
     const [termsAccepted, setTermsAccepted] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [showPassword, setShowPassword] = useState(false);
     const isSignIn = type === 'SIGN_IN';
+    const isNormal = triger === 'NORMAL';
 
     const form: UseFormReturn<T> = useForm({
         resolver: zodResolver(schema),
@@ -75,14 +77,32 @@ const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit
 
     return (
         <div className="flex flex-col justify-center items-center gap-4">
-            <h1 className="text-2xl font-semibold">
-                {isSignIn ? "Welcome Back to Estheva Polyclinic" : "Create your account"}
-            </h1>
-            <p className="text-center text-sm text-muted-foreground">
-                {isSignIn
-                    ? "Enter your email below to login to your account, and stay updated"
-                    : "Please complete all fields to gain access to all treatments"}
-            </p>
+            {!isNormal ? <div>
+                <div className="flex items-center justify-center mb-4">
+                    <img
+                        src="/images/phone.svg"
+                        alt="app"
+                        style={{ width: "80px", height: "auto" }}
+                        className="mx-auto md:mx-0 object-contain"
+                    />
+                </div>
+                <h1 className="text-2xl text-center font-semibold">
+                    Almost There!
+                </h1>
+                <p className="text-center text-sm text-muted-foreground">
+                    To complete your appointment booking, please log in or sign up.
+                </p>
+            </div>
+                : <>
+                    <h1 className="text-2xl font-semibold">
+                        {isSignIn ? "Welcome Back to Estheva Polyclinic" : "Create your account"}
+                    </h1>
+                    <p className="text-center text-sm text-muted-foreground">
+                        {isSignIn
+                            ? "Enter your email below to login to your account, and stay updated"
+                            : "Please complete all fields to gain access to all treatments"}
+                    </p>
+                </>}
 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6 w-full">
@@ -179,7 +199,7 @@ const AuthForm = <T extends FieldValues>({ type, schema, defaultValues, onSubmit
                     {isSignIn ? "Create an account" : "Sign in"}
                 </Link>
             </div>
-        </div>
+        </div >
     );
 };
 

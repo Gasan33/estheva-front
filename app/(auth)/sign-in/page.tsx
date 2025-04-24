@@ -12,6 +12,7 @@ const SignInPage = () => {
                 email: "",
                 password: "",
             }}
+            triger="NORMAL"
             onSubmit={signInWithCredentials}
         />
     );

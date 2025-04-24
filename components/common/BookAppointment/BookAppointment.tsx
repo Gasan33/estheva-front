@@ -127,22 +127,21 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
                 </DialogTrigger>
             )}
 
-            {!session.data?.user ?
+            {!session.data?.user && currentStep > 1 ?
                 <DialogContent>
-                    <DialogHeader>
-                        <DialogTitle className='text-center'>Sign In Or Register Please</DialogTitle>
-                        <DialogDescription>
-                            <AuthForm
-                                type="SIGN_IN"
-                                schema={signInSchema}
-                                defaultValues={{
-                                    email: '',
-                                    password: "",
-                                }}
-                                onSubmit={signInWithCredentials}
-                            />
-                        </DialogDescription>
-                    </DialogHeader>
+                    <DialogTitle className='text-center'>Sign In Or Register Please</DialogTitle>
+
+
+                    <AuthForm
+                        type="SIGN_IN"
+                        schema={signInSchema}
+                        defaultValues={{
+                            email: '',
+                            password: "",
+                        }}
+                        triger="BOOK"
+                        onSubmit={signInWithCredentials}
+                    />
                 </DialogContent>
                 : <DialogContent>
                     <DialogHeader>
@@ -175,7 +174,7 @@ const BookAppointment = ({ treatment, triger }: { treatment: Treatment; triger?:
                             treatment={treatment}
                         />
                     ) : currentStep === 2 ? (
-                        <Summary treatment={treatment} />
+                        <Summary treatment={treatment} timeSlot={selectedTimeSlot!} />
                     ) : currentStep === 3 ? (
                         <Elements stripe={stripePromise}>
                             <PaymentPage setCurrentStep={setCurrentStep} price={Number(treatment.price)} appointmentId={appointmentId} loading={loading} setAppointmentSuccess={setAppointmentSuccess} setLoading={setLoading} />
