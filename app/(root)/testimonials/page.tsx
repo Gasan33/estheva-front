@@ -4,7 +4,7 @@ const Testimonials = () => {
     return (
         <div>
             <HeaderPath title="Testimonials" path="/testimonials" showSearchBar={false} />
-
+            Testimonials
 
         </div>
     )
