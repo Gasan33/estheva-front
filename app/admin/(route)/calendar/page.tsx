@@ -30,7 +30,7 @@ import { formatDuration, formatTimeWithAMPM, getInitials, getRandomColor, imageF
 import { CatalogueIcon, Doctor01Icon, UserIcon } from 'hugeicons-react';
 import config from '@/lib/config';
 
-registerLicense("Mzc0NTM1OEAzMjM4MmUzMDJlMzBKT3lhd1dEMnpqTXBxd2MwMW83NDZvMTkyTzRmUzMwOVlXK1dGZng2bUJFPQ==");
+registerLicense("Ngo9BigBOggjHTQxAR8/V1NMaF1cXGFCe0x0TXxbf1x1ZFRHallSTnRXUiweQnxTdEBjXX1WcXdQRmJYUUZxV0lfaw==");
 
 L10n.load({
     'en-US': {
@@ -112,8 +112,9 @@ const BlockEvents = () => {
 
 
     useEffect(() => {
+        console.log("Updated appointments data:", appointmentData);
         console.log("Updated employee data:", employeeData);
-    }, [employeeData]);
+    }, [employeeData, appointmentData]);
 
 
     const eventTemplate = (props: TimeLineEvent) => {
@@ -168,84 +169,84 @@ const BlockEvents = () => {
                             selectedDate={new Date()}
                             currentView="Day"
                             resourceHeaderTemplate={resourceHeaderTemplate}
-                            eventSettings={{ dataSource: appointmentData, template: eventTemplate }}
+                            eventSettings={{ dataSource: appointmentData, eventTemplate }}
                             group={{ enableCompactView: false, resources: ["Employee"] }}
                             workDays={[1, 2, 3, 4, 5, 6]}
                             timeScale={{ interval: 60, slotCount: 4 }}
                             startHour="09:00"
                             endHour="21:00"
                             workHours={{ start: "09:00", end: "21:00" }}
-                            quickInfoTemplates={{
-                                header: (props: TimeLineEvent) => {
-                                    const startTime = props?.StartTime ? new Date(props.StartTime) : null;
-                                    const endTime = props?.EndTime ? new Date(props.EndTime) : null;
-                                    return (
-                                        <div className="px-6 py-2 text-white font-bold text-lg flex justify-between">
-                                            <div>
-                                                {startTime && endTime
-                                                    ? `${formatTimeWithAMPM(
-                                                        startTime.toTimeString().slice(0, 5)
-                                                    )} - ${formatTimeWithAMPM(endTime.toTimeString().slice(0, 5))}`
-                                                    : "Time Not Available"}
-                                            </div>
-                                            <div className="font-thin text-sm">
-                                                {props?.appointment?.status ?? "No Status"}
-                                            </div>
-                                        </div>
-                                    );
-                                },
-                                content: (props: TimeLineEvent) => {
-                                    const patient = props?.appointment?.patient ?? {};
-                                    const treatment = props?.appointment?.treatment ?? {};
-                                    const doctorUser = props?.appointment?.doctor?.user ?? {};
+                        // quickInfoTemplates={{
+                        //     header: (props: TimeLineEvent) => {
+                        //         const startTime = props?.StartTime ? new Date(props.StartTime) : null;
+                        //         const endTime = props?.EndTime ? new Date(props.EndTime) : null;
+                        //         return (
+                        //             <div className="px-6 py-2 text-white font-bold text-lg flex justify-between">
+                        //                 <div>
+                        //                     {startTime && endTime
+                        //                         ? `${formatTimeWithAMPM(
+                        //                             startTime.toTimeString().slice(0, 5)
+                        //                         )} - ${formatTimeWithAMPM(endTime.toTimeString().slice(0, 5))}`
+                        //                         : "Time Not Available"}
+                        //                 </div>
+                        //                 <div className="font-thin text-sm">
+                        //                     {props?.appointment?.status ?? "No Status"}
+                        //                 </div>
+                        //             </div>
+                        //         );
+                        //     },
+                        //     content: (props: TimeLineEvent) => {
+                        //         const patient = props?.appointment?.patient ?? {};
+                        //         const treatment = props?.appointment?.treatment ?? {};
+                        //         const doctorUser = props?.appointment?.doctor?.user ?? {};
 
-                                    return (
-                                        <div className="py-4">
-                                            <div className="h-20 w-full flex gap-2 py-2">
-                                                <Avatar className="w-16 h-full">
-                                                    <AvatarImage
-                                                        src={patient?.profile_picture ? imageFormater(patient.profile_picture) : "/images/noavatar.png"}
-                                                        alt={patient?.first_name ?? "Unknown"}
-                                                        className="object-cover"
-                                                    />
-                                                    <AvatarFallback className="bg-amber-100">
-                                                        {getInitials(patient?.name ?? "GU")}
-                                                    </AvatarFallback>
-                                                </Avatar>
-                                                <div className="flex flex-col justify-center py-2">
-                                                    <h1 className="text-lg font-thin">{patient?.name ?? "No Name"}</h1>
-                                                    <h1 className="text-sm text-gray-500">
-                                                        {patient?.phone_number ?? "No Phone Number"}
-                                                    </h1>
-                                                </div>
-                                            </div>
+                        //         return (
+                        //             <div className="py-4">
+                        //                 <div className="h-20 w-full flex gap-2 py-2">
+                        //                     <Avatar className="w-16 h-full">
+                        //                         <AvatarImage
+                        //                             src={patient?.profile_picture ? imageFormater(patient.profile_picture) : "/images/noavatar.png"}
+                        //                             alt={patient?.first_name ?? "Unknown"}
+                        //                             className="object-cover"
+                        //                         />
+                        //                         <AvatarFallback className="bg-amber-100">
+                        //                             {getInitials(patient?.name ?? "GU")}
+                        //                         </AvatarFallback>
+                        //                     </Avatar>
+                        //                     <div className="flex flex-col justify-center py-2">
+                        //                         <h1 className="text-lg font-thin">{patient?.name ?? "No Name"}</h1>
+                        //                         <h1 className="text-sm text-gray-500">
+                        //                             {patient?.phone_number ?? "No Phone Number"}
+                        //                         </h1>
+                        //                     </div>
+                        //                 </div>
 
-                                            <div className="w-full flex gap-2 py-2 font-normal text-[16px]">
-                                                <div className="flex-1">
-                                                    <h1 className="line-clamp-1">{treatment?.title ?? "No Treatment"}</h1>
-                                                    <p className="text-xs text-gray-500 font-thin">
-                                                        {doctorUser?.name ?? "Unknown Doctor"} •{" "}
-                                                        {formatDuration(treatment?.duration ?? 0)}
-                                                    </p>
-                                                </div>
-                                                <div className="">
-                                                    AED {treatment?.price ?? "0"}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    );
-                                },
-                                footer: (props: TimeLineEvent) => (
-                                    <div className="quick-popup-footer">
-                                        <button className="edit-btn" onClick={() => alert("Edit Event")}>
-                                            Edit
-                                        </button>
-                                        <button className="delete-btn" onClick={() => alert("Delete Event")}>
-                                            Delete
-                                        </button>
-                                    </div>
-                                ),
-                            }}
+                        //                 <div className="w-full flex gap-2 py-2 font-normal text-[16px]">
+                        //                     <div className="flex-1">
+                        //                         <h1 className="line-clamp-1">{treatment?.title ?? "No Treatment"}</h1>
+                        //                         <p className="text-xs text-gray-500 font-thin">
+                        //                             {doctorUser?.name ?? "Unknown Doctor"} •{" "}
+                        //                             {formatDuration(treatment?.duration ?? 0)}
+                        //                         </p>
+                        //                     </div>
+                        //                     <div className="">
+                        //                         AED {treatment?.price ?? "0"}
+                        //                     </div>
+                        //                 </div>
+                        //             </div>
+                        //         );
+                        //     },
+                        //     footer: (props: TimeLineEvent) => (
+                        //         <div className="quick-popup-footer">
+                        //             <button className="edit-btn" onClick={() => alert("Edit Event")}>
+                        //                 Edit
+                        //             </button>
+                        //             <button className="delete-btn" onClick={() => alert("Delete Event")}>
+                        //                 Delete
+                        //             </button>
+                        //         </div>
+                        //     ),
+                        // }}
                         >
                             <ResourcesDirective>
                                 <ResourceDirective

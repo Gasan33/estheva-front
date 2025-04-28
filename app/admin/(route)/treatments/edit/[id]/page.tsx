@@ -17,6 +17,7 @@ import { toast } from "@/hooks/use-toast";
 const UpdateService = () => {
     const router = useRouter();
     const pathName = usePathname();
+    const id = pathName.split('/').pop();
 
     const [treatmentName, setTreatmentName] = useState<string | null>(null);
     const [treatmentPrice, setTreatmentPrice] = useState<number>();
@@ -39,8 +40,8 @@ const UpdateService = () => {
             return;
         }
         try {
-            const response = await fetch("/api/admin/treatments/create", {
-                method: "POST",
+            const response = await fetch(`/api/admin/treatments/update/${id}`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -63,9 +64,9 @@ const UpdateService = () => {
 
             const result = await response.json();
 
-            if (!response.ok) throw new Error(result.error || "Failed to create Treatment");
+            if (!response.ok) throw new Error(result.error || "Failed to updated Treatment");
 
-            toast({ title: "Treatment created successfully!" });
+            toast({ title: "Treatment updated successfully!" });
 
             router.back();
             return true;
@@ -78,7 +79,7 @@ const UpdateService = () => {
     };
 
     const getTreatmentDetails = async () => {
-        const id = pathName.split('/').pop();
+
         try {
             const response = await fetch(`/api/treatments/${id}`);
 

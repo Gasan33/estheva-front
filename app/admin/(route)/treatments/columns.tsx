@@ -13,9 +13,22 @@ import {
 import { Checkbox } from "@/components/ui/checkbox"
 import Image from "next/image"
 import Link from "next/link"
+import { toast } from "@/hooks/use-toast"
 
 
+async function handelDelete(id: number): Promise<void> {
+    try {
+        const response = await fetch(`/api/admin/treatments/remove/${id}`, {
+            method: 'DELETE',
+        });
 
+        if (!response.ok) {
+            throw new Error(`Failed to delete treatment`);
+        }
+        toast({ title: "Treatment Deleted Successfuly" });
+    } catch (error) {
+    }
+}
 
 export const columns: ColumnDef<Treatment>[] = [
     {
@@ -80,6 +93,15 @@ export const columns: ColumnDef<Treatment>[] = [
     {
         accessorKey: "description",
         header: "Description",
+        cell: ({ row }) => {
+            const description = row.getValue("description") as string;
+
+            return (
+                <p className="line-clamp-3 text-sm text-muted-foreground">
+                    {description}
+                </p>
+            );
+        },
     },
     {
         id: "actions",
@@ -102,9 +124,9 @@ export const columns: ColumnDef<Treatment>[] = [
                             Copy Treatment ID
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>View Treatment details</DropdownMenuItem>
+                        <Link href={`/admin/treatments/show/${treatment.id}`}><DropdownMenuItem>View Treatment details</DropdownMenuItem></Link>
                         <Link href={`/admin/treatments/edit/${treatment.id}`}><DropdownMenuItem>Edit Treatment</DropdownMenuItem></Link>
-                        <DropdownMenuItem >Delete Treatment</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handelDelete(treatment.id)}>Delete Treatment</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

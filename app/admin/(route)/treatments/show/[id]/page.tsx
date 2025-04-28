@@ -15,14 +15,10 @@ import TreatmentReviews from '@/components/common/TreatmentReviews'
 import BookAppointment from '@/components/common/BookAppointment/BookAppointment'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import TreatmentDetailsSkeleton from '../skeletons/TreatmentDetailsSkeleton'
-import { Button } from '../ui/button'
+import TreatmentDetailsSkeleton from '@/components/skeletons/TreatmentDetailsSkeleton'
+import { Button } from '@/components/ui/button'
 
-type TreatmentDetailsProps = {
-    id: string;
-};
-
-const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
+const TreatmentDetails = () => {
     const [treatment, setTreatment] = useState<Treatment | null>(null);
     const [showFullText, setShowFullText] = useState(false);
     const [fullDescription, setFullDescription] = useState("");
@@ -31,8 +27,8 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
     const [error, setError] = useState<string | null>(null); // Error state
     const allPath = usePathname();
     const paths = allPath.split('/');
-    const isAdmin = paths.includes("admin");
     const phoneNumber = "+97143309084";
+    const id = paths.pop();
     const getTreatmentDetails = async () => {
         try {
             const response = await fetch(`/api/treatments/${id}`);
@@ -55,13 +51,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
         setShowFullText(!showFullText);
     };
 
-    useEffect(() => {
-        AOS.init({ duration: 1000 });
-    }, []);
 
-    useEffect(() => {
-        AOS.refresh();
-    }, [treatment]);
 
     useEffect(() => {
         getTreatmentDetails();
@@ -80,30 +70,11 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
     }
 
     return (
-        <div className={`container px-4 md:px-12 lg:px-16 mx-auto ${isAdmin ? "bg-transparent" : "bg-pattern"}`}>
-            {/* Breadcrumb */}
-            {isAdmin ? <div></div> : <div className="my-8 pb-4" data-aos="fade-up">
-                <Breadcrumb>
-                    <BreadcrumbList>
-                        <BreadcrumbItem>
-                            <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <ArrowRight01Icon className="text-primaryColor" size={20} />
-                        <BreadcrumbItem>
-                            <BreadcrumbLink href="/treatments/categories/body-contouring-weight-loss">Treatments</BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <ArrowRight01Icon className="text-primaryColor" size={20} />
-                        <BreadcrumbItem>
-                            <BreadcrumbPage className="text-primaryColor">
-                                {treatment.title}
-                            </BreadcrumbPage>
-                        </BreadcrumbItem>
-                    </BreadcrumbList>
-                </Breadcrumb>
-            </div>}
+        <div className="container px-4 md:px-12 lg:px-16 mx-auto bg-pattern">
+
 
             {/* Title & Actions */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4" data-aos="fade-right">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4" >
                 <div>
                     <h1 className="text-gray-950 text-2xl md:text-4xl font-semibold">
                         {treatment.title}
@@ -113,20 +84,10 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                         <p>{treatment.home_based === 1 ? "Clinic / Home" : "Clinic"}</p>
                     </div>
                 </div>
-                {isAdmin ? <div></div> : <div className="flex gap-4">
-                    <div className="flex items-center px-3 py-1.5 rounded-full bg-secondary gap-2 cursor-pointer">
-                        <Share2 width={18} height={18} />
-                        <span className="hidden md:block">Share</span>
-                    </div>
-                    <div className="flex items-center px-3 py-1.5 rounded-full bg-secondary gap-2 cursor-pointer">
-                        <Heart width={18} height={18} />
-                        <span className="hidden md:block">Save</span>
-                    </div>
-                </div>}
             </div>
 
             {/* Image Section */}
-            <div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-4" data-aos="zoom-in">
+            <div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-4" >
                 <div className="w-full h-[300px] md:h-[600px]">
                     <Image
                         src={treatment.images?.[0] ?? '/fallback.jpg'}
@@ -145,14 +106,14 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                             width={400}
                             height={300}
                             className="w-full h-48 object-cover rounded-md md:h-[296px]"
-                            data-aos={['fade-up', 'fade-left', 'fade-right', 'fade-down'][idx % 4]}
+                        // data-aos={['fade-up', 'fade-left', 'fade-right', 'fade-down'][idx % 4]}
                         />
                     ))}
                 </div>
             </div>
 
             {/* About Section */}
-            <div className="flex flex-col xl:flex-row gap-8 py-8" data-aos="fade-up">
+            <div className="flex flex-col xl:flex-row gap-8 py-8" >
                 {/* Main Content */}
                 <div className="w-full xl:w-2/3 space-y-6">
                     <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
@@ -195,7 +156,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                 </div>
 
                 {/* Sidebar */}
-                <div className="w-full xl:w-1/3 bg-blue-50 flex flex-col justify-between rounded-xl p-6 space-y-4" data-aos="fade-left">
+                <div className="w-full xl:w-1/3 bg-blue-50 flex flex-col justify-between rounded-xl p-6 space-y-4" >
                     <h4 className="text-lg font-semibold">What This Treatment Can Do for You</h4>
                     {treatment.benefits.map((benefit, index) => (
                         <div key={index} className="flex justify-start items-center gap-2">
@@ -219,21 +180,6 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
                             ))}
                         </>
                     )}
-                    {isAdmin ? <div></div> : <div className='flex flex-col justify-end'>
-                        <BookAppointment treatment={treatment} />
-                        <h2 className='text-lg font-semibold my-2 mt-8'>
-                            Do You Need More Information About The Treatments?
-                        </h2>
-                        <h2 className='text-lg font-semibold'>
-                            Book A Free <span className='text-primary'>Consultaion</span> with Our Doctors
-                        </h2>
-                        <Button
-                            onClick={() => window.location.href = `tel:${phoneNumber}`}
-                            className='flex lg:mt-8 mt-4 justify-center py-6 px-4 w-full items-center font-semibold rounded-full text-white bg-primaryColor shadow-lg hover:bg-gray-100'
-                        >
-                            Book A Consultation
-                        </Button>
-                    </div>}
 
                 </div>
             </div>
@@ -241,7 +187,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
 
 
             {/* Video and Gallery */}
-            <div data-aos="fade-up">
+            <div >
                 <h2 className="text-2xl font-semibold text-gray-700 my-4">Gallery</h2>
                 <div className="w-full h-60 md:h-[400px] overflow-hidden rounded-lg mb-4">
                     <video
@@ -267,7 +213,7 @@ const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ id }) => {
             </div>
 
             {/* Reviews */}
-            {isAdmin ? <div></div> : <TreatmentReviews data-aos="fade-up" />}
+
         </div>
 
     );
