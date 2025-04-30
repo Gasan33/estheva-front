@@ -3,15 +3,15 @@ import config from "@/lib/config";
 
 export async function GET(req: NextRequest) {
     const url = new URL(req.url);
-    const slug = url.pathname.split("/").pop();
+    const id = url.pathname.split("/").pop();
 
-    if (!slug) {
-        return NextResponse.json({ error: "slug parameter is missing" }, { status: 400 });
+    if (!id) {
+        return NextResponse.json({ error: "id parameter is missing" }, { status: 400 });
     }
 
     try {
         // Fetch data from external API
-        const response = await fetch(`${config.env.apiEndpoint}/blogs/slug/${slug}`, {
+        const response = await fetch(`${config.env.apiEndpoint}/faqs/${id}`, {
             cache: "no-store",
             headers: {
                 "Content-Type": "application/json",
@@ -20,12 +20,12 @@ export async function GET(req: NextRequest) {
         });
 
         if (!response.ok) {
-            return NextResponse.json({ error: "Failed to fetch blog" }, { status: response.status });
+            return NextResponse.json({ error: "Failed to fetch faq" }, { status: response.status });
         }
 
         const data = await response.json();
         return NextResponse.json(data.data);
     } catch (error) {
-        return NextResponse.json({ error: "Failed to load blog" }, { status: 500 });
+        return NextResponse.json({ error: "Failed to load faq" }, { status: 500 });
     }
 }

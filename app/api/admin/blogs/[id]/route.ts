@@ -3,15 +3,15 @@ import config from "@/lib/config";
 
 export async function GET(req: NextRequest) {
     const url = new URL(req.url);
-    const slug = url.pathname.split("/").pop();
+    const id = url.pathname.split("/").pop();
 
-    if (!slug) {
+    if (!id) {
         return NextResponse.json({ error: "slug parameter is missing" }, { status: 400 });
     }
 
     try {
         // Fetch data from external API
-        const response = await fetch(`${config.env.apiEndpoint}/blogs/slug/${slug}`, {
+        const response = await fetch(`${config.env.apiEndpoint}/blogs/${id}`, {
             cache: "no-store",
             headers: {
                 "Content-Type": "application/json",

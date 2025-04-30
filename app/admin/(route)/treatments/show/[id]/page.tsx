@@ -1,22 +1,10 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-} from "@/components/ui/breadcrumb"
-import { ArrowRight01Icon, CheckmarkBadge01Icon, CheckmarkCircle01Icon, Location01Icon, Recycle01Icon, Tag01Icon } from 'hugeicons-react'
-import { Share2, Heart } from 'lucide-react'
+import { CheckmarkBadge01Icon, Location01Icon, Tag01Icon } from 'hugeicons-react'
 import Image from 'next/image'
-import TreatmentReviews from '@/components/common/TreatmentReviews'
-import BookAppointment from '@/components/common/BookAppointment/BookAppointment'
-import AOS from 'aos'
 import 'aos/dist/aos.css'
 import TreatmentDetailsSkeleton from '@/components/skeletons/TreatmentDetailsSkeleton'
-import { Button } from '@/components/ui/button'
 
 const TreatmentDetails = () => {
     const [treatment, setTreatment] = useState<Treatment | null>(null);

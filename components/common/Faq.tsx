@@ -6,27 +6,40 @@ import Image from 'next/image';
 import { FaqSkeleton } from '../skeletons/FaqSkeleton';
 
 const Faq = () => {
+    const [faqs, setfaqs] = useState<FAQ[]>([]);
     const [loading, setLoading] = useState(true);
+    const fetchFAQS = async () => {
+        try {
+            const response = await fetch(`/api/faqs/all`);
+            const data = await response.json();
+            setfaqs(data);
+
+            setLoading(false);
+        } catch (error) {
+            setLoading(false)
+            // console.error("Error fetching data:", error);
+        }
+    };
 
     useEffect(() => {
-        // Simulate loading delay
-        const timer = setTimeout(() => setLoading(false), 1500);
-        return () => clearTimeout(timer);
+        fetchFAQS();
     }, []);
 
     if (loading) return <FaqSkeleton />;
 
     return (
         <section className='w-full px-4 py-16 sm:px-6 lg:px-32 bg-sky-100'>
-            <ViewAllText
-                href="/faqs"
+            {/* <ViewAllText
+                href=""
                 title="Frequently Asked Questions"
-
-            />
+            /> */}
+            <h2 className={"text-sm md:text-3xl lg:text-4xl font-semibold xl:font-normal text-gray-900"}>
+                Frequently Asked Questions
+            </h2>
 
             <div className='flex flex-col-reverse lg:flex-row items-center gap-8 p-6 mt-8'>
                 <div className="w-full lg:w-2/3">
-                    <FaqList />
+                    <FaqList faqs={faqs} />
                 </div>
 
                 <div className="w-full lg:w-1/3 flex justify-center">

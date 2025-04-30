@@ -1,30 +1,28 @@
 "use client"
-
 import CustomInput from '@/components/common/CustomInput';
-
 import { Calendar01Icon, Call02Icon, Certificate01Icon, Clock01Icon, Edit01Icon, Knowledge01Icon, Mail01Icon, UniversityIcon, UserAccountIcon, UserIcon, WorkHistoryIcon } from 'hugeicons-react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import {
     Select,
     SelectContent,
-    SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
 import { BsGenderFemale, BsGenderMale, BsGenderNeuter } from 'react-icons/bs';
-import { CgCollage } from 'react-icons/cg';
 import { Switch } from "@/components/ui/switch"
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { getInitials } from '@/lib/utils';
-import { useRouter } from 'next/navigation';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { imageFormater } from '@/lib/utils';
+import { usePathname, useRouter } from 'next/navigation';
 import { toast } from '@/hooks/use-toast';
+import { ClipLoader } from 'react-spinners';
 import Link from 'next/link';
-const AddTeamMember = () => {
+const EditTeamMember = () => {
     const router = useRouter();
+    const pathName = usePathname();
+    const id = pathName.split('/').pop();
     const [fName, setFName] = useState<string | null>(null);
     const [lName, setLName] = useState<string | null>(null);
     const [email, setEamil] = useState<string | null>(null);
@@ -41,7 +39,7 @@ const AddTeamMember = () => {
     const [endTime, setEndTime] = useState<string | null>(null);
     const [homeService, setHomeService] = useState<boolean>(false);
     const [onlineConsultation, setOnlineConsultation] = useState<boolean>(false);
-
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -51,8 +49,8 @@ const AddTeamMember = () => {
         }
 
         try {
-            const response = await fetch("/api/admin/doctors/create", {
-                method: "POST",
+            const response = await fetch(`/api/admin/doctors/update/${id}`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -61,7 +59,7 @@ const AddTeamMember = () => {
                     last_name: lName!,
                     email: email!,
                     phone_number: phone!,
-                    password: "doctorpassword",
+                    // password: "doctorpassword",
                     gender: gender!,
                     date_of_birth: birthday!,
                     profile_picture: profilePic!,
@@ -76,16 +74,16 @@ const AddTeamMember = () => {
                     availability: [{
                         day: "Tuesday",
                         start_time: startTime!,
-                        end_time: endTime!
+                        end_time: endTime!,
                     }]
                 }),
             });
 
             const result = await response.json();
 
-            if (!response.ok) throw new Error(result.error || "Failed to create Doctor");
+            if (!response.ok) throw new Error(result.error || "Failed to Update Doctor");
 
-            toast({ title: "Doctor created successfully!" });
+            toast({ title: "Doctor Update successfully!" });
 
             router.back();
             return true;
@@ -112,6 +110,51 @@ const AddTeamMember = () => {
         setProfilePic(imageResult.path);
     };
 
+    const getDoctorDetails = async () => {
+
+        try {
+            const response = await fetch(`/api/doctors/${id}`);
+
+            if (!response.ok) {
+                throw new Error("Failed to fetch doctor");
+            }
+            const doctor: Doctor = await response.json();
+            console.log(doctor)
+            setFName(doctor.user.first_name);
+            setLName(doctor.user.last_name);
+            setEamil(doctor.user.email);
+            setPhone(doctor.user.phone_number);
+            setGender(doctor.user.gender);
+            setBirthday(doctor.user.date_of_birth);
+            setSpecialty(doctor.specialty);
+            setProfilePic(doctor.user.profile_picture);
+            setCertificate(doctor.certificate);
+            setUniversity(doctor.university);
+            setExperience(doctor.exp);
+            setAboutDoctor(doctor.about);
+            setStartTime(doctor.availabilities[0]?.start_time.substring(0, 5) || '');
+            setEndTime(doctor.availabilities[0]?.end_time.substring(0, 5) || '');
+            setHomeService(Boolean(doctor.home_based));
+            setOnlineConsultation(Boolean(doctor.online_consultation));
+
+        } catch (error: any) {
+            // setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        getDoctorDetails();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="container mx-auto p-4 flex justify-center items-center h-full">
+                <ClipLoader size={50} color="#3498db" loading={loading} />
+            </div>
+        );
+    }
 
     return (
 
@@ -123,10 +166,10 @@ const AddTeamMember = () => {
                 <form className="space-y-4" action="#" onSubmit={handleSubmit}>
                     <div className="relative h-24 w-24 lg:h-32 lg:w-32">
                         <Avatar className="h-24 w-24 lg:h-32 lg:w-32">
-                            {profilePic && <AvatarImage src={profilePic} alt="img" />}
-                            <AvatarFallback className="bg-amber-100">
+                            {profilePic && <AvatarImage src={profilePic ? imageFormater(profilePic) : "/images/noavatar.png"} alt="img" />}
+                            {/* <AvatarFallback className="bg-amber-100">
                                 {getInitials("GU")}
-                            </AvatarFallback>
+                            </AvatarFallback> */}
                         </Avatar>
                         <input
                             id="avatar-upload"
@@ -269,6 +312,7 @@ const AddTeamMember = () => {
                                 name="about"
                                 id="about"
                                 rows={6}
+                                value={aboutDoctor ? aboutDoctor : ""}
                                 placeholder="Write Doctor about here..."
                                 onChange={(e) => setAboutDoctor(e.target.value)}
                                 required
@@ -321,7 +365,7 @@ const AddTeamMember = () => {
                         </div>
                     </div>
                     <div className="flex justify-end mt-6">
-                        <button className="bg-black text-white px-4 py-2 rounded">Add</button>
+                        <button className="bg-black text-white px-4 py-2 rounded">Update</button>
                         <Link href="/admin/doctors"><button className="ml-2 border border-black px-4 py-2 rounded">Close</button></Link>
                     </div>
                 </form>
@@ -331,4 +375,4 @@ const AddTeamMember = () => {
     );
 };
 
-export default AddTeamMember;
+export default EditTeamMember;

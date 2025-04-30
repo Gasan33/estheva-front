@@ -11,9 +11,24 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
-import Image from "next/image"
+import { toast } from "@/hooks/use-toast"
+import Link from "next/link"
 
 
+
+async function handelDelete(id: number): Promise<void> {
+    try {
+        const response = await fetch(`/api/admin/faqs/remove/${id}`, {
+            method: 'DELETE',
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to delete faq`);
+        }
+        toast({ title: "faq Deleted Successfuly" });
+    } catch (error) {
+    }
+}
 
 
 export const columns: ColumnDef<FAQ>[] = [
@@ -79,7 +94,7 @@ export const columns: ColumnDef<FAQ>[] = [
     {
         id: "actions",
         cell: ({ row }) => {
-            const blog = row.original
+            const faq = row.original
 
             return (
                 <DropdownMenu>
@@ -92,14 +107,14 @@ export const columns: ColumnDef<FAQ>[] = [
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>Actions</DropdownMenuLabel>
                         <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(`${blog.id}`)}
+                            onClick={() => navigator.clipboard.writeText(`${faq.id}`)}
                         >
-                            Copy Treatment ID
+                            Copy FAQ ID
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>View Treatment details</DropdownMenuItem>
-                        <DropdownMenuItem>Edit Treatment</DropdownMenuItem>
-                        <DropdownMenuItem >Delete Treatment</DropdownMenuItem>
+                        <DropdownMenuItem>View FAQ details</DropdownMenuItem>
+                        <Link href={`/admin/faqs/edit/${faq.id}`}><DropdownMenuItem>Edit FAQ</DropdownMenuItem></Link>
+                        <DropdownMenuItem onClick={() => handelDelete(faq.id)}>Delete FAQ</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

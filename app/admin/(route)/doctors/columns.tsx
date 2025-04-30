@@ -14,9 +14,24 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 import Image from "next/image"
 import { imageFormater } from "@/lib/utils"
+import { toast } from "@/hooks/use-toast"
+import Link from "next/link"
 
 
 
+async function handelDelete(id: number): Promise<void> {
+    try {
+        const response = await fetch(`/api/admin/doctors/remove/${id}`, {
+            method: 'DELETE',
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to delete Team Member`);
+        }
+        toast({ title: "Team Member Deleted Successfuly" });
+    } catch (error) {
+    }
+}
 export const columns: ColumnDef<Doctor>[] = [
     {
         id: "id",
@@ -50,8 +65,8 @@ export const columns: ColumnDef<Doctor>[] = [
                 alt={doctor.user.name ?? "user"}
                 width={300}
                 height={300}
-                style={{ height: "auto" }}
-                className="rounded-full w-14 h-auto"
+                style={{ height: "56px", width: "56px" }}
+                className="rounded-full w-14 h-14 object-cover"
             />
         },
     },
@@ -107,9 +122,9 @@ export const columns: ColumnDef<Doctor>[] = [
                             Copy Doctor ID
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>View Doctor details</DropdownMenuItem>
-                        <DropdownMenuItem>Edit Doctor</DropdownMenuItem>
-                        <DropdownMenuItem>Delete Doctor</DropdownMenuItem>
+                        <Link href={`/admin/treatments/show/${doctor.id}`}> <DropdownMenuItem>View Doctor details</DropdownMenuItem></Link>
+                        <Link href={`/admin/doctors/edit/${doctor.id}`}><DropdownMenuItem>Edit Doctor</DropdownMenuItem></Link>
+                        <DropdownMenuItem onClick={() => handelDelete(doctor.id)}>Delete Doctor</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

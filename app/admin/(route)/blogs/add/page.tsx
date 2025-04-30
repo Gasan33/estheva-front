@@ -73,7 +73,7 @@ const NewService = () => {
                         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                             <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
                                 <h3 className="font-semibold text-black dark:text-white">
-                                    Add New FAQ
+                                    Add New BLOG
                                 </h3>
                             </div>
                             <div className="p-7">
@@ -134,7 +134,7 @@ const NewService = () => {
                                         </div>
                                     </div>
                                     <div className="flex justify-end gap-4">
-                                        <Link href="/admin/treatments">
+                                        <Link href="/admin/blogs">
                                             <button
                                                 className="flex justify-center rounded border border-stroke px-6 py-2 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
                                                 type="button"

@@ -61,6 +61,8 @@ export const getMonthName = (monthNumber: number) => {
   return new Date(2000, monthNumber - 1).toLocaleString("en-US", { month: "long" });
 };
 
+
+
 export const formatDuration = (minutes: number) => {
   if (minutes < 60) {
     return `${minutes} min`;

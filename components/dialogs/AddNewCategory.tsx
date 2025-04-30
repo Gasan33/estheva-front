@@ -57,7 +57,7 @@ const AddNewCategoryDialog = () => {
             if (!response.ok) throw new Error(result.error || "Failed to create category");
 
             toast({ title: "Category created successfully!" });
-            router.back();
+            router.push("/admin/treatments");
         } catch (error: any) {
             toast({ title: error.message || "Something went wrong" });
         } finally {

@@ -14,6 +14,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import Image from "next/image"
 import Link from "next/link"
 import { toast } from "@/hooks/use-toast"
+import AddTreatmentDiscount from "@/components/dialogs/AddTreatmentDiscount"
 
 
 async function handelDelete(id: number): Promise<void> {
@@ -63,8 +64,8 @@ export const columns: ColumnDef<Treatment>[] = [
                 alt={row.getValue("title")}
                 width={300}
                 height={300}
-                style={{ height: "auto" }}
-                className="rounded-full w-14 h-auto"
+                style={{ height: "56px", width: "56px" }}
+                className="rounded-full w-14 h-14 object-cover"
             />
         },
     },
@@ -125,6 +126,9 @@ export const columns: ColumnDef<Treatment>[] = [
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <Link href={`/admin/treatments/show/${treatment.id}`}><DropdownMenuItem>View Treatment details</DropdownMenuItem></Link>
+                        {/* <DropdownMenuItem asChild>
+                            <AddTreatmentDiscount id={treatment.id} />
+                        </DropdownMenuItem> */}
                         <Link href={`/admin/treatments/edit/${treatment.id}`}><DropdownMenuItem>Edit Treatment</DropdownMenuItem></Link>
                         <DropdownMenuItem onClick={() => handelDelete(treatment.id)}>Delete Treatment</DropdownMenuItem>
                     </DropdownMenuContent>

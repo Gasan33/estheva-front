@@ -4,7 +4,7 @@ import FaqItem from './FaqItem';
 
 
 
-const FaqList = () => {
+const FaqList = ({ faqs }: { faqs: FAQ[] }) => {
     return (
 
         <div className=''>

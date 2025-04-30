@@ -14,6 +14,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import Image from "next/image"
 import { toast } from "@/hooks/use-toast"
 import { imageFormater } from "@/lib/utils"
+import config from "@/lib/config"
 
 
 
@@ -60,13 +61,22 @@ export const columns: ColumnDef<User>[] = [
         header: "Image",
         cell: ({ row }) => {
             const user = row.original
+            const imageUrl = user!.profile_picture!;
+            let imagePath = "";
+            if (imageUrl.includes("user-avatar.png")) {
+                imagePath = config.env.imageBaseUrl + "/" + (imageUrl.substring(imageUrl.indexOf("user-avatar.png")));
+            } else {
+                imagePath = imageFormater((user!.profile_picture!.substring(user!.profile_picture!.indexOf("storage"))).replace(/^storage\/\//, '/'));
+            }
+
             return <Image
-                src={user.profile_picture ? user.profile_picture : "/images/noavatar.png"}
+                src={user.profile_picture ? imagePath : "/images/noavatar.png"
+                }
                 alt={user.name ?? "user"}
                 width={300}
                 height={300}
-                style={{ height: "auto" }}
-                className="rounded-full w-14 h-auto"
+                style={{ height: "56px", width: "56px" }}
+                className="rounded-full w-14 h-14 object-cover"
             />
         },
     },

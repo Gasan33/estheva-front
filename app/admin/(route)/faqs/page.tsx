@@ -10,9 +10,9 @@ import { BiAddToQueue } from 'react-icons/bi';
 const FAQs = () => {
     const [faqs, setfaqs] = useState<FAQ[]>([]);
     const [loading, setLoading] = useState(true);
-    const fetchBlogs = async () => {
+    const fetchFAQS = async () => {
         try {
-            const response = await fetch(`/api/faqs`);
+            const response = await fetch(`/api/faqs/all`);
             const data = await response.json();
             setfaqs(data);
 
@@ -23,7 +23,7 @@ const FAQs = () => {
         }
     };
     useEffect(() => {
-        fetchBlogs();
+        fetchFAQS();
     }, []);
 
     return (

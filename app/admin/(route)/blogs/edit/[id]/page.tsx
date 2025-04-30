@@ -1,11 +1,11 @@
 "use client"
 import { RiCurrencyLine, RiServiceLine } from "react-icons/ri";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import CustomInput from "@/components/common/CustomInput";
 import { Edit01Icon } from "hugeicons-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import UploadImage from "@/components/admin/uploadImage/UploadImage";
 import { toast } from "@/hooks/use-toast";
@@ -13,6 +13,8 @@ import { toast } from "@/hooks/use-toast";
 const EditBlog = () => {
     const session = useSession();
     const router = useRouter();
+    const pathName = usePathname();
+    const id = pathName.split('/').pop();
     const [blogsTitle, setblogsTitle] = useState<string | null>(null);
     const [blogContent, setBlogContent] = useState<string | null>(null);
     const [blogShortSescription, setBlogShortSescription] = useState<string>();
@@ -26,8 +28,8 @@ const EditBlog = () => {
             return;
         }
         try {
-            const response = await fetch("/api/admin/blogs/create", {
-                method: "POST",
+            const response = await fetch(`/api/admin/blogs/update/${id}`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -42,9 +44,9 @@ const EditBlog = () => {
 
             const result = await response.json();
 
-            if (!response.ok) throw new Error(result.error || "Failed to create FAQ");
+            if (!response.ok) throw new Error(result.error || "Failed to update blog");
 
-            toast({ title: "Blog created successfully!" });
+            toast({ title: "Blog update successfully!" });
 
             router.back();
             return true;
@@ -56,6 +58,31 @@ const EditBlog = () => {
         }
     };
 
+    const getBlogDetails = async () => {
+
+        try {
+            const response = await fetch(`/api/admin/blogs/${id}`);
+
+            if (!response.ok) {
+                throw new Error("Failed to fetch blog");
+            }
+            const blog: Blog = await response.json();
+            console.log(blog)
+            setblogsTitle(blog.title);
+            setBlogContent(blog.content);
+            setBlogShortSescription(blog.short_description);
+            setBlogImage(blog.image);
+
+        } catch (error: any) {
+            // setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        getBlogDetails();
+    }, []);
 
     if (loading) {
         return (
@@ -73,7 +100,7 @@ const EditBlog = () => {
                         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                             <div className="border-b border-stroke px-7 py-4 dark:border-strokedark">
                                 <h3 className="font-semibold text-black dark:text-white">
-                                    Add New FAQ
+                                    Update Blog
                                 </h3>
                             </div>
                             <div className="p-7">
@@ -126,6 +153,7 @@ const EditBlog = () => {
                                                 name="blogsContent"
                                                 id="blogsContent"
                                                 rows={6}
+                                                value={blogContent ? blogContent : ""}
                                                 placeholder="Write blog content over here..."
                                                 onChange={(e) => setBlogContent(e.target.value)}
                                                 required
@@ -134,7 +162,7 @@ const EditBlog = () => {
                                         </div>
                                     </div>
                                     <div className="flex justify-end gap-4">
-                                        <Link href="/admin/treatments">
+                                        <Link href="/admin/blogs">
                                             <button
                                                 className="flex justify-center rounded border border-stroke px-6 py-2 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white"
                                                 type="button"
@@ -147,7 +175,7 @@ const EditBlog = () => {
                                             className="flex text-white bg-blue-500 justify-center rounded px-6 py-2 font-medium text-gray hover:bg-opacity-90"
                                             type="submit"
                                         >
-                                            Save
+                                            Update
                                         </button>
                                     </div>
                                 </form>
@@ -162,7 +190,7 @@ const EditBlog = () => {
                                 </h3>
                             </div>
                             <div className="p-7">
-                                <UploadImage name="blogImage" setImageUrl={setBlogImage} />
+                                <UploadImage name="blogImage" setImageUrl={setBlogImage} editImageUrl={blogImage} />
                             </div>
                         </div>
 

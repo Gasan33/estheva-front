@@ -12,8 +12,24 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Checkbox } from "@/components/ui/checkbox"
 import Image from "next/image"
+import { toast } from "@/hooks/use-toast"
+import Link from "next/link"
 
 
+
+async function handelDelete(id: number): Promise<void> {
+    try {
+        const response = await fetch(`/api/admin/blogs/remove/${id}`, {
+            method: 'DELETE',
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to delete blog`);
+        }
+        toast({ title: "blog Deleted Successfuly" });
+    } catch (error) {
+    }
+}
 
 
 export const columns: ColumnDef<Blog>[] = [
@@ -98,12 +114,12 @@ export const columns: ColumnDef<Blog>[] = [
                         <DropdownMenuItem
                             onClick={() => navigator.clipboard.writeText(`${blog.id}`)}
                         >
-                            Copy Treatment ID
+                            Copy Blog ID
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>View Treatment details</DropdownMenuItem>
-                        <DropdownMenuItem>Edit Treatment</DropdownMenuItem>
-                        <DropdownMenuItem >Delete Treatment</DropdownMenuItem>
+                        <Link href={`/admin/blogs/show/${blog.id}`}> <DropdownMenuItem>View Blog details</DropdownMenuItem></Link>
+                        <Link href={`/admin/blogs/edit/${blog.id}`}> <DropdownMenuItem>Edit Blog</DropdownMenuItem></Link>
+                        <DropdownMenuItem onClick={() => handelDelete(blog.id)}>Delete Blog</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

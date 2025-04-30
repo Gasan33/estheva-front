@@ -70,7 +70,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories, setTreatments, 
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <Link href={`/admin/treatments/show/${category.category_id}`}><DropdownMenuItem>View Category details</DropdownMenuItem></Link>
-                                <Link href={`/admin/treatments/edit/${category.category_id}`}><DropdownMenuItem>Edit Category</DropdownMenuItem></Link>
+                                <Link href={`/admin/categories/edit/${category.category_id}`}><DropdownMenuItem>Edit Category</DropdownMenuItem></Link>
                                 <DropdownMenuItem onClick={() => handelDelete(category.category_id)}>Delete Category</DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>

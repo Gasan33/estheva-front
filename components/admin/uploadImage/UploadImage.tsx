@@ -6,10 +6,11 @@ import Image from 'next/image';
 
 interface UploadImageProps {
     name: string;
+    editImageUrl?: string | null;
     setImageUrl: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-const UploadImage: React.FC<UploadImageProps> = ({ setImageUrl, name }) => {
+const UploadImage: React.FC<UploadImageProps> = ({ setImageUrl, name, editImageUrl }) => {
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0);
     const [preview, setPreview] = useState<string | null>(null);
@@ -69,6 +70,19 @@ const UploadImage: React.FC<UploadImageProps> = ({ setImageUrl, name }) => {
 
     return (
         <div className="flex flex-col items-center">
+            {editImageUrl && (
+                <div className="relative w-16 h-16 mb-4">
+                    <Image src={editImageUrl} alt="Preview" width={64} height={64} className="rounded-md object-cover" />
+                    {loading && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-md">
+                            <CircularProgressbar value={progress} text={`${progress}%`} styles={{
+                                path: { stroke: `#3C50E0` },
+                                text: { fill: '#fff', fontSize: '14px' }
+                            }} />
+                        </div>
+                    )}
+                </div>
+            )}
             {preview && (
                 <div className="relative w-16 h-16 mb-4">
                     <Image src={preview} alt="Preview" width={64} height={64} className="rounded-md object-cover" />
