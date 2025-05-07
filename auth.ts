@@ -54,23 +54,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                         throw new Error("Invalid login credentials");
                     }
 
-                    const data = await response.json();
+                    const resp = await response.json();
+                    const { user, access_token } = resp.data;
 
-                    if (!data || !data.user || !data.access_token) {
+                    if (!user || !access_token) {
                         throw new Error("Invalid API response");
                     }
 
-                    // Ensure `role` is returned or use a default if necessary
-                    const { id, email, name, role } = data.user;
+                    const { id, email, name, role } = user;
+
                     return {
                         id: id.toString(),
                         email,
                         name,
-                        access_token: data.access_token, // Correctly map token
-                        role: role || "user", // Default to "user" if no role is provided
+                        access_token,
+                        role: role || "patient",
                     } as unknown as User;
                 } catch (error) {
-                    // console.error("Login Error:", error);
+                    console.error("Login error:", error);
                     throw new Error("Login failed");
                 }
             },
@@ -104,9 +105,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
     events: {
         async signOut() {
-            // Handle user sign out action here
-            // console.log("User signed out");
-            await fetch(`${apiEndpoint}/logout`, { method: 'POST' });
+            await fetch(`${apiEndpoint}/logout`, {
+                method: 'POST',
+            });
         },
     },
 });

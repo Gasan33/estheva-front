@@ -1,6 +1,6 @@
-"use server";
+"use client";
 
-import { signIn } from "@/auth";
+import { signIn } from "next-auth/react";
 import config from "../config";
 
 export const signInWithCredentials = async (params: Pick<AuthCredentials, "email" | "password">) => {
